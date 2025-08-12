@@ -1,0 +1,50 @@
+// Import USWDS base styles
+@import '@uswds/uswds/dist/css/uswds.css';
+
+// Import design tokens
+@import '@cityofportland/design-tokens/dist/css/tokens.css';
+
+// Base theme styles
+.pgov-theme {
+  // Portland theme variables will be defined here
+  --color-primary: #2378c3;
+  --color-primary-darker: #1a4480;
+  --color-primary-vivid: #0071bc;
+}
+
+.pgov-dark-theme-applied {
+  // Dark theme overrides
+  --color-base-lightest: #1b1b1b;
+  --color-base-lighter: #454545;
+  --color-base-light: #757575;
+  --color-white: #1b1b1b;
+  color-scheme: dark;
+}
+
+.uswds-default-theme-applied {
+  // USWDS default theme
+  --color-primary: #005ea2;
+  --color-primary-darker: #1a4480;
+}
+
+.project-theme-light-applied {
+  // Project theme light
+  --color-primary: #4a77b4;
+}
+
+.project-theme-dark-applied {
+  // Project theme dark
+  --color-primary: #4a77b4;
+  --color-base-lightest: #1b1b1b;
+  color-scheme: dark;
+}
+
+// Component base styles
+:host {
+  display: block;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}

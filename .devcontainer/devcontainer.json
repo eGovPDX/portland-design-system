@@ -1,0 +1,29 @@
+{
+  "dockerFile": "Dockerfile",
+  "context": ".",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.local/share/pnpm/,target=/home/node/.local/share/pnpm/,type=bind"
+  ],
+  "forwardPorts": [3000, 6006, 8080],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/zsh",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "remoteUser": "node"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "@cityofportland/components-drupal",
+  "version": "0.0.1",
+  "description": "Drupal Single Directory Components as stories",
+  "keywords": [
+    "SDC",
+    "storybook",
+    "Drupal",
+    "storybook-addons"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iberdinsky-skilld/sdc-addon.git"
+  },
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Mike McDonald",
+    "email": "michael.mcdonald@portlanreogon.gov"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "serve": "npx http-server ./storybook-static",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@storybook/addon-links": "^8.6.14",
+    "@storybook/core-events": "^8.6.14",
+    "@storybook/html": "^8.6.14",
+    "@storybook/html-vite": "^8.6.14",
+    "@storybook/types": "^8.6.14",
+    "@types/json-schema": "^7.0.15",
+    "@types/node": "^22.17.0",
+    "@types/twig": "^1.12.17",
+    "auto": "^11.3.0",
+    "boxen": "^8.0.1",
+    "dedent": "^1.6.0",
+    "drupal-attribute": "^1.1.0",
+    "drupal-twig-extensions": "1.0.0-beta.5",
+    "json-schema-faker": "^0.5.9",
+    "jsonschema": "^1.5.0",
+    "prettier": "^3.6.2",
+    "prompts": "^2.4.2",
+    "storybook": "^8.6.14",
+    "storybook-addon-sdc": "^0.8.3",
+    "twig": "^1.17.1",
+    "vite": "^6.3.5",
+    "vite-plugin-twig-drupal": "^1.6.1",
+    "zx": "^8.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

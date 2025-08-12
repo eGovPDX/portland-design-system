@@ -1,0 +1,29 @@
+.umami-card {
+  padding: 1rem;
+  border: 1px solid lightgray;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}
+
+.umami-card__content {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.umami-card__read-more {
+  justify-self: start;
+}
+
+.umami-card__title {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.umami-card__wrapper {
+  display: grid;
+  gap: 1rem;
+}
+
+.umami-card--alt .umami-card__wrapper {
+  grid-template-rows: auto 1fr auto;
+}

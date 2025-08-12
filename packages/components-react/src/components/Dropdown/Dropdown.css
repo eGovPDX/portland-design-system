@@ -1,0 +1,253 @@
+/* Container for the entire component including label, button, and menu */
+.dropdown__container {
+  position: relative; /* For absolute positioning of the menu */
+  /* If using .dropdown-wrapper--fixed-width from before, ensure it targets .dropdown__container */
+}
+
+/* Native select styling for mobile devices */
+.dropdown__native-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: var(--dropdown-button-bg, #FFF) url("data:image/svg+xml,%3Csvg fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") no-repeat right 1rem center/1em;
+  border: 1px solid #dfe1e2;
+  border-radius: 4px;
+  padding: 8px 40px 8px 8px;
+  font-size: 16px;
+  font-family: "Public Sans", sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out;
+  height: 40px;
+  min-height: 40px;
+  color: var(--dropdown-button-color, #1B1B1B);
+  cursor: pointer;
+}
+
+.dropdown__native-select:focus {
+  border-color: #005ea2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 94, 162, 0.25);
+}
+
+.dropdown__native-select:hover {
+  border-color: #565c65;
+}
+
+.dropdown__native-select:disabled {
+  background-color: var(--dropdown-disabled-bg, #757575);
+  color: var(--dropdown-disabled-color, #1B1B1B);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.dropdown__native-select--error {
+  border-color: var(--dropdown-error-color, #B50909);
+  background-color: #fff0f0;
+}
+
+.dropdown__native-select--error:focus {
+  border-color: var(--dropdown-error-color, #B50909);
+  box-shadow: 0 0 0 2px rgba(181, 9, 9, 0.25);
+}
+
+/* Optional: Specific width class for the component wrapper, if needed from Figma example */
+/* Apply this class to the div wrapping the label and select in Dropdown.jsx if fixed width is desired */
+.dropdown-wrapper--fixed-width {
+  width: 343px;
+}
+
+/* Styles for custom chevron implementation */
+/* .dropdown__wrapper and related selectors removed as they are unused */
+
+.dropdown__custom-chevron {
+  position: absolute;
+  top: 50%;
+  right: var(--dropdown-chevron-right, 1rem);
+  transform: var(--dropdown-chevron-transform, translateY(-50%));
+  pointer-events: none;
+  color: var(--dropdown-chevron-color, #1B1B1B);
+  transition: var(--dropdown-chevron-transition, transform 0.2s ease-in-out);
+}
+
+.dropdown__custom-chevron--open {
+  transform: var(--dropdown-chevron-open-transform, translateY(-50%) rotate(180deg));
+}
+
+/* Ensure icon color changes for disabled and error states if needed */
+.dropdown__wrapper .usa-select:disabled + .dropdown__custom-chevron {
+  /* USWDS makes the default arrow less opaque for disabled. 
+     Matching the text color for disabled as per earlier Figma derived styles for text. */
+  color: var(--dropdown-disabled-color, #1B1B1B);
+}
+
+.dropdown__wrapper .usa-select.usa-input--error + .dropdown__custom-chevron {
+  color: var(--dropdown-error-color, #B50909); /* Match error text color */
+}
+
+/* Optional: If .dropdown-wrapper--fixed-width is used on dropdown__container */
+.dropdown__container.dropdown-wrapper--fixed-width .dropdown__wrapper,
+.dropdown__container.dropdown-wrapper--fixed-width .usa-select {
+    /* Ensure select within the fixed-width wrapper behaves as expected
+       (e.g. takes full width of its direct parent if that's the fixed width container) */
+    width: 100%; 
+}
+
+/* The button that acts as the select input */
+.usa-input.dropdown__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+  min-width: 250px;
+  max-width: 285px;
+  text-align: left;
+  height: var(--dropdown-button-height, 40px); 
+  min-height: var(--dropdown-button-min-height, 40px);
+  padding-top: var(--dropdown-button-padding-top, 8px);
+  padding-bottom: var(--dropdown-button-padding-bottom, 8px);
+  padding-left: var(--dropdown-button-padding-left, 8px);
+  padding-right: var(--dropdown-button-padding-right, 40px); 
+  position: relative; 
+  cursor: pointer;
+  text-indent: 0;
+  background-color: var(--dropdown-button-bg, #FFF);
+}
+
+/* Disabled State - ensuring specificity */
+.usa-input.dropdown__button:disabled, 
+.usa-input.dropdown__button.usa-input--disabled {
+  cursor: not-allowed;
+  background-color: var(--dropdown-disabled-bg, #757575);
+}
+
+/* Selected Value Text - ensure specificity for error color */
+.usa-input.dropdown__button.usa-input--error .dropdown__selected-value {
+  color: var(--dropdown-error-color, #B50909);
+}
+/* Default color for selected value is already in .dropdown__selected-value */
+
+
+/* Custom Chevron - ensure specificity for error and disabled states */
+.usa-input.dropdown__button.usa-input--error .dropdown__custom-chevron {
+  color: var(--dropdown-error-color, #B50909);
+}
+
+.usa-input.dropdown__button:disabled .dropdown__custom-chevron,
+.usa-input.dropdown__button.usa-input--disabled .dropdown__custom-chevron {
+  /* Matching the disabled text color of the button, which should come from .usa-input--disabled or a general disabled style */
+  /* If .usa-input--disabled text is light, this might need to be a specific muted color for the icon */
+  color: var(--dropdown-disabled-color, #1B1B1B); /* Defaulting to ink, assuming disabled state maintains readability */
+  /* opacity: 0.7; /* Alternative for muted look */
+}
+/* Default color for chevron is in .dropdown__custom-chevron */
+
+/* Style for the text part of the button (Base Style) */
+.dropdown__selected-value {
+  flex-grow: 1; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--dropdown-button-color, #1B1B1B);
+  font-family: var(--dropdown-button-font-family, "Public Sans");
+  font-size: var(--dropdown-button-font-size, 16px);
+  margin-right: 25px;
+}
+
+/* Custom Chevron Icon inside the button (Base Style) */
+.dropdown__custom-chevron {
+  position: absolute;
+  top: 50%;
+  right: 1rem; 
+  transform: translateY(-50%);
+  transition: transform 0.2s ease-in-out;
+  color: var(--dropdown-chevron-color, #1B1B1B);
+}
+
+.dropdown__custom-chevron--open {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Dropdown Menu (ul) */
+.dropdown__menu {
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--dropdown-menu-bg, #FFF);
+  border: var(--dropdown-menu-border, 1px solid #dfe1e2);
+  border-radius: var(--dropdown-menu-border-radius, 0px);
+  box-shadow: var(--dropdown-menu-shadow, 0 4px 8px rgba(0,0,0,0.1));
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  overflow-y: auto;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Dropdown Menu Item (li) */
+.dropdown__item {
+  padding: var(--dropdown-item-padding-top-bottom, 8px) var(--dropdown-item-padding-left-right, 16px);
+  cursor: pointer;
+  color: var(--dropdown-item-color, #1B1B1B);
+  background: var(--dropdown-item-bg, transparent);
+  font-family: var(--dropdown-item-font-family, "Public Sans");
+  font-size: var(--dropdown-item-font-size, 16px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown__item:hover, 
+.dropdown__item:focus {
+  background: var(--dropdown-item-hover-bg, #dfe1e2);
+  outline: none;
+}
+
+.dropdown__item--selected {
+  background: var(--dropdown-item-selected-bg, #dfe1e2);
+  color: var(--dropdown-item-selected-color, #1B1B1B);
+  font-weight: bold;
+}
+
+.dropdown__item--active {
+  background: var(--dropdown-item-active-bg, #005ea2);
+  color: var(--dropdown-item-active-color, #FFF);
+  font-weight: bold;
+}
+
+.dropdown__item--active:hover {
+  background: var(--dropdown-item-active-hover-bg, #005ea2);
+}
+
+/* Custom hint text for Dropdown */
+.usa-hint__text {
+  color: var(--dropdown-hint-color, #565c65);
+  font-size: var(--dropdown-hint-font-size, 14px);
+  font-family: var(--dropdown-hint-font-family, "Public Sans");
+  margin-top: var(--dropdown-hint-margin-top, 4px);
+  display: block;
+}
+
+/* Custom label styles for Dropdown */
+.usa-label__text {
+  color: var(--dropdown-label-color, #1B1B1B);
+  font-size: var(--dropdown-label-font-size, 16px);
+  font-family: var(--dropdown-label-font-family, "Public Sans");
+  font-weight: var(--dropdown-label-font-weight, 600);
+  margin-bottom: var(--dropdown-label-margin-bottom, 4px);
+  display: block;
+}
+
+.usa-label--error {
+  color: var(--dropdown-label-error-color, #B50909);
+}
+
+/* Custom error message styles for Dropdown */
+.usa-error-message {
+  color: var(--dropdown-error-color, #B50909);
+  font-size: var(--dropdown-error-font-size, 14px);
+  font-family: var(--dropdown-error-font-family, "Public Sans");
+  margin-top: var(--dropdown-error-margin-top, 4px);
+  display: block;
+}

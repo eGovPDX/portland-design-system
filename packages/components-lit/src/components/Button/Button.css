@@ -1,0 +1,21 @@
+/* Portland Button Component Styles */
+/* These styles are included within the component's shadow DOM via Lit's css template literal */
+
+portland-button {
+  display: inline-block;
+}
+
+/* Additional global styles if needed for host integration */
+portland-button:not(:defined) {
+  display: none;
+}
+
+/* Ensure proper styling when used in forms */
+form portland-button {
+  margin-bottom: 0.5rem;
+}
+
+/* Integration with existing CSS frameworks */
+.usa-form portland-button {
+  margin-top: 1rem;
+}

@@ -1,0 +1,30 @@
+/**
+ * @file
+ * This file is used to style the more link.
+ */
+
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: capitalize;
+  border-bottom: 1px solid transparent;
+  color: inherit;
+  fill: currentColor;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+.read-more:focus,
+.read-more:hover {
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.read-more__icon {
+  width: 1rem;
+  height: 1rem;
+  fill: inherit;
+}

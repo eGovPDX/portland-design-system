@@ -1,0 +1,17 @@
+/* Page Template Component Styles */
+
+.pgov-page-template {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--page-template-bg, #ffffff);
+  font-family: var(--page-template-font-family);
+}
+
+.pgov-page-template-main {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--page-template-padding-lg) var(--page-template-padding-md);
+} 
