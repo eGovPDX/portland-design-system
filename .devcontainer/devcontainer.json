@@ -1,11 +1,7 @@
 {
-  "dockerFile": "Dockerfile",
-  "context": ".",
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "lts"
-    },
-    "ghcr.io/devcontainers/features/git:1": {}
+  "build": {
+    "context": ".",
+    "dockerfile": "Dockerfile"
   },
   "mounts": [
     "source=${localEnv:HOME}/.local/share/pnpm/,target=/home/node/.local/share/pnpm/,type=bind"
@@ -25,5 +21,9 @@
       }
     }
   },
-  "remoteUser": "node"
+  "remoteUser": "node",
+  "remoteEnv": {
+    "PNPM_HOME": "/home/node/.local/share/pnpm",
+    "PATH": "/home/node/.local/share/pnpm:${containerEnv:PATH}"
+  }
 }
