@@ -1,19 +1,19 @@
-import { join } from 'path' // 1. Add dependencies.
-import { cwd } from 'process'
+import { join } from "path"; // 1. Add dependencies.
+import { cwd } from "process";
 
 const config = {
-  stories: ['../components/**/*.component.yml'], // 2. Set components glob.
+  stories: ["../src/**/*.component.yml"], // 2. Set components glob.
   addons: [
     {
-      name: 'storybook-addon-sdc', // 3. Configure addon.
+      name: "storybook-addon-sdc", // 3. Configure addon.
       options: {
         sdcStorybookOptions: {
-          namespace: 'portland', // Your namespace.
+          namespace: "portland", // Your namespace.
         },
         vitePluginTwigDrupalOptions: {
           // vite-plugin-twig-drupal options.
           namespaces: {
-            portland: join(cwd(), './components'), // Your namespace and path to components.
+            portland: join(cwd(), "./src"), // Your namespace and path to components.
           },
         },
         jsonSchemaFakerOptions: {}, // json-schema-faker options.
@@ -21,8 +21,8 @@ const config = {
     },
   ],
   framework: {
-    name: '@storybook/html-vite',
+    name: "@storybook/html-vite",
     options: {},
   },
-}
-export default config
+};
+export default config;

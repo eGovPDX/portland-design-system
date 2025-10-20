@@ -1,0 +1,234 @@
+/**
+ * @file
+ * Portland Button Component Styles
+ * 
+ * This CSS file provides styling for the Portland Button component
+ * using design tokens from the Portland Design System.
+ * The styles are applied to the portland-button web component.
+ */
+
+/* Import design tokens */
+@import '@cityofportland/design-tokens/css/design_tokens.css';
+
+/* 
+ * Portland Button Web Component Styles
+ * These styles target the portland-button custom element
+ */
+portland-button {
+  /* Base button styles using design tokens */
+  display: inline-block;
+  
+  /* Ensure proper focus handling for web components */
+  &:focus-within {
+    outline: var(--button-focus-outline, 0.25rem solid #fd5765);
+    outline-offset: var(--button-focus-outline-offset, 0.25rem);
+  }
+}
+
+/* 
+ * Link wrapper for button-as-link pattern
+ */
+.portland-button-link {
+  text-decoration: none;
+  display: inline-block;
+  
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+  
+  /* Remove link styling when disabled */
+  &[aria-disabled="true"] {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+/* 
+ * Additional Drupal-specific button utilities
+ */
+
+/* Button group spacing in Drupal forms */
+.form-actions portland-button:not(:last-child) {
+  margin-right: var(--button-margin-right, 0.5rem);
+}
+
+/* Integration with Drupal form elements */
+.form-item portland-button,
+.form-actions portland-button {
+  vertical-align: top;
+}
+
+/* 
+ * Accessibility enhancements for Drupal
+ */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  portland-button {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  portland-button * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 
+ * Print styles
+ */
+@media print {
+  portland-button {
+    background: transparent !important;
+    color: black !important;
+    border: 1px solid black !important;
+  }
+  
+  .portland-button-link {
+    text-decoration: underline;
+  }
+  
+  /* Show URL for link buttons */
+  .portland-button-link[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+}
+
+/* 
+ * RTL (Right-to-Left) language support
+ */
+[dir="rtl"] portland-button {
+  /* Reverse margins for RTL */
+  margin-left: var(--button-margin-right, 0.5rem);
+  margin-right: 0;
+}
+
+[dir="rtl"] .form-actions portland-button:not(:last-child) {
+  margin-left: var(--button-margin-right, 0.5rem);
+  margin-right: 0;
+}
+
+/* 
+ * Dark mode support (if not handled by design tokens)
+ * This provides fallback dark mode styles
+ */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles will be handled by design tokens */
+  /* This is a fallback if design tokens don't include dark mode */
+  
+  portland-button:not([variant]) {
+    /* Default button in dark mode */
+    background-color: var(--button-bg, #0066cc);
+    color: var(--button-text-color, #ffffff);
+  }
+  
+  portland-button[variant="outline"] {
+    border-color: var(--button-outline-border-color, #0066cc);
+    color: var(--button-outline-text-color, #0066cc);
+  }
+}
+
+/* 
+ * Size adjustments for Drupal admin themes
+ */
+.admin-toolbar portland-button,
+.admin-menu portland-button {
+  /* Smaller buttons in admin interface */
+  font-size: 0.875rem;
+}
+
+/* 
+ * Integration with Drupal's CKEditor
+ */
+.cke_button portland-button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+/* 
+ * Mobile responsiveness
+ */
+@media (max-width: 768px) {
+  /* Stack buttons vertically on mobile */
+  .form-actions portland-button {
+    display: block;
+    width: 100%;
+    margin-bottom: var(--spacing-sm, 0.5rem);
+    margin-right: 0;
+  }
+  
+  .form-actions portland-button:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* 
+ * Focus management for keyboard navigation
+ */
+portland-button:focus-visible {
+  /* Ensure focus is visible for keyboard users */
+  outline: var(--button-focus-outline, 2px solid #0066cc);
+  outline-offset: var(--button-focus-outline-offset, 2px);
+}
+
+/* 
+ * Error state integration with Drupal form validation
+ */
+.form-item--error portland-button[type="submit"] {
+  /* Style submit buttons differently when form has errors */
+  border: 2px solid var(--color-error, #d63638);
+}
+
+/* 
+ * Loading state for AJAX buttons
+ */
+portland-button.is-loading {
+  position: relative;
+  pointer-events: none;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1rem;
+    height: 1rem;
+    margin: -0.5rem 0 0 -0.5rem;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: button-loading 1s linear infinite;
+  }
+}
+
+@keyframes button-loading {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 
+ * Custom property fallbacks for design tokens
+ * These provide fallback values if design tokens are not available
+ */
+:root {
+  --button-bg: #0066cc;
+  --button-text-color: #ffffff;
+  --button-hover-bg: #0052a3;
+  --button-focus-outline: 2px solid #0066cc;
+  --button-focus-outline-offset: 2px;
+  --button-margin-right: 0.5rem;
+  --button-disabled-bg-color: #cccccc;
+  --button-disabled-text-color: #666666;
+  --spacing-sm: 0.5rem;
+  --color-error: #d63638;
+}
