@@ -1,0 +1,61 @@
+.header {
+  font-family: var(--pgov-header-font-family, "Open Sans");
+  background-color: var(--pgov-header-bg, #1B1B1B);
+  padding: 0 var(--pgov-header-spacing-md, 1.5rem);
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  gap: var(--pgov-header-spacing-md, 1.5rem);
+  min-height: 5rem;
+}
+
+.header-branding {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pgov-header-spacing-sm, 1rem);
+  text-decoration: none;
+  color: var(--pgov-header-link-color, #FFF);
+}
+
+.header-branding:focus {
+    outline: 2px solid var(--color-blue-50);
+    outline-offset: 2px;
+}
+
+.header-logo {
+  height: 3rem;
+  width: 3rem;
+}
+
+.header-text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title {
+  font-size: var(--pgov-header-title-font-size, 1.25rem);
+  font-weight: 700;
+  color: var(--pgov-header-title-color, #FFF);
+  line-height: 1.2;
+}
+
+.header-tagline {
+  font-size: var(--pgov-header-tagline-font-size, 0.875rem);
+  color: var(--pgov-header-tagline-color, #A8C6FF);
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 1rem;
+  }
+}
