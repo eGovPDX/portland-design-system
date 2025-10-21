@@ -2,6 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './HeroHomepage.css';
 
+/**
+ * Homepage hero with title, optional subtitle, search component, and quick links.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} props.title - Main hero title
+ * @param {string} [props.subtitle] - Optional subtitle displayed above links
+ * @param {React.ReactNode} props.searchComponent - Search component to render prominently
+ * @param {Array<{text: string, href: string, props?: Object}>} [props.links=[]] - Quick links below search
+ * @param {string} [props.className] - Additional CSS class names
+ * @returns {JSX.Element} Homepage hero section
+ */
 export const HeroHomepage = ({
   title,
   subtitle,
@@ -27,13 +39,13 @@ export const HeroHomepage = ({
         {searchComponent}
       </div>
 
-      {subtitle && (
-        <div className={`${baseClass}__subtitle-container`}>
-          <h2 className={`${baseClass}__subtitle`}>{subtitle}</h2>
-        </div>
-      )}
-
-      {links.length > 0 && (
+      {links?.length > 0 && (
+        <>
+        {subtitle && (
+          <div className={`${baseClass}__subtitle-container`}>
+            <h2 className={`${baseClass}__subtitle`}>{subtitle}</h2>
+          </div>
+        )}
         <div className={`${baseClass}__links-container`}>
           {links.map((link, index) => (
             <a
@@ -46,6 +58,7 @@ export const HeroHomepage = ({
             </a>
           ))}
         </div>
+        </>
       )}
     </div>
   );

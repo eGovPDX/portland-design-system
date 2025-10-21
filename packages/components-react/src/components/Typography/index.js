@@ -1,14 +1,14 @@
 // Export the main Typography component
-export { Typography } from './Typography';
+export { Typography } from "./Typography";
 
 // Export collection components
-export { 
+export {
   FontFamilies,
   FontSizes,
   FontWeights,
   LineHeights,
-  LetterSpacings
-} from './components';
+  LetterSpacings,
+} from "./components";
 
 // Export individual display components
 export {
@@ -16,5 +16,5 @@ export {
   FontSizeDisplay,
   FontWeightDisplay,
   LineHeightDisplay,
-  LetterSpacingDisplay
-} from './components'; 
+  LetterSpacingDisplay,
+} from "./components";

@@ -1,3 +1,3 @@
-import tokens from '@cityofportland/design-tokens/output/design_tokens.json';
+import tokens from "@cityofportland/design-tokens/output/design_tokens.json";
 
-export const designTokens = tokens; 
+export const designTokens = tokens;

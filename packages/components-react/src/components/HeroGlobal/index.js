@@ -1,1 +1,1 @@
-export { HeroGlobal } from './HeroGlobal'; 
+export { HeroGlobal } from "./HeroGlobal";

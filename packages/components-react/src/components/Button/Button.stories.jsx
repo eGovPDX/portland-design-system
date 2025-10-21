@@ -1,6 +1,8 @@
-import React from 'react';
-import { Button } from './Button';
 import { faArrowRight, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import 'react';
+
+import { Button } from './Button';
 
 export default {
   title: 'Components/Button',
@@ -49,7 +51,8 @@ export default {
 // Default button
 export const Default = {
   args: {
-    children: 'Default Button'
+    children: 'Default Button',
+    onClick: () => console.log('Button clicked!')
   }
 };
 
@@ -132,7 +135,7 @@ export const Unstyled = {
 export const WithStartIcon = {
   args: {
     children: 'Download',
-    startIcon: faDownload
+    startIcon: (<FontAwesomeIcon icon={faDownload} />)
   }
 };
 
@@ -140,6 +143,6 @@ export const WithStartIcon = {
 export const WithEndIcon = {
   args: {
     children: 'Continue',
-    endIcon: faArrowRight
+    endIcon: (<FontAwesomeIcon icon={faArrowRight} />)
   }
 }; 

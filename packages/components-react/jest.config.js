@@ -1,18 +1,18 @@
 export default {
-  testEnvironment: 'jsdom',
+  testEnvironment: "jsdom",
   transform: {
-    '^.+\\.jsx?$': 'babel-jest',
+    "^.+\\.jsx?$": "babel-jest",
   },
   moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
-    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/fileMock.js',
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+    "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
   },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  testMatch: ["**/__tests__/**/*.js?(x)", "**/?(*.)+(spec|test).js?(x)"],
   collectCoverageFrom: [
-    'src/**/*.{js,jsx}',
-    '!src/**/*.stories.{js,jsx}',
-    '!src/stories/**',
+    "src/**/*.{js,jsx}",
+    "!src/**/*.stories.{js,jsx}",
+    "!src/stories/**",
   ],
   coverageThreshold: {
     global: {
@@ -22,4 +22,4 @@ export default {
       statements: 70,
     },
   },
-}; 
+};

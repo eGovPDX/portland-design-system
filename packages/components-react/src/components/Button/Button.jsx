@@ -1,58 +1,56 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './Button.css';
+import React from 'react';
 
-export const Button = ({
-  children,
-  variant = 'default',
-  size = 'default',
-  disabled = false,
-  ariaDisabled = false,
-  unstyled = false,
-  onClick,
-  type = 'button',
-  startIcon,
-  endIcon,
-  className,
-  ...props
-}) => {
-  const baseClass = 'usa-button';
-  const variantClass = variant !== 'default' ? `${baseClass}--${variant}` : '';
-  const sizeClass = size === 'big' ? `${baseClass}--big` : '';
-  const unstyledClass = unstyled ? `${baseClass}--unstyled` : '';
-  
-  const buttonClasses = [
-    baseClass,
-    variantClass,
-    sizeClass,
-    unstyledClass,
-    className
-  ].filter(Boolean).join(' ');
+import '@cityofportland/components-lit/button';
 
-  return (
-    <button
-      type={type}
-      className={buttonClasses}
-      onClick={onClick}
-      disabled={disabled}
-      aria-disabled={ariaDisabled || disabled}
-      {...props}
-    >
-      {startIcon && (
-        <span className="usa-button__icon usa-button__icon--left">
-          <FontAwesomeIcon icon={startIcon} />
-        </span>
-      )}
-      {children}
-      {endIcon && (
-        <span className="usa-button__icon usa-button__icon--right">
-          <FontAwesomeIcon icon={endIcon} />
-        </span>
-      )}
-    </button>
-  );
-};
+/**
+ * Button component using the portland-button web component.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @returns {JSX.Element} portland-button element
+ */
+export const Button = (
+    {
+      children = null,
+      variant = 'default',
+      size = 'default',
+      disabled = false,
+      ariaDisabled = false,
+      unstyled = false,
+      type = 'button',
+      startIcon = null,
+      endIcon = null,
+      className = '',
+      label,
+      ...props
+    }
+  ) => {
+    return (
+      <portland-button
+        variant={variant}
+        size={size}
+        type={type}
+        class={className}
+        aria-disabled={ariaDisabled || disabled ? 'true' : 'false'}
+        disabled={disabled}
+        unstyled={unstyled}
+        label={label}
+        starticon={startIcon}
+        endicon={endIcon}
+        {...props}
+      >
+        {startIcon && (
+          <span slot="startIcon">{startIcon}</span>
+        )}
+        {children || label}
+        {endIcon && (
+          <span slot="endIcon">{endIcon}</span>
+        )}
+      </portland-button>
+    );
+  };
+
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,

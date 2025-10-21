@@ -1,7 +1,11 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * Small external-link icon for use inline with text links.
+ *
+ * @returns {JSX.Element} FontAwesome external-link icon
+ */
 export const ExternalLinkIcon = () => (
   <FontAwesomeIcon 
     icon={faArrowUpRightFromSquare} 

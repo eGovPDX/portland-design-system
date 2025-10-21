@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './PGOVHeader.css';
 import { HeaderLogo } from './HeaderLogo';
@@ -35,12 +35,12 @@ export const PGOVHeader = ({
               logoAlt={logoAlt}
             />
           </div>
-            <div className="header-text-container">
-              <span className="header-title">{title}</span>
-              {tagline && (
-                <span className="header-tagline">{tagline}</span>
-              )}
-            </div>
+          <div className="header-text-container">
+            <span className="header-title">{title}</span>
+            {tagline && (
+              <span className="header-tagline" data-testid="tagline">{tagline}</span>
+            )}
+          </div>
           <div className={`header-mobile-menu ${isMenuOpen ? 'is-open' : ''}`}>
             <button
               className="header-mobile-menu-button"

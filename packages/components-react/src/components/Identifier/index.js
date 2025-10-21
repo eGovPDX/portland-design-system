@@ -1,2 +1,2 @@
 // Export the main Identifier component
-export { Identifier } from './Identifier'; 
+export { Identifier } from "./Identifier";

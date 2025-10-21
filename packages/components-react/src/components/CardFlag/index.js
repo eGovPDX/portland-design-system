@@ -1,1 +1,1 @@
-export { CardFlag } from './CardFlag'; 
+export { CardFlag } from "./CardFlag";

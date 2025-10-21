@@ -14,15 +14,15 @@ export async function loadTheme(themeName) {
 
   try {
     switch (themeName) {
-      case 'pgov':
-        await import('./styles/themes/pgov.css');
+      case "pgov":
+        await import("./styles/themes/pgov.css");
         break;
-      case 'pgov-dark':
-        await import('./styles/themes/pgov.css');
-        await import('./styles/themes/pgov-dark.css');
+      case "pgov-dark":
+        await import("./styles/themes/pgov.css");
+        await import("./styles/themes/pgov-dark.css");
         break;
-      case 'uswds-default':
-        await import('./styles/themes/uswds-default.css');
+      case "uswds-default":
+        await import("./styles/themes/uswds-default.css");
         break;
       default:
         console.warn(`Theme "${themeName}" not found.`);
@@ -33,4 +33,4 @@ export async function loadTheme(themeName) {
     console.error(`Failed to load theme "${themeName}":`, error);
     throw error;
   }
-} 
+}

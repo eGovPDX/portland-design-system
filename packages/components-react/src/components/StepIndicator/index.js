@@ -1,2 +1,2 @@
-export { StepIndicator } from './StepIndicator';
-export { StepIndicatorSegment } from './StepIndicatorSegment'; 
+export { StepIndicator } from "./StepIndicator";
+export { StepIndicatorSegment } from "./StepIndicatorSegment";
