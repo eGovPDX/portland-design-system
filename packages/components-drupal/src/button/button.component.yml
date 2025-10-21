@@ -142,14 +142,14 @@ slots:
     description: Icon or content to display before the button text
     examples:
       - '<i class="fas fa-download" aria-hidden="true"></i>'
-      - '<svg>...</svg>'
+      - "<svg>...</svg>"
 
   end_icon:
     title: End Icon
     description: Icon or content to display after the button text
     examples:
       - '<i class="fas fa-arrow-right" aria-hidden="true"></i>'
-      - '<svg>...</svg>'
+      - "<svg>...</svg>"
 
 # Library dependencies for the component
 libraryOverrides:
