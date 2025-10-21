@@ -16,7 +16,7 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/portland-component-library.es.js"
+      "import": "./dist/portland-component-library.js"
     },
     "./dist/style.css": "./dist/style.css",
     "./components/Accordion": {
@@ -107,6 +107,10 @@
       "import": "./dist/components/Pagination/index.js"
     },
     "./components/Pagination/style.css": "./dist/components/Pagination/style.css",
+    "./components/Person": {
+      "import": "./dist/components/Person/index.js"
+    },
+    "./components/Person/style.css": "./dist/components/Person/style.css",
     "./components/PopoverWithCard": {
       "import": "./dist/components/PopoverWithCard/index.js"
     },
@@ -186,11 +190,12 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix"
   },
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
-    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-env": "^7.28.3",
     "@babel/preset-react": "^7.27.1",
     "@chromatic-com/storybook": "^3.2.7",
     "@storybook/addon-a11y": "^8.6.14",
@@ -208,46 +213,45 @@
     "@storybook/react-vite": "^8.6.14",
     "@storybook/test": "^8.6.14",
     "@storybook/test-runner": "^0.22.1",
-    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@vitejs/plugin-react": "^4.7.0",
     "@vitest/browser": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",
     "@whitespace/storybook-addon-html": "^7.0.0",
     "babel-jest": "^29.7.0",
-    "eslint": "^9.32.0",
+    "eslint": "^9.38.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
     "eslint-plugin-storybook": "^0.12.0",
     "glob": "^11.0.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "playwright": "^1.54.2",
-    "sass": "^1.89.2",
+    "playwright": "^1.56.1",
+    "prettier": "^3.6.2",
+    "sass": "^1.93.2",
     "storybook": "^8.6.14",
-    "vite": "^6.3.5",
+    "vite": "^6.4.1",
     "vitest": "^3.2.4"
   },
   "dependencies": {
+    "@cityofportland/components-lit": "workspace:*",
     "@cityofportland/design-tokens": "^1.1.0",
-    "@floating-ui/react": "^0.27.15",
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-brands-svg-icons": "^6.7.2",
-    "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/react-fontawesome": "^0.2.3",
+    "@floating-ui/react": "^0.27.16",
+    "@fortawesome/fontawesome-svg-core": "^7.1.0",
+    "@fortawesome/free-brands-svg-icons": "^7.1.0",
+    "@fortawesome/free-solid-svg-icons": "^7.1.0",
+    "@fortawesome/react-fontawesome": "^3.1.0",
     "@popperjs/core": "^2.11.8",
     "@uswds/uswds": "^3.13.0",
     "classnames": "^2.5.1",
     "focus-trap-react": "^11.0.4",
     "prop-types": "^15.8.1",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -258,10 +262,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eGovPDX/portland-component-library.git"
+    "url": "git+https://github.com/eGovPDX/portland-design-system.git"
   },
   "bugs": {
-    "url": "https://github.com/eGovPDX/portland-component-library/issues"
+    "url": "https://github.com/eGovPDX/portland-design-system/issues"
   },
-  "homepage": "https://github.com/eGovPDX/portland-component-library#readme"
+  "homepage": "https://github.com/eGovPDX/portland-design-system#readme"
 }
