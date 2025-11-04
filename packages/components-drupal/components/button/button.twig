@@ -1,0 +1,95 @@
+{#
+/**
+ * @file
+ * Template for Portland Button component.
+ *
+ * Available variables:
+ * - variant: Button visual style (default, secondary, accent-cool, accent-warm, base, outline, outline-inverse)
+ * - size: Button size (default, big)
+ * - type: Button type attribute (button, submit, reset)
+ * - disabled: Boolean indicating if button is disabled
+ * - aria_disabled: Boolean indicating if button is aria-disabled
+ * - unstyled: Boolean indicating if button should be unstyled
+ * - label: Button text label
+ * - url: Optional URL to render button as link
+ * - attributes: Additional HTML attributes
+ * - content: Button content (slot)
+ * - left: content to left of default button slot (slot)
+ * - right: content to right of default button slot (slot)
+ */
+#}
+
+{# Set default values #}
+{% set variant = variant|default('primary') %}
+{% set size = size|default('default') %}
+{% set type = type|default('button') %}
+{% set disabled = disabled|default(false) %}
+{% set label = label|default('') %}
+
+{# Variant classes #}
+{% set variant_classes = [] %}
+{% if not disabled %}
+  {% set variant_classes = {
+    'primary': ['button--primary'],
+    'secondary': ['button--secondary'],
+    'accent-cool': ['button--accent-cool'],
+    'accent-warm': ['button--accent-warm'],
+    'base': ['button--base'],
+    'outline': ['button--outline'],
+    'outline-inverse': ['button--outline-inverse'],
+    'unstyled': ['button--unstyled'],
+  }[variant] %}
+{% endif %}
+
+{# Size classes #}
+{% set size_classes = {
+  'default': ['button--default'],
+  'big': ['button--big'],
+  'small': ['button--small'],
+}[size] %}
+
+{# Combine all classes #}
+{% set classes = ['button']|merge(variant_classes)|merge(size_classes) %}
+
+{# Process attributes #}
+{% set attributes = attributes|default({}) %}
+{% if attributes.class is defined %}
+  {% set additional_classes = attributes.class %}
+{% else %}
+  {% set additional_classes = '' %}
+{% endif %}
+
+{# Combine all classes #}
+{% if additional_classes is not empty %}
+  {% set classes = classes|merge(additional_classes|split(' '))%}
+{% endif %}
+
+{# Build common attributes #}
+{% set common_attrs = {
+  'class': classes|join(' '),
+  'aria-disabled': (disabled) ? 'true' : 'false'
+} %}
+
+{# Add custom attributes #}
+{% if attributes %}
+  {% for attr_name, attr_value in attributes %}
+    {% if attr_name != 'class' and attr_name != 'aria-disabled' %}
+      {% set common_attrs = common_attrs|merge({(attr_name): attr_value}) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<button type="{{ type }}" {% for attr_name, attr_value in common_attrs %}{{ attr_name }}="{{ attr_value }}"{% endfor %} {% if disabled %}disabled{% endif %}>
+  {# Left content #}
+  {% block left %}
+    <span>{{ left }}</span>
+  {% endblock %}
+  {# Main content #}
+  {% block content %}
+    {{ label }}
+  {% endblock %}
+  {# Right content #}
+  {% block right %}
+    <span>{{ right }}</span>
+  {% endblock %}
+</button>

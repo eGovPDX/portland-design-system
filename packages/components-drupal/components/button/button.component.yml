@@ -1,0 +1,266 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Button
+
+# A longer description.
+description: A native Twig button component that draws attention to important actions with a large selectable surface. Server-side rendered implementation matching the Portland Design System button styles.
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+# Schema for the props. We support www.json-schema.org. Learn more about the
+# syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your
+  # component template.
+  type: object
+
+  properties:
+    variant:
+      type: string
+      title: Button Variant
+      description: The visual style of the button
+      default: primary
+      enum:
+        - primary
+        - secondary
+        - accent-cool
+        - accent-warm
+        - base
+        - outline
+        - outline-inverse
+        - unstyled
+      examples:
+        - primary
+
+    size:
+      type: string
+      title: Button Size
+      description: The size of the button
+      default: default
+      enum:
+        - default
+        - big
+        - small
+      examples:
+        - default
+
+    type:
+      type: string
+      title: Button Type
+      description: The HTML button type attribute
+      default: button
+      enum:
+        - button
+        - submit
+        - reset
+      examples:
+        - button
+
+    disabled:
+      type: boolean
+      title: Disabled State
+      description: Whether the button is disabled
+      default: false
+      examples:
+        - false
+
+    label:
+      type: string
+      title: Button Label
+      description: The button text label (can be overridden by content slot)
+      examples:
+        - "Click me"
+        - "Submit Form"
+        - "Learn More"
+
+    attributes:
+      type: object
+      title: Additional Attributes
+      description: Additional HTML attributes to add to the button element
+      properties:
+        class:
+          type: string
+          title: CSS Classes
+          description: Additional CSS classes for the button
+        id:
+          type: string
+          title: Element ID
+          description: HTML ID attribute for the button
+        data-*:
+          type: string
+          title: Data Attributes
+          description: Custom data attributes
+
+slots:
+  content:
+    title: Content
+    description: The main content/text of the button. Defaults to the "label" prop if not provided.
+
+  left:
+    title: Left
+    description: Area to the left of the content, typically for an icon
+
+  right:
+    title: Right
+    description: Area to the right of the content, typically for an icon
+
+# Library dependencies for the component
+libraryOverrides:
+  dependencies:
+    - components-drupal/button
+    - core/drupal
+
+thirdPartySettings:
+  sdcStorybook:
+    tags: ["autodocs"]
+    disableBasicStory: true
+    stories:
+      primary:
+        title: Default Button
+        props:
+          variant: primary
+          size: default
+          type: button
+          disabled: false
+          label: "Button"
+        slots:
+          content:
+            - "Button"
+          left: []
+          right: []
+
+      secondary:
+        title: Secondary Button
+        props:
+          variant: secondary
+          size: default
+          type: button
+          label: "Button"
+        slots:
+          content:
+            - "Button"
+          left: []
+          right: []
+
+      accent_cool:
+        title: Accent Cool Button
+        props:
+          variant: accent-cool
+          size: default
+          type: button
+          label: "Accent Cool"
+        slots:
+          content:
+            - "Accent Cool"
+          left: []
+          right: []
+
+      accent_warm:
+        title: Accent Warm Button
+        props:
+          variant: accent-warm
+          size: default
+          type: button
+          label: "Accent Warm"
+        slots:
+          content:
+            - "Accent Warm"
+          left: []
+          right: []
+
+      base:
+        title: Base Button
+        props:
+          variant: base
+          size: default
+          type: button
+          label: "Base"
+        slots:
+          content:
+            - "Base"
+          left: []
+          right: []
+
+      outline:
+        title: Outline Button
+        props:
+          variant: outline
+          size: default
+          type: button
+          label: "Outline Button"
+        slots:
+          content:
+            - "Outline Button"
+          left: []
+          right: []
+
+      outline_inverse:
+        title: Outline Inverse Button
+        props:
+          variant: outline-inverse
+          size: default
+          type: button
+          label: "Outline Inverse Button"
+        slots:
+          content:
+            - "Outline Inverse Button"
+          left: []
+          right: []
+
+      big_size:
+        title: Big Button
+        props:
+          variant: primary
+          size: big
+          type: button
+          label: "Big Button"
+        slots:
+          content:
+            - "Big Button"
+          left: []
+          right: []
+
+      with_icons:
+        title: Button with Icons
+        props:
+          variant: primary
+          size: default
+          type: button
+          label: "Download File"
+        slots:
+          content:
+            - "Download File"
+          left:
+            - "🤞"
+          right:
+            - "🤞"
+
+      disabled:
+        title: Disabled Button
+        props:
+          variant: primary
+          size: default
+          type: button
+          disabled: true
+          label: "Disabled Button"
+        slots:
+          content:
+            - "Disabled Button"
+          left: []
+          right: []
+
+      unstyled:
+        title: Unstyled Button
+        props:
+          variant: unstyled
+          size: default
+          type: button
+          label: "Unstyled Button"
+        slots:
+          content:
+            - "Unstyled Button"
+          left: []
+          right: []
