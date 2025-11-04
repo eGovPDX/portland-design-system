@@ -11,9 +11,9 @@
     "vscode": {
       "extensions": [
         "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
         "esbenp.prettier-vscode",
-        "ms-azuretools.vscode-docker",
-        "eamodio.gitlens"
+        "mblode.twig-language-2"
       ],
       "settings": {
         "terminal.integrated.shell.linux": "/bin/zsh",
