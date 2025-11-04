@@ -10,11 +10,11 @@ import { fileHeader } from "style-dictionary/utils";
 
 export default {
   name: "css/tailwind",
-  format: ({ dictionary, file }) => `${fileHeader({ file })}
+  format: async ({ dictionary, file }) =>
+    (await fileHeader({ file })) +
+    `
 @theme {
   --*: initial;
-${dictionary.allTokens
-  .map((token) => `  --${token.name}: ${token.$value};`)
-  .join("\n")}
-}`,
+${dictionary.allTokens.map((token) => `  --${token.name}: ${token.$value};`).join("\n")}
+}`.trimStart(),
 };
