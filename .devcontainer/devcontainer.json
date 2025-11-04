@@ -16,8 +16,7 @@
         "mblode.twig-language-2"
       ],
       "settings": {
-        "terminal.integrated.shell.linux": "/bin/zsh",
-        "editor.formatOnSave": true
+        "terminal.integrated.shell.linux": "/bin/zsh"
       }
     }
   },
