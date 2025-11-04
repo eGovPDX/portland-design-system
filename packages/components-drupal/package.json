@@ -1,31 +1,20 @@
 {
   "name": "@cityofportland/components-drupal",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha.0",
   "description": "Drupal Single Directory Components as stories",
-  "keywords": [
-    "SDC",
-    "storybook",
-    "Drupal",
-    "storybook-addons"
-  ],
-  "type": "module",
-  "license": "MIT",
   "author": {
-    "name": "Mike McDonald",
-    "email": "michael.mcdonald@portlandoregon.gov"
+    "name": "City of Portland, Oregon"
   },
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build",
-    "build:multi": "vite build --config vite-multi-entry.config.js",
-    "build:watch": "vite build --watch",
     "dev": "vite build --watch --mode development",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "serve": "npx http-server ./storybook-static",
-    "format": "prettier --write .",
-    "lint": "eslint . --ext .js,.ts,.mjs --max-warnings 0",
-    "lint:fix": "eslint . --ext .js,.ts,.mjs --fix",
-    "type-check": "tsc --noEmit"
+    "storybook:build": "storybook build"
   },
   "devDependencies": {
     "@cityofportland/components-css": "workspace:*",
@@ -54,7 +43,12 @@
     "vite-plugin-twig-drupal": "^1.6.2",
     "yaml": "^2.8.1"
   },
-  "publishConfig": {
-    "access": "public"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eGovPDX/portland-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eGovPDX/portland-design-system/issues"
+  },
+  "homepage": "https://github.com/eGovPDX/portland-design-system#readme"
 }

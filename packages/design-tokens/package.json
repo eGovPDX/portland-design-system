@@ -1,9 +1,15 @@
 {
   "name": "@cityofportland/design-tokens",
-  "version": "1.1.0",
+  "version": "1.0.0-alpha.0",
   "description": "Design tokens managed in Style Dictionary for the Portland Design System.",
+  "author": {
+    "name": "City of Portland, Oregon"
+  },
+  "license": "MIT",
   "type": "module",
-  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": "./dist/index.js",
     "./css/*": "./dist/css/*",
@@ -14,28 +20,17 @@
   },
   "scripts": {
     "build": "style-dictionary build --verbose --config ./src/config.js",
-    "clean": "rm -rf dist/",
-    "lint": "eslint . --ext .js,.mjs --max-warnings 0",
-    "lint:fix": "eslint . --ext .js,.mjs --fix"
-  },
-  "keywords": [
-    "figma",
-    "design-tokens",
-    "css"
-  ],
-  "files": [
-    "dist"
-  ],
-  "author": "City of Portland, Oregon",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
+    "clean": "rm -rf dist/"
   },
   "devDependencies": {
     "style-dictionary": "^5.1.1"
   },
-  "engines": {
-    "node": ">=18.0.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eGovPDX/portland-design-system.git"
   },
-  "packageManager": "pnpm@8.15.3"
+  "bugs": {
+    "url": "https://github.com/eGovPDX/portland-design-system/issues"
+  },
+  "homepage": "https://github.com/eGovPDX/portland-design-system#readme"
 }

@@ -1,5 +1,5 @@
 import "@cityofportland/components-css/button.css";
-import type { ButtonProps } from "@cityofportland/components-types/button";
+import type { ButtonProps } from "@cityofportland/types/button";
 import React from "react";
 
 // Extend ButtonProps with React-specific props

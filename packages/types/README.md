@@ -1,10 +1,14 @@
-# @cityofportland/components-types
+# @cityofportland/types
 
-Shared TypeScript types for Portland Design System components across all framework implementations.
+Shared TypeScript types for Portland Design System components across all
+framework implementations.
 
 ## Overview
 
-This package provides centralized type definitions that ensure consistency across React, Lit, Drupal, and other component implementations. By using shared types, we guarantee that components have the same API regardless of the framework.
+This package provides centralized type definitions that ensure consistency
+across React, Lit, Drupal, and other component implementations. By using shared
+types, we guarantee that components have the same API regardless of the
+framework.
 
 ## Installation
 
@@ -99,7 +103,8 @@ function isValidVariant(value: string): value is ButtonVariant {
 
 ### Type Safety
 
-Ensures components have consistent APIs across frameworks and catches errors at compile time.
+Ensures components have consistent APIs across frameworks and catches errors at
+compile time.
 
 ### Autocomplete
 
@@ -111,7 +116,8 @@ Types serve as inline documentation for component APIs.
 
 ### Refactoring
 
-Centralized types make it easy to update component interfaces across all implementations.
+Centralized types make it easy to update component interfaces across all
+implementations.
 
 ## Contributing
 

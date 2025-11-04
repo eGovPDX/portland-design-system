@@ -1,7 +1,4 @@
-import {
-  BUTTON_VARIANTS,
-  BUTTON_SIZES,
-} from "@cityofportland/components-types/button";
+import { BUTTON_VARIANTS, BUTTON_SIZES } from "@cityofportland/types/button";
 import { faArrowRight, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/react-vite";

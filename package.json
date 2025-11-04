@@ -1,32 +1,16 @@
 {
   "name": "@cityofportland/portland-design-system",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.0.0-alpha.0",
   "description": "Monorepo for Portland Design System using design tokens from Figma",
-  "keywords": [
-    "react",
-    "components",
-    "portland",
-    "design-system"
-  ],
-  "author": "City of Portland, Oregon",
+  "author": {
+    "name": "City of Portland, Oregon"
+  },
   "license": "MIT",
   "type": "module",
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "pnpm@10.11.0",
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/eGovPDX/portland-design-system.git"
-  },
-  "bugs": {
-    "url": "https://github.com/eGovPDX/portland-design-system/issues"
-  },
-  "homepage": "https://github.com/eGovPDX/portland-design-system#readme",
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@typescript-eslint/eslint-plugin": "^8.46.3",
@@ -39,6 +23,15 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-storybook": "^10.0.3",
     "eslint-plugin-wc": "^3.0.2",
+    "prettier": "^3.6.2",
     "typescript-eslint": "^8.46.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eGovPDX/portland-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eGovPDX/portland-design-system/issues"
+  },
+  "homepage": "https://github.com/eGovPDX/portland-design-system#readme"
 }

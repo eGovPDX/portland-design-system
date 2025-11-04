@@ -1,15 +1,11 @@
 {
   "name": "@cityofportland/components-react",
-  "version": "1.1.0",
+  "version": "1.0.0-alpha.0",
   "description": "Portland Component Library using design tokens from Figma",
-  "keywords": [
-    "react",
-    "components",
-    "portland",
-    "design-system"
-  ],
-  "author": "Ken Downey",
-  "license": "ISC",
+  "author": {
+    "name": "City of Portland, Oregon"
+  },
+  "license": "MIT",
   "type": "module",
   "files": [
     "dist"
@@ -22,19 +18,15 @@
     "./*.css": "./dist/*.css"
   },
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
+    "dev": "vite",
     "storybook": "storybook dev -p 6006 --no-open",
-    "build-storybook": "storybook build",
-    "test-storybook": "test-storybook",
-    "lint": "eslint . --max-warnings 0",
-    "lint:fix": "eslint . --fix"
+    "storybook:build": "storybook build"
   },
-  "packageManager": "pnpm@10.11.0",
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.2",
     "@cityofportland/components-css": "workspace:*",
-    "@cityofportland/components-types": "workspace:*",
+    "@cityofportland/types": "workspace:*",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
     "@storybook/addon-a11y": "^10.0.2",
@@ -49,15 +41,8 @@
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.1.0",
     "babel-jest": "^30.2.0",
-    "eslint": "^9.39.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-storybook": "^10.0.2",
     "glob": "^11.0.3",
     "identity-obj-proxy": "^3.0.0",
-    "prettier": "^3.6.2",
     "storybook": "^10.0.2",
     "tailwindcss": "^4.1.16",
     "vite": "^7.1.12"
@@ -65,9 +50,6 @@
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   },
   "peerDependencies": {
     "react": "^19.0.0",

@@ -1,29 +1,26 @@
 {
   "name": "@cityofportland/components-css",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "CSS component styles for the Portland Design System built with Tailwind and PostCSS",
+  "author": {
+    "name": "City of Portland, Oregon"
+  },
+  "license": "MIT",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "exports": {
     "./*": "./dist/*.css",
     "./*.css": "./dist/*.css"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
+    "build": "vite build",
     "clean": "rm -rf dist",
-    "dev": "vite build --watch --mode development",
-    "build": "vite build"
-  },
-  "author": "City of Portland, Oregon",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "dependencies": {
-    "@cityofportland/design-tokens": "workspace:*"
+    "dev": "vite build --watch --mode development"
   },
   "devDependencies": {
+    "@cityofportland/design-tokens": "workspace:*",
     "@tailwindcss/vite": "^4.1.16",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.1.2",
@@ -31,8 +28,12 @@
     "typescript": "~5.9.3",
     "vite": "^7.1.12"
   },
-  "engines": {
-    "node": ">=18.0.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eGovPDX/portland-design-system.git"
   },
-  "packageManager": "pnpm@8.15.3"
+  "bugs": {
+    "url": "https://github.com/eGovPDX/portland-design-system/issues"
+  },
+  "homepage": "https://github.com/eGovPDX/portland-design-system#readme"
 }
