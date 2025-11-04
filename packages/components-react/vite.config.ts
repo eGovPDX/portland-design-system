@@ -28,7 +28,7 @@ import { defineConfig } from "vite";
  * ```
  * This will generate entry points: `{ button: 'src/button/index.ts', card: 'src/card/index.ts' }`
  */
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   build: {
     cssCodeSplit: true,
     lib: {
@@ -51,19 +51,6 @@ export default defineConfig({
       fileName: (format, name) => `${name}.${format}.js`,
     },
     minify: mode === "production" ? "esbuild" : false, // Only minify in production
-    terserOptions: {
-      compress: {
-        drop_console: mode === "production", // Remove console.log in production only
-        drop_debugger: true, // Always remove debugger statements
-      },
-      mangle: {
-        keep_classnames: true, // Keep class names for web components
-        keep_fnames: true, // Keep function names for Drupal behaviors
-      },
-      format: {
-        comments: false, // Remove comments
-      },
-    },
   },
   plugins: [react(), tailwind()],
-});
+}));
