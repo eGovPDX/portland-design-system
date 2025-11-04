@@ -20,7 +20,6 @@ export const Button: React.FC<ReactButtonProps> = ({
   left,
   right,
   className = "",
-  label,
   ...props
 }) => {
   function classes() {
@@ -46,7 +45,7 @@ export const Button: React.FC<ReactButtonProps> = ({
       {...props}
     >
       {left && <span>{left}</span>}
-      {children || label}
+      {children}
       {right && <span>{right}</span>}
     </button>
   );

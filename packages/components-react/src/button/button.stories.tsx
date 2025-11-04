@@ -32,10 +32,6 @@ export default {
       control: "boolean",
       description: "Whether the button is disabled",
     },
-    ariaDisabled: {
-      control: "boolean",
-      description: "Whether the button is aria-disabled",
-    },
     left: {
       control: "object",
       description: "FontAwesome icon to display before the button text",
@@ -123,7 +119,13 @@ export const Big: Story = {
   },
 };
 
-// Disabled button
+export const Small: Story = {
+  args: {
+    children: "Small Button",
+    size: "small",
+  },
+};
+
 export const Disabled: Story = {
   args: {
     children: "Disabled Button",
@@ -131,7 +133,6 @@ export const Disabled: Story = {
   },
 };
 
-// Button with start icon
 export const WithStartIcon: Story = {
   args: {
     children: "Download",
@@ -139,10 +140,19 @@ export const WithStartIcon: Story = {
   },
 };
 
-// Button with end icon
 export const WithEndIcon: Story = {
   args: {
     children: "Continue",
+    right: <FontAwesomeIcon icon={faArrowRight} />,
+  },
+};
+
+export const TextWrap: Story = {
+  args: {
+    children:
+      "This is a very long button text that should wrap onto multiple lines to demonstrate text wrapping within the button component.",
+    size: "big",
+    left: <FontAwesomeIcon icon={faDownload} />,
     right: <FontAwesomeIcon icon={faArrowRight} />,
   },
 };

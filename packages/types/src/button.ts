@@ -60,11 +60,6 @@ export interface ButtonProps {
    * @default "button"
    */
   type?: ButtonType;
-
-  /**
-   * Text label for the button
-   */
-  label?: string;
 }
 
 /**

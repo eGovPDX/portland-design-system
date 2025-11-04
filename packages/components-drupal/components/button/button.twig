@@ -24,7 +24,6 @@
 {% set size = size|default('default') %}
 {% set type = type|default('button') %}
 {% set disabled = disabled|default(false) %}
-{% set label = label|default('') %}
 
 {# Variant classes #}
 {% set variant_classes = [] %}
@@ -80,15 +79,12 @@
 {% endif %}
 
 <button type="{{ type }}" {% for attr_name, attr_value in common_attrs %}{{ attr_name }}="{{ attr_value }}"{% endfor %} {% if disabled %}disabled{% endif %}>
-  {# Left content #}
   {% block left %}
     <span>{{ left }}</span>
   {% endblock %}
-  {# Main content #}
   {% block content %}
-    {{ label }}
+    <span>{{ content }}</span>
   {% endblock %}
-  {# Right content #}
   {% block right %}
     <span>{{ right }}</span>
   {% endblock %}

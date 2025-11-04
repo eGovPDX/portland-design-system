@@ -67,15 +67,6 @@ props:
       examples:
         - false
 
-    label:
-      type: string
-      title: Button Label
-      description: The button text label (can be overridden by content slot)
-      examples:
-        - "Click me"
-        - "Submit Form"
-        - "Learn More"
-
     attributes:
       type: object
       title: Additional Attributes
@@ -125,7 +116,6 @@ thirdPartySettings:
           size: default
           type: button
           disabled: false
-          label: "Button"
         slots:
           content:
             - "Button"
@@ -138,7 +128,6 @@ thirdPartySettings:
           variant: secondary
           size: default
           type: button
-          label: "Button"
         slots:
           content:
             - "Button"
@@ -151,7 +140,6 @@ thirdPartySettings:
           variant: accent-cool
           size: default
           type: button
-          label: "Accent Cool"
         slots:
           content:
             - "Accent Cool"
@@ -164,7 +152,6 @@ thirdPartySettings:
           variant: accent-warm
           size: default
           type: button
-          label: "Accent Warm"
         slots:
           content:
             - "Accent Warm"
@@ -177,7 +164,6 @@ thirdPartySettings:
           variant: base
           size: default
           type: button
-          label: "Base"
         slots:
           content:
             - "Base"
@@ -190,7 +176,6 @@ thirdPartySettings:
           variant: outline
           size: default
           type: button
-          label: "Outline Button"
         slots:
           content:
             - "Outline Button"
@@ -203,7 +188,6 @@ thirdPartySettings:
           variant: outline-inverse
           size: default
           type: button
-          label: "Outline Inverse Button"
         slots:
           content:
             - "Outline Inverse Button"
@@ -216,7 +200,6 @@ thirdPartySettings:
           variant: primary
           size: big
           type: button
-          label: "Big Button"
         slots:
           content:
             - "Big Button"
@@ -229,7 +212,6 @@ thirdPartySettings:
           variant: primary
           size: default
           type: button
-          label: "Download File"
         slots:
           content:
             - "Download File"
@@ -245,7 +227,6 @@ thirdPartySettings:
           size: default
           type: button
           disabled: true
-          label: "Disabled Button"
         slots:
           content:
             - "Disabled Button"
@@ -258,7 +239,6 @@ thirdPartySettings:
           variant: unstyled
           size: default
           type: button
-          label: "Unstyled Button"
         slots:
           content:
             - "Unstyled Button"
