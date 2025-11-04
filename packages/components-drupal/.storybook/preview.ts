@@ -2,14 +2,7 @@ import "@cityofportland/components-css/preflight.css";
 
 const preview = {
   parameters: {
-    layout: "padded",
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
-
+    layout: "centered",
     a11y: {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
