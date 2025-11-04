@@ -43,13 +43,6 @@ StyleDictionary.registerTransform({
 });
 
 StyleDictionary.registerTransform({
-  name: "font/size/rem",
-  type: "value",
-  filter: (token) => token.$type === "fontSize",
-  transform: (token) => `${parseFloat(token.$value) / 16}rem`,
-});
-
-StyleDictionary.registerTransform({
   name: "font/weight",
   type: "value",
   filter: (token) => {
@@ -84,6 +77,15 @@ StyleDictionary.registerTransform({
   filter: (token) => token.$type === "fontSize",
   transform: (token) => {
     return `text-${token.path.slice(-1)}`;
+  },
+});
+
+StyleDictionary.registerTransform({
+  name: "font/family/tailwind",
+  type: "name",
+  filter: (token) => token.$type === "fontFamily",
+  transform: (token) => {
+    return `font-${token.path.slice(-1)}`;
   },
 });
 
@@ -134,6 +136,7 @@ StyleDictionary.registerTransformGroup({
     transforms.colorCss,
     transforms.sizePxToRem,
     "font/size/tailwind",
+    "font/family/tailwind",
     "asset/url",
   ],
 });
@@ -146,6 +149,8 @@ StyleDictionary.registerTransformGroup({
     transforms.timeSeconds,
     transforms.colorCss,
     transforms.sizePxToRem,
+    "font/size/tailwind",
+    "font/family/tailwind",
     "asset/url",
   ],
 });
