@@ -1,0 +1,40 @@
+{
+  "name": "@cityofportland/components-types",
+  "version": "0.0.1",
+  "description": "Shared TypeScript types for Portland Design System components",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "dev": "tsc --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "typescript",
+    "types",
+    "design-system",
+    "portland"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "City of Portland, Oregon"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3"
+  }
+}
