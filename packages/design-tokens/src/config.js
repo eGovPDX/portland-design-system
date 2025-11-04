@@ -4,8 +4,6 @@ import StyleDictionary from "style-dictionary";
 import { transforms } from "style-dictionary/enums";
 
 import tailwind from "./formats/tailwind.js";
-import "./formats/unocss.js";
-import "./formats/unocss-types.js";
 
 // Process to rewrite assets into json files
 function convertToBase64(filePath) {
@@ -141,20 +139,6 @@ StyleDictionary.registerTransformGroup({
   ],
 });
 
-StyleDictionary.registerTransformGroup({
-  name: "custom/unocss",
-  transforms: [
-    transforms.attributeCti,
-    transforms.nameKebab,
-    transforms.timeSeconds,
-    transforms.colorCss,
-    transforms.sizePxToRem,
-    "font/size/tailwind",
-    "font/family/tailwind",
-    "asset/url",
-  ],
-});
-
 const config = {
   source: ["src/tokens/**/*.json"],
   log: {
@@ -223,26 +207,6 @@ const config = {
         {
           destination: "theme.css",
           format: "css/tailwind",
-          options: {
-            showFileHeader: true,
-          },
-        },
-      ],
-    },
-    unocss: {
-      transformGroup: "custom/unocss",
-      buildPath: "dist/unocss/",
-      files: [
-        {
-          destination: "theme.js",
-          format: "javascript/unocss",
-          options: {
-            showFileHeader: true,
-          },
-        },
-        {
-          destination: "theme.d.ts",
-          format: "typescript/unocss-declarations",
           options: {
             showFileHeader: true,
           },
