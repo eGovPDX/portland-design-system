@@ -1,6 +1,11 @@
 {
-  "editor.defultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
