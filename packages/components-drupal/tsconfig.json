@@ -4,5 +4,5 @@
     "rootDir": "./components",
     "outDir": "./dist"
   },
-  "include": ["./components"]
+  "include": ["components/**/*.ts", "components/**/*.d.ts", "env.d.ts"]
 }

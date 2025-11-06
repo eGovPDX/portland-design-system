@@ -4,10 +4,9 @@ import { join } from "path";
 import { cwd } from "process";
 
 const config: StorybookConfig = {
-  stories: ["../components/**/*.component.yml", "../components/**/*.story.yml"], // 2. Set components glob.
+  stories: ["../components/**/*.story.yml", "../components/**/*.stories.[jt]s"], // 2. Set components glob.
   addons: [
     "@storybook/addon-a11y",
-    "@storybook/addon-controls",
     "@storybook/addon-docs",
     {
       name: "storybook-addon-sdc", // 3. Configure addon.
