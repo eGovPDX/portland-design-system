@@ -1,0 +1,99 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Button
+
+# A longer description.
+description: A native Twig button component that draws attention to important actions with a large selectable surface. Server-side rendered implementation matching the Portland Design System button styles.
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+# Schema for the props. We support www.json-schema.org. Learn more about the
+# syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your
+  # component template.
+  type: object
+
+  properties:
+    variant:
+      type: string
+      title: Button Variant
+      description: The visual style of the button
+      default: primary
+      enum:
+        - primary
+        - secondary
+        - accent-cool
+        - accent-warm
+        - base
+        - outline
+        - outline-inverse
+        - unstyled
+      examples:
+        - primary
+
+    size:
+      type: string
+      title: Button Size
+      description: The size of the button
+      default: default
+      enum:
+        - default
+        - big
+        - small
+      examples:
+        - default
+
+    type:
+      type: string
+      title: Button Type
+      description: The HTML button type attribute
+      default: button
+      enum:
+        - button
+        - submit
+        - reset
+      examples:
+        - button
+
+    disabled:
+      type: boolean
+      title: Disabled State
+      description: Whether the button is disabled
+      default: false
+      examples:
+        - false
+
+    attributes:
+      type: object
+      title: Additional Attributes
+      description: Additional HTML attributes to add to the button element
+      properties:
+        class:
+          type: string
+          title: CSS Classes
+          description: Additional CSS classes for the button
+        id:
+          type: string
+          title: Element ID
+          description: HTML ID attribute for the button
+        data-*:
+          type: string
+          title: Data Attributes
+          description: Custom data attributes
+
+slots:
+  content:
+    title: Content
+    description: The main content/text of the button.
+
+  left:
+    title: Left
+    description: Area to the left of the content, typically for an icon
+
+  right:
+    title: Right
+    description: Area to the right of the content, typically for an icon

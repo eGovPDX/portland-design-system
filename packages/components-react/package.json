@@ -1,260 +1,55 @@
 {
   "name": "@cityofportland/components-react",
-  "version": "1.1.0",
+  "version": "1.0.0-alpha.0",
   "description": "Portland Component Library using design tokens from Figma",
-  "keywords": [
-    "react",
-    "components",
-    "portland",
-    "design-system"
-  ],
-  "author": "Ken Downey",
-  "license": "ISC",
+  "author": {
+    "name": "City of Portland, Oregon"
+  },
+  "license": "MIT",
   "type": "module",
   "files": [
     "dist"
   ],
   "exports": {
-    ".": {
-      "import": "./dist/portland-component-library.js"
+    "./*": {
+      "import": "./dist/*.js",
+      "types": "./dist/*.d.ts"
     },
-    "./dist/style.css": "./dist/style.css",
-    "./components/Accordion": {
-      "import": "./dist/components/Accordion/index.js"
-    },
-    "./components/Accordion/style.css": "./dist/components/Accordion/style.css",
-    "./components/Alert": {
-      "import": "./dist/components/Alert/index.js"
-    },
-    "./components/Alert/style.css": "./dist/components/Alert/style.css",
-    "./components/Banner": {
-      "import": "./dist/components/Banner/index.js"
-    },
-    "./components/Banner/style.css": "./dist/components/Banner/style.css",
-    "./components/Breadcrumbs": {
-      "import": "./dist/components/Breadcrumbs/index.js"
-    },
-    "./components/Breadcrumbs/style.css": "./dist/components/Breadcrumbs/style.css",
-    "./components/Button": {
-      "import": "./dist/components/Button/index.js"
-    },
-    "./components/Button/style.css": "./dist/components/Button/style.css",
-    "./components/ButtonGroup": {
-      "import": "./dist/components/ButtonGroup/index.js"
-    },
-    "./components/ButtonGroup/style.css": "./dist/components/ButtonGroup/style.css",
-    "./components/Card": {
-      "import": "./dist/components/Card/index.js"
-    },
-    "./components/Card/style.css": "./dist/components/Card/style.css",
-    "./components/CardFlag": {
-      "import": "./dist/components/CardFlag/index.js"
-    },
-    "./components/CardFlag/style.css": "./dist/components/CardFlag/style.css",
-    "./components/CardGrid": {
-      "import": "./dist/components/CardGrid/index.js"
-    },
-    "./components/CardGrid/style.css": "./dist/components/CardGrid/style.css",
-    "./components/Checkbox": {
-      "import": "./dist/components/Checkbox/index.js"
-    },
-    "./components/Checkbox/style.css": "./dist/components/Checkbox/style.css",
-    "./components/ColorSwatch": {
-      "import": "./dist/components/ColorSwatch/index.js"
-    },
-    "./components/ColorSwatch/style.css": "./dist/components/ColorSwatch/style.css",
-    "./components/Contacts": {
-      "import": "./dist/components/Contacts/index.js"
-    },
-    "./components/Contacts/style.css": "./dist/components/Contacts/style.css",
-    "./components/Dropdown": {
-      "import": "./dist/components/Dropdown/index.js"
-    },
-    "./components/Dropdown/style.css": "./dist/components/Dropdown/style.css",
-    "./components/Footer": {
-      "import": "./dist/components/Footer/index.js"
-    },
-    "./components/Footer/style.css": "./dist/components/Footer/style.css",
-    "./components/Header": {
-      "import": "./dist/components/Header/index.js"
-    },
-    "./components/Header/style.css": "./dist/components/Header/style.css",
-    "./components/HeroGlobal": {
-      "import": "./dist/components/HeroGlobal/index.js"
-    },
-    "./components/HeroGlobal/style.css": "./dist/components/HeroGlobal/style.css",
-    "./components/HeroHomepage": {
-      "import": "./dist/components/HeroHomepage/index.js"
-    },
-    "./components/HeroHomepage/style.css": "./dist/components/HeroHomepage/style.css",
-    "./components/Identifier": {
-      "import": "./dist/components/Identifier/index.js"
-    },
-    "./components/Identifier/style.css": "./dist/components/Identifier/style.css",
-    "./components/LanguageSelector": {
-      "import": "./dist/components/LanguageSelector/index.js"
-    },
-    "./components/LanguageSelector/style.css": "./dist/components/LanguageSelector/style.css",
-    "./components/Modal": {
-      "import": "./dist/components/Modal/index.js"
-    },
-    "./components/Modal/style.css": "./dist/components/Modal/style.css",
-    "./components/PageTemplate": {
-      "import": "./dist/components/PageTemplate/index.js"
-    },
-    "./components/PageTemplate/style.css": "./dist/components/PageTemplate/style.css",
-    "./components/Pagination": {
-      "import": "./dist/components/Pagination/index.js"
-    },
-    "./components/Pagination/style.css": "./dist/components/Pagination/style.css",
-    "./components/Person": {
-      "import": "./dist/components/Person/index.js"
-    },
-    "./components/Person/style.css": "./dist/components/Person/style.css",
-    "./components/PopoverWithCard": {
-      "import": "./dist/components/PopoverWithCard/index.js"
-    },
-    "./components/PopoverWithCard/style.css": "./dist/components/PopoverWithCard/style.css",
-    "./components/ProcessSteps": {
-      "import": "./dist/components/ProcessSteps/index.js"
-    },
-    "./components/ProcessSteps/style.css": "./dist/components/ProcessSteps/style.css",
-    "./components/RadioButtons": {
-      "import": "./dist/components/RadioButtons/index.js"
-    },
-    "./components/RadioButtons/style.css": "./dist/components/RadioButtons/style.css",
-    "./components/Search": {
-      "import": "./dist/components/Search/index.js"
-    },
-    "./components/Search/style.css": "./dist/components/Search/style.css",
-    "./components/SideNav": {
-      "import": "./dist/components/SideNav/index.js"
-    },
-    "./components/SideNav/style.css": "./dist/components/SideNav/style.css",
-    "./components/SkipNav": {
-      "import": "./dist/components/SkipNav/index.js"
-    },
-    "./components/SkipNav/style.css": "./dist/components/SkipNav/style.css",
-    "./components/Spacing": {
-      "import": "./dist/components/Spacing/index.js"
-    },
-    "./components/Spacing/style.css": "./dist/components/Spacing/style.css",
-    "./components/StepIndicator": {
-      "import": "./dist/components/StepIndicator/index.js"
-    },
-    "./components/StepIndicator/style.css": "./dist/components/StepIndicator/style.css",
-    "./components/SummaryBox": {
-      "import": "./dist/components/SummaryBox/index.js"
-    },
-    "./components/SummaryBox/style.css": "./dist/components/SummaryBox/style.css",
-    "./components/Table": {
-      "import": "./dist/components/Table/index.js"
-    },
-    "./components/Table/style.css": "./dist/components/Table/style.css",
-    "./components/Tag": {
-      "import": "./dist/components/Tag/index.js"
-    },
-    "./components/Tag/style.css": "./dist/components/Tag/style.css",
-    "./components/TextArea": {
-      "import": "./dist/components/TextArea/index.js"
-    },
-    "./components/TextArea/style.css": "./dist/components/TextArea/style.css",
-    "./components/TextInput": {
-      "import": "./dist/components/TextInput/index.js"
-    },
-    "./components/TextInput/style.css": "./dist/components/TextInput/style.css",
-    "./components/Tooltip": {
-      "import": "./dist/components/Tooltip/index.js"
-    },
-    "./components/Tooltip/style.css": "./dist/components/Tooltip/style.css",
-    "./components/Typography": {
-      "import": "./dist/components/Typography/index.js"
-    },
-    "./components/Typography/style.css": "./dist/components/Typography/style.css",
-    "./themes/pgov": "./dist/themes/pgov.css",
-    "./themes/pgov-dark": "./dist/themes/pgov-dark.css",
-    "./themes/uswds-default": "./dist/themes/uswds-default.css",
-    "./tokens": {
-      "import": "./dist/tokens.js"
-    },
-    "./themeLoader": {
-      "import": "./dist/themeLoader.js"
-    }
+    "./*.css": "./dist/*.css"
   },
   "scripts": {
+    "build": "vite build",
     "dev": "vite",
-    "build": "pnpm run build:lib",
-    "build:lib": "node build-all.js",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "test-storybook": "test-storybook",
-    "lint": "eslint . --max-warnings 0",
-    "lint:fix": "eslint . --fix"
+    "storybook": "storybook dev -p 6006 --no-open",
+    "storybook:build": "storybook build"
   },
-  "packageManager": "pnpm@10.11.0",
   "devDependencies": {
-    "@babel/preset-env": "^7.28.3",
-    "@babel/preset-react": "^7.27.1",
-    "@chromatic-com/storybook": "^3.2.7",
-    "@storybook/addon-a11y": "^8.6.14",
-    "@storybook/addon-actions": "^8.6.14",
-    "@storybook/addon-controls": "^8.6.14",
-    "@storybook/addon-designs": "^8.2.1",
-    "@storybook/addon-docs": "^8.6.14",
-    "@storybook/addon-essentials": "^8.6.14",
-    "@storybook/addon-storysource": "^8.6.14",
-    "@storybook/addon-themes": "^8.6.14",
-    "@storybook/addon-viewport": "^8.6.14",
-    "@storybook/blocks": "^8.6.14",
-    "@storybook/experimental-addon-test": "^8.6.14",
-    "@storybook/react": "^8.6.14",
-    "@storybook/react-vite": "^8.6.14",
-    "@storybook/test": "^8.6.14",
-    "@storybook/test-runner": "^0.22.1",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
-    "@vitejs/plugin-react": "^4.7.0",
-    "@vitest/browser": "^3.2.4",
-    "@vitest/coverage-v8": "^3.2.4",
-    "@whitespace/storybook-addon-html": "^7.0.0",
-    "babel-jest": "^29.7.0",
-    "eslint": "^9.38.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.0",
-    "eslint-plugin-storybook": "^0.12.0",
-    "glob": "^11.0.3",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "playwright": "^1.56.1",
-    "prettier": "^3.6.2",
-    "sass": "^1.93.2",
-    "storybook": "^8.6.14",
-    "vite": "^6.4.1",
-    "vitest": "^3.2.4"
-  },
-  "dependencies": {
-    "@cityofportland/components-lit": "workspace:*",
-    "@cityofportland/design-tokens": "^1.1.0",
-    "@floating-ui/react": "^0.27.16",
-    "@fortawesome/fontawesome-svg-core": "^7.1.0",
-    "@fortawesome/free-brands-svg-icons": "^7.1.0",
+    "@chromatic-com/storybook": "^4.1.2",
+    "@cityofportland/components-css": "workspace:*",
+    "@cityofportland/types": "workspace:*",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
-    "@popperjs/core": "^2.11.8",
-    "@uswds/uswds": "^3.13.0",
-    "classnames": "^2.5.1",
-    "focus-trap-react": "^11.0.4",
-    "prop-types": "^15.8.1",
+    "@storybook/addon-a11y": "^10.0.2",
+    "@storybook/addon-designs": "^11.0.1",
+    "@storybook/addon-docs": "^10.0.2",
+    "@storybook/addon-themes": "^10.0.2",
+    "@storybook/addon-vitest": "10.0.2",
+    "@storybook/react-vite": "^10.0.2",
+    "@storybook/test-runner": "^0.24.1",
+    "@tailwindcss/vite": "^4.1.16",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "babel-jest": "^30.2.0",
+    "glob": "^11.0.3",
+    "identity-obj-proxy": "^3.0.0",
+    "storybook": "^10.0.2",
+    "tailwindcss": "^4.1.16",
+    "vite": "^7.1.12"
+  },
+  "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   },
   "peerDependencies": {
     "react": "^19.0.0",

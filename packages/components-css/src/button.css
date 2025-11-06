@@ -1,0 +1,84 @@
+/**
+ * Button component styles
+ * Uses Tailwind utilities and design tokens for consistent styling
+ */
+
+/* Tailwind base, components, and utilities */
+@layer theme, components, utilities;
+
+@import "@cityofportland/design-tokens/tailwind/theme.css" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+
+@layer components {
+  .button {
+    @apply rounded-md px-lg py-sm;
+    @apply inline-flex items-center justify-between gap-xs;
+    @apply font-bold;
+    @apply cursor-pointer;
+    @apply focus:outline-4 focus:outline-offset-4 focus:outline-primary-medium;
+
+    @apply disabled:bg-disabled-lighter disabled:text-disabled-dark disabled:cursor-not-allowed;
+  }
+
+  /* Button variants */
+  .button--primary {
+    @apply bg-primary-medium text-foundation-white;
+    @apply hover:bg-primary-dark;
+    @apply active:bg-primary-darker;
+  }
+
+  .button--secondary {
+    @apply bg-secondary-medium text-white;
+    @apply hover:bg-secondary-dark;
+    @apply active:bg-secondary-darker;
+  }
+
+  .button--accent-cool {
+    @apply bg-accent-cool-medium text-foundation-black;
+    @apply hover:bg-accent-cool-dark;
+    @apply active:bg-accent-cool-darker active:text-foundation-white;
+  }
+
+  .button--accent-warm {
+    @apply bg-accent-warm-medium text-foundation-black;
+    @apply hover:bg-accent-warm-dark hover:text-foundation-white;
+    @apply active:bg-accent-warm-darker active:text-foundation-white;
+  }
+
+  .button--base {
+    @apply bg-base-medium text-foundation-white;
+    @apply hover:bg-base-dark;
+    @apply active:bg-base-darker;
+  }
+
+  .button--outline {
+    @apply border-md border-primary-medium bg-transparent text-primary-medium;
+    @apply hover:border-primary-dark hover:text-primary-dark;
+    @apply active:border-primary-darker active:text-primary-darker;
+  }
+
+  .button--outline-inverse {
+    @apply border-md border-base-light text-base-light;
+    @apply hover:border-base-lightest hover:text-base-lightest;
+    @apply active:border-foundation-white active:text-foundation-white;
+  }
+
+  .button--unstyled {
+    @apply bg-transparent;
+    @apply text-foundation-link font-regular;
+    @apply underline;
+  }
+
+  /* Size variants */
+  .button--default {
+    @apply text-sm;
+  }
+
+  .button--small {
+    @apply text-xs;
+  }
+
+  .button--big {
+    @apply text-lg;
+  }
+}

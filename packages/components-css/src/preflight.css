@@ -1,0 +1,8 @@
+/**
+ * Main CSS entry point for Portland Design System components
+ * Imports Tailwind base utilities and design tokens, then component styles
+ */
+/* Tailwind base, components, and utilities */
+@layer base;
+
+@import "tailwindcss/preflight" layer(base);

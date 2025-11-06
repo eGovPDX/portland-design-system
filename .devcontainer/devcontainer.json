@@ -10,14 +10,14 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "bradlc.vscode-tailwindcss",
         "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
         "esbenp.prettier-vscode",
-        "ms-azuretools.vscode-docker",
-        "eamodio.gitlens"
+        "mblode.twig-language-2"
       ],
       "settings": {
-        "terminal.integrated.shell.linux": "/bin/zsh",
-        "editor.formatOnSave": true
+        "terminal.integrated.shell.linux": "/bin/zsh"
       }
     }
   },

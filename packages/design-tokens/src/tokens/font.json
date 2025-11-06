@@ -1,0 +1,62 @@
+{
+  "font": {
+    "family": {
+      "comic-sans": {
+        "$value": "Comic Sans MS, cursive",
+        "$type": "fontFamily"
+      },
+      "open-sans": {
+        "$value": "Open Sans, sans-serif",
+        "$type": "fontFamily"
+      }
+    },
+    "weight": {
+      "light": {
+        "$value": "300",
+        "$type": "fontWeight"
+      },
+      "regular": {
+        "$value": "400",
+        "$type": "fontWeight"
+      },
+      "bold": {
+        "$value": "700",
+        "$type": "fontWeight"
+      }
+    },
+    "size": {
+      "xs": {
+        "$value": 14.7,
+        "$type": "fontSize"
+      },
+      "sm": {
+        "$value": 15.63,
+        "$type": "fontSize"
+      },
+      "base": {
+        "$value": 13.3,
+        "$type": "fontSize"
+      },
+      "md": {
+        "$value": 16.6,
+        "$type": "fontSize"
+      },
+      "lg": {
+        "$value": 23.5,
+        "$type": "fontSize"
+      },
+      "xl": {
+        "$value": 27.35,
+        "$type": "fontSize"
+      },
+      "2xl": {
+        "$value": 35.2,
+        "$type": "fontSize"
+      },
+      "3xl": {
+        "$value": 46.9,
+        "$type": "fontSize"
+      }
+    }
+  }
+}

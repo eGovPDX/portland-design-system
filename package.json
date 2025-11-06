@@ -1,23 +1,30 @@
 {
   "name": "@cityofportland/portland-design-system",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.0.0-alpha.0",
   "description": "Monorepo for Portland Design System using design tokens from Figma",
-  "keywords": [
-    "react",
-    "components",
-    "portland",
-    "design-system"
-  ],
-  "author": "City of Portland, Oregon",
+  "author": {
+    "name": "City of Portland, Oregon"
+  },
   "license": "MIT",
   "type": "module",
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "pnpm@10.11.0",
-  "engines": {
-    "node": ">=18.0.0"
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
+    "eslint": "^9.39.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-lit": "^2.1.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-storybook": "^10.0.5",
+    "eslint-plugin-wc": "^3.0.2",
+    "prettier": "^3.6.2",
+    "typescript-eslint": "^8.46.3"
   },
   "repository": {
     "type": "git",

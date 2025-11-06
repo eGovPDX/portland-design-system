@@ -1,0 +1,32 @@
+{
+  "breakpoint": {
+    "mobile": {
+      "$value": 320,
+      "$type": "dimension"
+    },
+    "mobile-lg": {
+      "$value": 480,
+      "$type": "dimension"
+    },
+    "tablet": {
+      "$value": 640,
+      "$type": "dimension"
+    },
+    "tablet-lg": {
+      "$value": 880,
+      "$type": "dimension"
+    },
+    "desktop": {
+      "$value": 1024,
+      "$type": "dimension"
+    },
+    "desktop-lg": {
+      "$value": 1200,
+      "$type": "dimension"
+    },
+    "widescreen": {
+      "$value": 1400,
+      "$type": "dimension"
+    }
+  }
+}

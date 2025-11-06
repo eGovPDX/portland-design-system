@@ -1,0 +1,142 @@
+{
+  "size": {
+    "base": {
+      "0": {
+        "$value": 0,
+        "$type": "dimension"
+      },
+      "1": {
+        "$value": 4,
+        "$type": "dimension"
+      },
+      "2": {
+        "$value": 8,
+        "$type": "dimension"
+      },
+      "3": {
+        "$value": 12,
+        "$type": "dimension"
+      },
+      "4": {
+        "$value": 16,
+        "$type": "dimension"
+      },
+      "5": {
+        "$value": 20,
+        "$type": "dimension"
+      },
+      "6": {
+        "$value": 24,
+        "$type": "dimension"
+      },
+      "7": {
+        "$value": 28,
+        "$type": "dimension"
+      },
+      "8": {
+        "$value": 32,
+        "$type": "dimension"
+      },
+      "9": {
+        "$value": 36,
+        "$type": "dimension"
+      },
+      "10": {
+        "$value": 40,
+        "$type": "dimension"
+      },
+      "12": {
+        "$value": 48,
+        "$type": "dimension"
+      },
+      "16": {
+        "$value": 64,
+        "$type": "dimension"
+      },
+      "20": {
+        "$value": 80,
+        "$type": "dimension"
+      },
+      "24": {
+        "$value": 96,
+        "$type": "dimension"
+      },
+      "32": {
+        "$value": 128,
+        "$type": "dimension"
+      },
+      "40": {
+        "$value": 160,
+        "$type": "dimension"
+      },
+      "48": {
+        "$value": 192,
+        "$type": "dimension"
+      },
+      "56": {
+        "$value": 224,
+        "$type": "dimension"
+      },
+      "64": {
+        "$value": 256,
+        "$type": "dimension"
+      }
+    },
+    "fractions": {
+      "025": {
+        "$value": 1,
+        "$type": "dimension"
+      },
+      "05": {
+        "$value": 2,
+        "$type": "dimension"
+      }
+    }
+  },
+  "spacing": {
+    "none": {
+      "$value": "{size.base.0}",
+      "$type": "dimension"
+    },
+    "3xs": {
+      "$value": "{size.fractions.05}",
+      "$type": "dimension"
+    },
+    "2xs": {
+      "$value": "{size.base.1}",
+      "$type": "dimension"
+    },
+    "xs": {
+      "$value": "{size.base.2}",
+      "$type": "dimension"
+    },
+    "sm": {
+      "$value": "{size.base.3}",
+      "$type": "dimension"
+    },
+    "md": {
+      "$value": "{size.base.4}",
+      "$type": "dimension"
+    },
+    "lg": {
+      "$value": "{size.base.5}",
+      "$type": "dimension"
+    },
+    "xl": {
+      "$value": "{size.base.8}",
+      "$type": "dimension"
+    },
+    "2xl": {
+      "$value": "{size.base.10}",
+      "$type": "dimension"
+    },
+    "3xl": {
+      "$value": "{size.base.12}",
+      "$type": "dimension"
+    },
+    "4xl": {
+      "$value": "{size.base.16}",
+      "$type": "dimension"
+    }
+  }
+}
