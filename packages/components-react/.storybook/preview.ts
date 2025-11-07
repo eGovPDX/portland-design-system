@@ -41,10 +41,6 @@ const preview: Preview = {
       test: "todo",
     },
 
-    backgrounds: {
-      disable: true,
-    },
-
     docs: {
       codePanel: true,
     },
