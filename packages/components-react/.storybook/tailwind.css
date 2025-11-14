@@ -1,2 +1,2 @@
 @import "tailwindcss";
-@import "@cityofportland/design-tokens/tailwind/theme.css" layer(theme);
+@import "@cityofportland/design-tokens/tailwind/theme.css";
