@@ -1,0 +1,34 @@
+/* Header Component Styles */
+@layer theme, components, utilities;
+
+@import "@cityofportland/design-tokens/tailwind/theme.css" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+
+@layer components {
+  /* Base Header Styles */
+  .header {
+    @apply w-full py-md px-xl;
+    @apply flex items-center justify-between;
+    @apply bg-base-darkest text-foundation-white;
+  }
+
+  .header__branding {
+    @apply flex items-center gap-md;
+    @apply text-lg font-bold;
+
+    .header__logo {
+      @apply inline-flex items-center justify-center shrink-0;
+
+      img {
+        @apply h-3xl tablet:h-[56px] shrink-0;
+      }
+    }
+
+    .header__title {
+      @apply flex flex-col gap-xs;
+    }
+  }
+  .header__content {
+    @apply flex items-center gap-lg;
+  }
+}
