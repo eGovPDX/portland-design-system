@@ -3,6 +3,8 @@ import type { Preview } from "@storybook/react-vite";
 
 import "./preview.css";
 
+import "./tailwind.css";
+
 const preview: Preview = {
   decorators: [
     withThemeByClassName({

@@ -9,12 +9,7 @@ import ts from "typescript-eslint";
 
 export default defineConfig(
   {
-    ignores: [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/storybook-static/**",
-      "**/*.test.*",
-    ],
+    ignores: ["**/node_modules/**", "**/dist/**", "**/storybook-static/**"],
   },
   eslint.configs.recommended,
   ts.configs.recommended,

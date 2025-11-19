@@ -1,0 +1,53 @@
+/** Footer Component Styles */
+@layer theme, components, utilities;
+
+@import "@cityofportland/design-tokens/tailwind/theme.css" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+
+@layer components {
+  /* Base Header Styles */
+  .footer {
+    @apply flex flex-col items-center justify-center;
+    @apply bg-base-lightest;
+
+    & > * {
+      @apply desktop:max-w-[1024px] px-md tablet:px-none;
+    }
+
+    .footer__content {
+      @apply w-full;
+
+      & > * {
+        @apply py-md;
+      }
+    }
+
+    .footer__navigation {
+      @apply w-full;
+      @apply flex flex-col gap-md tablet:flex-row justify-between;
+
+      .footer__copyright {
+        @apply flex flex-col gap-md desktop:order-first;
+        h2 {
+          @apply font-bold text-sm;
+          @apply py-base-4;
+        }
+
+        img {
+          @apply w-base-20;
+        }
+      }
+
+      .footer__menu {
+        .footer__menu-title {
+          @apply font-bold text-sm;
+          @apply py-base-4;
+        }
+
+        .footer__menu-item {
+          @apply pb-base-4;
+        }
+      }
+    }
+  }
+}
