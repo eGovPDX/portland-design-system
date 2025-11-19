@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "build": "vite build",
+    "build:upstream": "pnpm --filter '{.}^...' build",
     "dev": "vite build --watch --mode development",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build"
