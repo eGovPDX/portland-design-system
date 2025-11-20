@@ -1,0 +1,5 @@
+<div class="card__media{% if inset %} card__media--inset{% endif %}{% if position == 'left' %} card__media--left{% endif %}{% if position == 'right' %} card__media--right{% endif %}">
+	{% block img %}
+		<img src="{{ src }}" alt="{{ alt }}"/>
+	{% endblock %}
+</div>

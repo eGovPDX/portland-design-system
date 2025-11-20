@@ -142,14 +142,14 @@ export const Disabled: Story = {
 export const WithStartIcon: Story = {
   args: {
     content: "Download",
-    left: "left",
+    left: '<i class="fa-solid fa-arrow-left"></i>',
   },
 };
 
 export const WithEndIcon: Story = {
   args: {
     content: "Continue",
-    right: "right",
+    right: '<i class="fa-solid fa-arrow-right"></i>',
   },
 };
 

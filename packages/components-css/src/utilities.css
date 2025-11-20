@@ -39,22 +39,22 @@
 }
 
 @utility heading-2xl {
-  @apply font-bold text-heading-2xl leading-heading-2xl tracking-[0%] my-xs;
+  @apply font-bold text-heading-2xl leading-heading-2xl tracking-[0%];
 }
 @utility heading-xl {
-  @apply font-bold text-heading-xl leading-heading-xl tracking-[0%] my-xs;
+  @apply font-bold text-heading-xl leading-heading-xl tracking-[0%];
 }
 @utility heading-lg {
-  @apply font-bold text-heading-lg leading-heading-lg tracking-[0%] my-xs;
+  @apply font-bold text-heading-lg leading-heading-lg tracking-[0%];
 }
 @utility heading-md {
-  @apply font-bold text-heading-md leading-heading-md tracking-[0%] my-xs;
+  @apply font-bold text-heading-md leading-heading-md tracking-[0%];
 }
 @utility heading-sm {
-  @apply font-bold text-heading-sm leading-heading-sm tracking-[0%] my-xs;
+  @apply font-bold text-heading-sm leading-heading-sm tracking-[0%];
 }
 @utility heading-xs {
-  @apply font-bold text-heading-xs leading-heading-xs tracking-[0%] my-xs;
+  @apply font-bold text-heading-xs leading-heading-xs tracking-[0%];
 }
 
 @layer utilities {
