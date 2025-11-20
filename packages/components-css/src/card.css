@@ -1,0 +1,78 @@
+/**
+ * Card component styles
+ * Uses Tailwind utilities and design tokens for consistent styling
+ */
+
+/* Tailwind moderate, components, and utilities */
+@import "./base.css";
+@import "./utilities.css";
+
+@layer components {
+  .card {
+    @apply outline-md outline-standard-default-subtle rounded-lg;
+    @apply bg-standard-default-subtle;
+  }
+
+  .card__icon {
+    @apply w-3xl;
+
+    svg {
+      @apply fill-current overflow-visible;
+    }
+  }
+
+  .card__content {
+    @apply p-lg;
+    @apply flex flex-col grow;
+  }
+
+  .card--horizontal {
+    @apply flex flex-row;
+    /* width: 30rem; */
+
+    .card__header {
+      @apply p-lg pr-none;
+    }
+
+    .card__header:has(> .card__media--right) {
+      @apply pl-none pr-lg;
+      @apply order-1;
+    }
+
+    .card__media {
+      img {
+        @apply w-[6.5rem] max-w-max outline-transparent rounded-lg;
+        @apply aspect-square object-cover object-center;
+      }
+    }
+
+    .card__content {
+      @apply gap-md;
+    }
+  }
+
+  .card--vertical {
+    @apply flex flex-col;
+
+    .card__header:has(> .card__media--inset) {
+      @apply p-lg pb-none;
+    }
+
+    .card__media {
+      img {
+        @apply w-full h-[9.3125rem] rounded-t-lg;
+        @apply aspect-2/1 object-cover object-center;
+      }
+    }
+
+    .card__media--inset {
+      img {
+        @apply h-[8.0625rem] outline-transparent rounded-lg;
+      }
+    }
+
+    .card__content {
+      @apply gap-sm;
+    }
+  }
+}

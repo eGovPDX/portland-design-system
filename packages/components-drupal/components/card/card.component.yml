@@ -1,0 +1,61 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Card
+
+# A longer description.
+description: A native Twig card component that contains content and actions about a single subject. They act as an entry point to more detailed information. Server-side rendered implementation matching the Portland Design System card styles.
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+# Schema for the props. We support www.json-schema.org. Learn more about the
+# syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your
+  # component template.
+  type: object
+
+  properties:
+    layout:
+      type: string
+      title: Card Layout
+      description: The layout of the card
+      default: vertical
+      enum:
+        - horizontal
+        - vertical
+      examples:
+        - vertical
+
+    attributes:
+      type: object
+      title: Additional Attributes
+      description: Additional HTML attributes to add to the card element
+      properties:
+        class:
+          type: string
+          title: CSS Classes
+          description: Additional CSS classes for the card
+        id:
+          type: string
+          title: Element ID
+          description: HTML ID attribute for the card
+        data-*:
+          type: string
+          title: Data Attributes
+          description: Custom data attributes
+
+slots:
+  header:
+    title: Card media
+    description: An optional media slot for images or icons.
+
+  body:
+    title: Card body
+    description: The main content of the card.
+
+  footer:
+    title: Card footer
+    description: The card footer, often used for CTA buttons or links.
