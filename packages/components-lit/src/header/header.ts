@@ -1,11 +1,10 @@
-import { css, LitElement, html } from "lit";
+import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-import styles from "./header.css";
+import styles from "./header.css?inline";
 
 // Import the component class to register it
 import { ASSETS_CITY_SEAL } from "@cityofportland/design-tokens";
-import { UnoCSSMixin } from "../uno-mixin";
 
 export interface HeaderProps {
   tagline?: string;
@@ -14,12 +13,12 @@ export interface HeaderProps {
 }
 
 @customElement("portland-header")
-export class Header extends UnoCSSMixin(LitElement) {
+export class Header extends LitElement {
   @property({ type: String }) tagline = "";
   @property({ type: String }) title = "";
   @property({ type: String }) url = "";
 
-  static styles = styles;
+  static styles = unsafeCSS(styles);
 
   render() {
     return html`
