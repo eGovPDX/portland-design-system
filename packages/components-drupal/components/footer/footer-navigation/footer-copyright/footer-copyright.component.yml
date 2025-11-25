@@ -1,0 +1,20 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Footer Copyright
+
+status: experimental
+
+properties:
+  type: object
+
+  properties:
+    startYear:
+      type: integer
+      description: The starting year for the copyright notice.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+  js:
+    footer-copyright.js: { attributes: { type: "module" } }
