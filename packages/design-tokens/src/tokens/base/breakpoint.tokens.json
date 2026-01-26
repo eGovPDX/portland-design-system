@@ -1,0 +1,32 @@
+{
+  "breakpoint": {
+    "xs": {
+      "$type": "dimension",
+      "$value": 320
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": 480
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": 640
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": 880
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": 1024
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": 1200
+    },
+    "3xl": {
+      "$type": "dimension",
+      "$value": 1400
+    }
+  }
+}

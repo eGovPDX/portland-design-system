@@ -1,0 +1,30 @@
+{
+  "font": {
+    "family": {
+      "$type": "string",
+      "$value": "Open Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'"
+    },
+    "weight": {
+      "light": {
+        "$type": "fontWeight",
+        "$value": 100
+      },
+      "regular": {
+        "$type": "fontWeight",
+        "$value": 400
+      },
+      "semibold": {
+        "$type": "fontWeight",
+        "$value": 600
+      },
+      "bold": {
+        "$type": "fontWeight",
+        "$value": 700
+      },
+      "extrabold": {
+        "$type": "fontWeight",
+        "$value": 800
+      }
+    }
+  }
+}

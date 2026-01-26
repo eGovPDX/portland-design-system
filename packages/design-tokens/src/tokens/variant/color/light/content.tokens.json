@@ -1,0 +1,204 @@
+{
+  "content": {
+    "default": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.neutral.light}"
+      },
+      "moderate": {
+        "$type": "color",
+        "$value": "{color.neutral.dark}"
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{color.neutral.darkest}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.neutral.black}"
+      }
+    },
+    "inverse": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.neutral.white}"
+      },
+      "moderate": {
+        "$type": "color",
+        "$value": "{color.neutral.lighter}"
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{color.neutral.light}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.neutral.dark}"
+      }
+    },
+    "light": {
+      "$type": "color",
+      "$value": "{color.neutral.white}"
+    },
+    "dark": {
+      "$type": "color",
+      "$value": "{color.neutral.black}"
+    },
+    "transparent-light": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.white.10}"
+      },
+      "moderate": {
+        "$type": "color",
+        "$value": "{color.white.50}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.white.90}"
+      }
+    },
+    "transparent-dark": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.black.10}"
+      },
+      "moderate": {
+        "$type": "color",
+        "$value": "{color.black.50}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.black.90}"
+      }
+    },
+    "primary": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.primary.light}"
+      },
+      "moderate": {
+        "$type": "color",
+        "$value": "{color.primary.vivid}"
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{color.primary.dark}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.primary.darker}"
+      }
+    },
+    "secondary": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.neutral.lightest}"
+      },
+      "moderate": {
+        "$type": "color",
+        "$value": "{color.neutral.light}"
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{color.neutral.medium}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.neutral.dark}"
+      }
+    },
+    "danger": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.error.lighter}"
+      },
+      "moderate": {
+        "$type": "color",
+        "$value": "{color.error.medium}"
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{color.error.dark}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.error.darker}"
+      }
+    },
+    "info": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.info.lighter}"
+      },
+      "moderate": {
+        "$type": "color",
+        "$value": "{color.info.medium}"
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{color.info.dark}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.info.darker}"
+      }
+    },
+    "warning": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.warning.lighter}"
+      },
+      "moderate": {
+        "$type": "color",
+        "$value": "{color.warning.medium}"
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{color.warning.dark}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.warning.darker}"
+      }
+    },
+    "success": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.success.lighter}"
+      },
+      "moderate": {
+        "$type": "color",
+        "$value": "{color.success.medium}"
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{color.success.dark}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.success.darker}"
+      }
+    },
+    "disabled": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.disabled.lighter}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.disabled.darker}"
+      },
+      "fixed": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.disabled.lighter}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.disabled.darker}"
+        }
+      }
+    }
+  }
+}

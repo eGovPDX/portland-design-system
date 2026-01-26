@@ -1,0 +1,24 @@
+{
+  "radius": {
+    "none": {
+      "$type": "dimension",
+      "$value": "{scale.0}"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{scale.50}"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "{scale.100}"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "{scale.200}"
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "{scale.25000}"
+    }
+  }
+}
