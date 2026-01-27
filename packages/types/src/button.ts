@@ -9,8 +9,6 @@
 export const BUTTON_VARIANTS = [
   "primary",
   "secondary",
-  "accent-cool",
-  "accent-warm",
   "base",
   "outline",
   "outline-inverse",
