@@ -2,13 +2,11 @@
 
 @import "@cityofportland/design-tokens/tailwind/base.css" layer(theme);
 
-@import "@cityofportland/design-tokens/tailwind/xl.css" layer(variant);
 @import "@cityofportland/design-tokens/tailwind/dark.css" layer(variant);
+@import "@cityofportland/design-tokens/tailwind/xl.css" layer(variant);
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-.dark {
-  body {
-    @apply bg-standard-default-subtle text-standard-default-strong;
-  }
+body {
+  @apply bg-background-light dark:bg-background-dark;
 }

@@ -12,7 +12,7 @@
   ],
   "exports": {
     "./*": {
-      "import": "./dist/*.js",
+      "import": "./dist/*.es.js",
       "types": "./dist/*.d.ts"
     },
     "./*.css": "./dist/*.css"
