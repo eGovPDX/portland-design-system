@@ -1,0 +1,141 @@
+/**
+ * Box component styles
+ * Uses Tailwind utilities and design tokens for consistent styling
+ */
+
+/* Tailwind moderate, components, and utilities */
+@import "./base.css";
+
+@layer components {
+  .box {
+    @apply block;
+
+    /* Color scheme: default */
+    &.box--default {
+      &.box--subtle {
+        @apply bg-background-default-subtle text-content-default-strong;
+      }
+      &.box--moderate {
+        @apply bg-background-default-moderate text-content-default-strong;
+      }
+      &.box--emphasis {
+        @apply bg-background-default-emphasis text-content-default-strong;
+      }
+      &.box--strong {
+        @apply bg-background-default-strong text-content-default-strong;
+      }
+    }
+
+    /* Color scheme: primary */
+    &.box--primary {
+      &.box--subtle {
+        @apply bg-background-primary-subtle text-content-default-strong;
+      }
+      &.box--moderate {
+        @apply bg-background-primary-moderate text-content-inverse-subtle;
+      }
+      &.box--emphasis {
+        @apply bg-background-primary-emphasis text-content-inverse-subtle;
+      }
+      &.box--strong {
+        @apply bg-background-primary-strong text-content-inverse-subtle;
+      }
+    }
+
+    /* Color scheme: secondary */
+    &.box--secondary {
+      &.box--subtle {
+        @apply bg-background-secondary-subtle text-content-default-strong;
+      }
+      &.box--moderate {
+        @apply bg-background-secondary-moderate text-content-default-strong;
+      }
+      &.box--emphasis {
+        @apply bg-background-secondary-emphasis text-content-default-strong;
+      }
+      &.box--strong {
+        @apply bg-background-secondary-strong text-content-default-strong;
+      }
+    }
+
+    /* Color scheme: success */
+    &.box--success {
+      &.box--subtle {
+        @apply bg-background-success-subtle text-content-default-strong;
+      }
+      &.box--moderate {
+        @apply bg-background-success-moderate text-content-dark;
+      }
+      &.box--emphasis {
+        @apply bg-background-success-emphasis text-content-dark;
+      }
+      &.box--strong {
+        @apply bg-background-success-strong text-content-inverse-subtle;
+      }
+    }
+
+    /* Color scheme: danger */
+    &.box--danger {
+      &.box--subtle {
+        @apply bg-background-danger-subtle text-content-default-strong;
+      }
+      &.box--moderate {
+        @apply bg-background-danger-moderate text-content-default-strong;
+      }
+      &.box--emphasis {
+        @apply bg-background-danger-emphasis text-content-inverse-subtle;
+      }
+      &.box--strong {
+        @apply bg-background-danger-strong text-content-inverse-subtle;
+      }
+    }
+
+    /* Color scheme: warning */
+    &.box--warning {
+      &.box--subtle {
+        @apply bg-background-warning-subtle text-content-default-strong;
+      }
+      &.box--moderate {
+        @apply bg-background-warning-moderate text-content-dark;
+      }
+      &.box--emphasis {
+        @apply bg-background-warning-emphasis text-content-dark;
+      }
+      &.box--strong {
+        @apply bg-background-warning-strong text-content-inverse-subtle;
+      }
+    }
+
+    /* Color scheme: info */
+    &.box--info {
+      &.box--subtle {
+        @apply bg-background-info-subtle text-content-default-strong;
+      }
+      &.box--moderate {
+        @apply bg-background-info-moderate text-content-dark;
+      }
+      &.box--emphasis {
+        @apply bg-background-info-emphasis text-content-dark;
+      }
+      &.box--strong {
+        @apply bg-background-info-strong text-content-inverse-subtle;
+      }
+    }
+
+    /* Color scheme: disabled */
+    &.box--disabled {
+      &.box--subtle {
+        @apply bg-background-disabled-subtle text-content-disabled-strong;
+      }
+      &.box--moderate {
+        @apply bg-background-disabled-moderate text-content-disabled-strong;
+      }
+      &.box--emphasis {
+        @apply bg-background-disabled-emphasis text-content-disabled-strong;
+      }
+      &.box--strong {
+        @apply bg-background-disabled-strong text-content-disabled-subtle;
+      }
+    }
+  }
+}
