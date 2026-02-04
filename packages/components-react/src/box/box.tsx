@@ -63,13 +63,13 @@ function buildClassList({
  *
  * @example
  * // Default div with primary color scheme
- * <Box color="primary" variant="subdued">
+ * <Box color="primary" variant="subtle">
  *   Content here
  * </Box>
  *
  * @example
  * // As a section element
- * <Box as="section" color="info" padding="lg">
+ * <Box as="section" color="info">
  *   Section content
  * </Box>
  *
@@ -91,7 +91,6 @@ export const Box: BoxComponent = ({
   const Element = as || "div";
 
   const classList = buildClassList({
-    border,
     className,
     color,
     variant,
