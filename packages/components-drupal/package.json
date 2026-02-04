@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@cityofportland/components-css": "workspace:*",
+    "@cityofportland/design-tokens": "workspace:*",
     "@cityofportland/types": "workspace:*",
     "@eslint/js": "^9.39.1",
     "@storybook/addon-a11y": "9.1.16",
