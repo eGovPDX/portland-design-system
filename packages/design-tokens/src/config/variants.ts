@@ -1,6 +1,7 @@
 import { readdirSync, statSync } from "fs";
-import { join, resolve } from "path";
+import { join, parse, resolve } from "path";
 import { TOKENS_DIR } from "./constants";
+import type { Filter } from "style-dictionary/types";
 
 const VARIANT_CATEGORIES = ["breakpoint", "color"] as const;
 
@@ -10,6 +11,7 @@ export interface VariantFile {
   name: string;
   category?: VariantCategory;
   paths: Array<string>;
+  filter: Filter["filter"];
   description?: string;
 }
 
@@ -42,6 +44,10 @@ export function getVariants(): VariantFile[] {
             variantPath(category, DEFAULT_VARIANTS[category])
           ),
         ],
+        filter: (token) =>
+          ![resolve(TOKENS_DIR, "primitive")].some((exclusion) =>
+            parse(token.filePath).dir.includes(exclusion)
+          ),
         description: "Default tokens",
       },
     ],
@@ -82,6 +88,13 @@ export function getVariants(): VariantFile[] {
           name: variantName,
           category,
           paths: [variantPath(category, name)],
+          filter: (token) =>
+            ![
+              resolve(TOKENS_DIR, "primitive"),
+              resolve(TOKENS_DIR, "base"),
+            ].some((exclusion) =>
+              parse(token.filePath).dir.includes(exclusion)
+            ),
           description: `Combined tokens from ${category}/${name}`,
         });
       }

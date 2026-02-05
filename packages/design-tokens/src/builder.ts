@@ -1,4 +1,4 @@
-import { parse, resolve } from "path";
+import { resolve } from "path";
 import StyleDictionary from "style-dictionary";
 import type { Config, PlatformConfig } from "style-dictionary/types";
 
@@ -56,7 +56,7 @@ export class TokenBuilder {
     const failures: { config: Config; error: unknown }[] = [];
 
     for (const variant of variants) {
-      const { category, name } = variant;
+      const { category, filter, name } = variant;
 
       console.log(
         `🔧 Building variant ${[category, variant.name].filter(Boolean).join(" / ")}`
@@ -85,10 +85,7 @@ export class TokenBuilder {
               category,
               name,
               // Exclude certain paths from tokens builds
-              (token) =>
-                ![resolve(TOKENS_DIR, "primitive")].some((exclusion) =>
-                  parse(token.filePath).dir.includes(exclusion)
-                )
+              filter
             );
             return acc;
           },
