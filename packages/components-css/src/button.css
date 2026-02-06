@@ -15,39 +15,39 @@
     @apply inline-flex items-center justify-between gap-xs;
     @apply font-bold;
     @apply cursor-pointer;
-    @apply focus:outline-4 focus:outline-offset-4 focus:outline-content-primary-moderate;
+    @apply focus:outline-4 focus:outline-offset-4 focus:outline-primary-medium;
 
-    @apply disabled:bg-disabled-lighter disabled:text-content-disabled-strong disabled:cursor-not-allowed;
+    @apply disabled:bg-disabled-lighter disabled:text-disabled-strong disabled:cursor-not-allowed;
   }
 
   /* Button variants */
   .button--primary {
-    @apply bg-background-primary-moderate text-content-light;
-    @apply hover:bg-background-primary-strong;
-    @apply active:bg-background-primary-emphasis;
+    @apply bg-primary-moderate text-light;
+    @apply hover:bg-primary-strong;
+    @apply active:bg-primary-emphasis;
   }
 
   .button--secondary {
-    @apply bg-background-secondary-moderate text-content-default-strong;
-    @apply hover:bg-background-secondary-strong hover:text-content-light;
-    @apply active:bg-background-secondary-emphasis active:text-content-default-strong;
+    @apply bg-secondary-moderate text-default-strong;
+    @apply hover:bg-secondary-strong hover:text-light;
+    @apply active:bg-secondary-emphasis active:text-default-strong;
   }
 
   .button--outline {
-    @apply border-3xs border-border-primary-moderate bg-transparent text-content-primary-strong;
-    @apply hover:border-border-primary-strong;
-    @apply active:border-border-primary-emphasis;
+    @apply border-3xs border-primary-moderate bg-transparent text-primary-strong;
+    @apply hover:border-primary-strong;
+    @apply active:border-primary-emphasis;
   }
 
   .button--outline-inverse {
-    @apply border-2xs border-border-default-strong text-content-default-subtle;
-    @apply hover:border-background-default-subtle hover:text-background-default-subtle;
-    @apply active:border-border-light active:text-content-light;
+    @apply border-2xs border-default-strong text-default-subtle;
+    @apply hover:border-default-subtle hover:text-default-subtle;
+    @apply active:border-light active:text-light;
   }
 
   .button--unstyled {
     @apply bg-transparent;
-    @apply text-content-primary-moderate font-regular;
+    @apply text-primary-moderate font-regular;
     @apply underline;
   }
 

@@ -12,7 +12,34 @@ export const sizePx: Transform = {
   transform: (token) => `${token.$value}px`,
 };
 
-export const fontSizeTailwind: Transform = {
+export const tailwindColorBackground: Transform = {
+  name: "tailwind/color/background",
+  type: "name",
+  filter: (token) => token.$type === "color" && token.attributes?.category === "background",
+  transform: (token) => {
+    return `background-color-${token.path.slice(1).join("-")}`;
+  },
+};
+
+export const tailwindColorBorder: Transform = {
+  name: "tailwind/color/border",
+  type: "name",
+  filter: (token) => token.$type === "color" && token.attributes?.category === "border",
+  transform: (token) => {
+    return `border-color-${token.path.slice(1).join("-")}`;
+  },
+};
+
+export const tailwindColorText: Transform = {
+  name: "tailwind/color/text",
+  type: "name",
+  filter: (token) => token.attributes?.category === "content",
+  transform: (token) => {
+    return `text-color-${token.path.slice(1).join("-")}`;
+  },
+};
+
+export const tailwindFontSize: Transform = {
   name: "tailwind/font/size",
   type: "name",
   filter: (token) => token.$type === "fontSize",
@@ -21,7 +48,7 @@ export const fontSizeTailwind: Transform = {
   },
 };
 
-export const fontFamilyTailwind: Transform = {
+export const tailwindFontFamily: Transform = {
   name: "tailwind/font/family",
   type: "name",
   filter: (token) => token.$type === "fontFamily",
@@ -30,7 +57,7 @@ export const fontFamilyTailwind: Transform = {
   },
 };
 
-export const lineHeightTailwind: Transform = {
+export const tailwindLineHeight: Transform = {
   name: "tailwind/line-height",
   type: "name",
   filter: (token) => token.attributes?.category === "line-height",
@@ -39,24 +66,17 @@ export const lineHeightTailwind: Transform = {
   },
 };
 
-export const variantsTailwind: Transform = {
-  name: "tailwind/variant/color",
-  type: "name",
-  filter: (token) =>
-    token.$type === "color" && token.attributes?.category !== "color",
-  transform: (token) => {
-    return `color-${token.path.join("-")}`;
-  },
-};
 /**
  * Custom transform names for use in platform configurations
  */
 export const TRANSFORMS = {
   sizePx: sizePx.name,
-  tailwindFontSize: fontSizeTailwind.name,
-  tailwindFontFamily: fontFamilyTailwind.name,
-  tailwindLineHeight: lineHeightTailwind.name,
-  tailwindVariantColor: variantsTailwind.name,
+  tailwindColorBackground: tailwindColorBackground.name,
+  tailwindColorBorder: tailwindColorBorder.name,
+  tailwindColorText: tailwindColorText.name,
+  tailwindFontSize: tailwindFontSize.name,
+  tailwindFontFamily: tailwindFontFamily.name,
+  tailwindLineHeight: tailwindLineHeight.name,
 } as const;
 
 /**
@@ -65,10 +85,12 @@ export const TRANSFORMS = {
 export function registerTransforms(): void {
   [
     sizePx,
-    fontSizeTailwind,
-    fontFamilyTailwind,
-    lineHeightTailwind,
-    variantsTailwind,
+    tailwindColorBackground,
+    tailwindColorBorder,
+    tailwindColorText,
+    tailwindFontSize,
+    tailwindFontFamily,
+    tailwindLineHeight,
   ].forEach((transform) => {
     StyleDictionary.registerTransform(transform);
   });
