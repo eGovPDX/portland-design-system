@@ -2,15 +2,22 @@ import {
   BUTTON_VARIANTS,
   BUTTON_SIZES,
   BUTTON_TYPES,
+  type ButtonVariant,
+  type ButtonSize,
 } from "@cityofportland/types/button";
-import { faArrowRight, faDownload } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faDownload,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import "react";
+import { fn } from "storybook/test";
 
 import { Button, type ReactButtonProps } from "./button";
 
-export default {
+const meta = {
   title: "Components/Button",
   component: Button,
   parameters: {
@@ -22,6 +29,10 @@ export default {
     },
   },
   argTypes: {
+    children: {
+      control: "text",
+      description: "The text content of the button",
+    },
     variant: {
       control: "select",
       options: BUTTON_VARIANTS,
@@ -37,6 +48,10 @@ export default {
       options: BUTTON_TYPES,
       description: "The HTML button type attribute",
     },
+    outline: {
+      control: "boolean",
+      description: "Whether the button should have an outline style",
+    },
     disabled: {
       control: "boolean",
       description: "Whether the button is disabled",
@@ -50,68 +65,110 @@ export default {
       description: "FontAwesome icon to display after the button text",
     },
   },
+  args: {
+    children: "{text}",
+    variant: "primary",
+    size: "default",
+    type: "button",
+    outline: false,
+    disabled: false,
+    onClick: fn(), // Add default action logger
+  },
 } satisfies Meta<ReactButtonProps>;
 
 type Story = StoryObj<ReactButtonProps>;
 
 // Default button
-export const Default: Story = {
-  args: {
-    children: "Default Button",
-    onClick: () => console.log("Button clicked!"),
+export const Basic: Story = {};
+
+const VALID_VARIANTS: Array<[ButtonVariant, string?]> = [
+  ["primary", "outline"],
+  ["secondary", "outline"],
+  ["danger", "outline"],
+  ["inverse"],
+  ["unstyled"],
+];
+
+export const Variants: Story = {
+  parameters: {
+    controls: {
+      exclude: ["children", "disabled"],
+    },
+    pseudo: {
+      hover: "#hover",
+      focus: "#focus",
+      active: "#active",
+    },
+  },
+  render() {
+    const states = ["default", "hover", "focus", "active"];
+
+    return (
+      <section className="grid grid-cols-1 md:grid-cols-5 gap-lg items-center">
+        {VALID_VARIANTS.map(([variant, outline]) => {
+          const children = [
+            <span className="capitalize font-bold">{variant}</span>,
+            ...states.map((state) => (
+              <Button
+                key={`${variant}-${state}`}
+                variant={variant}
+                id={state}
+                className="capitalize"
+              >
+                {state}
+              </Button>
+            )),
+          ];
+
+          if (outline) {
+            children.push(
+              <span className="capitalize font-bold">{variant} Outline</span>,
+              ...states.map((state) => (
+                <Button
+                  key={`${variant}-${state}-pseudo`}
+                  variant={variant}
+                  outline
+                  id={state}
+                  className="capitalize"
+                >
+                  {state}
+                </Button>
+              ))
+            );
+          }
+
+          return children;
+        })}
+      </section>
+    );
   },
 };
 
-// Secondary button
-export const Secondary: Story = {
-  args: {
-    children: "Secondary Button",
-    variant: "secondary",
+export const Sizes: Story = {
+  parameters: {
+    controls: {
+      exclude: ["children", "size"],
+    },
   },
-};
+  render({ disabled, outline, variant }) {
+    const sizes: Array<ButtonSize> = ["small", "default", "big"];
 
-export const Base: Story = {
-  args: {
-    children: "Base Button",
-    variant: "base",
-  },
-};
-
-// Outline button
-export const Outline: Story = {
-  args: {
-    children: "Outline Button",
-    variant: "outline",
-  },
-};
-
-// Unstyled button
-export const Unstyled: Story = {
-  args: {
-    children: "Unstyled Button",
-    variant: "unstyled",
-  },
-};
-
-// Big button
-export const Big: Story = {
-  args: {
-    children: "Big Button",
-    size: "big",
-  },
-};
-
-export const Small: Story = {
-  args: {
-    children: "Small Button",
-    size: "small",
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    children: "Disabled Button",
-    disabled: true,
+    return (
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-lg items-center">
+        {sizes.map((size) => (
+          <Button
+            key={size}
+            size={size}
+            variant={variant}
+            outline={outline}
+            disabled={disabled}
+            className="capitalize"
+          >
+            {size}
+          </Button>
+        ))}
+      </section>
+    );
   },
 };
 
@@ -129,6 +186,14 @@ export const WithEndIcon: Story = {
   },
 };
 
+export const WithBothIcons: Story = {
+  args: {
+    children: "Double Icon",
+    left: <FontAwesomeIcon icon={faArrowLeft} />,
+    right: <FontAwesomeIcon icon={faArrowRight} />,
+  },
+};
+
 export const TextWrap: Story = {
   args: {
     children:
@@ -138,3 +203,5 @@ export const TextWrap: Story = {
     right: <FontAwesomeIcon icon={faArrowRight} />,
   },
 };
+
+export default meta;
