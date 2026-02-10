@@ -54,6 +54,10 @@ const meta = {
       control: "boolean",
       description: "Whether the button should have an outline style",
     },
+    outline: {
+      control: "boolean",
+      description: "Whether the button should have an outline style",
+    },
     disabled: {
       control: "boolean",
       description: "Whether the button is disabled",
