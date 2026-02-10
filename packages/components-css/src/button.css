@@ -15,7 +15,7 @@
     @apply inline-flex items-center justify-center gap-xs;
     @apply font-bold;
     @apply cursor-pointer;
-    @apply focus:outline-4 focus:outline-offset-4 focus:outline-primary-vivid;
+    @apply focus:ring-4 focus:ring-offset-4 focus:ring-primary-moderate;
 
     @apply disabled:bg-disabled-lighter disabled:text-disabled-emphasis disabled:cursor-not-allowed;
   }
