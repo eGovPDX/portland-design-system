@@ -57,19 +57,19 @@
       },
       "light": {
         "$type": "color",
-        "$value": "{color.blue.30}"
+        "$value": "{color.blue.20}"
       },
       "medium": {
         "$type": "color",
-        "$value": "{color.blue.60v}"
+        "$value": "{color.blue.40}"
       },
       "vivid": {
         "$type": "color",
-        "$value": "{color.blue.70v}"
+        "$value": "{color.blue.60v}"
       },
       "dark": {
         "$type": "color",
-        "$value": "{color.blue.80v}"
+        "$value": "{color.blue.70}"
       },
       "darker": {
         "$type": "color",
@@ -121,7 +121,7 @@
       },
       "lighter": {
         "$type": "color",
-        "$value": "{color.gray-cool.20}"
+        "$value": "{color.gray-cool.10}"
       },
       "light": {
         "$type": "color",
@@ -163,15 +163,15 @@
       },
       "dark": {
         "$type": "color",
-        "$value": "{color.cyan.40v}"
+        "$value": "{color.cyan.40}"
       },
       "darker": {
         "$type": "color",
-        "$value": "{color.cyan.60}"
+        "$value": "{color.cyan.50}"
       },
       "darkest": {
         "$type": "color",
-        "$value": "{color.cyan.80}"
+        "$value": "{color.cyan.70}"
       }
     },
     "success": {
@@ -211,27 +211,27 @@
       },
       "lighter": {
         "$type": "color",
-        "$value": "{color.yellow.5}"
+        "$value": "{color.gold.5v}"
       },
       "light": {
         "$type": "color",
-        "$value": "{color.yellow.10v}"
+        "$value": "{color.gold.10v}"
       },
       "medium": {
         "$type": "color",
-        "$value": "{color.yellow.20v}"
+        "$value": "{color.gold.20v}"
       },
       "dark": {
         "$type": "color",
-        "$value": "{color.yellow.30v}"
+        "$value": "{color.gold.40v}"
       },
       "darker": {
         "$type": "color",
-        "$value": "{color.yellow.50v}"
+        "$value": "{color.gold.60v}"
       },
       "darkest": {
         "$type": "color",
-        "$value": "{color.yellow.70v}"
+        "$value": "{color.gold.80v}"
       }
     },
     "error": {

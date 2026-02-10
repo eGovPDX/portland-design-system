@@ -1,39 +1,41 @@
 {
   "background": {
-    "default": {
-      "subtle": {
-        "$type": "color",
-        "$value": "{color.neutral.white}"
+    "standard": {
+      "default": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.neutral.white}"
+        },
+        "moderate": {
+          "$type": "color",
+          "$value": "{color.neutral.lightest}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{color.neutral.lighter}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.neutral.light}"
+        }
       },
-      "moderate": {
-        "$type": "color",
-        "$value": "{color.neutral.lightest}"
-      },
-      "emphasis": {
-        "$type": "color",
-        "$value": "{color.neutral.lighter}"
-      },
-      "strong": {
-        "$type": "color",
-        "$value": "{color.neutral.light}"
-      }
-    },
-    "inverse": {
-      "subtle": {
-        "$type": "color",
-        "$value": "{color.neutral.black}"
-      },
-      "moderate": {
-        "$type": "color",
-        "$value": "{color.neutral.darkest}"
-      },
-      "emphasis": {
-        "$type": "color",
-        "$value": "{color.neutral.dark}"
-      },
-      "strong": {
-        "$type": "color",
-        "$value": "{color.neutral.light}"
+      "inverse": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.neutral.black}"
+        },
+        "moderate": {
+          "$type": "color",
+          "$value": "{color.neutral.darkest}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{color.neutral.dark}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.neutral.light}"
+        }
       }
     },
     "primary": {
@@ -123,7 +125,7 @@
       },
       "strong": {
         "$type": "color",
-        "$value": "{color.warning.darker}"
+        "$value": "{color.warning.darkest}"
       }
     },
     "success": {
@@ -147,55 +149,57 @@
     "disabled": {
       "subtle": {
         "$type": "color",
-        "$value": "{color.disabled.lighter}"
+        "$value": "{color.disabled.lightest}"
       },
       "moderate": {
         "$type": "color",
-        "$value": "{color.disabled.light}"
+        "$value": "{color.disabled.lighter}"
       },
       "emphasis": {
         "$type": "color",
-        "$value": "{color.disabled.medium}"
+        "$value": "{color.disabled.light}"
       },
       "strong": {
         "$type": "color",
         "$value": "{color.disabled.dark}"
       }
     },
-    "light": {
-      "$type": "color",
-      "$value": "{color.neutral.white}"
-    },
-    "transparent-light": {
-      "subtle": {
+    "fixed": {
+      "light": {
         "$type": "color",
-        "$value": "{color.white.10}"
+        "$value": "{color.neutral.white}"
       },
-      "moderate": {
-        "$type": "color",
-        "$value": "{color.white.50}"
+      "transparent-light": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.white.10}"
+        },
+        "moderate": {
+          "$type": "color",
+          "$value": "{color.white.50}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.white.90}"
+        }
       },
-      "strong": {
+      "dark": {
         "$type": "color",
-        "$value": "{color.white.90}"
-      }
-    },
-    "dark": {
-      "$type": "color",
-      "$value": "{color.neutral.black}"
-    },
-    "transparent-dark": {
-      "subtle": {
-        "$type": "color",
-        "$value": "{color.black.10}"
+        "$value": "{color.neutral.black}"
       },
-      "moderate": {
-        "$type": "color",
-        "$value": "{color.black.50}"
-      },
-      "strong": {
-        "$type": "color",
-        "$value": "{color.black.90}"
+      "transparent-dark": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.black.10}"
+        },
+        "moderate": {
+          "$type": "color",
+          "$value": "{color.black.50}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.black.90}"
+        }
       }
     }
   }

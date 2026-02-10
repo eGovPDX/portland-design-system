@@ -12,37 +12,62 @@
 @layer components {
   .button {
     @apply rounded-md px-lg py-sm;
-    @apply inline-flex items-center justify-between gap-xs;
+    @apply inline-flex items-center justify-center gap-xs;
     @apply font-bold;
     @apply cursor-pointer;
-    @apply focus:outline-4 focus:outline-offset-4 focus:outline-primary-medium;
+    @apply focus:outline-4 focus:outline-offset-4 focus:outline-primary-vivid;
 
-    @apply disabled:bg-disabled-lighter disabled:text-disabled-strong disabled:cursor-not-allowed;
+    @apply disabled:bg-disabled-lighter disabled:text-disabled-emphasis disabled:cursor-not-allowed;
+  }
+
+  .button--outline {
+    @apply border-3xs;
   }
 
   /* Button variants */
   .button--primary {
-    @apply bg-primary-moderate text-light;
+    @apply bg-primary-moderate text-standard-inverse-subtle;
     @apply hover:bg-primary-strong;
     @apply active:bg-primary-emphasis;
+    @apply focus-visible:active:bg-primary-emphasis;
+
+    &.button--outline {
+      @apply bg-standard-default-subtle border-primary-moderate text-primary-strong;
+      @apply hover:border-primary-strong;
+      @apply active:border-primary-emphasis;
+    }
   }
 
   .button--secondary {
-    @apply bg-secondary-moderate text-default-strong;
-    @apply hover:bg-secondary-strong hover:text-light;
-    @apply active:bg-secondary-emphasis active:text-default-strong;
+    @apply bg-secondary-moderate text-standard-default-strong;
+    @apply hover:bg-secondary-strong hover:text-standard-fixed-light;
+    @apply active:bg-secondary-emphasis active:text-standard-default-strong;
+    @apply focus-visible:bg-secondary-emphasis;
+
+    &.button--outline {
+      @apply bg-standard-default-subtle border-secondary-moderate text-standard-default-emphasis;
+      @apply hover:border-secondary-strong;
+      @apply active:border-secondary-emphasis;
+    }
   }
 
-  .button--outline {
-    @apply border-3xs border-primary-moderate bg-transparent text-primary-strong;
-    @apply hover:border-primary-strong;
-    @apply active:border-primary-emphasis;
+  .button--danger {
+    @apply bg-danger-emphasis text-standard-inverse-subtle;
+    @apply hover:bg-danger-strong;
+    @apply active:bg-danger-emphasis;
+    @apply focus-visible:bg-danger-emphasis;
+
+    &.button--outline {
+      @apply bg-standard-default-subtle border-danger-moderate text-danger-strong;
+      @apply hover:border-danger-strong;
+      @apply active:border-danger-emphasis;
+    }
   }
 
-  .button--outline-inverse {
-    @apply border-2xs border-default-strong text-default-subtle;
-    @apply hover:border-default-subtle hover:text-default-subtle;
-    @apply active:border-light active:text-light;
+  .button--inverse {
+    @apply bg-standard-inverse-moderate text-standard-inverse-subtle;
+    @apply hover:bg-standard-inverse-subtle;
+    @apply active:bg-standard-inverse-emphasis;
   }
 
   .button--unstyled {
