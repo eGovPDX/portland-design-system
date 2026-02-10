@@ -1,6 +1,7 @@
-import "@cityofportland/components-css/button.css";
 import type { ButtonProps } from "@cityofportland/types/button";
 import React from "react";
+
+import "@cityofportland/components-css/button.css";
 
 // Extend ButtonProps with React-specific props
 export interface ReactButtonProps extends ButtonProps {
@@ -11,10 +12,13 @@ export interface ReactButtonProps extends ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>; // Click event handler
 }
 
+const OUTLINE_VARIANTS = ["primary", "secondary", "danger"];
+
 export const Button: React.FC<ReactButtonProps> = ({
   children = null,
   variant = "primary",
   size = "default",
+  outline = false,
   disabled = false,
   type = "button",
   left,
@@ -29,6 +33,9 @@ export const Button: React.FC<ReactButtonProps> = ({
 
     if (!disabled) classes.push(`button--${variant}`);
 
+    if (outline && OUTLINE_VARIANTS.includes(variant)) {
+      classes.push("button--outline");
+    }
     if (className) {
       classes.push(className);
     }
