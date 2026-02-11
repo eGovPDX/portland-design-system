@@ -13,128 +13,128 @@
     /* Color scheme: default */
     &.box--default {
       &.box--subtle {
-        @apply bg-background-default-subtle text-content-default-strong;
+        @apply bg-standard-default-subtle text-standard-default-strong border-standard-default-subtle;
       }
       &.box--moderate {
-        @apply bg-background-default-moderate text-content-default-strong;
+        @apply bg-standard-default-moderate text-standard-default-strong border-standard-default-subtle;
       }
       &.box--emphasis {
-        @apply bg-background-default-emphasis text-content-default-strong;
+        @apply bg-standard-default-emphasis text-standard-default-strong border-standard-default-emphasis;
       }
       &.box--strong {
-        @apply bg-background-default-strong text-content-default-strong;
+        @apply bg-standard-default-strong text-standard-default-strong border-standard-default-emphasis;
       }
     }
 
     /* Color scheme: primary */
     &.box--primary {
       &.box--subtle {
-        @apply bg-background-primary-subtle text-content-default-strong;
+        @apply bg-primary-subtle text-standard-default-strong border-primary-subtle;
       }
       &.box--moderate {
-        @apply bg-background-primary-moderate text-content-inverse-subtle;
+        @apply bg-primary-moderate text-standard-inverse-subtle border-primary-subtle;
       }
       &.box--emphasis {
-        @apply bg-background-primary-emphasis text-content-inverse-subtle;
+        @apply bg-primary-emphasis text-standard-inverse-subtle border-primary-strong;
       }
       &.box--strong {
-        @apply bg-background-primary-strong text-content-inverse-subtle;
+        @apply bg-primary-strong text-standard-inverse-subtle border-primary-emphasis;
       }
     }
 
     /* Color scheme: secondary */
     &.box--secondary {
       &.box--subtle {
-        @apply bg-background-secondary-subtle text-content-default-strong;
+        @apply bg-secondary-subtle text-standard-default-strong border-secondary-subtle;
       }
       &.box--moderate {
-        @apply bg-background-secondary-moderate text-content-default-strong;
+        @apply bg-secondary-moderate text-standard-default-strong border-secondary-subtle;
       }
       &.box--emphasis {
-        @apply bg-background-secondary-emphasis text-content-default-strong;
+        @apply bg-secondary-emphasis text-standard-default-strong border-secondary-emphasis;
       }
       &.box--strong {
-        @apply bg-background-secondary-strong text-content-default-strong;
+        @apply bg-secondary-strong text-standard-default-strong border-secondary-emphasis;
       }
     }
 
     /* Color scheme: success */
     &.box--success {
       &.box--subtle {
-        @apply bg-background-success-subtle text-content-default-strong;
+        @apply bg-success-subtle text-standard-default-strong border-success-subtle;
       }
       &.box--moderate {
-        @apply bg-background-success-moderate text-content-dark;
+        @apply bg-success-moderate text-standard-fixed-dark border-success-moderate;
       }
       &.box--emphasis {
-        @apply bg-background-success-emphasis text-content-dark;
+        @apply bg-success-emphasis text-standard-fixed-dark border-success-emphasis;
       }
       &.box--strong {
-        @apply bg-background-success-strong text-content-inverse-subtle;
+        @apply bg-success-strong text-standard-inverse-subtle border-success-strong;
       }
     }
 
     /* Color scheme: danger */
     &.box--danger {
       &.box--subtle {
-        @apply bg-background-danger-subtle text-content-default-strong;
+        @apply bg-danger-subtle text-standard-default-strong border-danger-subtle;
       }
       &.box--moderate {
-        @apply bg-background-danger-moderate text-content-default-strong;
+        @apply bg-danger-moderate text-standard-default-strong border-danger-moderate;
       }
       &.box--emphasis {
-        @apply bg-background-danger-emphasis text-content-inverse-subtle;
+        @apply bg-danger-emphasis text-standard-fixed-light border-danger-emphasis;
       }
       &.box--strong {
-        @apply bg-background-danger-strong text-content-inverse-subtle;
+        @apply bg-danger-strong text-standard-inverse-subtle border-danger-strong;
       }
     }
 
     /* Color scheme: warning */
     &.box--warning {
       &.box--subtle {
-        @apply bg-background-warning-subtle text-content-default-strong;
+        @apply bg-warning-subtle text-standard-default-strong border-warning-moderate;
       }
       &.box--moderate {
-        @apply bg-background-warning-moderate text-content-dark;
+        @apply bg-warning-moderate text-standard-fixed-dark border-warning-moderate;
       }
       &.box--emphasis {
-        @apply bg-background-warning-emphasis text-content-dark;
+        @apply bg-warning-emphasis text-standard-fixed-dark border-warning-emphasis;
       }
       &.box--strong {
-        @apply bg-background-warning-strong text-content-inverse-subtle;
+        @apply bg-warning-strong text-standard-inverse-subtle border-warning-strong;
       }
     }
 
     /* Color scheme: info */
     &.box--info {
       &.box--subtle {
-        @apply bg-background-info-subtle text-content-default-strong;
+        @apply bg-info-subtle text-standard-default-strong border-info-subtle;
       }
       &.box--moderate {
-        @apply bg-background-info-moderate text-content-dark;
+        @apply bg-info-moderate text-standard-fixed-dark border-info-emphasis;
       }
       &.box--emphasis {
-        @apply bg-background-info-emphasis text-content-dark;
+        @apply bg-info-emphasis text-standard-fixed-dark border-info-emphasis;
       }
       &.box--strong {
-        @apply bg-background-info-strong text-content-inverse-subtle;
+        @apply bg-info-strong text-standard-inverse-subtle border-info-moderate;
       }
     }
 
     /* Color scheme: disabled */
     &.box--disabled {
       &.box--subtle {
-        @apply bg-background-disabled-subtle text-content-disabled-strong;
+        @apply bg-disabled-subtle text-disabled-strong border-disabled-subtle;
       }
       &.box--moderate {
-        @apply bg-background-disabled-moderate text-content-disabled-strong;
+        @apply bg-disabled-moderate text-disabled-strong border-disabled-moderate;
       }
       &.box--emphasis {
-        @apply bg-background-disabled-emphasis text-content-disabled-strong;
+        @apply bg-disabled-emphasis text-disabled-strong border-disabled-emphasis;
       }
       &.box--strong {
-        @apply bg-background-disabled-strong text-content-disabled-subtle;
+        @apply bg-disabled-strong text-disabled-subtle border-disabled-emphasis;
       }
     }
   }
