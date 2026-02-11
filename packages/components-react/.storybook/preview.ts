@@ -31,16 +31,6 @@ const preview: Preview = {
       codePanel: true,
     },
   },
-
-  decorators: [
-    withThemeByClassName({
-      themes: {
-        light: "light",
-        dark: "dark",
-      },
-      defaultTheme: "light",
-    }),
-  ],
 };
 
 export default preview;
