@@ -8,5 +8,5 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 body {
-  @apply bg-background-light dark:bg-background-dark;
+  @apply bg-standard-default-subtle;
 }
