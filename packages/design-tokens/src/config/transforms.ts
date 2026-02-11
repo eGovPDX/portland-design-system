@@ -12,33 +12,6 @@ export const sizePx: Transform = {
   transform: (token) => `${token.$value}px`,
 };
 
-export const tailwindColorBackground: Transform = {
-  name: "tailwind/color/background",
-  type: "name",
-  filter: (token) => token.$type === "color" && token.attributes?.category === "background",
-  transform: (token) => {
-    return `background-color-${token.path.slice(1).join("-")}`;
-  },
-};
-
-export const tailwindColorBorder: Transform = {
-  name: "tailwind/color/border",
-  type: "name",
-  filter: (token) => token.$type === "color" && token.attributes?.category === "border",
-  transform: (token) => {
-    return `border-color-${token.path.slice(1).join("-")}`;
-  },
-};
-
-export const tailwindColorText: Transform = {
-  name: "tailwind/color/text",
-  type: "name",
-  filter: (token) => token.attributes?.category === "content",
-  transform: (token) => {
-    return `text-color-${token.path.slice(1).join("-")}`;
-  },
-};
-
 export const tailwindFontSize: Transform = {
   name: "tailwind/font/size",
   type: "name",
@@ -71,9 +44,6 @@ export const tailwindLineHeight: Transform = {
  */
 export const TRANSFORMS = {
   sizePx: sizePx.name,
-  tailwindColorBackground: tailwindColorBackground.name,
-  tailwindColorBorder: tailwindColorBorder.name,
-  tailwindColorText: tailwindColorText.name,
   tailwindFontSize: tailwindFontSize.name,
   tailwindFontFamily: tailwindFontFamily.name,
   tailwindLineHeight: tailwindLineHeight.name,
@@ -85,9 +55,6 @@ export const TRANSFORMS = {
 export function registerTransforms(): void {
   [
     sizePx,
-    tailwindColorBackground,
-    tailwindColorBorder,
-    tailwindColorText,
     tailwindFontSize,
     tailwindFontFamily,
     tailwindLineHeight,

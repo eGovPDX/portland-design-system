@@ -6,6 +6,7 @@ import { processAssets } from "./config/assets.js";
 import { DIST_DIR, TOKENS_DIR } from "./config/constants.js";
 import { registerFormats } from "./config/formats.js";
 import platforms from "./config/platforms.js";
+import { registerPreprocessors } from "./config/preprocessors.js";
 import { registerTransforms } from "./config/transforms.js";
 import { getVariants } from "./config/variants.js";
 
@@ -26,6 +27,9 @@ export class TokenBuilder {
     if (this.initialized) {
       return;
     }
+
+    console.log("🔧 Registering preprocessors...");
+    registerPreprocessors();
 
     console.log("🔧 Registering transforms...");
     registerTransforms();

@@ -8,6 +8,7 @@ import { formats, transforms } from "style-dictionary/enums";
 
 import { DIST_DIR } from "./constants.js";
 import customFormats from "./formats.js";
+import customPreprocessors from "./preprocessors.js";
 import customTransforms from "./transforms.js";
 import { type VariantCategory } from "./variants.js";
 
@@ -123,13 +124,11 @@ export const tailwind: PlatformGenerator = (category, name, filter) => ({
     transforms.colorCss,
     transforms.sizePxToRem,
     transforms.assetUrl,
-    customTransforms.tailwindColorBackground,
-    customTransforms.tailwindColorBorder,
-    customTransforms.tailwindColorText,
     customTransforms.tailwindFontSize,
     customTransforms.tailwindFontFamily,
     customTransforms.tailwindLineHeight,
   ],
+  preprocessors: [customPreprocessors.tailwindNamespaces],
   buildPath: resolve(DIST_DIR, "tailwind"),
   files: [
     {
