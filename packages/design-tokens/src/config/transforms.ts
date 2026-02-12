@@ -53,14 +53,11 @@ export const TRANSFORMS = {
  * Register all custom transforms with Style Dictionary
  */
 export function registerTransforms(): void {
-  [
-    sizePx,
-    tailwindFontSize,
-    tailwindFontFamily,
-    tailwindLineHeight,
-  ].forEach((transform) => {
-    StyleDictionary.registerTransform(transform);
-  });
+  [sizePx, tailwindFontSize, tailwindFontFamily, tailwindLineHeight].forEach(
+    (transform) => {
+      StyleDictionary.registerTransform(transform);
+    }
+  );
 }
 
 export default TRANSFORMS;
