@@ -1,44 +1,44 @@
 {
   "font-size": {
-    "2xs": {
-      "$type": "fontSize",
-      "$value": "{size.300}"
+    "heading": {
+      "2xl": {
+        "$type": "dimension",
+        "$value": "{size.1300}"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{size.1100}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{size.1000}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{size.600}"
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "{size.500}"
+      },
+      "xs": {
+        "$type": "dimension",
+        "$value": "{size.400}"
+      }
     },
-    "xs": {
-      "$type": "fontSize",
-      "$value": "{size.400}"
-    },
-    "sm": {
-      "$type": "fontSize",
-      "$value": "{size.500}"
-    },
-    "md": {
-      "$type": "fontSize",
-      "$value": "{size.600}"
-    },
-    "lg": {
-      "$type": "fontSize",
-      "$value": "{size.800}"
-    },
-    "xl": {
-      "$type": "fontSize",
-      "$value": "{size.1000}"
-    },
-    "2xl": {
-      "$type": "fontSize",
-      "$value": "{size.1100}"
-    },
-    "3xl": {
-      "$type": "fontSize",
-      "$value": "{size.1200}"
-    },
-    "4xl": {
-      "$type": "fontSize",
-      "$value": "{size.1300}"
-    },
-    "5xl": {
-      "$type": "fontSize",
-      "$value": "{size.1400}"
+    "body": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "{size.400}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{size.600}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{size.1000}"
+      }
     }
   }
 }

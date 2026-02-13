@@ -21,7 +21,7 @@
   }
 
   .button--outline {
-    @apply border-3xs;
+    @apply border-sm;
   }
 
   /* Button variants */
@@ -78,14 +78,14 @@
 
   /* Size variants */
   .button--default {
-    @apply text-sm;
+    @apply text-body-md;
   }
 
   .button--small {
-    @apply text-xs;
+    @apply text-body-sm;
   }
 
   .button--big {
-    @apply text-lg;
+    @apply text-body-lg;
   }
 }

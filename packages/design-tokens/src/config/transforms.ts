@@ -15,18 +15,20 @@ export const sizePx: Transform = {
 export const tailwindFontSize: Transform = {
   name: "tailwind/font/size",
   type: "name",
-  filter: (token) => token.$type === "fontSize",
+  filter: (token) => token.attributes?.category === "font-size",
   transform: (token) => {
-    return `text-${token.path.slice(-1)}`;
+    const [_category, ...rest] = token.path;
+    return `text-${rest.join("-")}`;
   },
 };
 
 export const tailwindFontFamily: Transform = {
   name: "tailwind/font/family",
   type: "name",
-  filter: (token) => token.$type === "fontFamily",
+  filter: (token) => token.attributes?.category === "font-family",
   transform: (token) => {
-    return `font-${token.path.slice(-1)}`;
+    const [_category, ...rest] = token.path;
+    return `font-${rest.join("-")}`;
   },
 };
 
@@ -35,7 +37,8 @@ export const tailwindLineHeight: Transform = {
   type: "name",
   filter: (token) => token.attributes?.category === "line-height",
   transform: (token) => {
-    return `leading-${token.path.slice(-1)}`;
+    const [_category, ...rest] = token.path;
+    return `leading-${rest.join("-")}`;
   },
 };
 
