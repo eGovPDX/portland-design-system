@@ -6,6 +6,12 @@ import {
   type ButtonSize,
 } from "@cityofportland/types/button";
 import {
+  BOX_COLORS,
+  BOX_VARIANTS,
+  type BoxColorScheme,
+  type BoxColorVariation,
+} from "@cityofportland/types/box";
+import {
   faArrowLeft,
   faArrowRight,
   faDownload,
@@ -15,17 +21,15 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import "react";
 import { fn } from "storybook/test";
 
+import { Box } from "../box";
 import { Button, type ReactButtonProps } from "./button";
 
 const meta = {
   title: "Components/Button",
   component: Button,
   parameters: {
-    docs: {
-      description: {
-        component:
-          "A button draws attention to important actions with a large selectable surface.",
-      },
+    controls: {
+      exclude: ["className", "onClick"],
     },
   },
   argTypes: {
@@ -89,10 +93,39 @@ const VALID_VARIANTS: Array<[ButtonVariant, string?]> = [
   ["unstyled"],
 ];
 
-export const Variants: Story = {
+export const Variants: StoryObj<
+  ReactButtonProps & {
+    backgroundColor: BoxColorScheme;
+    backgroundVariant: BoxColorVariation;
+  }
+> = {
+  argTypes: {
+    backgroundColor: {
+      control: "select",
+      options: BOX_COLORS,
+    },
+    backgroundVariant: {
+      control: "select",
+      options: BOX_VARIANTS,
+    },
+  },
+  args: {
+    backgroundColor: "default",
+    backgroundVariant: "subtle",
+  },
   parameters: {
+    layout: "fullscreen",
     controls: {
-      exclude: ["children", "disabled"],
+      exclude: [
+        "children",
+        "className",
+        "disabled",
+        "left",
+        "outline",
+        "onClick",
+        "right",
+        "variant",
+      ],
     },
     pseudo: {
       hover: "#hover",
@@ -100,11 +133,16 @@ export const Variants: Story = {
       active: "#active",
     },
   },
-  render() {
+  render({ backgroundColor, backgroundVariant, size }) {
     const states = ["default", "hover", "focus", "active"];
 
     return (
-      <section className="grid grid-cols-1 md:grid-cols-5 gap-lg items-center">
+      <Box
+        as="section"
+        color={backgroundColor}
+        variant={backgroundVariant}
+        className="min-h-screen p-xl grid grid-cols-1 md:grid-cols-5 gap-lg items-center"
+      >
         {VALID_VARIANTS.map(([variant, outline]) => {
           const children = [
             <span className="capitalize font-bold">{variant}</span>,
@@ -112,6 +150,7 @@ export const Variants: Story = {
               <Button
                 key={`${variant}-${state}`}
                 variant={variant}
+                size={size}
                 id={state}
                 className="capitalize"
               >
@@ -127,6 +166,7 @@ export const Variants: Story = {
                 <Button
                   key={`${variant}-${state}-pseudo`}
                   variant={variant}
+                  size={size}
                   outline
                   id={state}
                   className="capitalize"
@@ -139,7 +179,7 @@ export const Variants: Story = {
 
           return children;
         })}
-      </section>
+      </Box>
     );
   },
 };
@@ -172,25 +212,32 @@ export const Sizes: Story = {
   },
 };
 
-export const WithStartIcon: Story = {
-  args: {
-    children: "Download",
-    left: <FontAwesomeIcon icon={faDownload} />,
+export const WithIcons: StoryObj<
+  Omit<ReactButtonProps, "left" | "right"> & { left?: boolean; right?: boolean }
+> = {
+  argTypes: {
+    left: {
+      control: "boolean",
+      description: "Whether to show a left icon",
+    },
+    right: {
+      control: "boolean",
+      description: "Whether to show a right icon",
+    },
   },
-};
-
-export const WithEndIcon: Story = {
   args: {
-    children: "Continue",
-    right: <FontAwesomeIcon icon={faArrowRight} />,
+    left: true,
+    right: true,
+    children: "Button with Icons",
   },
-};
-
-export const WithBothIcons: Story = {
-  args: {
-    children: "Double Icon",
-    left: <FontAwesomeIcon icon={faArrowLeft} />,
-    right: <FontAwesomeIcon icon={faArrowRight} />,
+  render({ left, right, ...args }) {
+    return (
+      <Button
+        {...args}
+        left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
+        right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+      />
+    );
   },
 };
 
