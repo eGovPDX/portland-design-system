@@ -54,7 +54,7 @@ export const Basic: StoryObj<ReactBoxProps & { border: boolean }> = {
     border: false,
   },
   render: ({ as, border, color, variant }) => {
-    const classes = ["p-xl", border ? "border-xs" : ""]
+    const classes = ["p-xl", border ? "border-xl" : ""]
       .flat()
       .filter(Boolean)
       .join(" ");
@@ -94,7 +94,7 @@ export const Gallery: Story = {
               key={variant}
               color={color}
               variant={variant}
-              className="border-xs p-xs flex justify-center items-center"
+              className="border-xl p-xs flex justify-center items-center"
             >
               <span className="justify-self-center p-sm uppercase">
                 {variant}
