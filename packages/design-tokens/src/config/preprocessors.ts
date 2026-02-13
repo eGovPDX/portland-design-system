@@ -1,39 +1,61 @@
 import StyleDictionary from "style-dictionary";
-import type { Preprocessor } from "style-dictionary/types";
+import type { PreprocessedTokens, Preprocessor } from "style-dictionary/types";
 
+/**
+ * Transforms tokens to move certain tokens under the appropriate Tailwind namespaces
+ * for cleaner use in utility classes.
+ */
 export const tailwindNamespaces: Preprocessor = {
   name: "tailwind/namespaces",
-  preprocessor: async (dictionary) => {
-    const newDictionary: typeof dictionary = {};
+  preprocessor: async (original) => {
+    const modified: PreprocessedTokens = {};
 
-    for (const [namespace, tokens] of Object.entries(dictionary)) {
-      switch (namespace) {
-        // Map background colors to background-color namespace.
-        case "background":
-          newDictionary["background-color"] = tokens;
-          break;
+    /**
+     * Mapping of original namespaces to new Tailwind namespaces.
+     * Each entry maps an original namespace to one or more new namespaces.
+     */
+    const mapping: Record<string, string[][]> = {
+      // Map background colors to background-color namespace.
+      background: [["background", "color"]],
+      // Map border colors to all related namespaces.
+      border: [
+        ["border", "color"],
+        ["ring", "color"],
+        ["outline", "color"],
+      ],
+      // Map content colors to text-color but also preserve in the global color namespace
+      // for usage elsewhere.
+      content: [
+        ["text", "color"],
+        ["color", "content"],
+      ],
+    };
 
-        // Map border colors to all related namespaces.
-        case "border": {
-          const prefixes = ["border-color", "ring-color", "outline-color"];
-          for (const prefix of prefixes) {
-            newDictionary[prefix] = tokens;
+    for (const [namespace, tokens] of Object.entries(original)) {
+      if (namespace in mapping) {
+        // traverse the path to create nested objects in the modified tokens
+        for (const path of mapping[namespace]) {
+          // remove the final segment of the path before traversing
+          const final = path.pop();
+
+          if (!final) {
+            throw new Error(
+              `Invalid mapping for namespace ${namespace}. A path is required.`
+            );
           }
-          break;
+
+          // tokens at the end of the path
+          path.reduce((acc, p) => {
+            acc[p] = acc[p] || {};
+            return acc[p];
+          }, modified)[final] = tokens;
         }
-
-        // Map content colors to text-color but also preserve in the global color namespace for usage elsewhere.
-        case "content":
-          newDictionary["text-color"] = tokens;
-          newDictionary["color-content"] = tokens;
-          break;
-
-        default:
-          newDictionary[namespace] = tokens;
+      } else {
+        modified[namespace] = tokens;
       }
     }
 
-    return newDictionary;
+    return modified;
   },
 };
 
