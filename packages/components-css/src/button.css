@@ -6,79 +6,86 @@
 /* Tailwind base, components, and utilities */
 @layer theme, components, utilities;
 
-@import "@cityofportland/design-tokens/tailwind/theme.css" layer(theme);
+@import "@cityofportland/design-tokens/tailwind/base.css" layer(theme);
 @import "tailwindcss/utilities" layer(utilities);
 
 @layer components {
   .button {
     @apply rounded-md px-lg py-sm;
-    @apply inline-flex items-center justify-between gap-xs;
+    @apply inline-flex items-center justify-center gap-xs;
     @apply font-bold;
     @apply cursor-pointer;
-    @apply focus:outline-4 focus:outline-offset-4 focus:outline-primary-medium;
+    @apply focus:outline-4 focus:outline-offset-4 focus:outline-primary-vivid;
 
-    @apply disabled:bg-disabled-lighter disabled:text-disabled-dark disabled:cursor-not-allowed;
+    @apply disabled:bg-disabled-lighter disabled:text-disabled-emphasis disabled:cursor-not-allowed;
+  }
+
+  .button--outline {
+    @apply border-sm;
   }
 
   /* Button variants */
   .button--primary {
-    @apply bg-primary-medium text-foundation-white;
-    @apply hover:bg-primary-dark;
-    @apply active:bg-primary-darker;
+    @apply bg-primary-moderate text-standard-inverse-subtle;
+    @apply hover:bg-primary-strong;
+    @apply active:bg-primary-emphasis;
+    @apply focus-visible:active:bg-primary-emphasis;
+
+    &.button--outline {
+      @apply bg-standard-default-subtle border-primary-moderate text-primary-strong;
+      @apply hover:border-primary-strong;
+      @apply active:border-primary-emphasis;
+    }
   }
 
   .button--secondary {
-    @apply bg-secondary-medium text-white;
-    @apply hover:bg-secondary-dark;
-    @apply active:bg-secondary-darker;
+    @apply bg-secondary-moderate text-standard-default-strong;
+    @apply hover:bg-secondary-strong hover:text-standard-fixed-light;
+    @apply active:bg-secondary-emphasis active:text-standard-default-strong;
+    @apply focus-visible:bg-secondary-emphasis;
+
+    &.button--outline {
+      @apply bg-standard-default-subtle border-secondary-moderate text-standard-default-emphasis;
+      @apply hover:border-secondary-strong;
+      @apply active:border-secondary-emphasis;
+    }
   }
 
-  .button--accent-cool {
-    @apply bg-accent-cool-medium text-foundation-black;
-    @apply hover:bg-accent-cool-dark;
-    @apply active:bg-accent-cool-darker active:text-foundation-white;
+  .button--danger {
+    @apply bg-danger-emphasis text-standard-inverse-subtle;
+    @apply hover:bg-danger-strong;
+    @apply active:bg-danger-emphasis;
+    @apply focus-visible:bg-danger-emphasis;
+
+    &.button--outline {
+      @apply bg-standard-default-subtle border-danger-moderate text-danger-strong;
+      @apply hover:border-danger-strong;
+      @apply active:border-danger-emphasis;
+    }
   }
 
-  .button--accent-warm {
-    @apply bg-accent-warm-medium text-foundation-black;
-    @apply hover:bg-accent-warm-dark hover:text-foundation-white;
-    @apply active:bg-accent-warm-darker active:text-foundation-white;
-  }
-
-  .button--base {
-    @apply bg-base-medium text-foundation-white;
-    @apply hover:bg-base-dark;
-    @apply active:bg-base-darker;
-  }
-
-  .button--outline {
-    @apply border-md border-primary-medium bg-transparent text-primary-medium;
-    @apply hover:border-primary-dark hover:text-primary-dark;
-    @apply active:border-primary-darker active:text-primary-darker;
-  }
-
-  .button--outline-inverse {
-    @apply border-md border-base-light text-base-light;
-    @apply hover:border-base-lightest hover:text-base-lightest;
-    @apply active:border-foundation-white active:text-foundation-white;
+  .button--inverse {
+    @apply bg-standard-inverse-moderate text-standard-inverse-subtle;
+    @apply hover:bg-standard-inverse-subtle;
+    @apply active:bg-standard-inverse-emphasis;
   }
 
   .button--unstyled {
     @apply bg-transparent;
-    @apply text-foundation-link font-regular;
+    @apply text-primary-moderate font-regular;
     @apply underline;
   }
 
   /* Size variants */
   .button--default {
-    @apply text-sm;
+    @apply text-body-md;
   }
 
   .button--small {
-    @apply text-xs;
+    @apply text-body-sm;
   }
 
   .button--big {
-    @apply text-lg;
+    @apply text-body-lg;
   }
 }

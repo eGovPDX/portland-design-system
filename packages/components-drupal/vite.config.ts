@@ -1,26 +1,31 @@
 import tailwind from "@tailwindcss/vite";
 import { defineConfig, PluginOption } from "vite";
 import * as fs from "fs";
+import { basename, extname, relative, resolve } from "path";
 import { stringify } from "yaml";
-import { basename, extname, resolve } from "path";
 import * as path from "path";
 
-function getComponentEntryPoints() {
-  const src = resolve(process.cwd(), "components");
+const COMPONENTS_DIR = resolve(process.cwd(), "components");
 
+function withinPath(filePath: string, dirPath: string): boolean {
+  const rel = relative(resolve(dirPath), resolve(filePath));
+  return !rel.startsWith("..") && !path.isAbsolute(rel);
+}
+
+function getComponentEntryPoints() {
   const entryPoints: Record<string, string> = {};
 
   // Only those directories that contain a .component.yaml file
-  fs.readdirSync(src, { withFileTypes: true })
+  fs.readdirSync(COMPONENTS_DIR, { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
     .filter((dirent) =>
       fs
-        .readdirSync(path.join(src, dirent.name))
+        .readdirSync(path.join(COMPONENTS_DIR, dirent.name))
         .some((file) => /\.component\.y[a]?ml/.test(file))
     )
     .map((dirent) => dirent.name)
     .forEach(function (dir) {
-      const componentPath = path.join(src, dir);
+      const componentPath = path.join(COMPONENTS_DIR, dir);
 
       fs.readdirSync(componentPath)
         .filter(
@@ -196,9 +201,9 @@ dependencies:
           };
 
           // Add each chunk to libraries.yml if not already present
-          for (const [fileName] of Object.entries(bundle).filter(
-            ([_, chunk]) => !(chunk.type == "chunk")
-          )) {
+          for (const [fileName] of Object.entries(bundle)
+            .filter(([_, chunk]) => !(chunk.type == "chunk"))
+            .filter(([path]) => !withinPath(path, COMPONENTS_DIR))) {
             if (/[m]?js$/.test(fileName)) {
               library.global.js = library.global.js || {};
               library.global.js[fileName] = {};

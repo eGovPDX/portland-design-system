@@ -11,7 +11,7 @@
     "dist"
   ],
   "exports": {
-    ".": "./dist/index.js",
+    ".": "./dist/base.js",
     "./css/*": "./dist/css/*",
     "./js/*": "./dist/js/*",
     "./scss/*": "./dist/scss/*",
@@ -19,11 +19,16 @@
     "./unocss/*": "./dist/unocss/*"
   },
   "scripts": {
-    "build": "style-dictionary build --verbose --config ./src/config.js",
-    "clean": "rm -rf dist/"
+    "prebuild": "tsup",
+    "build": "node dist/build.js",
+    "clean": "rm -rf dist/",
+    "dev": "pnpm prebuild && node dist/watch.js"
   },
   "devDependencies": {
-    "style-dictionary": "^5.1.1"
+    "@types/node": "^22.10.2",
+    "style-dictionary": "^5.1.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
   },
   "repository": {
     "type": "git",

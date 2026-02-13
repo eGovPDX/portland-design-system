@@ -1,0 +1,24 @@
+{
+  "border-width": {
+    "none": {
+      "$type": "dimension",
+      "$value": "{scale.0}"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{scale.25}"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "{scale.50}"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "{scale.100}"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "{scale.200}"
+    }
+  }
+}

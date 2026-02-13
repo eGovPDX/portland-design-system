@@ -1,4 +1,8 @@
-import { BUTTON_VARIANTS, BUTTON_SIZES } from "@cityofportland/types/button";
+import {
+  BUTTON_VARIANTS,
+  BUTTON_SIZES,
+  BUTTON_TYPES,
+} from "@cityofportland/types/button";
 import { faArrowRight, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -27,6 +31,11 @@ export default {
       control: "select",
       options: BUTTON_SIZES,
       description: "The size of the button",
+    },
+    type: {
+      control: "select",
+      options: BUTTON_TYPES,
+      description: "The HTML button type attribute",
     },
     disabled: {
       control: "boolean",
@@ -61,22 +70,6 @@ export const Secondary: Story = {
   },
 };
 
-// Accent cool button
-export const AccentCool: Story = {
-  args: {
-    children: "Accent Cool Button",
-    variant: "accent-cool",
-  },
-};
-
-// Accent warm button
-export const AccentWarm: Story = {
-  args: {
-    children: "Accent Warm Button",
-    variant: "accent-warm",
-  },
-};
-
 export const Base: Story = {
   args: {
     children: "Base Button",
@@ -89,17 +82,6 @@ export const Outline: Story = {
   args: {
     children: "Outline Button",
     variant: "outline",
-  },
-};
-
-// Outline inverse button (displayed on dark background)
-export const OutlineInverse: Story = {
-  args: {
-    children: "Outline Inverse Button",
-    variant: "outline-inverse",
-  },
-  parameters: {
-    backgrounds: { default: "dark" },
   },
 };
 

@@ -1,0 +1,52 @@
+{
+  "spacing": {
+    "none": {
+      "$type": "dimension",
+      "$value": "{scale.0}"
+    },
+    "3xs": {
+      "$type": "dimension",
+      "$value": "{scale.50}"
+    },
+    "2xs": {
+      "$type": "dimension",
+      "$value": "{scale.100}"
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "{scale.200}"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "{scale.300}"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "{scale.400}"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "{scale.500}"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "{scale.600}"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "{scale.800}"
+    },
+    "3xl": {
+      "$type": "dimension",
+      "$value": "{scale.1000}"
+    },
+    "4xl": {
+      "$type": "dimension",
+      "$value": "{scale.1400}"
+    },
+    "5xl": {
+      "$type": "dimension",
+      "$value": "{scale.1600}"
+    }
+  }
+}

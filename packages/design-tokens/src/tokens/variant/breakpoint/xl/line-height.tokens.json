@@ -1,0 +1,44 @@
+{
+  "line-height": {
+    "heading": {
+      "2xl": {
+        "$type": "dimension",
+        "$value": "{scale.900}"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{scale.900}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{scale.800}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{scale.600}"
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "{scale.500}"
+      },
+      "xs": {
+        "$type": "dimension",
+        "$value": "{scale.500}"
+      }
+    },
+    "body": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "{scale.500}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{scale.600}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{scale.800}"
+      }
+    }
+  }
+}
