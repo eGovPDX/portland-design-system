@@ -8,8 +8,6 @@
 
 @layer components {
   .box {
-    @apply block;
-
     /* Color scheme: default */
     &.box--default {
       &.box--subtle {
