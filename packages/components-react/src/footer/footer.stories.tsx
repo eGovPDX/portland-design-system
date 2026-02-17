@@ -1,8 +1,8 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import type React from "react";
 
+import BoxStories from "../box/box.stories";
 import { Button } from "../button";
 import {
   Footer,
@@ -12,47 +12,132 @@ import {
   FooterMenuItem,
   FooterMenuTitle,
   FooterNavigation,
+  type ReactFooterProps,
 } from "./footer";
+import { Box } from "../box";
 
-type StoryProps = React.ComponentPropsWithoutRef<typeof Footer>;
-
-const meta: Meta<StoryProps> = {
+const meta: Meta<ReactFooterProps> = {
   title: "Components/Footer",
   component: Footer,
   parameters: {
     layout: "fullscreen",
+    controls: {
+      exclude: ["as"],
+    },
   },
   argTypes: {
+    ...BoxStories.argTypes,
     // Add argTypes based on your Footer component props
+  },
+  args: {
+    color: "default",
+    variant: "moderate",
   },
 };
 
 export default meta;
-type Story = StoryObj<StoryProps>;
+
+type Story = StoryObj<ReactFooterProps>;
+
+export const Basic: Story = {
+  parameters: {
+    controls: {
+      exclude: ["as", "children"],
+    },
+  },
+  render: (args) => (
+    <Footer {...args}>
+      <FooterContent className="border-lg">
+        <p>
+          This is the FooterContent sub-component. It should be used to display
+          additional information or links related to the footer.
+        </p>
+      </FooterContent>
+      <div className="border-lg">
+        <p className="mb-md">
+          This is the FooterNavigation sub-component. It should be used to
+          display navigation links inside FooterMenu components. As demonstrated
+          below, the FooterMenu component should be used to group related
+          navigation links together, and the FooterMenuTitle component should be
+          used to provide a title for each group of navigation links. The
+          FooterMenuItem component should be used to display individual
+          navigation links within each FooterMenu.
+        </p>
+        <FooterNavigation>
+          <FooterMenu className="border-lg">
+            <p>
+              This is a FooterMenu sub-component. It should be used to group
+              related navigation links together.
+            </p>
+            <FooterMenuTitle>FooterMenuTitle</FooterMenuTitle>
+            <FooterMenuItem>FooterMenuItem 1</FooterMenuItem>
+            <FooterMenuItem>FooterMenuItem 2</FooterMenuItem>
+          </FooterMenu>
+          <FooterMenu className="border-lg">
+            <p>
+              This is a FooterMenu sub-component. It should be used to group
+              related navigation links together.
+            </p>
+            <FooterMenuTitle>FooterMenuTitle</FooterMenuTitle>
+            <FooterMenuItem>FooterMenuItem 1</FooterMenuItem>
+            <FooterMenuItem>FooterMenuItem 2</FooterMenuItem>
+          </FooterMenu>
+          <FooterCopyright
+            startYear={2026}
+            className="border-lg"
+          ></FooterCopyright>
+        </FooterNavigation>
+      </div>
+    </Footer>
+  ),
+};
 
 export const PortlandGov: Story = {
-  args: {
-    children: (
-      <>
+  name: "portland.gov",
+  parameters: {
+    controls: {
+      exclude: ["children", "color", "variant"],
+    },
+  },
+  render: (args) => (
+    <div className="min-h-screen grid">
+      <Box
+        as="main"
+        color="default"
+        variant="subtle"
+        className="w-full max-w-screen-xl flex flex-col justify-self-center py-xl px-md lg:px-none"
+      >
+        <h1 className="text-heading-2xl font-bold mb-lg">Page content</h1>
+        <section>
+          <p>Here is some content for the page.</p>
+        </section>
+      </Box>
+      <Footer {...args}>
         <FooterContent>
           <section>
-            <p>See something we could improve on this page? Give feedback.</p>
+            <p>
+              See something we could improve on this page?{" "}
+              <a href="#">Give website feedback.</a>
+            </p>
           </section>
-          <section className="flex flex-col tablet:flex-row items-start gap-xl">
+          <section className="flex flex-col lg:flex-row items-start gap-xl">
             <div className="grid gap-md">
               <p>
                 The City of Portland ensures meaningful access to City programs,
                 services, and activities to comply with Civil Rights Title VI
                 and ADA Title II laws and reasonably provides: translation,
                 interpretation, modifications, accommodations, alternative
-                formats, auxiliary aids and services. Request these services
-                online or 503-823-4000, Relay Service: 711.
+                formats, auxiliary aids and services.{" "}
+                <a href="#">Request these services online</a> or{" "}
+                <a href="tel:503-823-4000">503-823-4000</a>, Relay Service:{" "}
+                <a href="tel:711">711</a>.
               </p>
               <p>
-                503-823-4000 Traducción e Interpretación | Biên Dịch và Thông
-                Dịch | 口笔译服务 | Устный и письменный перевод | Turjumaad iyo
-                Fasiraad | Письмовий і усний переклад | Traducere și
-                interpretariat | Chiaku me Awewen Kapas | अनुवादन तथा व्याख्या
+                <a href="tel:503-823-4000">503-823-4000</a> Traducción e
+                Interpretación | Biên Dịch và Thông Dịch | 口笔译服务 | Устный и
+                письменный перевод | Turjumaad iyo Fasiraad | Письмовий і усний
+                переклад | Traducere și interpretariat | Chiaku me Awewen Kapas
+                | अनुवादन तथा व्याख्या
               </p>
             </div>
             <Button
@@ -66,34 +151,64 @@ export const PortlandGov: Story = {
         <FooterNavigation>
           <FooterMenu>
             <FooterMenuTitle>General Information</FooterMenuTitle>
-            <FooterMenuItem>311@portlandoregon.gov</FooterMenuItem>
-            <FooterMenuItem>311</FooterMenuItem>
-            <FooterMenuItem>Information and Customer Service</FooterMenuItem>
-            <FooterMenuItem>503-823-4000</FooterMenuItem>
-            <FooterMenuItem>711</FooterMenuItem>
-            <FooterMenuItem>Oregon Relay Service</FooterMenuItem>
+            <FooterMenuItem>
+              <a href="mailto:311@portlandoregon.gov">311@portlandoregon.gov</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="tel:311">311</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">Information and Customer Service</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="tel:503-823-4000">503-823-4000</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="tel:711">711</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">Oregon Relay Service</a>
+            </FooterMenuItem>
           </FooterMenu>
           <FooterMenu>
             <FooterMenuTitle>Terms, policies</FooterMenuTitle>
-            <FooterMenuItem>ADA Accommodation</FooterMenuItem>
-            <FooterMenuItem>Captioning, transcription</FooterMenuItem>
-            <FooterMenuItem>Privacy policy</FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">ADA Accommodation</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">Captioning, transcription</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">Privacy policy</a>
+            </FooterMenuItem>
           </FooterMenu>
           <FooterMenu>
             <FooterMenuTitle>Portland.gov</FooterMenuTitle>
-            <FooterMenuItem>About this Website</FooterMenuItem>
-            <FooterMenuItem>Employee Portal</FooterMenuItem>
-            <FooterMenuItem>Editor log in</FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">About this Website</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">Employee Portal</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">Editor log in</a>
+            </FooterMenuItem>
           </FooterMenu>
           <FooterMenu>
             <FooterMenuTitle>Social Media</FooterMenuTitle>
-            <FooterMenuItem>PortlandORGov</FooterMenuItem>
-            <FooterMenuItem>PortlandGov</FooterMenuItem>
-            <FooterMenuItem>PortlandGov</FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">PortlandORGov</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">PortlandGov</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">PortlandGov</a>
+            </FooterMenuItem>
           </FooterMenu>
           <FooterCopyright startYear={2018}></FooterCopyright>
         </FooterNavigation>
-      </>
-    ),
-  },
+      </Footer>
+    </div>
+  ),
 };
