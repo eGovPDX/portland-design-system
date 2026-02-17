@@ -1,11 +1,12 @@
 import { ASSETS_CITY_SEAL } from "@cityofportland/design-tokens";
+import type { FooterProps } from "@cityofportland/types/footer";
 import React, { createContext, useContext, useId } from "react";
 
 import "@cityofportland/components-css/footer.css";
+import { Box, type ReactBoxProps } from "../box";
 
-export type ReactFooterProps = React.PropsWithChildren<
-  React.HTMLAttributes<HTMLElement>
->;
+export type ReactFooterProps = FooterProps &
+  React.PropsWithChildren<React.HTMLAttributes<HTMLElement>>;
 
 export const FooterContent: React.FC<
   React.PropsWithChildren<React.HTMLAttributes<HTMLElement>>
@@ -159,9 +160,23 @@ export const FooterCopyright: React.FC<FooterCopyrightProps> = ({
   );
 };
 
-export const Footer: React.FC<ReactFooterProps> = ({
+/**
+ * The footer component is used to display information about the website, such
+ * as contact information, social media links, and copyright information.
+ * It is typically placed at the bottom of the page.
+ *
+ * The Footer component is a wrapper around the Box component that applies
+ * the appropriate styles and structure for a footer.
+ * It also provides subcomponents for the content, navigation, menu, menu title,
+ * menu item, and copyright sections of the footer.
+ *
+ */
+export const Footer: React.FC<ReactFooterProps & ReactBoxProps<"footer">> = ({
+  as = "footer",
   children,
   className,
+  color = "default",
+  variant = "moderate",
   ...rest
 }) => {
   function classes() {
@@ -174,8 +189,14 @@ export const Footer: React.FC<ReactFooterProps> = ({
     return classes.join(" ");
   }
   return (
-    <footer className={classes()} {...rest}>
+    <Box
+      as={as}
+      color={color}
+      variant={variant}
+      className={classes()}
+      {...rest}
+    >
       {children}
-    </footer>
+    </Box>
   );
 };
