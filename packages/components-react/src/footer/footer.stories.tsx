@@ -101,6 +101,14 @@ export const PortlandGov: Story = {
   },
   render: (args) => (
     <div className="min-h-screen grid">
+      <style>
+        {`a {
+          font-weight: 600;
+          text-decoration: underline;
+          text-underline-offset: 4px;
+          text-decoration-thickness: 2px;
+        }`}
+      </style>
       <Box
         as="main"
         color="default"
