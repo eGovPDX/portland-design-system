@@ -1,51 +1,38 @@
-/** Footer Component Styles */
-@layer theme, components, utilities;
-
-@import "@cityofportland/design-tokens/tailwind/theme.css" layer(theme);
-@import "tailwindcss/utilities" layer(utilities);
+@import "./base.css";
 
 @layer components {
   /* Base Header Styles */
   .footer {
-    @apply flex flex-col items-center justify-center;
-    @apply bg-base-lightest;
+    @apply flex flex-col items-center justify-center py-xl gap-2xl;
 
     & > * {
-      @apply desktop:max-w-[1024px] px-md tablet:px-none;
+      @apply container max-w-screen-xl px-md lg:px-none;
     }
 
     .footer__content {
-      @apply w-full;
-
-      & > * {
-        @apply py-md;
-      }
+      @apply w-full flex flex-col gap-2xl;
     }
 
     .footer__navigation {
       @apply w-full;
-      @apply flex flex-col gap-md tablet:flex-row justify-between;
+      @apply flex flex-col gap-md lg:flex-row justify-between;
 
       .footer__copyright {
-        @apply flex flex-col gap-md desktop:order-first;
+        @apply shrink-0 flex flex-col gap-md lg:order-first;
         h2 {
-          @apply font-bold text-sm;
-          @apply py-base-4;
+          @apply font-bold text-heading-md;
         }
 
         img {
-          @apply w-base-20;
+          @apply w-[80px];
         }
       }
 
       .footer__menu {
-        .footer__menu-title {
-          @apply font-bold text-sm;
-          @apply py-base-4;
-        }
+        @apply flex flex-col gap-md;
 
-        .footer__menu-item {
-          @apply pb-base-4;
+        .footer__menu-title {
+          @apply font-bold text-heading-md;
         }
       }
     }
