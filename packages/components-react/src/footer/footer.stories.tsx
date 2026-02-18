@@ -39,59 +39,6 @@ export default meta;
 
 type Story = StoryObj<ReactFooterProps>;
 
-export const Basic: Story = {
-  parameters: {
-    controls: {
-      exclude: ["as", "children"],
-    },
-  },
-  render: (args) => (
-    <Footer {...args}>
-      <FooterContent className="border-lg">
-        <p>
-          This is the FooterContent sub-component. It should be used to display
-          additional information or links related to the footer.
-        </p>
-      </FooterContent>
-      <div className="border-lg">
-        <p className="mb-md">
-          This is the FooterNavigation sub-component. It should be used to
-          display navigation links inside FooterMenu components. As demonstrated
-          below, the FooterMenu component should be used to group related
-          navigation links together, and the FooterMenuTitle component should be
-          used to provide a title for each group of navigation links. The
-          FooterMenuItem component should be used to display individual
-          navigation links within each FooterMenu.
-        </p>
-        <FooterNavigation>
-          <FooterMenu className="border-lg">
-            <p>
-              This is a FooterMenu sub-component. It should be used to group
-              related navigation links together.
-            </p>
-            <FooterMenuTitle>FooterMenuTitle</FooterMenuTitle>
-            <FooterMenuItem>FooterMenuItem 1</FooterMenuItem>
-            <FooterMenuItem>FooterMenuItem 2</FooterMenuItem>
-          </FooterMenu>
-          <FooterMenu className="border-lg">
-            <p>
-              This is a FooterMenu sub-component. It should be used to group
-              related navigation links together.
-            </p>
-            <FooterMenuTitle>FooterMenuTitle</FooterMenuTitle>
-            <FooterMenuItem>FooterMenuItem 1</FooterMenuItem>
-            <FooterMenuItem>FooterMenuItem 2</FooterMenuItem>
-          </FooterMenu>
-          <FooterCopyright
-            startYear={2026}
-            className="border-lg"
-          ></FooterCopyright>
-        </FooterNavigation>
-      </div>
-    </Footer>
-  ),
-};
-
 export const PortlandGov: Story = {
   name: "portland.gov",
   parameters: {
@@ -218,5 +165,58 @@ export const PortlandGov: Story = {
         </FooterNavigation>
       </Footer>
     </div>
+  ),
+};
+
+export const Wireframe: Story = {
+  parameters: {
+    controls: {
+      exclude: ["as", "children"],
+    },
+  },
+  render: (args) => (
+    <Footer {...args}>
+      <FooterContent className="border-md p-sm">
+        <p>
+          This is the FooterContent sub-component. It should be used to display
+          additional information or links related to the footer.
+        </p>
+      </FooterContent>
+      <div className="border-md p-sm">
+        <p className="mb-md">
+          This is the FooterNavigation sub-component. It should be used to
+          display navigation links inside FooterMenu components. As demonstrated
+          below, the FooterMenu component should be used to group related
+          navigation links together, and the FooterMenuTitle component should be
+          used to provide a title for each group of navigation links. The
+          FooterMenuItem component should be used to display individual
+          navigation links within each FooterMenu.
+        </p>
+        <FooterNavigation>
+          <FooterMenu className="border-md p-sm">
+            <p>
+              This is a FooterMenu sub-component. It should be used to group
+              related navigation links together.
+            </p>
+            <FooterMenuTitle>FooterMenuTitle</FooterMenuTitle>
+            <FooterMenuItem>FooterMenuItem 1</FooterMenuItem>
+            <FooterMenuItem>FooterMenuItem 2</FooterMenuItem>
+          </FooterMenu>
+          <FooterMenu className="border-md p-sm">
+            <p>
+              This is a FooterMenu sub-component. It should be used to group
+              related navigation links together.
+            </p>
+            <FooterMenuTitle>FooterMenuTitle</FooterMenuTitle>
+            <FooterMenuItem>FooterMenuItem 1</FooterMenuItem>
+            <FooterMenuItem>FooterMenuItem 2</FooterMenuItem>
+          </FooterMenu>
+          <FooterCopyright
+            startYear={2026}
+            className="border-md p-sm"
+          ></FooterCopyright>
+        </FooterNavigation>
+      </div>
+    </Footer>
   ),
 };
