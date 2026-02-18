@@ -1,0 +1,141 @@
+/**
+ * Box component styles
+ * Uses Tailwind utilities and design tokens for consistent styling
+ */
+
+/* Tailwind moderate, components, and utilities */
+@import "./base.css";
+
+@layer components {
+  .box {
+    @apply block;
+
+    /* Color scheme: default */
+    &.box--default {
+      &.box--subtle {
+        @apply bg-standard-default-subtle text-standard-default-strong border-standard-default-subtle;
+      }
+      &.box--moderate {
+        @apply bg-standard-default-moderate text-standard-default-strong border-standard-default-subtle;
+      }
+      &.box--emphasis {
+        @apply bg-standard-default-emphasis text-standard-default-strong border-standard-default-emphasis;
+      }
+      &.box--strong {
+        @apply bg-standard-default-strong text-standard-default-strong border-standard-default-emphasis;
+      }
+    }
+
+    /* Color scheme: primary */
+    &.box--primary {
+      &.box--subtle {
+        @apply bg-primary-subtle text-standard-default-strong border-primary-subtle;
+      }
+      &.box--moderate {
+        @apply bg-primary-moderate text-standard-inverse-subtle border-primary-subtle;
+      }
+      &.box--emphasis {
+        @apply bg-primary-emphasis text-standard-inverse-subtle border-primary-strong;
+      }
+      &.box--strong {
+        @apply bg-primary-strong text-standard-inverse-subtle border-primary-emphasis;
+      }
+    }
+
+    /* Color scheme: secondary */
+    &.box--secondary {
+      &.box--subtle {
+        @apply bg-secondary-subtle text-standard-default-strong border-secondary-subtle;
+      }
+      &.box--moderate {
+        @apply bg-secondary-moderate text-standard-default-strong border-secondary-subtle;
+      }
+      &.box--emphasis {
+        @apply bg-secondary-emphasis text-standard-default-strong border-secondary-emphasis;
+      }
+      &.box--strong {
+        @apply bg-secondary-strong text-standard-default-strong border-secondary-emphasis;
+      }
+    }
+
+    /* Color scheme: success */
+    &.box--success {
+      &.box--subtle {
+        @apply bg-success-subtle text-standard-default-strong border-success-subtle;
+      }
+      &.box--moderate {
+        @apply bg-success-moderate text-standard-fixed-dark border-success-moderate;
+      }
+      &.box--emphasis {
+        @apply bg-success-emphasis text-standard-fixed-dark border-success-emphasis;
+      }
+      &.box--strong {
+        @apply bg-success-strong text-standard-inverse-subtle border-success-strong;
+      }
+    }
+
+    /* Color scheme: danger */
+    &.box--danger {
+      &.box--subtle {
+        @apply bg-danger-subtle text-standard-default-strong border-danger-subtle;
+      }
+      &.box--moderate {
+        @apply bg-danger-moderate text-standard-default-strong border-danger-moderate;
+      }
+      &.box--emphasis {
+        @apply bg-danger-emphasis text-standard-fixed-light border-danger-emphasis;
+      }
+      &.box--strong {
+        @apply bg-danger-strong text-standard-inverse-subtle border-danger-strong;
+      }
+    }
+
+    /* Color scheme: warning */
+    &.box--warning {
+      &.box--subtle {
+        @apply bg-warning-subtle text-standard-default-strong border-warning-moderate;
+      }
+      &.box--moderate {
+        @apply bg-warning-moderate text-standard-fixed-dark border-warning-moderate;
+      }
+      &.box--emphasis {
+        @apply bg-warning-emphasis text-standard-fixed-dark border-warning-emphasis;
+      }
+      &.box--strong {
+        @apply bg-warning-strong text-standard-inverse-subtle border-warning-strong;
+      }
+    }
+
+    /* Color scheme: info */
+    &.box--info {
+      &.box--subtle {
+        @apply bg-info-subtle text-standard-default-strong border-info-subtle;
+      }
+      &.box--moderate {
+        @apply bg-info-moderate text-standard-fixed-dark border-info-emphasis;
+      }
+      &.box--emphasis {
+        @apply bg-info-emphasis text-standard-fixed-dark border-info-emphasis;
+      }
+      &.box--strong {
+        @apply bg-info-strong text-standard-inverse-subtle border-info-moderate;
+      }
+    }
+
+    /* Color scheme: disabled */
+    &.box--disabled {
+      &.box--subtle {
+        @apply bg-disabled-subtle text-disabled-strong border-disabled-subtle;
+      }
+      &.box--moderate {
+        @apply bg-disabled-moderate text-disabled-strong border-disabled-moderate;
+      }
+      &.box--emphasis {
+        @apply bg-disabled-emphasis text-disabled-strong border-disabled-emphasis;
+      }
+      &.box--strong {
+        @apply bg-disabled-strong text-disabled-subtle border-disabled-emphasis;
+      }
+    }
+  }
+}

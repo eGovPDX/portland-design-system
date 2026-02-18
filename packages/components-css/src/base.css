@@ -1,0 +1,7 @@
+/**
+ * Base styles and Tailwind configuration
+ * Imports design tokens and sets up Tailwind v4 utilities
+ */
+
+/* Import design tokens theme */
+@import "@cityofportland/design-tokens/tailwind/base.css" layer(theme);

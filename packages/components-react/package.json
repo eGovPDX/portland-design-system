@@ -12,7 +12,7 @@
   ],
   "exports": {
     "./*": {
-      "import": "./dist/*.js",
+      "import": "./dist/*.es.js",
       "types": "./dist/*.d.ts"
     },
     "./*.css": "./dist/*.css"
@@ -26,6 +26,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.2",
     "@cityofportland/components-css": "workspace:*",
+    "@cityofportland/design-tokens": "workspace:*",
     "@cityofportland/types": "workspace:*",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
