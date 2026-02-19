@@ -43,17 +43,16 @@ export const PortlandGov: Story = {
   name: "portland.gov",
   parameters: {
     controls: {
-      exclude: ["children", "color", "variant"],
+      exclude: ["as", "children", "color", "variant"],
     },
   },
   render: (args) => (
     <div className="min-h-screen grid">
       <style>
         {`a {
-          font-weight: 600;
           text-decoration: underline;
-          text-underline-offset: 4px;
-          text-decoration-thickness: 2px;
+          text-underline-offset: 30%;
+          text-decoration-thickness: 8%;
         }`}
       </style>
       <Box
