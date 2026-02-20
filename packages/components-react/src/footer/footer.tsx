@@ -11,6 +11,19 @@ export type ReactFooterProps = FooterProps &
 export const FooterNavigation: React.FC<
   React.PropsWithChildren<React.HTMLAttributes<HTMLElement>>
 > = ({ children, className, ...rest }) => {
+  let hasMenu = false;
+
+  // Validate that a FooterMenu is present
+  React.Children.forEach(children, (child) => {
+    if (React.isValidElement(child) && child.type === FooterMenu) {
+      hasMenu = true;
+    }
+  });
+
+  if (!import.meta.env.PROD && !hasMenu) {
+    throw new Error("FooterNavigation must contain a FooterMenu component");
+  }
+
   function classes() {
     const classes = ["footer__navigation"];
 
@@ -20,6 +33,7 @@ export const FooterNavigation: React.FC<
 
     return classes.join(" ");
   }
+
   return (
     <section className={classes()} {...rest}>
       {children}
@@ -81,6 +95,7 @@ export const FooterMenuTitle: React.FC<
 
     return classes.join(" ");
   }
+
   return (
     <h2 id={id} className={classes()} {...rest}>
       {children}
