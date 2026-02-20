@@ -3,29 +3,10 @@ import type { FooterProps } from "@cityofportland/types/footer";
 import React, { createContext, useContext, useId } from "react";
 
 import "@cityofportland/components-css/footer.css";
-import { Box, type ReactBoxProps } from "../box";
+import { Box } from "../box";
 
 export type ReactFooterProps = FooterProps &
   React.PropsWithChildren<React.HTMLAttributes<HTMLElement>>;
-
-export const FooterContent: React.FC<
-  React.PropsWithChildren<React.HTMLAttributes<HTMLElement>>
-> = ({ children, className, ...rest }) => {
-  function classes() {
-    const classes = ["footer__content"];
-
-    if (className) {
-      classes.push(className);
-    }
-
-    return classes.join(" ");
-  }
-  return (
-    <section className={classes()} {...rest}>
-      {children}
-    </section>
-  );
-};
 
 export const FooterNavigation: React.FC<
   React.PropsWithChildren<React.HTMLAttributes<HTMLElement>>
@@ -127,39 +108,6 @@ export const FooterMenuItem: React.FC<
   );
 };
 
-type FooterCopyrightProps = React.PropsWithChildren<
-  React.HTMLAttributes<HTMLElement> & { startYear: number }
->;
-
-export const FooterCopyright: React.FC<FooterCopyrightProps> = ({
-  startYear,
-  children,
-  className,
-  ...rest
-}) => {
-  function classes() {
-    const classes = ["footer__copyright"];
-
-    if (className) {
-      classes.push(className);
-    }
-
-    return classes.join(" ");
-  }
-  return (
-    <div className={classes()} {...rest}>
-      <h2>City of Portland, Oregon</h2>
-      <img
-        src={ASSETS_CITY_SEAL}
-        alt="Official City of Portland seal. The image depicts Portlandia holding her trident backdropped by mountain and river, accompanied by the text 'City of Portland, Oregon 1851'"
-      />
-      <p>
-        © Copyright {startYear}-{new Date().getFullYear()}
-      </p>
-    </div>
-  );
-};
-
 /**
  * The footer component is used to display information about the website, such
  * as contact information, social media links, and copyright information.
@@ -171,10 +119,10 @@ export const FooterCopyright: React.FC<FooterCopyrightProps> = ({
  * menu item, and copyright sections of the footer.
  *
  */
-export const Footer: React.FC<ReactFooterProps & ReactBoxProps<"footer">> = ({
-  as = "footer",
+export const Footer: React.FC<ReactFooterProps> = ({
   children,
   className,
+  copyrightStart,
   color = "default",
   variant = "moderate",
   ...rest
@@ -188,15 +136,31 @@ export const Footer: React.FC<ReactFooterProps & ReactBoxProps<"footer">> = ({
 
     return classes.join(" ");
   }
+
+  const endDate = new Date().getFullYear();
+
+  const copyrightText =
+    copyrightStart === endDate
+      ? `${copyrightStart}`
+      : `${copyrightStart}-${endDate}`;
+
   return (
     <Box
-      as={as}
+      as="footer"
       color={color}
       variant={variant}
       className={classes()}
       {...rest}
     >
       {children}
+      <aside className="footer__copyright">
+        <img
+          src={ASSETS_CITY_SEAL}
+          alt="Official City of Portland seal. The image depicts Portlandia holding her trident backdropped by mountain and river, accompanied by the text 'City of Portland, Oregon 1851'"
+        />
+        <h2>City of Portland, Oregon</h2>
+        <p>© {copyrightText}</p>
+      </aside>
     </Box>
   );
 };

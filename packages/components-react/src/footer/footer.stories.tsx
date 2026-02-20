@@ -6,8 +6,6 @@ import BoxStories from "../box/box.stories";
 import { Button } from "../button";
 import {
   Footer,
-  FooterContent,
-  FooterCopyright,
   FooterMenu,
   FooterMenuItem,
   FooterMenuTitle,
@@ -28,16 +26,27 @@ const meta: Meta<ReactFooterProps> = {
   argTypes: {
     ...BoxStories.argTypes,
     // Add argTypes based on your Footer component props
+    copyrightStart: {
+      name: "Copyright start year",
+      type: "number",
+    },
   },
   args: {
     color: "default",
     variant: "moderate",
+    copyrightStart: new Date().getFullYear(),
   },
 };
 
 export default meta;
 
 type Story = StoryObj<ReactFooterProps>;
+
+const linkStyle = `a {
+  text-decoration: underline;
+  text-underline-offset: 30%;
+  text-decoration-thickness: 8%;
+}`;
 
 export const PortlandGov: Story = {
   name: "portland.gov",
@@ -46,62 +55,54 @@ export const PortlandGov: Story = {
       exclude: ["as", "children", "color", "variant"],
     },
   },
-  render: (args) => (
+  render: () => (
     <div className="min-h-screen grid">
-      <style>
-        {`a {
-          text-decoration: underline;
-          text-underline-offset: 30%;
-          text-decoration-thickness: 8%;
-        }`}
-      </style>
+      <style>{linkStyle}</style>
       <Box
         as="main"
         color="default"
         variant="subtle"
-        className="w-full max-w-screen-xl flex flex-col justify-self-center py-xl px-md lg:px-none"
+        className="w-full max-w-screen-xl flex flex-col justify-self-center py-xl px-md xl:px-none"
       >
         <h1 className="text-heading-2xl font-bold mb-lg">Page content</h1>
         <section>
           <p>Here is some content for the page.</p>
         </section>
       </Box>
-      <Footer {...args}>
-        <FooterContent>
-          <section>
+      <Footer copyrightStart={2018}>
+        <section>
+          <p>
+            See something we could improve on this page?{" "}
+            <a href="#">Give website feedback.</a>
+          </p>
+        </section>
+        <section className="flex flex-col lg:flex-row items-start gap-xl">
+          <div className="grid gap-md">
             <p>
-              See something we could improve on this page?{" "}
-              <a href="#">Give website feedback.</a>
+              The City of Portland ensures meaningful access to City programs,
+              services, and activities to comply with Civil Rights Title VI and
+              ADA Title II laws and reasonably provides: translation,
+              interpretation, modifications, accommodations, alternative
+              formats, auxiliary aids and services.{" "}
+              <a href="#">Request these services online</a> or{" "}
+              <a href="tel:503-823-4000">503-823-4000</a>, Relay Service:{" "}
+              <a href="tel:711">711</a>.
             </p>
-          </section>
-          <section className="flex flex-col lg:flex-row items-start gap-xl">
-            <div className="grid gap-md">
-              <p>
-                The City of Portland ensures meaningful access to City programs,
-                services, and activities to comply with Civil Rights Title VI
-                and ADA Title II laws and reasonably provides: translation,
-                interpretation, modifications, accommodations, alternative
-                formats, auxiliary aids and services.{" "}
-                <a href="#">Request these services online</a> or{" "}
-                <a href="tel:503-823-4000">503-823-4000</a>, Relay Service:{" "}
-                <a href="tel:711">711</a>.
-              </p>
-              <p>
-                <a href="tel:503-823-4000">503-823-4000</a> Traducción e
-                Interpretación | Biên Dịch và Thông Dịch | 口笔译服务 | Устный и
-                письменный перевод | Turjumaad iyo Fasiraad | Письмовий і усний
-                переклад | Traducere și interpretariat | Chiaku me Awewen Kapas
-                | अनुवादन तथा व्याख्या
-              </p>
-            </div>
-            <Button
-              right={<FontAwesomeIcon icon={faArrowRight} />}
-              className="shrink-0"
-            >
-              Explore Services
-            </Button>
-          </section>
-        </FooterContent>
+            <p>
+              <a href="tel:503-823-4000">503-823-4000</a> Traducción e
+              Interpretación | Biên Dịch và Thông Dịch | 口笔译服务 | Устный и
+              письменный перевод | Turjumaad iyo Fasiraad | Письмовий і усний
+              переклад | Traducere și interpretariat | Chiaku me Awewen Kapas |
+              अनुवादन तथा व्याख्या
+            </p>
+          </div>
+          <Button
+            right={<FontAwesomeIcon icon={faArrowRight} />}
+            className="shrink-0"
+          >
+            Explore Services
+          </Button>
+        </section>
         <FooterNavigation>
           <FooterMenu>
             <FooterMenuTitle>General Information</FooterMenuTitle>
@@ -160,62 +161,73 @@ export const PortlandGov: Story = {
               <a href="#">PortlandGov</a>
             </FooterMenuItem>
           </FooterMenu>
-          <FooterCopyright startYear={2018}></FooterCopyright>
         </FooterNavigation>
       </Footer>
     </div>
   ),
 };
 
-export const Wireframe: Story = {
+export const Wireframe: StoryObj<ReactFooterProps & { menus: number }> = {
   parameters: {
     controls: {
       exclude: ["as", "children"],
     },
   },
-  render: (args) => (
-    <Footer {...args}>
-      <FooterContent className="border-md p-sm">
+  argTypes: {
+    menus: {
+      name: "Number of FooterMenus",
+      type: "number",
+    },
+  },
+  args: {
+    menus: 3,
+  },
+  render: ({ color, copyrightStart, menus, variant }) => (
+    <Footer copyrightStart={copyrightStart} color={color} variant={variant}>
+      <style>{linkStyle}</style>
+      <section className="border-md grid gap-md">
         <p>
-          This is the FooterContent sub-component. It should be used to display
-          additional information or links related to the footer.
+          The Footer allows you to display important information and navigation
+          links at the bottom of your website.
         </p>
-      </FooterContent>
-      <div className="border-md p-sm">
-        <p className="mb-md">
-          This is the FooterNavigation sub-component. It should be used to
-          display navigation links inside FooterMenu components. As demonstrated
-          below, the FooterMenu component should be used to group related
-          navigation links together, and the FooterMenuTitle component should be
-          used to provide a title for each group of navigation links. The
-          FooterMenuItem component should be used to display individual
-          navigation links within each FooterMenu.
+        <p>
+          It is very flexible, but the only required prop is{" "}
+          <code>copyrightStart</code>.
         </p>
-        <FooterNavigation>
-          <FooterMenu className="border-md p-sm">
-            <p>
-              This is a FooterMenu sub-component. It should be used to group
-              related navigation links together.
-            </p>
+        <p>
+          Below this section is a FooterNavigation sub-component. It should be
+          used to group related navigation links together using FooterMenu
+          components.
+        </p>
+      </section>
+      <FooterNavigation className="border-md">
+        {[...Array(menus)].map((_, index) => (
+          <FooterMenu key={index} className="border-md p-sm">
             <FooterMenuTitle>FooterMenuTitle</FooterMenuTitle>
-            <FooterMenuItem>FooterMenuItem 1</FooterMenuItem>
-            <FooterMenuItem>FooterMenuItem 2</FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">FooterMenuItem 1</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">FooterMenuItem 2</a>
+            </FooterMenuItem>
           </FooterMenu>
-          <FooterMenu className="border-md p-sm">
-            <p>
-              This is a FooterMenu sub-component. It should be used to group
-              related navigation links together.
-            </p>
-            <FooterMenuTitle>FooterMenuTitle</FooterMenuTitle>
-            <FooterMenuItem>FooterMenuItem 1</FooterMenuItem>
-            <FooterMenuItem>FooterMenuItem 2</FooterMenuItem>
-          </FooterMenu>
-          <FooterCopyright
-            startYear={2026}
-            className="border-md p-sm"
-          ></FooterCopyright>
-        </FooterNavigation>
-      </div>
+        ))}
+      </FooterNavigation>
     </Footer>
+  ),
+};
+
+export const Minimal: Story = {
+  parameters: {
+    controls: {
+      exclude: ["as", "children"],
+    },
+  },
+  render: ({ color, copyrightStart, variant }) => (
+    <Footer
+      copyrightStart={copyrightStart}
+      color={color}
+      variant={variant}
+    ></Footer>
   ),
 };

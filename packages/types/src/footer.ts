@@ -1,5 +1,5 @@
 import type { BoxProps } from "./box";
 
-export interface FooterProps extends BoxProps {
-  as: "footer";
-}
+export type FooterProps = Omit<BoxProps, "as"> & {
+  copyrightStart: number;
+};
