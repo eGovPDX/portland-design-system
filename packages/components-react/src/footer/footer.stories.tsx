@@ -52,10 +52,10 @@ export const PortlandGov: Story = {
   name: "portland.gov",
   parameters: {
     controls: {
-      exclude: ["as", "children", "color", "variant"],
+      exclude: ["as", "children", "color", "Copyright start year", "variant"],
     },
   },
-  render: () => (
+  render: (_args) => (
     <div className="min-h-screen grid">
       <style>{linkStyle}</style>
       <Box
@@ -176,7 +176,7 @@ export const Wireframe: StoryObj<ReactFooterProps & { menus: number }> = {
   argTypes: {
     menus: {
       name: "Number of FooterMenus",
-      type: "number",
+      control: { type: "number", min: 1, step: 1 },
     },
   },
   args: {
