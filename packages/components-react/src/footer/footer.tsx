@@ -137,12 +137,12 @@ export const Footer: React.FC<ReactFooterProps> = ({
     return classes.join(" ");
   }
 
-  const endDate = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 
   const copyrightText =
-    copyrightStart === endDate
-      ? `${copyrightStart}`
-      : `${copyrightStart}-${endDate}`;
+    copyrightStart >= currentYear || !copyrightStart
+      ? `${currentYear}`
+      : `${copyrightStart}-${currentYear}`;
 
   return (
     <Box
