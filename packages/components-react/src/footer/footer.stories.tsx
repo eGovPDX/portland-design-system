@@ -77,7 +77,7 @@ export const PortlandGov: Story = {
           </p>
         </section>
         <section className="flex flex-col lg:flex-row items-start gap-xl">
-          <div className="grid gap-md">
+          <div>
             <p>
               The City of Portland ensures meaningful access to City programs,
               services, and activities to comply with Civil Rights Title VI and
@@ -185,7 +185,7 @@ export const Wireframe: StoryObj<ReactFooterProps & { menus: number }> = {
   render: ({ color, copyrightStart, menus, variant }) => (
     <Footer copyrightStart={copyrightStart} color={color} variant={variant}>
       <style>{linkStyle}</style>
-      <section className="border-md grid gap-md">
+      <section className="border-md">
         <p>
           The Footer allows you to display important information and navigation
           links at the bottom of your website.
@@ -199,16 +199,24 @@ export const Wireframe: StoryObj<ReactFooterProps & { menus: number }> = {
           used to group related navigation links together using FooterMenu
           components.
         </p>
+        <p>
+          The word "pneumonoultramicroscopicsilicovolcanoconiosis" is used
+          throughout to demonstrate that the Footer components can handle long
+          words and will break them appropriately to avoid overflow issues.
+        </p>
       </section>
       <FooterNavigation className="border-md">
         {[...Array(menus)].map((_, index) => (
-          <FooterMenu key={index} className="border-md p-sm">
+          <FooterMenu key={index} className="border-md">
             <FooterMenuTitle>FooterMenuTitle</FooterMenuTitle>
             <FooterMenuItem>
               <a href="#">FooterMenuItem 1</a>
             </FooterMenuItem>
             <FooterMenuItem>
               <a href="#">FooterMenuItem 2</a>
+            </FooterMenuItem>
+            <FooterMenuItem>
+              <a href="#">pneumonoultramicroscopicsilicovolcanoconiosis</a>
             </FooterMenuItem>
           </FooterMenu>
         ))}

@@ -156,8 +156,8 @@ export const Footer: React.FC<ReactFooterProps> = ({
 
   const copyrightText =
     copyrightStart >= currentYear || !copyrightStart
-      ? `${currentYear}`
-      : `${copyrightStart}-${currentYear}`;
+      ? `Copyright ${currentYear}`
+      : `Copyright ${copyrightStart}-${currentYear}`;
 
   return (
     <Box
@@ -173,8 +173,10 @@ export const Footer: React.FC<ReactFooterProps> = ({
           src={ASSETS_CITY_SEAL}
           alt="Official City of Portland seal. The image depicts Portlandia holding her trident backdropped by mountain and river, accompanied by the text 'City of Portland, Oregon 1851'"
         />
-        <h2>City of Portland, Oregon</h2>
-        <p>© {copyrightText}</p>
+        <span className="footer__copyright-text">
+          <h2>City of Portland, Oregon</h2>
+          <p>© {copyrightText}</p>
+        </span>
       </aside>
     </Box>
   );

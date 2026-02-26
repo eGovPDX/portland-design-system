@@ -3,10 +3,10 @@
 @layer components {
   /* Base Header Styles */
   .footer {
-    @apply flex flex-col items-center py-xl gap-2xl;
+    @apply flex flex-col items-center p-xl xl:px-none gap-2xl;
 
     & > * {
-      @apply container max-w-screen-xl px-md xl:px-none;
+      @apply w-full xl:max-w-screen-xl;
     }
 
     .footer__navigation {
@@ -19,17 +19,25 @@
       .footer__menu-title {
         @apply font-bold text-heading-md;
       }
+
+      .footer__menu-item {
+        @apply wrap-break-word;
+      }
     }
 
     .footer__copyright {
       @apply flex items-center gap-xs;
 
       img {
-        @apply w-3xl;
+        @apply w-4xl;
       }
 
-      h2 {
-        @apply flex-1 font-bold text-heading-md;
+      .footer__copyright-text {
+        @apply flex flex-col md:flex-row md:items-center md:gap-xs;
+
+        h2 {
+          @apply font-bold text-heading-md;
+        }
       }
     }
   }
