@@ -11,7 +11,7 @@
     "dist"
   ],
   "exports": {
-    ".": "./dist/base.js",
+    ".": "./dist/js/base.js",
     "./css/*": "./dist/css/*",
     "./js/*": "./dist/js/*",
     "./scss/*": "./dist/scss/*",
