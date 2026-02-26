@@ -1,8 +1,10 @@
 {
   "font": {
     "family": {
-      "$type": "string",
-      "$value": "Open Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'"
+      "sans": {
+        "$type": "fontFamily",
+        "$value": "Open Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'"
+      }
     },
     "weight": {
       "light": {

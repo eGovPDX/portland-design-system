@@ -8,5 +8,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 body {
+  @apply font-sans;
   @apply bg-standard-default-subtle;
 }

@@ -25,9 +25,11 @@ export const tailwindFontSize: Transform = {
 export const tailwindFontFamily: Transform = {
   name: "tailwind/font/family",
   type: "name",
-  filter: (token) => token.attributes?.category === "font-family",
+  filter: (token) =>
+    token.attributes?.category === "font" &&
+    token.attributes?.type === "family",
   transform: (token) => {
-    const [_category, ...rest] = token.path;
+    const [_category, _type, ...rest] = token.path;
     return `font-${rest.join("-")}`;
   },
 };
