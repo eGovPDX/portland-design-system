@@ -17,7 +17,20 @@
         "mblode.twig-language-2"
       ],
       "settings": {
-        "terminal.integrated.shell.linux": "/bin/zsh"
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+          },
+          "zsh": {
+            "path": "zsh"
+          },
+          "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "zsh"
       }
     }
   },
