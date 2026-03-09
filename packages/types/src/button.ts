@@ -11,7 +11,6 @@ export const BUTTON_VARIANTS = [
   "secondary",
   "danger",
   "inverse",
-  "unstyled",
 ] as const;
 
 export type ButtonVariant = (typeof BUTTON_VARIANTS)[number];
