@@ -4,13 +4,12 @@ import React from "react";
 import "@cityofportland/components-css/button.css";
 
 // Extend ButtonProps with React-specific props
-export interface ReactButtonProps extends ButtonProps {
-  children?: React.ReactNode; // React's type for anything renderable
-  left?: React.ReactNode; // Left slot content
-  right?: React.ReactNode; // Right slot content
-  className?: string; // CSS classes
-  onClick?: React.MouseEventHandler<HTMLButtonElement>; // Click event handler
-}
+export type ReactButtonProps = ButtonProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement> &
+  React.PropsWithChildren & {
+    left?: React.ReactNode; // Left slot content
+    right?: React.ReactNode; // Right slot content
+  };
 
 const OUTLINE_VARIANTS = ["primary", "secondary", "danger"];
 
