@@ -164,6 +164,44 @@
         "$value": "{color.disabled.dark}"
       }
     },
+    "transparent": {
+      "transparent-light": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.white.20}"
+        },
+        "moderate": {
+          "$type": "color",
+          "$value": "{color.white.30}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{color.white.40}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.white.50}"
+        }
+      },
+      "transparent-dark": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{color.black.20}"
+        },
+        "moderate": {
+          "$type": "color",
+          "$value": "{color.black.30}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{color.black.40}"
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{color.black.50}"
+        }
+      }
+    },
     "fixed": {
       "light": {
         "$type": "color",
@@ -172,15 +210,19 @@
       "transparent-light": {
         "subtle": {
           "$type": "color",
-          "$value": "{color.white.10}"
+          "$value": "{color.white.20}"
         },
         "moderate": {
           "$type": "color",
-          "$value": "{color.white.50}"
+          "$value": "{color.white.30}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{color.white.40}"
         },
         "strong": {
           "$type": "color",
-          "$value": "{color.white.90}"
+          "$value": "{color.white.50}"
         }
       },
       "dark": {
@@ -190,15 +232,19 @@
       "transparent-dark": {
         "subtle": {
           "$type": "color",
-          "$value": "{color.black.10}"
+          "$value": "{color.black.20}"
         },
         "moderate": {
           "$type": "color",
-          "$value": "{color.black.50}"
+          "$value": "{color.black.30}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{color.black.40}"
         },
         "strong": {
           "$type": "color",
-          "$value": "{color.black.90}"
+          "$value": "{color.black.50}"
         }
       }
     }
