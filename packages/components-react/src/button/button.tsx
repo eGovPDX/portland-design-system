@@ -30,7 +30,7 @@ export const Button: React.FC<ReactButtonProps> = ({
 
     classes.push(`button--${size}`);
 
-    if (!disabled) classes.push(`button--${variant}`);
+    classes.push(`button--${variant}`);
 
     if (outline && OUTLINE_VARIANTS.includes(variant)) {
       classes.push("button--outline");
