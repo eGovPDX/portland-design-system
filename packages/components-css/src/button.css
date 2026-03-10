@@ -31,7 +31,7 @@
     @apply not-disabled:hover:bg-(--button-hover-color) not-disabled:hover:ring-md not-disabled:hover:ring-(--button-hover-color);
     @apply not-disabled:focus:outline-lg not-disabled:focus:outline-offset-4 not-disabled:focus:bg-(--button-hover-color);
     @apply not-disabled:active:bg-(--button-active-color) not-disabled:active:ring-0;
-    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply disabled:bg-disabled-moderate disabled:text-disabled-emphasis disabled:cursor-not-allowed;
   }
 
   /* Button variants */
@@ -70,6 +70,7 @@
     @apply not-disabled:hover:bg-transparent not-disabled:hover:inset-ring-(--button-hover-color);
     @apply not-disabled:focus:inset-ring-(--button-hover-color) not-disabled:focus:bg-transparent;
     @apply not-disabled:active:bg-transparent not-disabled:active:inset-ring-(--button-active-color);
+    @apply disabled:bg-disabled-moderate disabled:text-disabled-emphasis disabled:inset-ring-0;
   }
 
   .button--inverse {
