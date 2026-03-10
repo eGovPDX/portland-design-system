@@ -199,15 +199,13 @@ export const Variants: StoryObj<
 export const Sizes: Story = {
   parameters: {
     controls: {
-      exclude: ["children", "size"],
+      exclude: ["children", "className", "onClick", "size"],
     },
   },
-  render({ disabled, outline, variant, onClick }) {
-    const sizes: Array<ButtonSize> = ["small", "default", "big"];
-
+  render({ disabled, outline, variant, left, right, onClick }) {
     return (
       <section className="flex flex-col lg:flex-row gap-lg items-center">
-        {sizes.map((size) => (
+        {BUTTON_SIZES.map((size) => (
           <Button
             key={size}
             size={size}
@@ -215,9 +213,11 @@ export const Sizes: Story = {
             outline={outline}
             disabled={disabled}
             className="capitalize"
+            left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
+            right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
             onClick={onClick}
           >
-            Button
+            {size} Button
           </Button>
         ))}
       </section>
