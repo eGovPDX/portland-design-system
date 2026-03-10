@@ -8,84 +8,104 @@
 
 @layer components {
   .button {
-    @apply rounded-md px-lg py-sm;
+    /* Dim the button color by default */
+    --button-hover-factor: 0.8;
+    --button-active-factor: 0.7;
+
+    --button-hover-color: oklch(
+      from var(--button-color) calc(l * var(--button-hover-factor))
+        calc(c * var(--button-hover-factor)) h
+    );
+    --button-active-color: oklch(
+      from var(--button-color) calc(l * var(--button-active-factor))
+        calc(c * var(--button-active-factor)) h
+    );
+
+    @apply rounded-md px-lg py-xs;
     @apply inline-flex items-center justify-center gap-xs;
+    @apply bg-(--button-color) border-(--button-color) ring-(--button-color) outline-primary-moderate;
     @apply font-bold;
     @apply cursor-pointer;
-    @apply focus:outline-4 focus:outline-offset-4 focus:outline-primary-moderate;
+    @apply transition duration-200;
 
-    @apply disabled:bg-disabled-lighter disabled:text-disabled-emphasis disabled:cursor-not-allowed;
+    @apply not-disabled:hover:bg-(--button-hover-color) not-disabled:hover:ring-md not-disabled:hover:ring-(--button-hover-color);
+    @apply not-disabled:focus:outline-lg not-disabled:focus:outline-offset-4 not-disabled:focus:bg-(--button-hover-color);
+    @apply not-disabled:active:bg-(--button-active-color) not-disabled:active:ring-0;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   /* Button variants */
   .button--primary {
-    @apply bg-primary-moderate text-standard-inverse-subtle;
-    @apply hover:bg-primary-strong;
-    @apply active:bg-primary-emphasis;
-    @apply focus-visible:active:bg-primary-emphasis;
+    --button-color: var(--background-color-primary-moderate);
+    @apply text-standard-inverse-subtle;
 
     &.button--outline {
-      @apply border-primary-moderate;
-      @apply hover:border-primary-strong;
-      @apply active:border-primary-emphasis;
+      --button-color: var(--border-color-primary-moderate);
+      @apply bg-transparent text-inherit;
     }
   }
 
   .button--secondary {
-    @apply bg-secondary-moderate text-standard-default-strong;
-    @apply hover:bg-secondary-strong hover:text-standard-fixed-light;
-    @apply active:bg-secondary-emphasis active:text-standard-default-strong;
-    @apply focus-visible:bg-secondary-emphasis;
+    --button-color: var(--background-color-secondary-moderate);
+    @apply text-standard-default-strong;
 
     &.button--outline {
-      @apply border-secondary-moderate;
-      @apply hover:border-secondary-strong hover:text-inherit;
-      @apply active:border-secondary-emphasis;
+      --button-color: var(--border-color-secondary-moderate);
+      @apply bg-transparent text-inherit;
     }
   }
 
   .button--danger {
-    @apply bg-danger-emphasis text-standard-inverse-subtle;
-    @apply hover:bg-danger-strong;
-    @apply active:bg-danger-emphasis;
-    @apply focus-visible:bg-danger-emphasis;
+    --button-color: var(--background-color-danger-emphasis);
+    @apply text-standard-fixed-light;
 
     &.button--outline {
-      @apply border-danger-moderate;
-      @apply hover:border-danger-strong;
-      @apply active:border-danger-emphasis;
+      --button-color: var(--border-color-danger-moderate);
+      @apply bg-transparent text-inherit;
     }
   }
 
   .button--outline {
-    @apply border-md;
-    @apply bg-transparent text-inherit;
-    @apply hover:bg-transparent;
-    @apply active:bg-transparent;
+    @apply ring-0 inset-ring-md inset-ring-(--button-color);
+    @apply not-disabled:hover:bg-transparent not-disabled:hover:inset-ring-(--button-hover-color);
+    @apply not-disabled:focus:inset-ring-(--button-hover-color) not-disabled:focus:bg-transparent;
+    @apply not-disabled:active:bg-transparent not-disabled:active:inset-ring-(--button-active-color);
   }
 
   .button--inverse {
-    @apply bg-standard-inverse-moderate text-standard-inverse-subtle;
-    @apply hover:bg-standard-inverse-subtle;
-    @apply active:bg-standard-inverse-emphasis;
+    --button-color: var(--background-color-standard-inverse-moderate);
+    @apply text-standard-inverse-subtle;
   }
 
-  .button--unstyled {
-    @apply bg-transparent;
-    @apply text-primary-moderate font-regular;
-    @apply underline;
+  /* For dark mode, adjust to lighten colors for secondary and outline button types. */
+  .button--secondary,
+  .button--outline {
+    @variant dark {
+      --button-hover-factor: 1.2;
+      --button-active-factor: 1.3;
+    }
   }
 
-  /* Size variants */
+  /* For inverse buttons, we want to swap the effect. */
+  .button--inverse {
+    --button-hover-factor: 1.5;
+    --button-active-factor: 2;
+
+    @variant dark {
+      --button-hover-factor: 0.8;
+      --button-active-factor: 0.7;
+    }
+  }
+
   .button--default {
-    @apply text-body-md;
+    @apply text-body-md leading-body-md;
   }
 
   .button--small {
-    @apply text-body-sm;
+    @apply text-body-sm leading-body-sm;
   }
 
   .button--big {
-    @apply text-body-lg;
+    @apply text-body-lg leading-body-lg;
   }
 }
