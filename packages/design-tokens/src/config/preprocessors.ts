@@ -23,6 +23,11 @@ export const tailwindNamespaces: Preprocessor = {
         ["ring", "color"],
         ["outline", "color"],
       ],
+      "border-width": [
+        ["border", "width"],
+        ["ring", "width"],
+        ["outline", "width"],
+      ],
       // Map content colors to text-color but also preserve in the global color namespace
       // for usage elsewhere.
       content: [
