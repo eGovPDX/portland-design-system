@@ -22,7 +22,7 @@
     );
 
     @apply rounded-md px-lg py-xs;
-    @apply inline-flex items-center justify-center gap-xs;
+    @apply inline-flex items-center justify-center gap-xs break-all;
     @apply bg-(--button-color) border-(--button-color) ring-(--button-color) outline-primary-moderate;
     @apply font-bold;
     @apply cursor-pointer;
