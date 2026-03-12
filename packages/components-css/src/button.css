@@ -21,8 +21,8 @@
         calc(c * var(--button-active-factor)) h
     );
 
-    @apply rounded-md px-lg py-xs;
-    @apply inline-flex items-center justify-center gap-xs break-all;
+    @apply rounded-md px-lg py-xs max-w-full;
+    @apply inline-flex items-center justify-center gap-xs wrap-anywhere;
     @apply bg-(--button-color) border-(--button-color) ring-(--button-color) outline-primary-moderate;
     @apply font-bold;
     @apply cursor-pointer;
