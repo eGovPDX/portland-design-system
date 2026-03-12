@@ -1,0 +1,26 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "storybook": {
+      "with": [
+        "@cityofportland/components-css#dev",
+        "@cityofportland/types#dev"
+      ],
+      "persistent": true,
+      "cache": false
+    },
+    "storybook:build": {
+      "dependsOn": [
+        "@cityofportland/components-css#build:dev",
+        "@cityofportland/design-tokens#build",
+        "@cityofportland/types#build"
+      ],
+      "outputs": ["storybook-static/**"]
+    }
+  }
+}
