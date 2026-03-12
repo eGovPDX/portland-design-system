@@ -14,9 +14,9 @@
     ".": "./dist/js/base.js",
     "./css/*": "./dist/css/*",
     "./js/*": "./dist/js/*",
+    "./json/*": "./dist/json/*",
     "./scss/*": "./dist/scss/*",
-    "./tailwind/*": "./dist/tailwind/*",
-    "./unocss/*": "./dist/unocss/*"
+    "./tailwind/*": "./dist/tailwind/*"
   },
   "scripts": {
     "prebuild": "tsup",

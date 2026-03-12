@@ -8,6 +8,7 @@
   },
   "license": "MIT",
   "type": "module",
+  "packageManager": "pnpm@10.28.2",
   "workspaces": [
     "packages/*"
   ],
@@ -24,6 +25,7 @@
     "eslint-plugin-storybook": "^10.0.3",
     "eslint-plugin-wc": "^3.0.2",
     "prettier": "^3.6.2",
+    "turbo": "^2.8.16",
     "typescript-eslint": "^8.46.3"
   },
   "repository": {

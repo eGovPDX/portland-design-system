@@ -1,4 +1,10 @@
-import { readdirSync, writeFileSync, unlinkSync, existsSync } from "fs";
+import {
+  readdirSync,
+  writeFileSync,
+  unlinkSync,
+  existsSync,
+  readFileSync,
+} from "fs";
 import { EOL } from "os";
 import { basename, resolve, extname } from "path";
 import tailwind from "@tailwindcss/vite";
@@ -6,6 +12,7 @@ import { defineConfig } from "vite";
 
 const COMPONENTS_DIR = resolve(__dirname, "src");
 const BARREL_PATH = resolve(COMPONENTS_DIR, "index.css");
+const BASE_PATH = resolve(COMPONENTS_DIR, "base.css");
 
 // Find all component CSS files (excluding base files like preflight)
 const baseFiles = ["preflight.css", "base.css"];
@@ -33,22 +40,24 @@ const entries = components.reduce(
 );
 
 export default defineConfig(({ mode }) => {
+  const baseContent = readFileSync(BASE_PATH, "utf-8");
+  const watch = process.argv.includes("--watch") || process.argv.includes("-w");
+
   return {
     build: {
       outDir: "dist",
       emptyOutDir: true,
-      cssMinify: "lightningcss",
       // Only set watch config when in watch mode to prevent always-watching
-      watch:
-        mode === "development"
-          ? {
-              chokidar: {
-                ignored: (path: string) => resolve(path) === BARREL_PATH,
-              },
-            }
-          : null,
+      watch: watch
+        ? {
+            chokidar: {
+              ignored: (path: string) =>
+                [BARREL_PATH, BASE_PATH].includes(resolve(path)),
+            },
+          }
+        : null,
       lib: {
-        name: "ComponentsCSS",
+        name: "components-css",
         entry: {
           // Individual component files
           ...entries,
@@ -64,10 +73,23 @@ export default defineConfig(({ mode }) => {
       transformer: "lightningcss",
     },
     plugins: [
-      /**
-       * Plugin to generate a barrel CSS file that imports all component CSS files.
-       * Creates a real file before build and cleans it up after.
-       */
+      {
+        name: "generate-dark-mode",
+        buildStart() {
+          const variant =
+            mode == "development"
+              ? "@custom-variant dark (&:where(.dark, .dark *));"
+              : "";
+
+          writeFileSync(
+            BASE_PATH,
+            [baseContent, variant].filter(Boolean).join(EOL)
+          );
+        },
+        buildEnd() {
+          writeFileSync(BASE_PATH, baseContent);
+        },
+      },
       {
         name: "generate-barrel",
         buildStart() {
