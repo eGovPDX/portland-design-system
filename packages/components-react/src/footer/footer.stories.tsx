@@ -56,13 +56,13 @@ export const PortlandGov: Story = {
     },
   },
   render: (_args) => (
-    <div className="min-h-screen grid">
+    <div className="min-h-screen flex flex-col">
       <style>{linkStyle}</style>
       <Box
         as="main"
         color="default"
         variant="subtle"
-        className="w-full max-w-screen-xl flex flex-col justify-self-center py-xl px-md xl:px-none"
+        className="flex-1 w-full max-w-screen-xl mx-auto p-xl"
       >
         <h1 className="text-heading-2xl font-bold mb-lg">Page content</h1>
         <section>
@@ -232,10 +232,24 @@ export const Minimal: Story = {
     },
   },
   render: ({ color, copyrightStart, variant }) => (
-    <Footer
-      copyrightStart={copyrightStart}
-      color={color}
-      variant={variant}
-    ></Footer>
+    <div className="min-h-screen flex flex-col">
+      <style>{linkStyle}</style>
+      <Box
+        as="main"
+        color="default"
+        variant="subtle"
+        className="flex-1 w-full max-w-screen-xl mx-auto p-xl"
+      >
+        <h1 className="text-heading-2xl font-bold mb-lg">Page content</h1>
+        <section>
+          <p>Here is some content for the page.</p>
+        </section>
+      </Box>
+      <Footer
+        copyrightStart={copyrightStart}
+        color={color}
+        variant={variant}
+      ></Footer>
+    </div>
   ),
 };
