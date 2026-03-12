@@ -74,25 +74,20 @@
   }
 
   .button--inverse {
+    --button-hover-factor: 1.5;
+    --button-active-factor: 2;
     --button-color: var(--background-color-standard-inverse-moderate);
     @apply text-standard-inverse-subtle;
   }
 
-  /* For dark mode, adjust to lighten colors for secondary and outline button types. */
-  .button--secondary,
-  .button--outline {
-    @variant dark {
+  @variant dark {
+    .button--secondary,
+    .button--outline {
       --button-hover-factor: 1.2;
       --button-active-factor: 1.3;
     }
-  }
 
-  /* For inverse buttons, we want to swap the effect. */
-  .button--inverse {
-    --button-hover-factor: 1.5;
-    --button-active-factor: 2;
-
-    @variant dark {
+    .button--inverse {
       --button-hover-factor: 0.8;
       --button-active-factor: 0.7;
     }
