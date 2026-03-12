@@ -40,11 +40,11 @@ export interface BoxProps {
    * Color scheme for background and content colors
    * @default "default"
    */
-  color: BoxColorScheme;
+  color?: BoxColorScheme;
 
   /**
    * Color variation within the chosen color scheme
    * @default "moderate"
    */
-  variant: BoxColorVariation;
+  variant?: BoxColorVariation;
 }
