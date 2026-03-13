@@ -1,0 +1,44 @@
+@import "./base.css";
+
+@layer components {
+  /* Base Header Styles */
+  .footer {
+    @apply flex flex-col items-center p-xl xl:px-none gap-2xl;
+
+    & > * {
+      @apply w-full xl:max-w-screen-xl;
+    }
+
+    .footer__navigation {
+      @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-xl;
+    }
+
+    .footer__menu {
+      @apply flex-1 flex flex-col gap-md;
+
+      .footer__menu-title {
+        @apply font-bold text-heading-md;
+      }
+
+      .footer__menu-item {
+        @apply wrap-break-word;
+      }
+    }
+
+    .footer__copyright {
+      @apply flex items-center gap-xs;
+
+      img {
+        @apply w-4xl;
+      }
+
+      .footer__copyright-text {
+        @apply flex flex-col md:flex-row md:items-center md:gap-xs;
+
+        h2 {
+          @apply font-bold text-heading-md;
+        }
+      }
+    }
+  }
+}
