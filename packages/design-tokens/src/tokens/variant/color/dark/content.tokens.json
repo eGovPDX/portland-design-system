@@ -265,15 +265,15 @@
       },
       "moderate": {
         "$type": "color",
-        "$value": "{color.disabled.darker}"
+        "$value": "{color.disabled.dark}"
       },
       "emphasis": {
         "$type": "color",
-        "$value": "{color.disabled.darker}"
+        "$value": "{color.disabled.medium}"
       },
       "strong": {
         "$type": "color",
-        "$value": "{color.disabled.lighter}"
+        "$value": "{color.disabled.light}"
       },
       "fixed": {
         "subtle": {
