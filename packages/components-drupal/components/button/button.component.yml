@@ -5,7 +5,9 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schema
 name: Button
 
 # A longer description.
-description: A native Twig button component that draws attention to important actions with a large selectable surface. Server-side rendered implementation matching the Portland Design System button styles.
+description: |
+  A native Twig button component that draws attention to important actions with a large selectable surface.
+  Server-side rendered implementation matching the Portland Design System button styles.
 
 # Status can be: "experimental", "stable", "deprecated", "obsolete".
 status: experimental
@@ -26,12 +28,8 @@ props:
       enum:
         - primary
         - secondary
-        - accent-cool
-        - accent-warm
-        - base
-        - outline
-        - outline-inverse
-        - unstyled
+        - danger
+        - inverse
       examples:
         - primary
 
@@ -58,6 +56,15 @@ props:
         - reset
       examples:
         - button
+
+    outline:
+      type: boolean
+      title: Outline Style
+      description: Whether to apply an additional outline style to the button
+      default: false
+      examples:
+        - false
+        - true
 
     disabled:
       type: boolean

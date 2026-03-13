@@ -4,14 +4,11 @@
  * Template for Portland Button component.
  *
  * Available variables:
- * - variant: Button visual style (default, secondary, accent-cool, accent-warm, base, outline, outline-inverse)
+ * - variant: Button visual style (default, secondary, danger, inverse)
  * - size: Button size (default, big)
  * - type: Button type attribute (button, submit, reset)
+ * - outline: Boolean indicating if button should also have an outline styling
  * - disabled: Boolean indicating if button is disabled
- * - aria_disabled: Boolean indicating if button is aria-disabled
- * - unstyled: Boolean indicating if button should be unstyled
- * - label: Button text label
- * - url: Optional URL to render button as link
  * - attributes: Additional HTML attributes
  * - content: Button content (slot)
  * - left: content to left of default button slot (slot)
@@ -25,30 +22,24 @@
 {% set type = type|default('button') %}
 {% set disabled = disabled|default(false) %}
 
-{# Variant classes #}
-{% set variant_classes = [] %}
-{% if not disabled %}
-  {% set variant_classes = {
+{% set classes = ['button'] %}
+
+{% set classes = classes|merge({
     'primary': ['button--primary'],
     'secondary': ['button--secondary'],
-    'accent-cool': ['button--accent-cool'],
-    'accent-warm': ['button--accent-warm'],
-    'base': ['button--base'],
-    'outline': ['button--outline'],
-    'outline-inverse': ['button--outline-inverse'],
-    'unstyled': ['button--unstyled'],
-  }[variant] %}
+    'danger': ['button--danger'],
+    'inverse': ['button--inverse'],
+}[variant]) %}
+
+{% if outline %}
+  {% set classes = classes|merge(['button--outline']) %}
 {% endif %}
 
-{# Size classes #}
-{% set size_classes = {
+{% set classes = classes|merge({
   'default': ['button--default'],
   'big': ['button--big'],
   'small': ['button--small'],
-}[size] %}
-
-{# Combine all classes #}
-{% set classes = ['button']|merge(variant_classes)|merge(size_classes) %}
+}[size]) %}
 
 {# Process attributes #}
 {% set attributes = attributes|default({}) %}
@@ -79,13 +70,7 @@
 {% endif %}
 
 <button type="{{ type }}" {% for attr_name, attr_value in common_attrs %}{{ attr_name }}="{{ attr_value }}"{% endfor %} {% if disabled %}disabled{% endif %}>
-  {% block left %}
-    <span>{{ left }}</span>
-  {% endblock %}
-  {% block content %}
-    <span>{{ content }}</span>
-  {% endblock %}
-  {% block right %}
-    <span>{{ right }}</span>
-  {% endblock %}
+  {% block left %}{{ left }}{% endblock %}
+  {% block content %}{{ content }}{% endblock %}
+  {% block right %}{{ right }}{% endblock %}
 </button>
