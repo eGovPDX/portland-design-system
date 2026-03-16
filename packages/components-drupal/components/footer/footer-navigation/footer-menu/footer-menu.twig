@@ -1,5 +1,7 @@
-<nav aria-labelledby="{{ id }}" class="footer__menu">
-	{% block content %}
-		{{ content }}
-	{% endblock %}
+{% set classes = ['footer__menu'] %}
+
+<nav{{attributes.addClass(classes).setAttribute('aria-labelledby',id)}}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
 </nav>
