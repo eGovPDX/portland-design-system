@@ -16,8 +16,10 @@ FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:${VARIANT}
 ENV HOME=/home/node
 ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
 ENV PNPM_HOME=${HOME}/.local/share/pnpm
+ENV PATH="${PNPM_HOME}:${PATH}"
 
 COPY rootfs /
 
 RUN update-ca-certificates
 RUN pnpm config set store-dir ${PNPM_HOME}/.pnpm-store
+RUN pnpm --global add turbo
