@@ -1,7 +1,7 @@
 import tailwind from "@tailwindcss/vite";
 import { defineConfig, PluginOption } from "vite";
 import * as fs from "fs";
-import { basename, extname, relative, resolve } from "path";
+import { basename, extname, resolve } from "path";
 import { stringify } from "yaml";
 import * as path from "path";
 
@@ -15,6 +15,8 @@ interface ComponentInfo {
     twig?: string;
   };
 }
+
+const COMPONENTS_DIR = resolve(process.cwd(), "components");
 
 function scanComponents(): Map<string, ComponentInfo> {
   const src = resolve(process.cwd(), "components");
@@ -66,9 +68,7 @@ function scanComponents(): Map<string, ComponentInfo> {
 const COMPONENTS = scanComponents();
 
 function getComponentEntryPoints() {
-  const entryPoints: Record<string, string> = {
-    "css/preflight": path.join("components", "preflight.css"),
-  };
+  const entryPoints: Record<string, string> = {};
 
   for (const [relativePath, info] of COMPONENTS) {
     if (info.files.js) {
@@ -86,6 +86,11 @@ function getComponentEntryPoints() {
 
   console.debug("Discovered entry points:", entryPoints);
   return entryPoints;
+}
+
+function withinPath(filePath: string, dirPath: string) {
+  const relative = path.relative(dirPath, filePath);
+  return !relative.startsWith("..") && !path.isAbsolute(relative);
 }
 
 export default defineConfig(({ mode }) => {
@@ -246,7 +251,7 @@ dependencies:
             if (
               /\.css$/.test(fileName) &&
               !componentCss.some(
-                (css) => path.relative("components", fileName) == css
+                (css) => path.relative(COMPONENTS_DIR, fileName) == css
               )
             ) {
               library.global.css = library.global.css || {};
