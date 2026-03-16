@@ -8,3 +8,9 @@ status: experimental
 slots:
   content:
     title: Content
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+  js:
+    footer.js: { attributes: { type: "module" } }

@@ -7,7 +7,20 @@ name: Footer
 # Status can be: "experimental", "stable", "deprecated", "obsolete".
 status: experimental
 
+properties:
+  copyrightStart:
+    title: Copyright Start Year
+    description: The year the copyright starts. If not provided, it will default to the current year.
+    type: integer
+    default: null
+
 slots:
   content:
     title: Content
     description: The main content/text of the footer.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+  js:
+    footer.js: { attributes: { type: "module" } }
