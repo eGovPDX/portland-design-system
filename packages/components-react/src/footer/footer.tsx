@@ -168,7 +168,7 @@ export const Footer: React.FC<ReactFooterProps> = ({
       {...rest}
     >
       {children}
-      <aside className="footer__copyright">
+      <section className="footer__copyright">
         <img
           src={ASSETS_CITY_SEAL}
           alt="Official City of Portland seal. The image depicts Portlandia holding her trident backdropped by mountain and river, accompanied by the text 'City of Portland, Oregon 1851'"
@@ -177,7 +177,7 @@ export const Footer: React.FC<ReactFooterProps> = ({
           <h2>City of Portland, Oregon</h2>
           <p>© {copyrightText}</p>
         </span>
-      </aside>
+      </section>
     </Box>
   );
 };
