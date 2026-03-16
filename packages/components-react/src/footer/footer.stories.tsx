@@ -185,7 +185,7 @@ export const Wireframe: StoryObj<ReactFooterProps & { menus: number }> = {
   render: ({ color, copyrightStart, menus, variant }) => (
     <Footer copyrightStart={copyrightStart} color={color} variant={variant}>
       <style>{linkStyle}</style>
-      <section className="border-md">
+      <section className="outline-md outline-offset-6">
         <p>
           The Footer allows you to display important information and navigation
           links at the bottom of your website.
@@ -205,10 +205,10 @@ export const Wireframe: StoryObj<ReactFooterProps & { menus: number }> = {
           words and will break them appropriately to avoid overflow issues.
         </p>
       </section>
-      <FooterNavigation className="border-md">
+      <FooterNavigation className="outline-md outline-offset-6">
         {[...Array(menus)].map((_, index) => (
-          <FooterMenu key={index} className="border-md">
-            <FooterMenuTitle>FooterMenuTitle</FooterMenuTitle>
+          <FooterMenu key={index} className="outline-md outline-offset-6">
+            <FooterMenuTitle>FooterMenuTitle {index}</FooterMenuTitle>
             <FooterMenuItem>
               <a href="#">FooterMenuItem 1</a>
             </FooterMenuItem>
