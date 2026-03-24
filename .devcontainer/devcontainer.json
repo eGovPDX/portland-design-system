@@ -3,9 +3,6 @@
     "context": ".",
     "dockerfile": "Dockerfile"
   },
-  "mounts": [
-    "source=${localEnv:HOME}/.local/share/pnpm/,target=/home/node/.local/share/pnpm/,type=bind"
-  ],
   "forwardPorts": [3000, 6006, 8080],
   "customizations": {
     "vscode": {
@@ -21,9 +18,5 @@
       }
     }
   },
-  "remoteUser": "node",
-  "remoteEnv": {
-    "PNPM_HOME": "/home/node/.local/share/pnpm",
-    "PATH": "/home/node/.local/share/pnpm:${containerEnv:PATH}"
-  }
+  "remoteUser": "node"
 }

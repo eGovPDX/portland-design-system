@@ -21,5 +21,8 @@ ENV PATH="${PNPM_HOME}:${PATH}"
 COPY rootfs /
 
 RUN update-ca-certificates
+
+USER node
+
 RUN pnpm config set store-dir ${PNPM_HOME}/.pnpm-store
 RUN pnpm --global add turbo
