@@ -1,0 +1,70 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Box
+
+# A longer description.
+description: A native Twig Box component that renders a simple colored box. Server-side rendered implementation matching the Portland Design System box styles.
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+# Schema for the props. We support www.json-schema.org. Learn more about the syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your component template.
+  type: object
+
+  properties:
+    color:
+      type: string
+      title: Box color
+      description: Color scheme for background and content colors
+      default: default
+      enum:
+        - default
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - disabled
+      examples:
+        - default
+
+    variant:
+      type: string
+      title: Box variant
+      description: Color variation within the chosen color scheme
+      default: moderate
+      enum:
+        - subtle
+        - moderate
+        - emphasis
+        - strong
+      examples:
+        - moderate
+
+    attributes:
+      type: object
+      title: Additional attributes
+      description: Additional HTML attributes to add to the box element
+      properties:
+        class:
+          type: string
+          title: CSS classes
+          description: Additional CSS classes for the box
+        id:
+          type: string
+          title: Element ID
+          description: HTML ID attribute for the box
+        data-*:
+          type: string
+          title: Data attributes
+          description: Custom data attributes
+
+slots:
+  content:
+    title: Content
+    description: The main content/text of the box.
