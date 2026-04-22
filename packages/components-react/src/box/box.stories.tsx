@@ -133,6 +133,9 @@ export const Variants: Story = {
   ),
 };
 
+/**
+ * Nested boxes
+ */
 export const Nested: StoryObj<
   ReactBoxProps & {
     outerColor: ReactBoxProps["color"];
@@ -185,7 +188,7 @@ export const Nested: StoryObj<
       className="min-h-screen p-xl grid gap-md"
     >
       <p>
-        This is an <em className="font-bold">{outerColor}</em> box of{" "}
+        This is a <em className="font-bold">{outerColor}</em> box of{" "}
         <em className="font-bold">{outerVariant}</em> variant.
       </p>
       <Box
@@ -195,7 +198,7 @@ export const Nested: StoryObj<
         className="p-md"
       >
         <p>
-          This is an <em className="font-bold">{innerColor}</em> box of{" "}
+          This is a <em className="font-bold">{innerColor}</em> box of{" "}
           <em className="font-bold">{innerVariant}</em> variant.
         </p>
       </Box>
@@ -203,6 +206,9 @@ export const Nested: StoryObj<
   ),
 };
 
+/**
+ * Page layout example
+ */
 export const Page: Story = {
   parameters: {
     layout: "fullscreen",
