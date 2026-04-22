@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Template for Portland Box component.
+ *
+ * Available variables:
+ * - as: HTML element to use (div, section, article, aside, main, header, footer, nav)
+ * - color: Box color (default, primary, secondary, success, danger, warning, info, disabled)
+ * - variant: Box visual style (subtle, moderate, emphasis, strong)
+ * - content: Box content (slot)
+ * - attributes: Additional HTML attributes
+ */
+#}
+
+{% apply spaceless %}
+
+{# Set default values #}
+{% set color = color|default('default') %}
+{% set variant = variant|default('moderate') %}
+{% set element = as|default('div') %}
+
+{# Size classes #}
+{% set color_classes = {
+  'default': ['box--default'],
+  'primary': ['box--primary'],
+  'secondary': ['box--secondary'],
+  'success': ['box--success'],
+  'danger': ['box--danger'],
+  'warning': ['box--warning'],
+  'info': ['box--info'],
+  'disabled': ['box--disabled'],
+}[color] %}
+
+{# Variant classes #}
+{% set variant_classes = [] %}
+{% set variant_classes = {
+  'subtle': ['box--subtle'],
+  'moderate': ['box--moderate'],
+  'emphasis': ['box--emphasis'],
+  'strong': ['box--strong'],
+}[variant] %}
+
+{# Combine all classes #}
+{% set classes = ['box']|merge(color_classes)|merge(variant_classes) %}
+
+{% endapply %}
+<{{element}} {{attributes.addClass(classes)}}>
+	{% block content %}
+		{{ content }}
+	{% endblock %}
+</{{element}}>
