@@ -1,0 +1,4 @@
+{# Combine all classes #}
+{% set classes = ['footer__navigation'] %}
+
+<section{{ attributes.addClass(classes) }}>{% block content %}{{ content }}{% endblock %}</section>

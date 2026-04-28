@@ -1,56 +1,96 @@
 import tailwind from "@tailwindcss/vite";
 import { defineConfig, PluginOption } from "vite";
 import * as fs from "fs";
-import { basename, extname, relative, resolve } from "path";
+import { basename, extname, resolve } from "path";
 import { stringify } from "yaml";
 import * as path from "path";
 
+interface ComponentInfo {
+  path: string;
+  relativePath: string;
+  files: {
+    yaml?: string;
+    js?: string;
+    css?: string;
+    twig?: string;
+  };
+}
+
 const COMPONENTS_DIR = resolve(process.cwd(), "components");
 
-function withinPath(filePath: string, dirPath: string): boolean {
-  const rel = relative(resolve(dirPath), resolve(filePath));
-  return !rel.startsWith("..") && !path.isAbsolute(rel);
+function scanComponents(): Map<string, ComponentInfo> {
+  const src = resolve(process.cwd(), "components");
+  const components = new Map<string, ComponentInfo>();
+
+  fs.readdirSync(src, { withFileTypes: true, recursive: true })
+    .filter((dirent) => dirent.isDirectory())
+    .filter((dirent) =>
+      fs
+        .readdirSync(path.join(dirent.parentPath, dirent.name))
+        .some((file) => /\.component\.y[a]?ml/.test(file))
+    )
+    .forEach((dir) => {
+      const componentPath = path.resolve(dir.parentPath, dir.name);
+      const relativePath = path.relative(src, componentPath);
+
+      console.debug(`Processing component directory: ${componentPath}...`);
+
+      const files = fs.readdirSync(componentPath);
+      const componentInfo: ComponentInfo = {
+        path: componentPath,
+        relativePath,
+        files: {},
+      };
+
+      for (const file of files) {
+        if (/\.component\.y[a]?ml/.test(file)) {
+          componentInfo.files.yaml = file;
+        } else if (
+          /\.(([cm]?[j|t])+)s$/.test(file) &&
+          !file.includes(".stories.") &&
+          !file.includes(".test.")
+        ) {
+          componentInfo.files.js = file;
+        } else if (/\.css$/.test(file)) {
+          componentInfo.files.css = file;
+        } else if (/\.twig$/.test(file)) {
+          componentInfo.files.twig = file;
+        }
+      }
+
+      components.set(relativePath, componentInfo);
+    });
+
+  console.debug(`Discovered ${components.size} components`);
+  return components;
 }
+
+const COMPONENTS = scanComponents();
 
 function getComponentEntryPoints() {
   const entryPoints: Record<string, string> = {};
 
-  // Only those directories that contain a .component.yaml file
-  fs.readdirSync(COMPONENTS_DIR, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .filter((dirent) =>
-      fs
-        .readdirSync(path.join(COMPONENTS_DIR, dirent.name))
-        .some((file) => /\.component\.y[a]?ml/.test(file))
-    )
-    .map((dirent) => dirent.name)
-    .forEach(function (dir) {
-      const componentPath = path.join(COMPONENTS_DIR, dir);
+  for (const [relativePath, info] of COMPONENTS) {
+    if (info.files.js) {
+      entryPoints[
+        `components/${relativePath}/${basename(info.files.js, extname(info.files.js))}`
+      ] = path.join(info.path, info.files.js);
+    }
 
-      fs.readdirSync(componentPath)
-        .filter(
-          (file) =>
-            // Look for js-like and css files only
-            /\.(([cm]?[j|t])+|(cs))s$/.test(file) &&
-            !file.includes(".stories.") &&
-            !file.includes(".test.")
-        )
-        .forEach((file) => {
-          // Every component should have a css file, and may have a javascript or typescripot file.
-          // We neeed to treat the entries for them slightly differently to ensure proper naming.
-          const entry =
-            basename(file, extname(file)) +
-            (/css$/.test(extname(file)) ? ".css" : "");
-
-          entryPoints[`components/${dir}/${entry}`] = path.join(
-            componentPath,
-            file
-          );
-        });
-    });
+    if (info.files.css) {
+      entryPoints[
+        `components/${relativePath}/${basename(info.files.css, extname(info.files.css)) + ".css"}`
+      ] = path.join(info.path, info.files.css);
+    }
+  }
 
   console.debug("Discovered entry points:", entryPoints);
   return entryPoints;
+}
+
+function withinPath(filePath: string, dirPath: string) {
+  const relative = path.relative(dirPath, filePath);
+  return !relative.startsWith("..") && !path.isAbsolute(relative);
 }
 
 export default defineConfig(({ mode }) => {
@@ -94,7 +134,6 @@ export default defineConfig(({ mode }) => {
       {
         name: "sdc-copy",
         writeBundle() {
-          const src = resolve(process.cwd(), "components");
           const out = resolve(process.cwd(), "dist", "components");
 
           // Ensure dist/components directory exists
@@ -102,43 +141,27 @@ export default defineConfig(({ mode }) => {
             fs.mkdirSync(out, { recursive: true });
           }
 
-          if (fs.existsSync(src)) {
-            const components = fs
-              .readdirSync(src, { withFileTypes: true })
-              .filter((dirent) => dirent.isDirectory())
-              .filter((dirent) =>
-                fs
-                  .readdirSync(path.join(src, dirent.name))
-                  .some((file) => /\.component\.y[a]?ml/.test(file))
-              )
-              .map((dirent) => dirent.name);
+          for (const [relativePath, info] of COMPONENTS) {
+            const distComponentPath = path.join(out, relativePath);
 
-            for (const dir of components) {
-              const srcComponentPath = path.join(src, dir);
-              const distComponentPath = path.join(out, dir);
+            // Ensure component directory exists in dist
+            if (!fs.existsSync(distComponentPath)) {
+              fs.mkdirSync(distComponentPath, { recursive: true });
+            }
 
-              // Ensure component directory exists in dist
-              if (!fs.existsSync(distComponentPath)) {
-                fs.mkdirSync(distComponentPath, { recursive: true });
-              }
+            // Copy YAML file
+            if (info.files.yaml) {
+              fs.copyFileSync(
+                path.join(info.path, info.files.yaml),
+                path.join(distComponentPath, info.files.yaml)
+              );
+            }
 
-              // Copy all files except JS/MJS
-              const files = fs.readdirSync(srcComponentPath);
-              for (const file of files) {
-                const srcFile = path.join(srcComponentPath, file);
-                const distFile = path.join(distComponentPath, file);
-
-                // Skip JS/MJS files (they're bundled separately)
-                if (/\.[cmjts]+s$/.test(file)) {
-                  continue;
-                }
-
-                // Copy other files (twig, yml, css, etc.)
-                if (fs.statSync(srcFile).isFile()) {
-                  console.debug(`Copying file: ${srcFile} to ${distFile}...`);
-                  fs.copyFileSync(srcFile, distFile);
-                }
-              }
+            if (info.files.twig) {
+              fs.copyFileSync(
+                path.join(info.path, info.files.twig),
+                path.join(distComponentPath, info.files.twig)
+              );
             }
           }
 
@@ -165,6 +188,9 @@ export default defineConfig(({ mode }) => {
         generateBundle(_options, bundle) {
           const moduleName = "portland_components";
           const moduleDir = resolve(process.cwd(), "dist");
+
+          fs.mkdirSync(moduleDir, { recursive: true });
+
           const librariesYmlPath = path.join(
             moduleDir,
             `${moduleName}.libraries.yml`
@@ -200,6 +226,19 @@ dependencies:
             global: {} as Record<string, Record<string, unknown>>,
           };
 
+          const componentCss = [...COMPONENTS.entries()].reduce(
+            (acc, [_, info]) => {
+              if (!info.files.css) {
+                return acc;
+              }
+
+              return acc.concat(
+                path.join(info.relativePath, info.files.css) || []
+              );
+            },
+            [] as string[]
+          );
+
           // Add each chunk to libraries.yml if not already present
           for (const [fileName] of Object.entries(bundle)
             .filter(([_, chunk]) => !(chunk.type == "chunk"))
@@ -209,7 +248,12 @@ dependencies:
               library.global.js[fileName] = {};
             }
 
-            if (/css$/.test(fileName)) {
+            if (
+              /\.css$/.test(fileName) &&
+              !componentCss.some(
+                (css) => path.relative(COMPONENTS_DIR, fileName) == css
+              )
+            ) {
               library.global.css = library.global.css || {};
               library.global.css[fileName] = {};
             }
@@ -221,33 +265,6 @@ dependencies:
               indent: 2,
             })
           );
-        },
-
-        buildEnd() {
-          const moduleName = "portland_components";
-          const moduleDir = resolve(process.cwd(), "dist");
-
-          // Ensure dist directory exists
-          if (!fs.existsSync(moduleDir)) {
-            fs.mkdirSync(moduleDir, { recursive: true });
-          }
-
-          // Create .info.yml file
-          const infoYmlContent = `
-name: 'Portland Components'
-type: module
-description: 'A library of reusable components for Drupal.'
-core_version_requirement: ^10
-package: Custom
-dependencies:
-  - drupal:sdc
-`;
-          fs.writeFileSync(
-            path.join(moduleDir, `${moduleName}.info.yml`),
-            infoYmlContent.trim()
-          );
-
-          console.info(`Generated ${moduleName}.info.yml`);
         },
       } satisfies PluginOption,
       tailwind() as PluginOption,

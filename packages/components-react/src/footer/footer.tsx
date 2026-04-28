@@ -33,7 +33,6 @@ export const FooterNavigation: React.FC<
 
     return classes.join(" ");
   }
-
   return (
     <section className={classes()} {...rest}>
       {children}
@@ -95,7 +94,6 @@ export const FooterMenuTitle: React.FC<
 
     return classes.join(" ");
   }
-
   return (
     <h2 id={id} className={classes()} {...rest}>
       {children}
