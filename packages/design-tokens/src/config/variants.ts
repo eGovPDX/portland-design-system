@@ -51,6 +51,15 @@ export function getVariants(): VariantFile[] {
         description: "Default tokens",
       },
     ],
+    [
+      "primitives",
+      {
+        name: "primitives",
+        paths: [],
+        filter: (token) => token.filePath.includes("primitive"), // Include all primitive tokens
+        description: "Primitive tokens without any variants applied",
+      },
+    ],
   ]);
 
   // Scan top-level categories (color, responsive)
