@@ -81,6 +81,7 @@ export class TokenBuilder {
         platforms: [
           platforms.css,
           platforms.js,
+          platforms.json,
           platforms.jsTypes,
           platforms.tailwind,
         ].reduce(
