@@ -1,4 +1,4 @@
-import base from "../dist/json/base.json";
+import base from "../../design-tokens/dist/json/base.json";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import "react";

@@ -14,6 +14,22 @@
       "with": ["@cityofportland/design-tokens#dev"],
       "persistent": true,
       "cache": false
+    },
+    "storybook": {
+      "with": [
+        "@cityofportland/components-css#dev",
+        "@cityofportland/types#dev"
+      ],
+      "persistent": true,
+      "cache": false
+    },
+    "storybook:build": {
+      "dependsOn": [
+        "@cityofportland/components-css#build:dev",
+        "@cityofportland/design-tokens#build",
+        "@cityofportland/types#build"
+      ],
+      "outputs": ["storybook-static/**"]
     }
   }
 }
