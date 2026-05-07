@@ -22,13 +22,25 @@
     "prebuild": "tsup",
     "build": "node dist/build.js",
     "clean": "rm -rf dist/",
-    "dev": "pnpm prebuild && node dist/watch.js"
+    "storybook": "storybook dev -p 6007 --no-open",
+    "storybook:build": "storybook build"
   },
   "devDependencies": {
-    "@types/node": "^22.10.2",
-    "style-dictionary": "^5.1.1",
-    "tsup": "^8.3.5",
-    "typescript": "^5.7.2"
+    "@storybook/addon-themes": "^10.3.6",
+    "@storybook/react-vite": "^10.3.6",
+    "@tailwindcss/vite": "^4.2.4",
+    "@types/node": "^22.19.17",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^6.0.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "storybook": "^10.3.6",
+    "style-dictionary": "^5.4.0",
+    "tailwindcss": "^4.2.4",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.10"
   },
   "repository": {
     "type": "git",

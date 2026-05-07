@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@import "../dist/tailwind/base.css" layer(theme);
+
+@import "../dist/tailwind/dark.css" layer(variant);
+@import "../dist/tailwind/xl.css" layer(variant);
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  @apply bg-standard-default-subtle text-standard-default-strong;
+}
