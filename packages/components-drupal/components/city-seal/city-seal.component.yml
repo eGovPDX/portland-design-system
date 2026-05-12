@@ -1,0 +1,47 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: City Seal
+
+# A longer description.
+description: A native Twig City Seal component that renders a City seal SVG image.
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+# Schema for the props. We support www.json-schema.org. Learn more about the syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your component template.
+  type: object
+
+  properties:
+    size:
+      type: string
+      title: City Seal size
+      description: The size of the City Seal
+      default: lg
+      enum:
+        - xl
+        - lg
+        - sm
+      examples:
+        - lg
+
+    attributes:
+      type: object
+      title: Additional attributes
+      description: Additional HTML attributes to add to the City Seal element
+      properties:
+        class:
+          type: string
+          title: CSS classes
+          description: Additional CSS classes for the City Seal
+        id:
+          type: string
+          title: Element ID
+          description: HTML ID attribute for the City Seal
+        data-*:
+          type: string
+          title: Data attributes
+          description: Custom data attributes

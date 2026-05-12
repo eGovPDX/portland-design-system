@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Template for Portland City Seal component.
+ *
+ * Available variables:
+ * - size: City Seal size (lg, sm)
+ * - attributes: Additional HTML attributes
+ */
+#}
+
+{% apply spaceless %}
+
+{# Set default values #}
+{% set size = size|default('lg') %}
+
+{# size classes #}
+{% set size_classes = [] %}
+{% set size_classes = {
+  'xl': ['city-seal--xl'],
+  'lg': ['city-seal--lg'],
+  'sm': ['city-seal--sm'],
+}[size] %}
+
+{# Combine all classes #}
+{% set classes = ['city-seal']|merge(size_classes) %}
+
+{% endapply %}
+<img {{attributes.addClass(classes)}} src="" alt=""/>
