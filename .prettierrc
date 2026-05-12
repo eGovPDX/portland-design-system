@@ -14,7 +14,14 @@
   "endOfLine": "lf",
   "embeddedLanguageFormatting": "auto",
   "singleAttributePerLine": false,
+  "plugins": ["prettier-plugin-astro"],
   "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    },
     {
       "files": ["*.css", "*.scss", "*.sass", "*.less"],
       "options": {

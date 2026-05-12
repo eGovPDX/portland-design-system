@@ -1,9 +1,10 @@
 import eslint from "@eslint/js";
 import { defineConfig } from "eslint/config";
+import astro from "eslint-plugin-astro";
+import lit from "eslint-plugin-lit";
 import prettier from "eslint-plugin-prettier/recommended";
 import react from "eslint-plugin-react";
 import reacthook from "eslint-plugin-react-hooks";
-import lit from "eslint-plugin-lit";
 import wc from "eslint-plugin-wc";
 import ts from "typescript-eslint";
 
@@ -24,6 +25,10 @@ export default defineConfig(
     ...react.configs.flat.recommended,
     ...react.configs.flat["jsx-runtime"],
     ...reacthook.configs.flat.recommended,
+  },
+  {
+    files: ["sites/**/*.astro"],
+    ...astro.configs.recommended,
   },
   {
     // see: https://typescript-eslint.io/rules/no-unused-vars/#what-benefits-does-this-rule-have-over-typescript
