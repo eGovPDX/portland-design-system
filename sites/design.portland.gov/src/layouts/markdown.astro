@@ -1,0 +1,11 @@
+---
+import SiteLayout from "../layouts/site.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<SiteLayout title={frontmatter.title}>
+  <article class="max-w-screen-xl mx-auto my-xl content">
+    <slot />
+  </article>
+</SiteLayout>

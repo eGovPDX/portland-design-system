@@ -1,0 +1,61 @@
+.content {
+  h1 {
+    @apply text-heading-2xl font-semibold leading-heading-2xl mb-2xl;
+
+    &:not(:first-child) {
+      @apply mt-2xl;
+    }
+  }
+
+  h2 {
+    @apply text-heading-xl font-semibold leading-heading-xl mb-xl;
+
+    &:not(:first-child) {
+      @apply mt-xl;
+    }
+  }
+
+  h3 {
+    @apply text-heading-lg font-semibold leading-heading-lg mb-lg;
+
+    &:not(:first-child) {
+      @apply mt-lg;
+    }
+  }
+
+  h4 {
+    @apply text-heading-md font-semibold leading-heading-md mb-md;
+
+    &:not(:first-child) {
+      @apply mt-md;
+    }
+  }
+
+  h5 {
+    @apply text-heading-sm font-semibold leading-heading-sm mb-sm;
+
+    &:not(:first-child) {
+      @apply mt-sm;
+    }
+  }
+
+  h6 {
+    @apply text-heading-xs font-semibold leading-heading-xs mb-xs;
+
+    &:not(:first-child) {
+      @apply mt-xs;
+    }
+  }
+
+  p {
+    @apply text-body-md max-w-[78ch];
+
+    &:not(:last-child) {
+      @apply my-md;
+    }
+  }
+
+  pre {
+    @apply rounded-md p-xs;
+  }
+}
