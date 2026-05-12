@@ -3,6 +3,7 @@ import { watch } from "fs";
 
 import { ASSETS_DIR, TOKENS_DIR } from "../config/constants.js";
 import { TOKEN_BUILDER } from "../builder.js";
+import args from "./args.js";
 
 /**
  * Watch script for design tokens
@@ -23,7 +24,7 @@ async function run(): Promise<void> {
     return;
   }
 
-  building = TOKEN_BUILDER.build().finally(() => {
+  building = TOKEN_BUILDER.build(args.mode).finally(() => {
     building = null;
   });
 

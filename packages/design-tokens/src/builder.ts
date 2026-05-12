@@ -10,6 +10,8 @@ import { registerPreprocessors } from "./config/preprocessors.js";
 import { registerTransforms } from "./config/transforms.js";
 import { getVariants } from "./config/variants.js";
 
+export type BuildMode = "production" | "development";
+
 /**
  * TokenBuilder manages StyleDictionary initialization and builds.
  *
@@ -44,7 +46,7 @@ export class TokenBuilder {
    * Build all design token variants.
    * Automatically initializes if not already done.
    */
-  async build(): Promise<void> {
+  async build(mode: BuildMode = "production"): Promise<void> {
     console.log("🚀 Building design tokens...");
 
     this.initialize();
@@ -78,24 +80,48 @@ export class TokenBuilder {
           resolve(TOKENS_DIR, "base", "**/*.tokens.json"),
           ...variant.paths,
         ],
-        platforms: [
-          platforms.css,
-          platforms.js,
-          platforms.json,
-          platforms.jsTypes,
-          platforms.tailwind,
-        ].reduce(
-          (acc, generator) => {
-            acc[generator.name] = generator(
-              category,
-              name,
-              // Exclude certain paths from tokens builds
-              filter
-            );
-            return acc;
-          },
-          {} as Record<string, PlatformConfig>
-        ),
+        platforms: {
+          ...[
+            platforms.css,
+            platforms.js,
+            platforms.json,
+            platforms.jsTypes,
+          ].reduce(
+            (acc, generator) => {
+              acc[generator.name] = generator(
+                category,
+                name,
+                // Exclude certain paths from tokens builds
+                filter
+              );
+              return acc;
+            },
+            {} as Record<string, PlatformConfig>
+          ),
+          ...[platforms.tailwind].reduce(
+            (acc, generator) => {
+              acc[generator.name] = generator(
+                category,
+                name,
+                // Tailwind builds only include color variants for now
+                filter,
+                {
+                  overrides: {
+                    color: (_: never, name: string) => ({
+                      tabs: "production" === mode ? 2 : 1,
+                      content: [
+                        [`@variant ${name}`, "{"],
+                        "production" === mode ? [":root,", ":host", "{"] : [],
+                      ].flat(),
+                    }),
+                  },
+                }
+              );
+              return acc;
+            },
+            {} as Record<string, PlatformConfig>
+          ),
+        },
       };
 
       try {

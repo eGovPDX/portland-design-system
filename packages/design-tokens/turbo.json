@@ -7,6 +7,11 @@
       "persistent": true,
       "cache": false
     },
+    "storybook": {
+      "with": ["dev"],
+      "persistent": true,
+      "cache": false
+    },
     "prebuild": {
       "outputs": ["dist/**"]
     }
