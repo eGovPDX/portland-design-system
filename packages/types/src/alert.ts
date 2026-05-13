@@ -45,11 +45,6 @@ export interface AlertProps {
   heading?: string;
 
   /**
-   * Alert text content
-   */
-  text: string;
-
-  /**
    * Is alert dismissible
    * @default true
    */

@@ -4,6 +4,10 @@ import "react";
 
 import { Alert, type ReactAlertProps } from "./alert";
 
+type StoryProps = ReactAlertProps & {
+  text: string;
+};
+
 export default {
   title: "Components/Alert",
   component: Alert,
@@ -15,6 +19,9 @@ export default {
       },
     },
     layout: "padded",
+    controls: {
+      exclude: ["children"],
+    },
   },
   argTypes: {
     variant: {
@@ -35,18 +42,29 @@ export default {
       control: "boolean",
       description: "Allow the alert to be dismissed by the user",
     },
+    text: {
+      control: "text",
+      description: "The text content of the alert",
+    },
   },
-} satisfies Meta<ReactAlertProps>;
+} satisfies Meta<StoryProps>;
 
-type Story = StoryObj<ReactAlertProps>;
+type Story = StoryObj<StoryProps>;
 
-export const Default: Story = {
+export const Basic: Story = {
   args: {
     heading: "Alert heading",
-    children: (
-      <p>
-        This is the alert text content. <a href="#">Read more</a>
-      </p>
-    ),
+    variant: "default",
+    type: "info",
+    icon: true,
+    dismissible: true,
+    text: "This is the alert text content.",
   },
+  render: ({ text, ...args }) => (
+    <Alert {...args}>
+      <p>
+        {text} <a href="#">Read more</a>
+      </p>
+    </Alert>
+  ),
 };
