@@ -22,6 +22,7 @@
     "prebuild": "tsup",
     "build": "node dist/build.js",
     "clean": "rm -rf dist/",
+    "dev": "node dist/watch.js",
     "storybook": "storybook dev -p 6007 --no-open",
     "storybook:build": "storybook build"
   },

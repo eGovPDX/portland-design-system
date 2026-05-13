@@ -3,8 +3,12 @@
   "extends": ["//"],
   "tasks": {
     "dev": {
+      "dependsOn": ["prebuild"],
       "persistent": true,
       "cache": false
+    },
+    "prebuild": {
+      "outputs": ["dist/**"]
     }
   }
 }
