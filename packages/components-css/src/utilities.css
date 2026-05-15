@@ -11,7 +11,6 @@
 }
 
 .heading-2xl {
-  /* Are these variables set correctly? They don't exactly match the Figma design. */
   @apply text-heading-2xl leading-heading-2xl;
 }
 

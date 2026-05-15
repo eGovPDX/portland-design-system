@@ -21,7 +21,7 @@ export const Utility_Classes: Story = {
       <div className="flex flex-col gap-sm p-xl">
         <h2 className="heading-lg">Utility Heading Classes</h2>
         <div className="flex flex-col gap-sm">
-          {Object.entries(base["font-size"].heading).map(([key, value]) => (
+          {Object.entries(base["font-size"].heading).map(([key]) => (
             <h2 key={key} className={`heading-${key}`}>
               City of Portland | <code>heading-{key}</code>
             </h2>
