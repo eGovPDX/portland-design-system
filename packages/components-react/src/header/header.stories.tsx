@@ -10,6 +10,7 @@ import {
   HeaderBranding,
   HeaderContent,
   HeaderLogo,
+  HeaderNavLink,
   type ReactHeaderProps,
 } from "./header";
 
@@ -121,4 +122,36 @@ export const Menu: Story = {
       </>
     );
   },
+};
+
+export const NavLinks: Story = {
+  args: {
+    ...Default.args,
+  },
+  render: (args) => (
+    <Header {...args}>
+      <HeaderBranding>
+        <HeaderLogo>
+          <img src={ASSETS_CITY_SEAL} alt="City of Portland Seal" />
+        </HeaderLogo>
+        {args.title}
+      </HeaderBranding>
+      <HeaderContent>
+        <ul className="header__nav-list">
+          <li>
+            <HeaderNavLink href="#">Home</HeaderNavLink>
+          </li>
+          <li>
+            <HeaderNavLink href="#">About</HeaderNavLink>
+          </li>
+          <li>
+            <HeaderNavLink href="#">Services</HeaderNavLink>
+          </li>
+          <li>
+            <HeaderNavLink href="#">Contact</HeaderNavLink>
+          </li>
+        </ul>
+      </HeaderContent>
+    </Header>
+  ),
 };

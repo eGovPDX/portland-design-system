@@ -23,7 +23,33 @@ export const HeaderContent: React.FC<ReactHeaderContentProps> = ({
   children,
 }) => <div className="header__content">{children}</div>;
 
-export const Header: React.FC<ReactHeaderProps> = ({ children, className }) => {
+export type ReactHeaderNavLinkProps =
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href?: string;
+  };
+
+export const HeaderNavLink: React.FC<ReactHeaderNavLinkProps> = ({
+  children,
+  href = "#",
+  className = "",
+  ...rest
+}) => {
+  const classes = ["header__nav-link", className].filter(Boolean).join(" ");
+
+  return (
+    <a href={href} className={classes} {...rest}>
+      {children}
+    </a>
+  );
+};
+
+export const Header: React.FC<ReactHeaderProps> = ({
+  children,
+  className,
+  color = "primary",
+  variant = "strong",
+  ...rest
+}) => {
   return (
     <header className={["header", className].filter(Boolean).join(" ")}>
       {children}
