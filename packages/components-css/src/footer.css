@@ -8,7 +8,7 @@
     @apply p-xl grid grid-cols-1 gap-2xl;
 
     & > * {
-      @apply w-full max-w-screen-xl mx-auto;
+      @apply w-full max-w-screen-xl mx-auto wrap-break-word;
     }
 
     .footer__navigation {
@@ -20,10 +20,6 @@
 
       .footer__menu-title {
         @apply font-bold text-heading-md;
-      }
-
-      .footer__menu-item {
-        @apply wrap-break-word;
       }
     }
 
