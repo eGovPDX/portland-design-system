@@ -111,7 +111,7 @@ export default defineConfig(({ mode }) => {
         output: {
           inlineDynamicImports: false, // Allow code splitting for multiple entries
           // Control chunk naming
-          chunkFileNames: "js/[name][extname]",
+          chunkFileNames: "js/[name]-[hash].js",
         },
       },
       outDir: "dist",
@@ -240,9 +240,9 @@ dependencies:
           );
 
           // Add each chunk to libraries.yml if not already present
-          for (const [fileName] of Object.entries(bundle)
-            .filter(([_, chunk]) => !(chunk.type == "chunk"))
-            .filter(([path]) => !withinPath(path, COMPONENTS_DIR))) {
+          for (const [fileName] of Object.entries(bundle).filter(
+            ([path]) => !withinPath(path, COMPONENTS_DIR)
+          )) {
             if (/[m]?js$/.test(fileName)) {
               library.global.js = library.global.js || {};
               library.global.js[fileName] = {};
