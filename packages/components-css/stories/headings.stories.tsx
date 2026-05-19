@@ -6,20 +6,20 @@ import "react";
 import "../src/utilities.css";
 
 const meta: Meta = {
-  title: "Components/Typography",
+  title: "Utility Classes",
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Utility_Classes: Story = {
+export const Headings: Story = {
   parameters: {
     layout: "fullscreen",
   },
   render: () => {
     return (
       <div className="flex flex-col gap-sm p-xl">
-        <h2 className="heading-lg">Utility Heading Classes</h2>
+        <h2 className="heading-lg">Heading Utility Classes</h2>
         <div className="flex flex-col gap-sm">
           {Object.entries(base["font-size"].heading).map(([key]) => (
             <>
