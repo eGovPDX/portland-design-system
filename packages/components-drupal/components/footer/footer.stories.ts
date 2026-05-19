@@ -8,6 +8,7 @@ import type { Meta, StoryObj } from "@storybook/html-vite";
 import { library, icon } from "@fortawesome/fontawesome-svg-core";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
+import _Box from "../box/box.component.yml";
 import Button from "../button/button.component.yml";
 
 import Footer from "./footer.component.yml";
