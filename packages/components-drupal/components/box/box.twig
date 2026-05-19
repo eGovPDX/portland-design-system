@@ -48,8 +48,9 @@
 {% endif %}
 
 <{{element}} {{attributes.addClass(classes)}}>
-  {% block content %}
-    {{ content }}
+  {% block box_content %}
+    {{ box_content }}
   {% endblock %}
 </{{element}}>
+
 {% endapply %}

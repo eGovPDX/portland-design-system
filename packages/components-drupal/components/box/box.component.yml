@@ -63,6 +63,6 @@ props:
           description: Custom data attributes
 
 slots:
-  content:
+  box_content:
     title: Content
     description: The main content/text of the box.

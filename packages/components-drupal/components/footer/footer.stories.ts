@@ -1,3 +1,9 @@
+import {
+  BOX_COLORS,
+  BOX_VARIANTS,
+  type BoxColorScheme,
+  type BoxColorVariation,
+} from "@cityofportland/types/box";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 import { library, icon } from "@fortawesome/fontawesome-svg-core";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -17,6 +23,8 @@ const arrowRight = icon({ prefix: "fas", iconName: "arrow-right" });
 type StoryProps = {
   content: string | object;
   copyrightStart: number;
+  color?: BoxColorScheme;
+  variant?: BoxColorVariation;
 };
 
 const meta: Meta<StoryProps> = {
@@ -34,8 +42,20 @@ const meta: Meta<StoryProps> = {
       name: "Copyright start year",
       type: "number",
     },
+    color: {
+      control: "select",
+      options: BOX_COLORS,
+      description: "Color scheme for background and content colors",
+    },
+    variant: {
+      control: "select",
+      options: BOX_VARIANTS,
+      description: "Color variation within the chosen color scheme",
+    },
   },
   args: {
+    color: "default",
+    variant: "moderate",
     copyrightStart: new Date().getFullYear(),
   },
   play: async ({ canvasElement }) => {
@@ -59,19 +79,24 @@ export const PortlandGov: Story = {
       exclude: ["as", "children", "color", "Copyright start year", "variant"],
     },
   },
-  render() {
+  render({ copyrightStart: _ }) {
     return `
-    <div class="min-h-screen flex flex-col items-center">
+    <div class="min-h-screen flex flex-col">
       <style>${linkStyle}</style>
-      <main class="flex-1 w-full max-w-screen-xl p-xl xl:px-none">
-        <h1 class="text-heading-2xl font-bold mb-lg">Page content</h1>
-        <section>
-          <p>Here is some content for the page.</p>
-        </section>
+      <main class="flex-1 p-xl">
+        <article class="max-w-screen-xl mx-auto">
+          <h1 class="text-heading-2xl font-bold mb-lg">Page content</h1>
+          <section>
+            <p>Here is some content for the page.</p>
+          </section>
+        </article>
       </main>
       ${Footer.component({
+        defaultAttributes: [...Footer.args.defaultAttributes],
+        color: "default",
+        variant: "moderate",
         copyrightStart: 2018,
-        content: `
+        footer_content: `
           <section>
             <p>
               See something we could improve on this page?
@@ -163,10 +188,13 @@ export const Wireframe: StoryObj<StoryProps & { menus: number }> = {
   args: {
     menus: 3,
   },
-  render: ({ copyrightStart, menus }) => `
+  render: ({ color, variant, copyrightStart, menus }) => `
     ${Footer.component({
+      defaultAttributes: [...Footer.args.defaultAttributes],
+      color,
+      variant,
       copyrightStart,
-      content: `
+      footer_content: `
       <section class="outline-md outline-offset-6 space-y-md">
         <p>
           The Footer allows you to display important information and navigation
@@ -225,14 +253,16 @@ export const Minimal: Story = {
       exclude: ["content"],
     },
   },
-  render: ({ copyrightStart }) => `
+  render: ({ color, variant, copyrightStart }) => `
     <div class="min-h-screen flex flex-col">
-      <main class="flex-1 w-full max-w-screen-xl mx-auto p-xl">
-        <h1 class="text-heading-2xl font-bold mb-lg">Page content</h1>
-        <section>
-          <p>Here is some content for the page.</p>
-        </section>
+      <main class="flex-1 p-xl">
+        <article class="max-w-screen-xl mx-auto">
+          <h1 class="text-heading-2xl font-bold mb-lg">Page content</h1>
+          <section>
+            <p>Here is some content for the page.</p>
+          </section>
+        </article>
       </main>
-      ${Footer.component({ copyrightStart })}
+      ${Footer.component({ defaultAttributes: [...Footer.args.defaultAttributes], copyrightStart, color, variant })}
     </div>`,
 };

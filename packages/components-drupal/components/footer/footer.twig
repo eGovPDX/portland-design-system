@@ -11,17 +11,24 @@
 #}
 
 {# Combine all classes #}
-{% set classes = ['footer'] %}
+{% set attributes = attributes.addClass('footer') %}
 
-<footer{{ attributes.addClass(classes) }}>
-  {% block content %}{{ content }}{% endblock %}
-  <section class="footer__copyright" aria-labelledby="footer-copyright-heading">
-    <img
-      class="footer__copyright-img"
-      alt="Official City of Portland seal. The image depicts Portlandia holding her trident backdropped by mountain and river, accompanied by the text 'City of Portland, Oregon 1851'"
-    />
-    <span class="footer__copyright-text" data-copyright-start="{{ copyrightStart }}">
-      <h2 id="footer-copyright-heading">City of Portland, Oregon</h2>
-    </span>
-  </section>
-</footer>
+{% embed 'portland:box' with { 
+  as: 'footer',
+  color,
+  variant,
+  attributes,
+} %}
+  {% block box_content %}
+    {% block footer_content %}{{ footer_content }}{% endblock %}
+    <section class="footer__copyright" aria-labelledby="footer-copyright-heading">
+      <img
+        class="footer__copyright-img"
+        alt="Official City of Portland seal. The image depicts Portlandia holding her trident backdropped by mountain and river, accompanied by the text 'City of Portland, Oregon 1851'"
+      />
+      <span class="footer__copyright-text" data-copyright-start="{{ copyrightStart }}">
+        <h2 id="footer-copyright-heading">City of Portland, Oregon</h2>
+      </span>
+    </section>
+  {% endblock %}
+{% endembed %}
