@@ -22,8 +22,8 @@ export const Headings: Story = {
         <h2 className="heading-lg">Heading Utility Classes</h2>
         <div className="flex flex-col gap-sm">
           {Object.entries(base["font-size"].heading).map(([key]) => (
-            <>
-              <h2 key={key} className={`heading-${key}`}>
+            <div key={key} >
+              <h2 className={`heading-${key}`}>
                 City of Portland | <code>heading-{key}</code>
               </h2>
               <p>
@@ -35,7 +35,7 @@ export const Headings: Story = {
                 unwilling to postpone, and one which we intend to win, and the
                 others, too.
               </p>
-            </>
+            </div>
           ))}
         </div>
       </div>
