@@ -19,10 +19,9 @@ export const Headings: Story = {
   render: () => {
     return (
       <div className="flex flex-col gap-sm p-xl">
-        <h2 className="heading-lg">Heading Utility Classes</h2>
         <div className="flex flex-col gap-sm">
           {Object.entries(base["font-size"].heading).map(([key]) => (
-            <div key={key} >
+            <div key={key}>
               <h2 className={`heading-${key}`}>
                 City of Portland | <code>heading-{key}</code>
               </h2>
