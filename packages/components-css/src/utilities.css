@@ -1,0 +1,35 @@
+@reference "@cityofportland/design-tokens/tailwind/base.css";
+@reference "@cityofportland/design-tokens/css/base.css";
+
+.heading-2xl,
+.heading-xl,
+.heading-lg,
+.heading-md,
+.heading-sm,
+.heading-xs {
+  @apply font-sans font-bold my-xs tracking-[0%];
+}
+
+.heading-2xl {
+  @apply text-heading-2xl leading-heading-2xl;
+}
+
+.heading-xl {
+  @apply text-heading-xl leading-heading-xl;
+}
+
+.heading-lg {
+  @apply text-heading-lg leading-heading-lg;
+}
+
+.heading-md {
+  @apply text-heading-md leading-heading-md;
+}
+
+.heading-sm {
+  @apply text-heading-sm leading-heading-sm;
+}
+
+.heading-xs {
+  @apply text-heading-xs leading-heading-xs;
+}

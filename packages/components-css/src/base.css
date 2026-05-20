@@ -5,3 +5,4 @@
 
 /* Import design tokens theme */
 @import "@cityofportland/design-tokens/tailwind/base.css" layer(theme);
+@import "./utilities.css" layer(utilities);

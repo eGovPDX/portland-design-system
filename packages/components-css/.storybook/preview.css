@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@import "@cityofportland/design-tokens/tailwind/base.css" layer(theme);
+
+@import "@cityofportland/design-tokens/tailwind/dark.css" layer(variant);
+@import "@cityofportland/design-tokens/tailwind/xl.css" layer(variant);
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  @apply font-sans bg-standard-default-subtle text-standard-default-strong;
+}

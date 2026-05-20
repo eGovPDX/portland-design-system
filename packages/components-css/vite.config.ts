@@ -1,17 +1,10 @@
-import {
-  readdirSync,
-  writeFileSync,
-  unlinkSync,
-  existsSync,
-  readFileSync,
-} from "fs";
+import { readdirSync } from "fs";
 import { EOL } from "os";
 import { basename, resolve, extname } from "path";
 import tailwind from "@tailwindcss/vite";
-import { defineConfig } from "vite";
+import { defineConfig, Plugin, PluginOption } from "vite";
 
 const COMPONENTS_DIR = resolve(__dirname, "src");
-const BARREL_PATH = resolve(COMPONENTS_DIR, "index.css");
 const BASE_PATH = resolve(COMPONENTS_DIR, "base.css");
 
 // Find all component CSS files (excluding base files like preflight)
@@ -24,8 +17,7 @@ const all = readdirSync(COMPONENTS_DIR, {
 })
   .filter((dirent) => dirent.isFile())
   .map((dirent) => dirent.name)
-  .filter((file) => extname(file) === ".css")
-  .filter((file) => file !== "index.css");
+  .filter((file) => extname(file) === ".css");
 
 // Separate base/utility files from component files
 const components = all.filter((file) => !baseFiles.includes(file));
@@ -39,9 +31,65 @@ const entries = components.reduce(
   {} as Record<string, string>
 );
 
+const virtualDarkMode = ({
+  mode,
+  entry,
+}: {
+  mode: string;
+  entry: Record<string, string>;
+}): PluginOption => {
+  return {
+    name: "virtual-dark-mode",
+    enforce: "pre",
+    transform(code: string, id: string) {
+      if (mode == "development" && Object.values(entry).includes(id)) {
+        // Only include dark mode variants in development for faster builds
+        return ["@custom-variant dark (&:where(.dark, .dark *));", code].join(
+          EOL
+        );
+      }
+
+      return code;
+    },
+  };
+};
+
+const virtualBarrel = (): Plugin => {
+  const virtualModuleId = "virtual:components-barrel.css";
+  const resolvedVirtualModuleId = "\0" + virtualModuleId;
+
+  return {
+    name: "virtual-components-barrel",
+    enforce: "pre",
+    resolveId(id: string) {
+      if (id.endsWith(virtualModuleId)) return resolvedVirtualModuleId;
+    },
+    load(id: string) {
+      if (id === resolvedVirtualModuleId) {
+        // This content will be generated dynamically in the plugin's buildStart hook
+        return [
+          "/* Auto-generated file - do not edit */",
+          "",
+          // Generate imports: base files first, then component files alphabetically
+          ...[
+            ...baseFiles.filter((f) => all.includes(f)),
+            ...components.sort(),
+          ].map((f) => `@import "${resolve(COMPONENTS_DIR, f)}";`),
+        ].join(EOL);
+      }
+    },
+  };
+};
+
 export default defineConfig(({ mode }) => {
-  const baseContent = readFileSync(BASE_PATH, "utf-8");
   const watch = process.argv.includes("--watch") || process.argv.includes("-w");
+
+  const entry = {
+    // Individual component files
+    ...entries,
+    // Generated barrel file outputs as main.css
+    main: "virtual:components-barrel.css",
+  };
 
   return {
     build: {
@@ -51,19 +99,13 @@ export default defineConfig(({ mode }) => {
       watch: watch
         ? {
             chokidar: {
-              ignored: (path: string) =>
-                [BARREL_PATH, BASE_PATH].includes(resolve(path)),
+              ignored: (path: string) => [BASE_PATH].includes(resolve(path)),
             },
           }
         : null,
       lib: {
         name: "components-css",
-        entry: {
-          // Individual component files
-          ...entries,
-          // Generated barrel file outputs as main.css
-          main: BARREL_PATH,
-        },
+        entry,
         // Only build one format since this is CSS-only, format name is irrelevant
         formats: ["es"],
       },
@@ -72,49 +114,6 @@ export default defineConfig(({ mode }) => {
     css: {
       transformer: "lightningcss",
     },
-    plugins: [
-      {
-        name: "generate-dark-mode",
-        buildStart() {
-          const variant =
-            mode == "development"
-              ? "@custom-variant dark (&:where(.dark, .dark *));"
-              : "";
-
-          writeFileSync(
-            BASE_PATH,
-            [baseContent, variant].filter(Boolean).join(EOL)
-          );
-        },
-        buildEnd() {
-          writeFileSync(BASE_PATH, baseContent);
-        },
-      },
-      {
-        name: "generate-barrel",
-        buildStart() {
-          const content = [
-            "/* Auto-generated file - do not edit */",
-            "",
-            // Generate imports: base files first, then component files alphabetically
-            ...[
-              ...baseFiles.filter((f) => all.includes(f)),
-              ...components.sort(),
-            ].map((f) => `@import "${resolve(COMPONENTS_DIR, f)}";`),
-          ];
-
-          // Generate the barrel file before build starts
-          writeFileSync(BARREL_PATH, content.join(EOL));
-        },
-        closeBundle() {
-          // Only clean up in non-watch mode
-          // In watch mode, keep the file to avoid regenerating on each rebuild
-          if (existsSync(BARREL_PATH)) {
-            unlinkSync(BARREL_PATH);
-          }
-        },
-      },
-      tailwind(),
-    ],
+    plugins: [virtualDarkMode({ mode, entry }), virtualBarrel(), tailwind()],
   };
 });
