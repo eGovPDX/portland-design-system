@@ -1,0 +1,39 @@
+---
+layout: ../layouts/markdown.astro
+title: Home
+---
+
+import { Box } from "@cityofportland/components-react/box";
+
+# Welcome to the Portland Design System
+
+The Portland Design System is a collection of reusable components, design
+tokens, and guidelines built to help teams create consistent, accessible, and
+on-brand digital experiences for the City of Portland.
+
+Whether you're a designer, developer, or content author, this system provides
+the building blocks you need to build products that feel cohesive and meet the
+accessibility standards our residents deserve.
+
+## What's included
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+  <Box
+    as="a"
+    href="./tokens"
+    color="primary"
+    variant="subtle"
+    className="rounded-md border-sm p-md"
+  >
+    <h3 class="text-heading-md font-bold">Design Tokens</h3>
+    <p>Shared values for color, typography, spacing, and more</p>
+  </Box>
+  <Box color="primary" variant="subtle" className="rounded-md border-sm p-md">
+    <h3 class="text-heading-md font-bold">Components</h3>
+    <p>Ready-to-use UI components available in React, Drupal, and plain CSS</p>
+  </Box>
+  <Box color="primary" variant="subtle" className="rounded-md border-sm p-md">
+    <h3 class="text-heading-md font-bold">Guidelines</h3>
+    <p>Best practices for accessibility, content, and visual design</p>
+  </Box>
+</div>

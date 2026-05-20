@@ -5,6 +5,14 @@ import type { Transform } from "style-dictionary/types";
  * Custom transforms for token processing
  */
 
+export const fontSizePx: Transform = {
+  name: "font-size/px",
+  type: "value",
+  filter: (token) =>
+    token.$type === "dimension" && token.attributes?.category !== "font-size",
+  transform: (token) => `${token.$value}px`,
+};
+
 export const sizePx: Transform = {
   name: "size/px",
   type: "value",
@@ -48,6 +56,7 @@ export const tailwindLineHeight: Transform = {
  * Custom transform names for use in platform configurations
  */
 export const TRANSFORMS = {
+  fontSizePx: fontSizePx.name,
   sizePx: sizePx.name,
   tailwindFontSize: tailwindFontSize.name,
   tailwindFontFamily: tailwindFontFamily.name,
@@ -58,11 +67,15 @@ export const TRANSFORMS = {
  * Register all custom transforms with Style Dictionary
  */
 export function registerTransforms(): void {
-  [sizePx, tailwindFontSize, tailwindFontFamily, tailwindLineHeight].forEach(
-    (transform) => {
-      StyleDictionary.registerTransform(transform);
-    }
-  );
+  [
+    fontSizePx,
+    sizePx,
+    tailwindFontSize,
+    tailwindFontFamily,
+    tailwindLineHeight,
+  ].forEach((transform) => {
+    StyleDictionary.registerTransform(transform);
+  });
 }
 
 export default TRANSFORMS;

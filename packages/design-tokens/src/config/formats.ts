@@ -1,6 +1,8 @@
+import { EOL } from "os";
 import StyleDictionary from "style-dictionary";
 import type { Format } from "style-dictionary/types";
 import { fileHeader } from "style-dictionary/utils";
+import { format } from "prettier";
 
 import type { VariantCategory } from "./variants.js";
 
@@ -11,52 +13,77 @@ import type { VariantCategory } from "./variants.js";
 type VariantFormatOptions = {
   category?: VariantCategory;
   name?: string;
+  overrides?: Record<
+    VariantCategory,
+    (
+      category: VariantCategory,
+      name: string
+    ) => { tabs: number; content: string[] }
+  >;
 };
 
 export const tailwind: Format = {
   name: "css/tailwind",
   format: async ({ dictionary, file, options }) => {
-    const { category, name } = options as VariantFormatOptions;
+    const { category, name, overrides } = options as VariantFormatOptions;
 
     if (category && !name) {
       throw new Error(`Variant name is required when category is specified`);
     }
 
-    const content = [];
+    const frontmatter = [];
+    const backmatter = [];
 
     if (fileHeader) {
-      content.push(await fileHeader({ file }));
+      frontmatter.push(await fileHeader({ file }));
     }
-
-    let tabSize = 1;
 
     switch (category) {
       case "breakpoint":
-        content.push(`@media (width >= --theme(--breakpoint-${name})) {`);
-        content.push("  :root,");
-        content.push("  :host {");
-        tabSize = 2;
+        if (overrides?.breakpoint) {
+          const { tabs, content } = overrides.breakpoint(category, name!);
+          frontmatter.push(...content);
+          backmatter.push("}".repeat(tabs));
+        } else {
+          frontmatter.push(
+            `@media (width >= --theme(--breakpoint-${name}))`,
+            "{",
+            ":root,",
+            ":host",
+            "{"
+          );
+          backmatter.push("}".repeat(2));
+        }
+
         break;
 
       case "color":
-        content.push(`@variant ${name} {`);
-        tabSize = 1;
+        if (overrides?.color) {
+          const { tabs, content } = overrides.color(category, name!);
+          frontmatter.push(...content);
+          backmatter.push("}".repeat(tabs));
+        } else {
+          frontmatter.push(`@variant ${name}`, "{", ":root,", ":host", "{");
+          backmatter.push("}".repeat(2));
+        }
+
         break;
 
       default:
-        content.push("@theme {");
-        content.push("  --*: initial;");
+        frontmatter.push("@theme {");
+        frontmatter.push("--*: initial;");
+        backmatter.push("}");
     }
 
-    for (const token of dictionary.allTokens) {
-      content.push(`${"  ".repeat(tabSize)}--${token.name}: ${token.$value};`);
-    }
+    const content = [
+      ...frontmatter,
+      ...dictionary.allTokens.map(
+        (token) => `--${token.name}: ${token.$value};`
+      ),
+      ...backmatter,
+    ];
 
-    for (let i = tabSize; i > 0; i--) {
-      content.push(`${"  ".repeat(i - 1)}}`);
-    }
-
-    return content.join("\n");
+    return format(content.join(EOL), { parser: "css", printWidth: 128 });
   },
 };
 

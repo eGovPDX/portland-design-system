@@ -1,0 +1,150 @@
+---
+layout: ../layouts/markdown.astro
+title: Design Tokens
+---
+
+# Design Tokens
+
+Design tokens are the shared values that define the visual language of the
+Portland Design System — colors, spacing, typography, and breakpoints. They are
+the single source of truth for all design decisions, ensuring consistency across
+every product built on this system.
+
+Tokens are managed with [Style Dictionary](https://styledictionary.io/) and
+published as the `@cityofportland/design-tokens` npm package.
+
+## Installation
+
+```bash
+pnpm add @cityofportland/design-tokens
+```
+
+## Usage
+
+### CSS Custom Properties
+
+The primary way to use tokens is via CSS custom properties. Import the base
+stylesheet to get all default tokens:
+
+```css
+@import "@cityofportland/design-tokens/css/base.css";
+```
+
+Tokens are then available as CSS variables on `:root`:
+
+```css
+.my-element {
+  color: var(--color-primary-vivid);
+  padding: var(--scale-400);
+}
+```
+
+#### Variant stylesheets
+
+Additional stylesheets are available for dark mode and large-breakpoint
+overrides. Apply them to a selector or media query as needed:
+
+```css
+/* Dark color theme */
+@import "@cityofportland/design-tokens/css/dark.css";
+
+/* Extra-large breakpoint scale overrides */
+@import "@cityofportland/design-tokens/css/xl.css";
+
+/* Raw primitive values (no semantic mapping) */
+@import "@cityofportland/design-tokens/css/primitives.css";
+```
+
+### JavaScript / TypeScript
+
+Token values are also exported as ES module constants:
+
+```js
+import { COLOR_PRIMARY_VIVID, SCALE_400 } from "@cityofportland/design-tokens";
+```
+
+Or import a specific variant file:
+
+```js
+import { COLOR_PRIMARY_VIVID } from "@cityofportland/design-tokens/js/base.js";
+```
+
+### JSON
+
+If you need the raw token data (e.g. to feed a design tool or generate
+documentation):
+
+```js
+import baseTokens from "@cityofportland/design-tokens/json/base.json" assert { type: "json" };
+```
+
+## Token categories
+
+### Color
+
+Semantic color tokens are built on top of primitive palette values and come in
+three roles:
+
+| Role        | Example token             | Description                              |
+| ----------- | ------------------------- | ---------------------------------------- |
+| `neutral`   | `--color-neutral-dark`    | Grays for text, borders, and backgrounds |
+| `primary`   | `--color-primary-vivid`   | Portland blue — primary brand color      |
+| `secondary` | `--color-secondary-vivid` | Accent red                               |
+
+A `dark` variant stylesheet (`dark.css`) overrides the color tokens for
+dark-mode contexts.
+
+### Spacing (Scale)
+
+Spacing tokens follow a numeric scale where each step maps to a pixel value:
+
+| Token         | Value |
+| ------------- | ----- |
+| `--scale-100` | 4px   |
+| `--scale-200` | 8px   |
+| `--scale-300` | 12px  |
+| `--scale-400` | 16px  |
+| `--scale-500` | 20px  |
+| `--scale-600` | 24px  |
+
+Values are output in `rem` so they respect the user's base font size.
+
+### Typography
+
+| Token                     | Value                                           |
+| ------------------------- | ----------------------------------------------- |
+| `--font-family-sans`      | Open Sans, ui-sans-serif, system-ui, sans-serif |
+| `--font-weight-light`     | 100                                             |
+| `--font-weight-regular`   | 400                                             |
+| `--font-weight-semibold`  | 600                                             |
+| `--font-weight-bold`      | 700                                             |
+| `--font-weight-extrabold` | 800                                             |
+
+### Breakpoints
+
+| Token              | Value  |
+| ------------------ | ------ |
+| `--breakpoint-xs`  | 320px  |
+| `--breakpoint-sm`  | 480px  |
+| `--breakpoint-md`  | 640px  |
+| `--breakpoint-lg`  | 880px  |
+| `--breakpoint-xl`  | 1024px |
+| `--breakpoint-2xl` | 1200px |
+| `--breakpoint-3xl` | 1400px |
+
+An `xl.css` variant stylesheet overrides scale tokens for larger viewports.
+
+## Storybook
+
+Explore all token values visually in the [Token Storybook](/storybook/tokens/).
+
+## How tokens are updated
+
+Tokens are managed in [Zeroheight](https://zeroheight.com/). When a designer
+publishes changes there, a GitHub Action automatically processes the incoming
+token files and opens a pull request with the updated `dist/` output. Once
+merged, a new version is published to npm.
+
+See the
+[design-tokens README](https://github.com/eGovPDX/portland-design-system/tree/main/packages/design-tokens)
+for full details on the build pipeline.

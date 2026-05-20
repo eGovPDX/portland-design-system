@@ -1,0 +1,27 @@
+---
+import { Footer } from "@cityofportland/components-react/footer";
+
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | design.portland.gov</title>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header class="p-xl">
+      <div class="max-w-screen-xl mx-auto flex items-center gap-md">
+        <a href="/" class="text-heading-md">Portland Design System</a>
+      </div>
+    </header>
+    <main class="flex-1 px-xl">
+      <slot />
+      <!-- your content is injected here -->
+    </main>
+    <Footer copyrightStart={2026} />
+  </body>
+</html>

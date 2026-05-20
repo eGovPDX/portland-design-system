@@ -1,0 +1,33 @@
+{
+  "name": "design.portland.gov",
+  "version": "1.0.0-alpha.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "astro build",
+    "clean": "rm -rf dist/",
+    "dev": "astro dev --host",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.28.2",
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/react": "^5.0.4",
+    "@cityofportland/components-css": "workspace:*",
+    "@cityofportland/components-react": "workspace:*",
+    "@cityofportland/design-tokens": "workspace:*",
+    "@tailwindcss/vite": "^4.2.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^6.2.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "tailwindcss": "^4.2.4",
+    "vite": "^7.3.2"
+  }
+}

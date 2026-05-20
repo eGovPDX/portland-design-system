@@ -17,7 +17,8 @@ type FileFilter = string | Partial<TransformedToken> | Filter["filter"];
 type PlatformGenerator = (
   category: VariantCategory | undefined,
   name: string,
-  filter: FileFilter
+  filter: FileFilter,
+  options?: Record<string, unknown>
 ) => PlatformConfig;
 
 export const css: PlatformGenerator = (_category, name, filter) => ({
@@ -116,33 +117,41 @@ export const scss: PlatformGenerator = (_category, name, filter) => ({
   ],
 });
 
-export const tailwind: PlatformGenerator = (category, name, filter) => ({
-  transforms: [
-    transforms.attributeCti,
-    transforms.nameKebab,
-    transforms.timeSeconds,
-    transforms.colorCss,
-    transforms.sizePxToRem,
-    transforms.assetUrl,
-    customTransforms.tailwindFontSize,
-    customTransforms.tailwindFontFamily,
-    customTransforms.tailwindLineHeight,
-  ],
-  preprocessors: [customPreprocessors.tailwindNamespaces],
-  buildPath: resolve(DIST_DIR, "tailwind"),
-  files: [
-    {
-      destination: `${name}.css`,
-      format: customFormats.tailwind,
-      filter,
-      options: {
-        showFileHeader: true,
-        name,
-        category,
+export const tailwind: PlatformGenerator = (
+  category,
+  name,
+  filter,
+  options
+) => {
+  return {
+    transforms: [
+      transforms.attributeCti,
+      transforms.nameKebab,
+      transforms.timeSeconds,
+      transforms.colorCss,
+      transforms.sizePxToRem,
+      transforms.assetUrl,
+      customTransforms.tailwindFontSize,
+      customTransforms.tailwindFontFamily,
+      customTransforms.tailwindLineHeight,
+    ],
+    preprocessors: [customPreprocessors.tailwindNamespaces],
+    buildPath: resolve(DIST_DIR, "tailwind"),
+    files: [
+      {
+        destination: `${name}.css`,
+        format: customFormats.tailwind,
+        filter,
+        options: {
+          showFileHeader: true,
+          name,
+          category,
+          ...options,
+        },
       },
-    },
-  ],
-});
+    ],
+  };
+};
 
 export const PLATFORMS = {
   css,
