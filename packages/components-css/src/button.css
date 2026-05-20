@@ -60,7 +60,7 @@
     @apply text-standard-fixed-light;
 
     &.button--outline {
-      --button-color: var(--border-color-danger-moderate);
+      --button-color: var(--border-color-danger-strong);
       @apply bg-transparent text-inherit;
     }
   }
