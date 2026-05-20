@@ -16,7 +16,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:${VARIANT}
 ENV HOME=/home/node
 ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
 ENV PNPM_HOME=${HOME}/.local/share/pnpm
-ENV PATH="${PNPM_HOME}:${PATH}"
+ENV PATH="${PNPM_HOME}/bin:${PNPM_HOME}:${PATH}"
 
 COPY rootfs /
 
