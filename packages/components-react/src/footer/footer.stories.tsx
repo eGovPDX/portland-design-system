@@ -28,7 +28,7 @@ const meta: Meta<ReactFooterProps> = {
     // Add argTypes based on your Footer component props
     copyrightStart: {
       name: "Copyright start year",
-      type: "number",
+      control: { type: "number", step: 1 },
     },
   },
   args: {

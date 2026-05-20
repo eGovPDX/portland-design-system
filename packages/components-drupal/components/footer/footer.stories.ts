@@ -41,7 +41,7 @@ const meta: Meta<StoryProps> = {
   argTypes: {
     copyrightStart: {
       name: "Copyright start year",
-      type: "number",
+      control: { type: "number", step: 1 },
     },
     color: {
       control: "select",

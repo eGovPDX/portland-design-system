@@ -1,5 +1,6 @@
 import { ASSETS_CITY_SEAL } from "@cityofportland/design-tokens";
 import once from "@drupal/once";
+import z from "zod";
 
 (({ behaviors }) => {
   behaviors["@cityofportland/components-drupal/footer"] = {
@@ -9,7 +10,17 @@ import once from "@drupal/once";
         context.querySelectorAll(".footer__copyright-text")
       ).forEach((e) => {
         const currentYear = new Date().getFullYear();
-        const copyrightStart = parseInt(e.dataset.copyrightStart);
+
+        const copyrightStart = z
+          .int()
+          .nonnegative()
+          .catch(() => {
+            console.warn(
+              `Invalid copyright start year. Setting to current year.`
+            );
+            return 0;
+          })
+          .parse(copyrightStart);
 
         const copyrightText =
           copyrightStart >= currentYear || !copyrightStart

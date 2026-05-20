@@ -54,6 +54,7 @@
   },
   "homepage": "https://github.com/eGovPDX/portland-design-system#readme",
   "dependencies": {
-    "@drupal/once": "^1.0.1"
+    "@drupal/once": "^1.0.1",
+    "zod": "^4.4.3"
   }
 }
