@@ -15,6 +15,7 @@ export const BOX_COLORS = [
   "danger",
   "warning",
   "info",
+  "fixed-dark",
   "disabled",
 ] as const;
 

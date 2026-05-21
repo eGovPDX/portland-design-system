@@ -120,6 +120,16 @@
       }
     }
 
+    /* Color scheme: fixed-dark */
+    &.box--fixed-dark {
+      &.box--subtle,
+      &.box--moderate,
+      &.box--emphasis,
+      &.box--strong {
+        @apply box-fixed-dark;
+      }
+    }
+
     /* Color scheme: disabled */
     &.box--disabled {
       &.box--subtle {
