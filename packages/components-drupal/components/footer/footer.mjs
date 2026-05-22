@@ -11,7 +11,8 @@ import z from "zod";
       ).forEach((e) => {
         const currentYear = new Date().getFullYear();
 
-        const copyrightStart = z
+        const copyrightStart = z.coerce
+          .number()
           .int()
           .nonnegative()
           .catch(() => {
