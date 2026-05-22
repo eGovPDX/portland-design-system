@@ -20,7 +20,7 @@ import z from "zod";
             );
             return 0;
           })
-          .parse(copyrightStart);
+          .parse(e.dataset.copyrightStart);
 
         const copyrightText =
           copyrightStart >= currentYear || !copyrightStart
