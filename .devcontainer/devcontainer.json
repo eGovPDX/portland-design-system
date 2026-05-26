@@ -3,6 +3,10 @@
     "context": ".",
     "dockerfile": "Dockerfile"
   },
+  "features": {
+    "ghcr.io/dhoeric/features/act:latest": {},
+    "ghcr.io/devcontainers/features/docker-in-docker": {}
+  },
   "forwardPorts": [3000, 6006, 8080],
   "customizations": {
     "vscode": {
@@ -12,7 +16,9 @@
         "dbaeumer.vscode-eslint",
         "eamodio.gitlens",
         "esbenp.prettier-vscode",
-        "mblode.twig-language-2"
+        "github.vscode-github-actions",
+        "mblode.twig-language-2",
+        "unifiedjs.vscode-mdx"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "zsh"
