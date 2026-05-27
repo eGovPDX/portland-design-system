@@ -15,9 +15,16 @@ export type ReactHeaderLogoProps = React.PropsWithChildren;
 
 export type ReactHeaderContentProps = React.PropsWithChildren;
 
-export const HeaderBranding: React.FC<ReactHeaderBrandingProps> = ({
-  children,
-}) => <span className="header__branding">{children}</span>;
+export const HeaderBranding = <
+  E extends React.ElementType<{ className?: string }> = "div",
+>({
+  className,
+  ...rest
+}: ReactHeaderBrandingProps<E>) => {
+  return (
+    <Box {...rest} className={mergeClasses(["header__branding"], className)} />
+  );
+};
 
 export const HeaderLogo: React.FC<ReactHeaderLogoProps> = ({ children }) => (
   <span className="header__logo">{children}</span>
@@ -50,13 +57,19 @@ export const HeaderNavLink: React.FC<ReactHeaderNavLinkProps> = ({
 export const Header: React.FC<ReactHeaderProps> = ({
   children,
   className,
-  color = "primary",
-  variant = "strong",
+  color,
+  variant,
   ...rest
 }) => {
   return (
-    <header className={["header", className].filter(Boolean).join(" ")}>
+    <Box
+      as="header"
+      color={color}
+      variant={variant}
+      className={["header", className].filter(Boolean).join(" ")}
+      {...rest}
+    >
       {children}
-    </header>
+    </Box>
   );
 };

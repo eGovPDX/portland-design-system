@@ -124,6 +124,8 @@ export default {
   args: {
     color: "fixed",
     variant: "dark",
+    links: false,
+    buttons: false,
   },
 } satisfies Meta<StoryProps>;
 

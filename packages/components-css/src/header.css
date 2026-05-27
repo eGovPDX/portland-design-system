@@ -1,6 +1,7 @@
 /* Header Component Styles */
-@import "tailwindcss";
 @import "./base.css";
+
+@reference "./box.css";
 
 @layer components {
   /* Base Header Styles */
@@ -11,13 +12,13 @@
 
   .header__branding {
     @apply flex items-center gap-md;
-    @apply text-lg font-bold;
+    @apply text-heading-lg font-bold;
 
     .header__logo {
       @apply inline-flex items-center justify-center shrink-0;
 
       img {
-        @apply h-3xl tablet:h-[56px] shrink-0;
+        @apply h-3xl xl:h-[56px] shrink-0;
       }
     }
 
@@ -38,31 +39,8 @@
   }
 
   .header__nav-link {
-    @apply inline-block no-underline text-neutral-dark text-body-md pb-xs;
-    @apply border-b-3 border-transparent transition-colors;
-    @apply hover:border-standard-default-emphasis active:border-standard-default-emphasis focus-visible:border-standard-default-emphasis;
-  }
-  .header__mega-menu-panel {
-    @apply bg-neutral-white text-neutral-dark;
-    @apply px-xl py-xl border-b-3 border-standard-default-subtle;
-  }
-
-  .header__mega-menu {
-    @apply grid grid-cols-1 lg:grid-cols-3 gap-lg;
-  }
-
-  .header__mega-menu-item {
-    @apply block p-lg no-underline;
-  }
-
-  .header__mega-menu-title {
-    @apply font-bold text-heading-xl;
-  }
-  .header__mega-menu-item__title {
-    @apply font-bold text-heading-md underline;
-  }
-
-  .header__mega-menu-item__description {
-    @apply m-none text-neutral-dark text-body-sm;
+    @apply inline-block no-underline;
+    @apply transition-colors;
+    @apply hover:underline hover:underline-offset-16;
   }
 }
