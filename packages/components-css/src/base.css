@@ -3,7 +3,7 @@
  * Imports design tokens and sets up Tailwind v4 utilities
  */
 
-@import "tailwindcss";
+@import "tailwindcss" source("../src");
 
 /* Import design tokens theme */
 @reference "@cityofportland/design-tokens/tailwind/base.css" layer(theme);
