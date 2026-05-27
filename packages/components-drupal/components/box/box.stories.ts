@@ -92,7 +92,7 @@ export const Basic: StoryObj<Props & { border: boolean }> = {
         as,
         color,
         variant,
-        content: `<p>This is a <strong><em>${color}</em></strong> box of <strong><em>${variant}</em></strong> variant.</p>`,
+        box_content: `<p>This is a <strong><em>${color}</em></strong> box of <strong><em>${variant}</em></strong> variant.</p>`,
       })}
     `;
   },
@@ -132,7 +132,7 @@ export const Gallery: Story = {
                     as,
                     color,
                     variant,
-                    content: `<span class="justify-self-center p-sm uppercase">${variant}</span>`,
+                    box_content: `<span class="justify-self-center p-sm uppercase">${variant}</span>`,
                   })}
                 `
               ).join("")}
@@ -165,7 +165,7 @@ export const Variants: Story = {
               as,
               color,
               variant,
-              content: `
+              box_content: `
                 <span class="justify-self-center p-sm uppercase">${color}</span>
                 <span class="justify-self-center p-sm uppercase">${variant}</span>
               `,
@@ -234,7 +234,7 @@ export const Nested: StoryObj<
         as,
         color: outerColor,
         variant: outerVariant,
-        content: `<p>This is a <strong><em>${outerColor}</em></strong> box of <strong><em>${outerVariant}</em></strong> variant.</p>
+        box_content: `<p>This is a <strong><em>${outerColor}</em></strong> box of <strong><em>${outerVariant}</em></strong> variant.</p>
         ${Box.component({
           defaultAttributes: [
             ...Box.args.defaultAttributes,
@@ -243,7 +243,7 @@ export const Nested: StoryObj<
           as: "section",
           color: innerColor,
           variant: innerVariant,
-          content: `<p>This is a <strong><em>${innerColor}</em></strong> box of <strong><em>${innerVariant}</em></strong> variant.</p>`,
+          box_content: `<p>This is a <strong><em>${innerColor}</em></strong> box of <strong><em>${innerVariant}</em></strong> variant.</p>`,
         })}
         `,
       })}
@@ -270,7 +270,7 @@ export const Page: Story = {
           as: "header",
           color,
           variant: "moderate",
-          content: `<h1 class="text-3xl font-bold">Page header</h1>`,
+          box_content: `<h1 class="text-3xl font-bold">Page header</h1>`,
         })}
         ${Box.component({
           defaultAttributes: [
@@ -280,7 +280,7 @@ export const Page: Story = {
           as: "main",
           color,
           variant: "subtle",
-          content: `<p>This is the main content area.</p>`,
+          box_content: `<p>This is the main content area.</p>`,
         })}
         ${Box.component({
           defaultAttributes: [
@@ -290,7 +290,7 @@ export const Page: Story = {
           as: "footer",
           color,
           variant: "emphasis",
-          content: `<p>Page footer</p>`,
+          box_content: `<p>Page footer</p>`,
         })}
       </section>
     `;

@@ -1,12 +1,14 @@
 @import "./base.css";
 
+@reference "./box.css";
+
 @layer components {
   /* Base Header Styles */
   .footer {
-    @apply flex flex-col items-center p-xl xl:px-none gap-2xl;
+    @apply p-xl grid grid-cols-1 gap-2xl;
 
     & > * {
-      @apply w-full xl:max-w-screen-xl;
+      @apply w-full max-w-screen-xl mx-auto wrap-break-word;
     }
 
     .footer__navigation {
@@ -18,10 +20,6 @@
 
       .footer__menu-title {
         @apply font-bold text-heading-md;
-      }
-
-      .footer__menu-item {
-        @apply wrap-break-word;
       }
     }
 

@@ -1,0 +1,16 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Footer Menu
+
+status: experimental
+
+slots:
+  content:
+    title: Content
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+  js:
+    footer.js: { attributes: { type: "module" } }

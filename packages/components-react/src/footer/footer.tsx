@@ -1,6 +1,7 @@
 import { ASSETS_CITY_SEAL } from "@cityofportland/design-tokens";
 import type { FooterProps } from "@cityofportland/types/footer";
 import React, { createContext, useContext, useId } from "react";
+import z from "zod";
 
 import "@cityofportland/components-css/footer.css";
 import { Box } from "../box";
@@ -33,7 +34,6 @@ export const FooterNavigation: React.FC<
 
     return classes.join(" ");
   }
-
   return (
     <section className={classes()} {...rest}>
       {children}
@@ -95,7 +95,6 @@ export const FooterMenuTitle: React.FC<
 
     return classes.join(" ");
   }
-
   return (
     <h2 id={id} className={classes()} {...rest}>
       {children}
@@ -153,6 +152,15 @@ export const Footer: React.FC<ReactFooterProps> = ({
   }
 
   const currentYear = new Date().getFullYear();
+
+  copyrightStart = z
+    .int()
+    .nonnegative()
+    .catch(() => {
+      console.warn("Invalid copyright start year. Setting to current year.");
+      return 0;
+    })
+    .parse(copyrightStart);
 
   const copyrightText =
     copyrightStart >= currentYear || !copyrightStart

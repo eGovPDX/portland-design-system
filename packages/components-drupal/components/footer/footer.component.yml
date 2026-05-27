@@ -1,0 +1,56 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Footer
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+properties:
+  color:
+    type: string
+    title: Box color
+    description: Color scheme for background and content colors
+    default: default
+    enum:
+      - default
+      - primary
+      - secondary
+      - success
+      - danger
+      - warning
+      - info
+      - disabled
+    examples:
+      - default
+
+  variant:
+    type: string
+    title: Box variant
+    description: Color variation within the chosen color scheme
+    default: subtle
+    enum:
+      - subtle
+      - moderate
+      - emphasis
+      - strong
+    examples:
+      - moderate
+
+  copyrightStart:
+    title: Copyright Start Year
+    description: The year the copyright starts. If not provided, it will default to the current year.
+    type: integer
+    default: null
+
+slots:
+  footer_content:
+    title: Content
+    description: The main content/text of the footer.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+  js:
+    footer.js: { attributes: { type: "module" } }
