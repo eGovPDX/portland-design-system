@@ -88,13 +88,10 @@ export function Accordion({
   open?: boolean;
   onToggle?: (open: boolean) => void;
 }>) {
-  console.log("Rendering Accordion with open:", openProp);
-
   const [open, setOpen] = React.useState(openProp);
 
   const toggle = () =>
     setOpen((prev) => {
-      console.log("Toggling Accordion from", prev, "to", !prev);
       const newOpen = !prev;
       onToggle?.(newOpen);
       return newOpen;
