@@ -1,0 +1,27 @@
+name: Setup build
+description: Run repetitive build setup steps
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v6
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: "24"
+
+    - uses: pnpm/action-setup@v6
+
+    - uses: actions/cache@v4
+      with:
+        path: |
+          ~/node_modules/.pnpm
+          ~/.turbo
+        key: ${{ runner.os }}-${{ github.sha }}-${{ hashFiles('**/pnpm-lock.yaml') }}-v1
+        restore-keys: |
+          ${{ runner.os }}-${{ github.sha }}-${{ hashFiles('**/pnpm-lock.yaml') }}-
+          ${{ runner.os }}-${{ github.sha }}-
+          ${{ runner.os }}-
+
+    - run: pnpm add --global turbo
+      shell: bash
