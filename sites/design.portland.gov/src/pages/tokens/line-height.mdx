@@ -1,0 +1,53 @@
+---
+layout: "../../layouts/component.astro"
+title: Line Height
+---
+import { Box } from "@cityofportland/components-react/box";
+
+import { Heading } from "../../components/heading";
+import SiteLayout from "../../layouts/component.astro";
+
+import { BaseDemo, VariantDemo } from "./_demo";
+import { getTokens, retrieveToken } from "./_id";
+
+export const PATH = ["line-height"];
+export const VARIANTS = ["base", "XL"];
+
+export const tokens = getTokens(PATH);
+
+# Line Height
+
+{
+  tokens
+    .filter((t) => t.depth > 1)
+    .map((t) => (
+      <BaseDemo path={t.path} depth={t.depth}>
+        {typeof t.value === "string" && (
+          <VariantDemo count={VARIANTS.length}>
+            {VARIANTS.map((variant) => (
+              <div>
+                <Heading path={t.path} depth={t.depth + 1} className="capitalize">
+                  {variant}
+                </Heading>
+                <Box
+                  style={{lineHeight: retrieveToken(variant.toLowerCase(), t.path)}}
+                >
+Portland.gov is a website for our community where services and information are easy to find, easy to access, and easy to understand.
+
+Community members are people that live, work, operate a business, or contribute to the ways the city can thrive and function. Community members don't care about our org chart. We should structure our content to be community-first.
+
+Services and information should take precedence over other content. Analytics show us that the most accessed content is to use city resources (parks, utilities) or to interact with planning and development (permits, zoning) or to report issues with city infrastructure (roads, parking, sewers) or problems (trash, graffiti, homelessness, safety concerns). People are also looking for information to help them participate in government.
+
+To achieve easy to find, content is strongly-typed, indexed by our site search engine, and optimized for index by organic search by engines like Google, Bing, and DuckDuckGo.
+
+To achieve easy to access, content is semantically-structured and has restrictions and guide rails to help editors create content that can be accessed regardless of device (desktop, laptop, mobile) or ability (screen reader and assistive technology as well as keyboard navigation).
+
+To achieve easy to understand, we ask editors to aim for creating clear and concise content at an appropriate reading level for the audience. The site is also structured to keep labels simple and layouts consistent.
+                </Box>
+              </div>
+          ))}
+          </VariantDemo>
+        )}
+      </BaseDemo>
+    ))
+}

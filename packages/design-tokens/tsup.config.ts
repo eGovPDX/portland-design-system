@@ -1,7 +1,7 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/cli/build.ts", "src/cli/watch.ts"],
+  entry: ["src/cli/build.ts", "src/cli/watch.ts", "src/utils.ts"],
   outDir: "dist",
   format: ["esm"],
   target: "node22",
@@ -9,7 +9,6 @@ export default defineConfig({
   clean: true,
   splitting: true,
   sourcemap: true,
-  dts: false,
   bundle: true,
   external: ["prettier", "style-dictionary"],
   noExternal: [/^\.\/src\//],

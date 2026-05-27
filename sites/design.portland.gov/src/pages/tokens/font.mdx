@@ -1,0 +1,47 @@
+---
+layout: "../../layouts/component.astro"
+title: Font
+---
+import { Box } from "@cityofportland/components-react/box";
+
+import { Heading } from "../../components/heading";
+import SiteLayout from "../../layouts/component.astro";
+
+import { BaseDemo } from "./_demo";
+import { getTokens, retrieveToken } from "./_id";
+
+export const PATH = ["font"];
+
+export const tokens = getTokens(PATH);
+
+# Font
+
+{
+  tokens
+    .filter((t) => t.depth > 1)
+    .map((t) => (
+      <BaseDemo path={t.path} depth={t.depth}>
+        {(typeof t.value === "string" || typeof t.value === "number") && (
+          <div class="flex flex-col items-start gap-sm">
+            <span class="justify-self-center text-lg font-mono">
+              {t.value}
+            </span>
+            {t.path.includes("family") && (
+              <Box
+                style={{ fontFamily: retrieveToken("base", t.path) }}
+              >
+                Portland.gov is a website for our community where services and information are easy to find, easy to access, and easy to understand.
+              </Box>
+            )}
+            {t.path.includes("weight") && (
+              <Box
+                style={{ fontWeight: retrieveToken("base", t.path) }}
+              >
+                Portland.gov is a website for our community where services and information are easy to find, easy to access, and easy to understand.
+              </Box>
+            )}
+          </div>
+        )}
+      </BaseDemo>
+    ))
+}

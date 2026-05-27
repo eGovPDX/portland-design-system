@@ -1,0 +1,48 @@
+---
+layout: "../../layouts/component.astro"
+title: Content
+---
+import { Box } from "@cityofportland/components-react/box";
+
+import { Heading } from "../../components/heading";
+import SiteLayout from "../../layouts/component.astro";
+
+import { BaseDemo, VariantDemo } from "./_demo";
+import { getTokens, retrieveToken } from "./_id";
+
+export const PATH = ["content"];
+export const VARIANTS = ["base", "dark"];
+
+export const tokens = getTokens(PATH);
+
+# Content
+{
+  tokens
+    .filter((t) => t.depth > 1)
+    .map((t) => (
+      <BaseDemo path={t.path} depth={t.depth}>
+        {typeof t.value === "string" && (
+          <VariantDemo count={VARIANTS.length}>
+            {VARIANTS.map((variant) => (
+              <div>
+                <Heading path={t.path} depth={t.depth + 1} className="capitalize">
+                  {variant}
+                </Heading>
+                <Box
+                  key={variant}
+                  className={``}
+                  style={{
+                    color: retrieveToken(variant, t.path),
+                  }}
+                >
+  Portland.gov is a website for our community where services and information are easy to find, easy to access, and easy to understand.
+
+  Community members are people that live, work, operate a business, or contribute to the ways the city can thrive and function. Community members don't care about our org chart. We should structure our content to be community-first.
+                </Box>
+              </div>
+            ))}
+          </VariantDemo>
+        )}
+      </BaseDemo>
+    ))
+}

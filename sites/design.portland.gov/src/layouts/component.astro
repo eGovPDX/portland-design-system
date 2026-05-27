@@ -1,0 +1,52 @@
+---
+import { Box } from "@cityofportland/components-react/box";
+import MarkdownLayout from "../layouts/markdown.astro";
+
+type Props = {
+  frontmatter: {
+    title: string;
+    storybooks?: { name: string; url: string }[];
+  };
+  className?: string;
+  headings?: { depth: number; text: string; slug: string }[];
+};
+
+const { frontmatter, headings } = Astro.props;
+
+if (frontmatter.storybooks && frontmatter.storybooks.length > 0) {
+  headings?.push({
+    depth: 2,
+    text: "Storybooks",
+    slug: "storybooks",
+  });
+}
+---
+
+<MarkdownLayout
+  title={frontmatter.title}
+  headings={headings}
+  className="md:max-w-3/5"
+>
+  <slot />
+  {
+    frontmatter.storybooks && frontmatter.storybooks.length > 0 && (
+      <section>
+        <h2 id="storybooks">Storybooks</h2>
+        <div class="grid md:grid-cols-2 gap-lg">
+          {frontmatter.storybooks.map((s) => (
+            <Box
+              as="a"
+              key={s.name}
+              href={`/storybook/${s.name}/${s.url}`}
+              color="default"
+              variant="moderate"
+              className="p-xl flex items-center justify-center border-md rounded-lg"
+            >
+              {s.name}
+            </Box>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</MarkdownLayout>

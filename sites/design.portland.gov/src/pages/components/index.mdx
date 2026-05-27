@@ -1,0 +1,53 @@
+---
+layout: ../../layouts/markdown.astro
+title: Components
+---
+
+# Components
+
+The Portland Design System publishes reusable UI components across multiple
+frameworks so teams can use a shared visual language in a way that fits their
+product.
+
+All frameworks are built from the same foundations:
+
+- Design tokens from `@cityofportland/design-tokens`
+- Shared CSS patterns from `@cityofportland/components-css`
+- Framework-specific component implementations and stories
+
+## Frameworks we publish
+
+- **React** (`@cityofportland/components-react`) for React applications
+- **Drupal SDC** (`@cityofportland/components-drupal`) for Drupal sites using
+  Single Directory Components
+- **CSS** (`@cityofportland/components-css`) for teams that want framework-free
+  styling primitives
+
+## How we develop components
+
+We develop components in a `pnpm` monorepo so tokens, CSS, and framework
+packages can evolve together. A typical workflow is:
+
+1. Update or add shared design tokens if needed.
+2. Implement or adjust component styles in the CSS package.
+3. Build framework-specific components (React, Drupal, etc.).
+4. Validate behavior in Storybook stories.
+5. Build and publish packages from the monorepo.
+
+This keeps all framework implementations aligned while still allowing each
+framework to use native patterns.
+
+## Storybook
+
+Storybook is our development and documentation environment for components. We
+use it to:
+
+- Build components in isolation
+- Validate visual consistency and states
+- Share usage examples with designers and developers
+- Review framework-specific behavior before publishing
+
+### Storybook by framework
+
+- React: [React Storybook](/storybook/react)
+- Drupal SDC: [Drupal Storybook](/storybook/drupal)

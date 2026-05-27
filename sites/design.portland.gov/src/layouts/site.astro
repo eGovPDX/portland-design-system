@@ -1,9 +1,42 @@
 ---
+import { Box } from "@cityofportland/components-react/box";
 import { Footer } from "@cityofportland/components-react/footer";
+
+import { SiteNav } from "./_site";
 
 import "../styles/global.css";
 
 const { title } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+
+console.log(`Rendering page for path "${currentPath}" with title "${title}"`);
+
+const navItems = [
+  {
+    href: "/tokens",
+    label: "Tokens",
+    children: [
+      { href: "/tokens/background", label: "Background" },
+      { href: "/tokens/border", label: "Border" },
+      { href: "/tokens/border-width", label: "Border Width" },
+      { href: "/tokens/breakpoint", label: "Breakpoint" },
+      { href: "/tokens/color", label: "Color" },
+      { href: "/tokens/content", label: "Content" },
+      { href: "/tokens/font", label: "Font" },
+      { href: "/tokens/font-size", label: "Font Size" },
+      { href: "/tokens/line-height", label: "Line Height" },
+      { href: "/tokens/radius", label: "Radius" },
+      { href: "/tokens/scale", label: "Scale" },
+      { href: "/tokens/spacing", label: "Spacing" },
+    ],
+  },
+  {
+    href: "/components",
+    label: "Components",
+    children: [{ href: "/components/box", label: "Box" }],
+  },
+];
 ---
 
 <html lang="en">
@@ -12,15 +45,24 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} | design.portland.gov</title>
   </head>
-  <body class="min-h-screen flex flex-col">
-    <header class="p-xl">
-      <div class="max-w-screen-xl mx-auto flex items-center gap-md">
+  <body class="min-h-screen flex flex-col relative">
+    <header class="p-xl border-b-sm">
+      <div class="flex items-center gap-md">
         <a href="/" class="text-heading-md">Portland Design System</a>
       </div>
     </header>
-    <main class="flex-1 px-xl">
+    <main
+      class="flex-1 mb-5xl md:mb-none md:px-none flex flex-col md:flex-row gap-md relative"
+    >
+      <Box as="aside" className="flex-1 md:border-r-sm md:flex-none md:w-1/5">
+        <SiteNav
+          routes={navItems}
+          current={currentPath}
+          className="flex flex-col gap-sm -mx-xs p-md md:pl-xl md:max-h-dvh wrap-break-word md:sticky md:top-none md:overflow-auto"
+          client:idle
+        />
+      </Box>
       <slot />
-      <!-- your content is injected here -->
     </main>
     <Footer copyrightStart={2026} />
   </body>

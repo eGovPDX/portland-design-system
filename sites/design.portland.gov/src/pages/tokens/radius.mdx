@@ -1,0 +1,49 @@
+---
+layout: "../../layouts/component.astro"
+title: Radius
+---
+import { Box } from "@cityofportland/components-react/box";
+
+import { Heading } from "../../components/heading";
+import SiteLayout from "../../layouts/component.astro";
+
+import { BaseDemo, VariantDemo } from "./_demo";
+import { getTokens, retrieveToken } from "./_id";
+
+export const PATH = ["radius"];
+export const VARIANTS = ["base", "XL"];
+
+export const tokens = getTokens(PATH);
+
+# Radius
+
+{
+  tokens
+    .filter((t) => t.depth > 1)
+    .map((t) => (
+      <BaseDemo path={t.path} depth={t.depth}>
+        {typeof t.value === "string" && (
+          <VariantDemo count={VARIANTS.length}>
+            {VARIANTS.map((variant) => (
+              <div>
+                <Heading path={t.path} depth={t.depth + 1} className="capitalize">
+                  {variant}
+                </Heading>
+                <Box
+                  key={t.text}
+                  variant="emphasis"
+                  color="default"
+                  className="p-sm flex bg-standard-inverse-subtle text-standard-inverse-subtle"
+                  style={{borderRadius: retrieveToken(variant.toLowerCase(), t.path)}}
+                >
+                  <span className="w-full text-lg font-mono">
+                    {t.value}
+                  </span>
+                </Box>
+              </div>
+          ))}
+          </VariantDemo>
+        )}
+      </BaseDemo>
+    ))
+}

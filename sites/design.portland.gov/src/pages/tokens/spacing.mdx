@@ -1,0 +1,48 @@
+---
+layout: "../../layouts/component.astro"
+title: Spacing
+---
+import { Box } from "@cityofportland/components-react/box";
+
+import { Heading } from "../../components/heading";
+import SiteLayout from "../../layouts/component.astro";
+
+import { BaseDemo, VariantDemo } from "./_demo";
+import { getTokens, retrieveToken } from "./_id";
+
+export const PATH = ["spacing"];
+export const VARIANTS = ["base", "XL"];
+
+export const tokens = getTokens(PATH);
+
+# Spacing
+
+{
+  tokens
+    .filter((t) => t.depth > 1)
+    .map((t) => (
+      <BaseDemo path={t.path} depth={t.depth}>
+        {typeof t.value === "string" && (
+          <VariantDemo count={VARIANTS.length}>
+            {VARIANTS.map((variant) => (
+              <div>
+                <Heading path={t.path} depth={t.depth + 1} className="capitalize">
+                  {variant}
+                </Heading>
+                <div className="flex items-center gap-sm">
+                  <Box
+                    key={t.text}
+                    variant="emphasis"
+                    color="default"
+                    className="flex flex-col items-center justify-center border-sm h-5xl"
+                    style={{ width: t.value }}
+                  />
+                  <span className="text-lg font-mono">{t.value}</span>
+                </div>
+              </div>
+          ))}
+          </VariantDemo>
+        )}
+      </BaseDemo>
+    ))
+}

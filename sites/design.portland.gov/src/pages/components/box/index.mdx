@@ -1,0 +1,70 @@
+---
+layout: ../../../layouts/component.astro
+title: Box
+storybooks:
+  - name: "react"
+    url: "?path=/story/components-box--basic"
+  - name: "drupal"
+    url: "?path=/story/components-box--basic"
+---
+import { BOX_COLORS } from "@cityofportland/types/box";
+
+import { DemoBox, ColorGallery, VariantGallery } from "./_demo";
+
+# Box
+
+The Box component is a foundational layout surface for grouping related content.
+It applies consistent spacing, color, and contrast styles across the design
+system.
+
+Use Box when you need to:
+
+- Group content into a clear visual section
+- Apply a semantic color context (default, primary, success, warning, etc.)
+- Build nested surfaces while keeping consistent component styling
+- Create a new component that needs accessible colors
+
+## Properties
+
+The combination of `color` and `variant` controls the background, content, and
+border color for each use. This allows you to choose from accessible color
+patterns quickly.
+
+### As
+
+Box is rendered as a `div` by default but can be changed to any semantic element with the `as` prop. For example, use `section` for a standalone content area or `aside` for tangential information.
+
+
+### Color
+
+The following demonstration shows the different color types for the selected variant. Click on any box to set the color for all boxes on this page.
+
+<ColorGallery client:load />
+
+### Variant
+
+Each color has a set of variants that help provide emphasis to the grouped
+content. Click on any box to set the variant for all boxes on this page.
+
+
+<VariantGallery client:load />
+
+### Output
+
+Below is the output of the Box component with the selected color and variant. Click on any box in the galleries above to change the color and variant of this box.
+
+<DemoBox client:load>
+## Example usage
+
+Portland.gov is a website for our **community** where **services and information** are easy to **find**, easy to **access**, and easy to **understand**.
+
+**Community** members are people that live, work, operate a business, or contribute to the ways the city can thrive and function. Community members don't care about our org chart. We should structure our content to be community-first.
+</DemoBox>
+
+## Usage notes
+
+- Choose the variant based on emphasis needed: start with `subtle` or `moderate`
+  for most layouts.
+- Reserve `emphasis` and `strong` for callouts or high-attention regions.
+- Keep content hierarchy clear by combining Box with semantic elements such as
+  `section`, `article`, and `aside`.

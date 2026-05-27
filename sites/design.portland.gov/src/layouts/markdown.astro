@@ -1,11 +1,46 @@
 ---
+import { NavItem } from "../components/nav/item";
 import SiteLayout from "../layouts/site.astro";
 
-const { frontmatter } = Astro.props;
+const { frontmatter, headings, title, className } = Astro.props;
 ---
 
-<SiteLayout title={frontmatter.title}>
-  <article class="max-w-screen-xl mx-auto my-xl content">
+<SiteLayout title={title || frontmatter.title}>
+  <article
+    class={["flex-1 content px-md md:px-none md:mt-xl md:mb-5xl", className]
+      .filter(Boolean)
+      .join(" ")}
+  >
     <slot />
   </article>
+  {
+    headings && headings.filter((h) => h.depth > 1).length > 0 && (
+      <aside class="flex-1 md:flex-none md:border-l-sm md:w-1/5">
+        <nav class="md:p-md flex flex-col md:max-h-dvh wrap-break-word md:sticky md:top-none overflow-auto">
+          <h2 class="text-heading-sm">On this page</h2>
+          {headings
+            .filter((h) => h.depth > 1 && h.depth < 3)
+            .map((h) => {
+              const classes = [
+                ["ml-xs", h.depth == 3],
+                ["ml-sm", h.depth == 4],
+                ["ml-md", h.depth == 5],
+                ["ml-lg", h.depth == 6],
+              ]
+                .filter(([_, condition]) => condition)
+                .map(([className, _]) => className)
+                .join(" ");
+
+              return (
+                <NavItem as="a" href={`#${h.slug}`} className={classes}>
+                  <span class="text-body-sm font-semibold underline underline-offset-4">
+                    {h.text}
+                  </span>
+                </NavItem>
+              );
+            })}
+        </nav>
+      </aside>
+    )
+  }
 </SiteLayout>

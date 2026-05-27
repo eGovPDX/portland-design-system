@@ -2,18 +2,30 @@
   "$schema": "https://turborepo.dev/schema.json",
   "extends": ["//"],
   "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "build:dev": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
     "dev": {
       "dependsOn": ["prebuild"],
       "persistent": true,
       "cache": false
+    },
+    "prebuild": {
+      "outputs": ["dist/**"]
     },
     "storybook": {
       "with": ["dev"],
       "persistent": true,
       "cache": false
     },
-    "prebuild": {
-      "outputs": ["dist/**"]
+    "storybook:build": {
+      "dependsOn": ["^build:dev"],
+      "outputs": ["storybook-static/**"]
     }
   }
 }

@@ -1,0 +1,41 @@
+---
+layout: "../../layouts/component.astro"
+title: Breakpoint
+---
+import { Box } from "@cityofportland/components-react/box";
+
+import { Heading } from "../../components/heading";
+import SiteLayout from "../../layouts/component.astro";
+
+import { BaseDemo } from "./_demo";
+import { getTokens, retrieveToken } from "./_id";
+
+export const PATH = ["breakpoint"];
+
+export const tokens = getTokens(PATH);
+
+# Breakpoint
+
+{
+  tokens
+    .filter((t) => t.depth > 1)
+    .map((t) => (
+      <BaseDemo path={t.path} depth={t.depth}>
+        {typeof t.value === "string" && (
+          <div class="flex flex-col items-start gap-sm">
+            <span class="justify-self-center text-lg font-mono">
+              {t.value}
+            </span>
+            <Box
+              className="h-5xl flex items-center justify-center"
+              color="default"
+              variant="strong"
+              style={{ width: t.value }}
+            >
+              <span className="text-lg font-mono">{t.value}</span>
+            </Box>
+          </div>
+        )}
+      </BaseDemo>
+    ))
+}

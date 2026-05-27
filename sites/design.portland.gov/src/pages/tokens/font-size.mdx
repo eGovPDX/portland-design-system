@@ -1,0 +1,44 @@
+---
+layout: "../../layouts/component.astro"
+title: Font Size
+---
+import { Box } from "@cityofportland/components-react/box";
+
+import { Heading } from "../../components/heading";
+import SiteLayout from "../../layouts/component.astro";
+
+import { BaseDemo, VariantDemo } from "./_demo";
+import { getTokens, retrieveToken } from "./_id";
+
+export const PATH = ["font-size"];
+export const VARIANTS = ["base", "XL"];
+
+export const tokens = getTokens(PATH);
+
+# Font Size
+
+{
+  tokens
+    .filter((t) => t.depth > 1)
+    .map((t) => (
+      <BaseDemo path={t.path} depth={t.depth}>
+        {typeof t.value === "string" && (
+          <VariantDemo count={VARIANTS.length}>
+            {VARIANTS.map((variant) => (
+              <div>
+                <Heading path={t.path} depth={t.depth + 1} className="capitalize">
+                  {variant}
+                </Heading>
+                <Box
+                  key={t.text}
+                  style={{fontSize: retrieveToken(variant.toLowerCase(), t.path)}}
+                >
+Portland.gov is a website for our community where services and information are easy to find, easy to access, and easy to understand.
+                </Box>
+              </div>
+          ))}
+          </VariantDemo>
+        )}
+      </BaseDemo>
+    ))
+}

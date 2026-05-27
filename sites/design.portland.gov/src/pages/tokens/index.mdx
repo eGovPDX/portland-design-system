@@ -1,7 +1,9 @@
 ---
-layout: ../layouts/markdown.astro
+layout: ../../layouts/markdown.astro
 title: Design Tokens
 ---
+import { Box } from "@cityofportland/components-react/box";
+import { TokensDemo } from "./_demo";
 
 # Design Tokens
 
@@ -77,62 +79,6 @@ documentation):
 ```js
 import baseTokens from "@cityofportland/design-tokens/json/base.json" assert { type: "json" };
 ```
-
-## Token categories
-
-### Color
-
-Semantic color tokens are built on top of primitive palette values and come in
-three roles:
-
-| Role        | Example token             | Description                              |
-| ----------- | ------------------------- | ---------------------------------------- |
-| `neutral`   | `--color-neutral-dark`    | Grays for text, borders, and backgrounds |
-| `primary`   | `--color-primary-vivid`   | Portland blue — primary brand color      |
-| `secondary` | `--color-secondary-vivid` | Accent red                               |
-
-A `dark` variant stylesheet (`dark.css`) overrides the color tokens for
-dark-mode contexts.
-
-### Spacing (Scale)
-
-Spacing tokens follow a numeric scale where each step maps to a pixel value:
-
-| Token         | Value |
-| ------------- | ----- |
-| `--scale-100` | 4px   |
-| `--scale-200` | 8px   |
-| `--scale-300` | 12px  |
-| `--scale-400` | 16px  |
-| `--scale-500` | 20px  |
-| `--scale-600` | 24px  |
-
-Values are output in `rem` so they respect the user's base font size.
-
-### Typography
-
-| Token                     | Value                                           |
-| ------------------------- | ----------------------------------------------- |
-| `--font-family-sans`      | Open Sans, ui-sans-serif, system-ui, sans-serif |
-| `--font-weight-light`     | 100                                             |
-| `--font-weight-regular`   | 400                                             |
-| `--font-weight-semibold`  | 600                                             |
-| `--font-weight-bold`      | 700                                             |
-| `--font-weight-extrabold` | 800                                             |
-
-### Breakpoints
-
-| Token              | Value  |
-| ------------------ | ------ |
-| `--breakpoint-xs`  | 320px  |
-| `--breakpoint-sm`  | 480px  |
-| `--breakpoint-md`  | 640px  |
-| `--breakpoint-lg`  | 880px  |
-| `--breakpoint-xl`  | 1024px |
-| `--breakpoint-2xl` | 1200px |
-| `--breakpoint-3xl` | 1400px |
-
-An `xl.css` variant stylesheet overrides scale tokens for larger viewports.
 
 ## Storybook
 

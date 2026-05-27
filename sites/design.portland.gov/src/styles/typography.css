@@ -1,50 +1,42 @@
 .content {
-  h1 {
-    @apply text-heading-2xl font-semibold leading-heading-2xl mb-2xl;
+  @apply wrap-anywhere;
 
-    &:not(:first-child) {
-      @apply mt-2xl;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &:first-child {
+      @apply mt-none;
     }
+  }
+  h1 {
+    @apply text-heading-2xl font-semibold leading-heading-2xl my-2xl;
   }
 
   h2 {
-    @apply text-heading-xl font-semibold leading-heading-xl mb-xl;
-
-    &:not(:first-child) {
-      @apply mt-xl;
-    }
+    @apply text-heading-xl font-semibold leading-heading-xl my-xl;
   }
 
   h3 {
-    @apply text-heading-lg font-semibold leading-heading-lg mb-lg;
-
-    &:not(:first-child) {
-      @apply mt-lg;
-    }
+    @apply text-heading-lg font-semibold leading-heading-lg my-lg;
   }
 
   h4 {
-    @apply text-heading-md font-semibold leading-heading-md mb-md;
-
-    &:not(:first-child) {
-      @apply mt-md;
-    }
+    @apply text-heading-md font-semibold leading-heading-md my-md;
   }
 
   h5 {
-    @apply text-heading-sm font-semibold leading-heading-sm mb-sm;
-
-    &:not(:first-child) {
-      @apply mt-sm;
-    }
+    @apply text-heading-sm font-semibold leading-heading-sm my-sm;
   }
 
   h6 {
-    @apply text-heading-xs font-semibold leading-heading-xs mb-xs;
+    @apply text-heading-xs font-semibold leading-heading-xs my-xs;
+  }
 
-    &:not(:first-child) {
-      @apply mt-xs;
-    }
+  a {
+    @apply text-content-link-inverse-subtle font-semibold underline underline-offset-[30%];
   }
 
   p {
@@ -57,5 +49,22 @@
 
   pre {
     @apply rounded-md p-xs;
+  }
+
+  ol,
+  ul {
+    @apply pl-lg mb-md;
+
+    &:not(:last-child) {
+      @apply mt-md;
+    }
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ul {
+    @apply list-disc;
   }
 }

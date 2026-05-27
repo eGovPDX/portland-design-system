@@ -16,15 +16,20 @@ export const tailwindNamespaces: Preprocessor = {
      */
     const mapping: Record<string, string[][]> = {
       // Map background colors to background-color namespace.
-      background: [["background", "color"]],
+      background: [
+        ["background", "color"],
+        ["ring-offset", "color"],
+      ],
       // Map border colors to all related namespaces.
       border: [
         ["border", "color"],
+        ["inset-ring", "color"],
         ["ring", "color"],
         ["outline", "color"],
       ],
       "border-width": [
         ["border", "width"],
+        ["inset-ring", "width"],
         ["ring", "width"],
         ["outline", "width"],
       ],
@@ -33,6 +38,12 @@ export const tailwindNamespaces: Preprocessor = {
       content: [
         ["text", "color"],
         ["color", "content"],
+      ],
+      spacing: [
+        ["spacing"],
+        ["outline", "offset"],
+        ["ring-offset", "width"],
+        ["text-underline", "offset"],
       ],
     };
 

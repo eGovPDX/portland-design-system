@@ -43,21 +43,9 @@ export function getVariants(): VariantFile[] {
           ...VARIANT_CATEGORIES.map((category) =>
             variantPath(category, DEFAULT_VARIANTS[category])
           ),
+          resolve(TOKENS_DIR, "primitive", "**/*.tokens.json"),
         ],
-        filter: (token) =>
-          ![resolve(TOKENS_DIR, "primitive")].some((exclusion) =>
-            parse(token.filePath).dir.includes(exclusion)
-          ),
         description: "Default tokens",
-      },
-    ],
-    [
-      "primitives",
-      {
-        name: "primitives",
-        paths: [],
-        filter: (token) => token.filePath.includes("primitive"), // Include all primitive tokens
-        description: "Primitive tokens without any variants applied",
       },
     ],
   ]);

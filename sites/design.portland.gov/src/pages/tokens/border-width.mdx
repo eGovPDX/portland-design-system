@@ -1,0 +1,41 @@
+---
+layout: "../../layouts/component.astro"
+title: Border Width
+---
+import { Box } from "@cityofportland/components-react/box";
+
+import SiteLayout from "../../layouts/component.astro";
+
+import { BaseDemo, VariantDemo } from "./_demo";
+import { getTokens, retrieveToken } from "./_id";
+
+export const PATH = ["border-width"];
+export const VARIANTS = ["base", "XL"];
+
+export const tokens = getTokens(PATH);
+
+
+# Border Width
+{
+  tokens
+    .filter((t) => t.depth > 1)
+    .map((t) => (
+      <BaseDemo path={t.path} depth={t.depth}>
+        {typeof t.value === "string" && (
+          <VariantDemo count={VARIANTS.length}>
+            {VARIANTS.map((variant) => (
+              <Box
+                key={variant}
+                className={`h-5xl w-full flex items-center justify-center capitalize`}
+                style={{
+                  borderWidth: retrieveToken(variant.toLowerCase(), t.path),
+                }}
+              >
+                {variant}
+              </Box>
+            ))}
+          </VariantDemo>
+        )}
+      </BaseDemo>
+    ))
+}

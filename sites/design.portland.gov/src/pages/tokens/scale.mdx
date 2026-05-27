@@ -1,0 +1,44 @@
+---
+layout: "../../layouts/component.astro"
+title: Scale
+---
+import { Box } from "@cityofportland/components-react/box";
+
+import { Heading } from "../../components/heading";
+import SiteLayout from "../../layouts/component.astro";
+
+import { BaseDemo } from "./_demo";
+import { getTokens, retrieveToken } from "./_id";
+
+export const PATH = ["scale"];
+
+export const tokens = getTokens(PATH);
+
+# Scale
+
+Spacing tokens define the consistent gaps between elements in the design system. They are used for properties like margin and padding to create a harmonious visual rhythm across the design system.
+
+<section class="grid grid-cols-2 xl:grid-cols-4">
+{
+  tokens
+    .filter((t) => t.depth > 1)
+    .map((t) => (
+      <BaseDemo path={t.path} depth={t.depth}>
+        {typeof t.value === "string" && (
+          <div class="flex flex-col items-start gap-sm">
+            <span class="justify-self-center text-lg font-mono">
+              {t.value}
+            </span>
+            <Box
+              key={t.slug}
+              variant="emphasis"
+              color="default"
+              className="flex flex-col items-center justify-center border-sm rounded-full"
+              style={{ width: t.value, height: t.value }}
+            />
+          </div>
+        )}
+      </BaseDemo>
+    ))
+}
+</section>

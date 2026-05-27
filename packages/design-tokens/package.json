@@ -1,6 +1,6 @@
 {
   "name": "@cityofportland/design-tokens",
-  "version": "1.0.0-alpha.0",
+  "version": "2.0.0-alpha.0",
   "description": "Design tokens managed in Style Dictionary for the Portland Design System.",
   "author": {
     "name": "City of Portland, Oregon"
@@ -12,6 +12,7 @@
   ],
   "exports": {
     ".": "./dist/js/base.js",
+    "./*": "./dist/*.js",
     "./css/*": "./dist/css/*",
     "./js/*": "./dist/js/*",
     "./json/*": "./dist/json/*",
@@ -20,9 +21,10 @@
   },
   "scripts": {
     "prebuild": "tsup",
-    "build": "node dist/build.js --mode production",
+    "build": "node dist/cli/build.js --mode production",
+    "build:dev": "node dist/cli/build.js --mode development",
     "clean": "rm -rf dist/",
-    "dev": "node dist/watch.js --mode development",
+    "dev": "node dist/cli/watch.js --mode development",
     "storybook": "storybook dev -p 6007 --no-open",
     "storybook:build": "storybook build"
   },
