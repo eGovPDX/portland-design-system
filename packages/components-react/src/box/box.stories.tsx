@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Box, type ReactBoxProps } from "./box";
 
-const meta: Meta<ReactBoxProps> = {
+export default {
   title: "Components/Box",
   component: Box,
   argTypes: {
@@ -37,9 +37,8 @@ const meta: Meta<ReactBoxProps> = {
     color: "default",
     variant: "moderate",
   },
-};
+} satisfies Meta<ReactBoxProps>;
 
-export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: StoryObj<ReactBoxProps & { border: boolean }> = {
