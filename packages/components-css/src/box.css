@@ -1012,11 +1012,8 @@
     }
 
     /* Color scheme: fixed-dark */
-    &.box--fixed-dark {
-      &.box--subtle,
-      &.box--moderate,
-      &.box--emphasis,
-      &.box--strong {
+    &.box--fixed {
+      &.box--dark {
         @apply box-fixed-dark;
       }
     }
