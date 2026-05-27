@@ -3,7 +3,7 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "dependsOn": ["^storybook:build", "^build"],
+      "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
     "dev": {

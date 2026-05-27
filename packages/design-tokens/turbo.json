@@ -24,7 +24,7 @@
       "cache": false
     },
     "storybook:build": {
-      "dependsOn": ["^build:dev"],
+      "dependsOn": ["^build:dev", "build:dev"],
       "outputs": ["storybook-static/**"]
     }
   }
