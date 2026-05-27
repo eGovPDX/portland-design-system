@@ -1,11 +1,15 @@
 import "@cityofportland/components-css/header.css";
 import React from "react";
+import { Box, type ReactBoxProps } from "../box";
+import { mergeClasses } from "../utils";
 
-export type ReactHeaderProps = React.PropsWithChildren<{
-  className?: string;
-}>;
+export type ReactHeaderProps = React.PropsWithChildren<
+  Omit<ReactBoxProps<"header">, "as">
+>;
 
-export type ReactHeaderBrandingProps = React.PropsWithChildren;
+export type ReactHeaderBrandingProps<
+  E extends React.ElementType<{ className?: string }> = "div",
+> = ReactBoxProps<E>;
 
 export type ReactHeaderLogoProps = React.PropsWithChildren;
 
