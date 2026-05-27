@@ -39,7 +39,7 @@ export default {
   },
 } satisfies Meta<ReactBoxProps>;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<ReactBoxProps>;
 
 export const Basic: StoryObj<ReactBoxProps & { border: boolean }> = {
   argTypes: {

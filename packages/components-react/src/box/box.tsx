@@ -1,6 +1,8 @@
 import type { BoxProps } from "@cityofportland/types/box";
 import React from "react";
 
+import { mergeClasses } from "../utils";
+
 import "@cityofportland/components-css/box.css";
 
 /**
@@ -40,21 +42,15 @@ type BoxComponent = <E extends React.ElementType = DefaultElementType>(
  */
 function buildClassList({
   className = "",
-  color = "default",
-  variant = "moderate",
+  color,
+  variant,
 }: Partial<ReactBoxProps>): string {
-  const classes: Set<string> = new Set(["box"]);
-
-  // Color scheme and variation
-  classes.add(`box--${color}`);
-  classes.add(`box--${variant}`);
-
-  // Custom classes
-  if (className) {
-    className.split(" ").forEach((c) => classes.add(c));
-  }
-
-  return Array.from(classes).join(" ");
+  return mergeClasses(
+    "box",
+    className,
+    color ? `box--${color}` : "",
+    variant ? `box--${variant}` : ""
+  );
 }
 
 /**
@@ -83,8 +79,8 @@ export const Box: BoxComponent = ({
   as = "div",
   border,
   children,
-  color = "default",
-  variant = "moderate",
+  color,
+  variant,
   className,
   ...rest
 }) => {

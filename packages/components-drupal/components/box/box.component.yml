@@ -20,7 +20,6 @@ props:
       type: string
       title: Box color
       description: Color scheme for background and content colors
-      default: default
       enum:
         - default
         - primary
@@ -37,7 +36,6 @@ props:
       type: string
       title: Box variant
       description: Color variation within the chosen color scheme
-      default: moderate
       enum:
         - subtle
         - moderate
