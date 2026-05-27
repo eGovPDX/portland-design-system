@@ -1,0 +1,28 @@
+/**
+ * City Seal component styles
+ * Uses Tailwind utilities and design tokens for consistent styling
+ */
+
+/* Tailwind moderate, components, and utilities */
+@import "./base.css";
+
+@layer components {
+  .city-seal {
+    content: --theme(--assets-city-seal);
+
+    /* Size: extra-large */
+    &.city-seal--xl {
+      @apply w-[120px] h-[120px];
+    }
+
+    /* Size: large */
+    &.city-seal--lg {
+      @apply w-[80px] h-[80px];
+    }
+
+    /* Size: small */
+    &.city-seal--sm {
+      @apply w-[56px] h-[56px];
+    }
+  }
+}
