@@ -16,7 +16,6 @@ import {
 
 type StoryProps = ReactHeaderProps & {
   title: string;
-  branding: [string];
   links: boolean;
   buttons: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -24,7 +23,6 @@ type StoryProps = ReactHeaderProps & {
 
 const DemoHeader = ({
   title,
-  branding,
   links,
   buttons,
   children,
@@ -36,15 +34,6 @@ const DemoHeader = ({
       <HeaderLogo>
         <img src={ASSETS_CITY_SEAL} alt="City of Portland Seal" />
       </HeaderLogo>
-      {branding &&
-        branding.map((b) => (
-          <HeaderLogo>
-            <img
-              src={`https://placehold.co/100x60?text=${b}`}
-              alt="Brand Logo"
-            />
-          </HeaderLogo>
-        ))}
       {title}
     </HeaderBranding>
     <HeaderContent>
@@ -105,11 +94,6 @@ export default {
     title: {
       control: "text",
       description: "Title text for the header",
-    },
-    branding: {
-      control: "check",
-      description: "Bureaus to display in the header branding",
-      options: ["BES", "PBOT", "BPS", "PWB", "Parks"],
     },
     links: {
       control: "boolean",
