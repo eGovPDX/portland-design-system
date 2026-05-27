@@ -112,7 +112,7 @@ export const PortlandGov: Story = {
                 ADA Title II laws and reasonably provides: translation,
                 interpretation, modifications, accommodations, alternative
                 formats, auxiliary aids and services.
-                <a href="#">Request these services online</a> or
+                <a href="#">Request an ADA accommodation</a> or call
                 <a href="tel:503-823-4000">503-823-4000</a>, Relay Service:
                 <a href="tel:711">711</a>.
               </p>
@@ -127,17 +127,17 @@ export const PortlandGov: Story = {
             ${Button.component({
               right: arrowRight.html.join(" "),
               attributes: { class: "shrink-0" },
-              content: "Explore Services",
+              content: "Explore all services",
             })}
           </section>
           ${FooterNavigation.component({
             content: `
           ${FooterMenu.component({
             content: `
-            ${FooterMenuTitle.component({ content: "General Information" })}
+            ${FooterMenuTitle.component({ content: "Contact information" })}
             ${FooterMenuItem.component({ content: `<a href="mailto:311@portlandoregon.gov">311@portlandoregon.gov</a>` })}
             ${FooterMenuItem.component({ content: `<a href="tel:311">311</a>` })}
-            ${FooterMenuItem.component({ content: `<a href="#">Information and Customer Service</a>` })}
+            ${FooterMenuItem.component({ content: `<a href="#">Information and customer service</a>` })}
             ${FooterMenuItem.component({ content: `<a href="tel:503-823-4000">503-823-4000</a>` })}
             ${FooterMenuItem.component({ content: `<a href="tel:711">711</a>` })}
             ${FooterMenuItem.component({ content: `<a href="#">Oregon Relay Service</a>` })}
@@ -145,22 +145,22 @@ export const PortlandGov: Story = {
           })}
           ${FooterMenu.component({
             content: `
-            ${FooterMenuTitle.component({ content: `Terms, policies` })}
-            ${FooterMenuItem.component({ content: `<a href="#">ADA Accommodation</a>` })}
-            ${FooterMenuItem.component({ content: `<a href="#">Captioning, transcription</a>` })}
+            ${FooterMenuTitle.component({ content: `Terms and policies` })}
+            ${FooterMenuItem.component({ content: `<a href="#">ADA accommodation</a>` })}
+            ${FooterMenuItem.component({ content: `<a href="#">Captioning and transcription</a>` })}
             ${FooterMenuItem.component({ content: `<a href="#">Privacy policy</a>` })}`,
           })}
           ${FooterMenu.component({
             content: `
             ${FooterMenuTitle.component({ content: `Portland.gov` })}
-            ${FooterMenuItem.component({ content: `<a href="#">About this Website</a>` })}
-            ${FooterMenuItem.component({ content: `<a href="#">Employee Portal</a>` })}
+            ${FooterMenuItem.component({ content: `<a href="#">About this website</a>` })}
+            ${FooterMenuItem.component({ content: `<a href="#">Employee portal</a>` })}
             ${FooterMenuItem.component({ content: `<a href="#">Editor log in</a>` })}
             `,
           })}
           ${FooterMenu.component({
             content: `
-            ${FooterMenuTitle.component({ content: `Social Media` })}
+            ${FooterMenuTitle.component({ content: `Follow on social media` })}
             ${FooterMenuItem.component({ content: `<a href="#">PortlandORGov</a>` })}
             ${FooterMenuItem.component({ content: `<a href="#">PortlandGov</a>` })}
             ${FooterMenuItem.component({ content: `<a href="#">PortlandGov</a>` })}

@@ -84,7 +84,7 @@ export const PortlandGov: Story = {
               ADA Title II laws and reasonably provides: translation,
               interpretation, modifications, accommodations, alternative
               formats, auxiliary aids and services.{" "}
-              <a href="#">Request these services online</a> or{" "}
+              <a href="#">Request an ADA accommodation</a> or call{" "}
               <a href="tel:503-823-4000">503-823-4000</a>, Relay Service:{" "}
               <a href="tel:711">711</a>.
             </p>
@@ -100,12 +100,12 @@ export const PortlandGov: Story = {
             right={<FontAwesomeIcon icon={faArrowRight} />}
             className="shrink-0"
           >
-            Explore Services
+            Explore all services
           </Button>
         </section>
         <FooterNavigation>
           <FooterMenu>
-            <FooterMenuTitle>General Information</FooterMenuTitle>
+            <FooterMenuTitle>Contact information</FooterMenuTitle>
             <FooterMenuItem>
               <a href="mailto:311@portlandoregon.gov">311@portlandoregon.gov</a>
             </FooterMenuItem>
@@ -113,7 +113,7 @@ export const PortlandGov: Story = {
               <a href="tel:311">311</a>
             </FooterMenuItem>
             <FooterMenuItem>
-              <a href="#">Information and Customer Service</a>
+              <a href="#">Information and customer service</a>
             </FooterMenuItem>
             <FooterMenuItem>
               <a href="tel:503-823-4000">503-823-4000</a>
@@ -126,12 +126,12 @@ export const PortlandGov: Story = {
             </FooterMenuItem>
           </FooterMenu>
           <FooterMenu>
-            <FooterMenuTitle>Terms, policies</FooterMenuTitle>
+            <FooterMenuTitle>Terms and policies</FooterMenuTitle>
             <FooterMenuItem>
-              <a href="#">ADA Accommodation</a>
+              <a href="#">ADA accommodation</a>
             </FooterMenuItem>
             <FooterMenuItem>
-              <a href="#">Captioning, transcription</a>
+              <a href="#">Captioning and transcription</a>
             </FooterMenuItem>
             <FooterMenuItem>
               <a href="#">Privacy policy</a>
@@ -140,17 +140,17 @@ export const PortlandGov: Story = {
           <FooterMenu>
             <FooterMenuTitle>Portland.gov</FooterMenuTitle>
             <FooterMenuItem>
-              <a href="#">About this Website</a>
+              <a href="#">About this website</a>
             </FooterMenuItem>
             <FooterMenuItem>
-              <a href="#">Employee Portal</a>
+              <a href="#">Employee portal</a>
             </FooterMenuItem>
             <FooterMenuItem>
               <a href="#">Editor log in</a>
             </FooterMenuItem>
           </FooterMenu>
           <FooterMenu>
-            <FooterMenuTitle>Social Media</FooterMenuTitle>
+            <FooterMenuTitle>Follow on social media</FooterMenuTitle>
             <FooterMenuItem>
               <a href="#">PortlandORGov</a>
             </FooterMenuItem>
