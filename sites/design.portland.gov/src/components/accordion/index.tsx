@@ -21,9 +21,9 @@ export function AccordionButton({
 
   return (
     <Button
-      size="sm"
-      outline
-      className="ml-auto"
+      size="small"
+      variant="base"
+      className="ml-auto px-xs py-2xs"
       onClick={ctx.toggle}
       {...props}
     >
