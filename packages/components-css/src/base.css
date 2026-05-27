@@ -4,11 +4,6 @@
  */
 
 @import "tailwindcss";
- 
-/* Shared utility classes */
-@utility box-fixed-dark {
-  @apply bg-fixed-dark text-standard-fixed-light border-fixed-dark;
-}
- 
+
 /* Import design tokens theme */
 @reference "@cityofportland/design-tokens/tailwind/base.css" layer(theme);

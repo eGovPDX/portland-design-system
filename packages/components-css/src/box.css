@@ -6,6 +6,11 @@
 /* Tailwind moderate, components, and utilities */
 @import "./base.css";
 
+/* Shared utility classes */
+@utility box-fixed-dark {
+  @apply bg-fixed-dark text-standard-fixed-light;
+}
+
 @layer components {
   .box {
     /* Color scheme: default */
@@ -121,11 +126,8 @@
     }
 
     /* Color scheme: fixed-dark */
-    &.box--fixed-dark {
-      &.box--subtle,
-      &.box--moderate,
-      &.box--emphasis,
-      &.box--strong {
+    &.box--fixed {
+      &.box--dark {
         @apply box-fixed-dark;
       }
     }
