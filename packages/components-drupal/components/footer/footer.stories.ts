@@ -8,7 +8,7 @@ import type { Meta, StoryObj } from "@storybook/html-vite";
 import { library, icon } from "@fortawesome/fontawesome-svg-core";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-import _Box from "../box/box.component.yml";
+import Box from "../box/box.component.yml";
 import Button from "../button/button.component.yml";
 
 import Footer from "./footer.component.yml";
@@ -84,14 +84,23 @@ export const PortlandGov: Story = {
     return `
     <div class="min-h-screen flex flex-col">
       <style>${linkStyle}</style>
-      <main class="flex-1 p-xl">
-        <article class="max-w-screen-xl mx-auto">
-          <h1 class="text-heading-2xl font-bold mb-lg">Page content</h1>
-          <section>
-            <p>Here is some content for the page.</p>
-          </section>
-        </article>
-      </main>
+      ${Box.component({
+        defaultAttributes: [
+          ...Box.args.defaultAttributes,
+          ["class", ["flex-1", "p-xl"]],
+        ],
+        as: "main",
+        color: "default",
+        variant: "subtle",
+        box_content: `
+          <article class="max-w-screen-xl mx-auto">
+            <h1 class="text-heading-2xl font-bold mb-lg">Page content</h1>
+            <section>
+              <p>Here is some content for the page.</p>
+            </section>
+          </article>
+        `,
+      })}
       ${Footer.component({
         defaultAttributes: [...Footer.args.defaultAttributes],
         color: "default",
@@ -256,14 +265,23 @@ export const Minimal: Story = {
   },
   render: ({ color, variant, copyrightStart }) => `
     <div class="min-h-screen flex flex-col">
-      <main class="flex-1 p-xl">
-        <article class="max-w-screen-xl mx-auto">
-          <h1 class="text-heading-2xl font-bold mb-lg">Page content</h1>
-          <section>
-            <p>Here is some content for the page.</p>
-          </section>
-        </article>
-      </main>
+      ${Box.component({
+        defaultAttributes: [
+          ...Box.args.defaultAttributes,
+          ["class", ["flex-1", "p-xl"]],
+        ],
+        as: "main",
+        color: "default",
+        variant: "subtle",
+        box_content: `
+          <article class="max-w-screen-xl mx-auto">
+            <h1 class="text-heading-2xl font-bold mb-lg">Page content</h1>
+            <section>
+              <p>Here is some content for the page.</p>
+            </section>
+          </article>
+        `,
+      })}
       ${Footer.component({ defaultAttributes: [...Footer.args.defaultAttributes], copyrightStart, color, variant })}
     </div>`,
 };

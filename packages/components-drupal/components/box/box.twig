@@ -7,7 +7,7 @@
  * - as: HTML element to use (div, section, article, aside, main, header, footer, nav)
  * - color: Box color (default, primary, secondary, success, danger, warning, info, disabled)
  * - variant: Box visual style (subtle, moderate, emphasis, strong)
- * - content: Box content (slot)
+ * - box_content: Box content (slot)
  * - attributes: Additional HTML attributes
  */
 #}
@@ -16,12 +16,13 @@
 
 {# Set default values #}
 {% set element = as|default('div') %}
+{% set attributes = attributes|default(create_attribute()) %}
 
 {% set classes = ['box'] %}
 
 {# Size classes #}
 {% if color is defined %}
-  {% set color = {
+	{% set color = {
     'default': ['box--default'],
     'primary': ['box--primary'],
     'secondary': ['box--secondary'],
@@ -32,25 +33,25 @@
     'disabled': ['box--disabled'],
   }[color] %}
 
-  {% set classes = classes|merge(color) %}
+	{% set classes = classes|merge(color) %}
 {% endif %}
 
 {# Variant classes #}
 {% if variant is defined %}
-  {% set variant = {
+	{% set variant = {
     'subtle': ['box--subtle'],
     'moderate': ['box--moderate'],
     'emphasis': ['box--emphasis'],
     'strong': ['box--strong'],
   }[variant] %}
 
-  {% set classes = classes|merge(variant) %}
+	{% set classes = classes|merge(variant) %}
 {% endif %}
 
 <{{element}} {{attributes.addClass(classes)}}>
-  {% block box_content %}
-    {{ box_content }}
-  {% endblock %}
+	{% block box_content %}
+		{{ box_content }}
+	{% endblock %}
 </{{element}}>
 
 {% endapply %}

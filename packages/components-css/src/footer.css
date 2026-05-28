@@ -26,10 +26,6 @@
     .footer__copyright {
       @apply flex items-center gap-xs;
 
-      img {
-        @apply w-4xl;
-      }
-
       .footer__copyright-text {
         @apply flex flex-col md:flex-row md:items-center md:gap-xs;
 
