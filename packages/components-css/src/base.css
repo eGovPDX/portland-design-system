@@ -4,4 +4,6 @@
  */
 
 /* Import design tokens theme */
+@source not "stories/**/*.{ts,tsx}";
+
 @reference "@cityofportland/design-tokens/tailwind/base.css" layer(theme);
