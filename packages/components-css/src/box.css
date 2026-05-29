@@ -6,133 +6,230 @@
 /* Tailwind moderate, components, and utilities */
 @import "./base.css";
 
+@utility box-default-subtle {
+  @apply bg-standard-default-subtle text-standard-default-strong border-standard-default-subtle;
+}
+@utility box-default-moderate {
+  @apply bg-standard-default-moderate text-standard-default-strong border-standard-default-subtle;
+}
+@utility box-default-emphasis {
+  @apply bg-standard-default-emphasis text-standard-default-strong border-standard-default-emphasis;
+}
+@utility box-default-strong {
+  @apply bg-standard-default-strong text-standard-default-strong border-standard-default-emphasis;
+}
+@utility box-primary-subtle {
+  @apply bg-primary-subtle text-standard-default-strong border-primary-subtle;
+}
+@utility box-primary-moderate {
+  @apply bg-primary-moderate text-standard-inverse-subtle border-primary-subtle;
+}
+@utility box-primary-emphasis {
+  @apply bg-primary-emphasis text-standard-inverse-subtle border-primary-strong;
+}
+@utility box-primary-strong {
+  @apply bg-primary-strong text-standard-inverse-subtle border-primary-emphasis;
+}
+@utility box-secondary-subtle {
+  @apply bg-secondary-subtle text-standard-default-strong border-secondary-subtle;
+}
+@utility box-secondary-moderate {
+  @apply bg-secondary-moderate text-standard-default-strong border-secondary-subtle;
+}
+@utility box-secondary-emphasis {
+  @apply bg-secondary-emphasis text-standard-default-strong border-secondary-emphasis;
+}
+@utility box-secondary-strong {
+  @apply bg-secondary-strong text-standard-fixed-light border-secondary-emphasis;
+}
+@utility box-success-subtle {
+  @apply bg-success-subtle text-standard-default-strong border-success-subtle;
+}
+@utility box-success-moderate {
+  @apply bg-success-moderate text-standard-fixed-dark border-success-moderate;
+}
+@utility box-success-emphasis {
+  @apply bg-success-emphasis text-standard-fixed-dark border-success-emphasis;
+}
+@utility box-success-strong {
+  @apply bg-success-strong text-standard-inverse-subtle border-success-strong;
+}
+@utility box-danger-subtle {
+  @apply bg-danger-subtle text-standard-default-strong border-danger-subtle;
+}
+@utility box-danger-moderate {
+  @apply bg-danger-moderate text-standard-default-strong border-danger-moderate;
+}
+@utility box-danger-emphasis {
+  @apply bg-danger-emphasis text-standard-fixed-light border-danger-emphasis;
+}
+@utility box-danger-strong {
+  @apply bg-danger-strong text-standard-inverse-subtle border-danger-strong;
+}
+@utility box-warning-subtle {
+  @apply bg-warning-subtle text-standard-default-strong border-warning-moderate;
+}
+@utility box-warning-moderate {
+  @apply bg-warning-moderate text-standard-fixed-dark border-warning-moderate;
+}
+@utility box-warning-emphasis {
+  @apply bg-warning-emphasis text-standard-fixed-dark border-warning-emphasis;
+}
+@utility box-warning-strong {
+  @apply bg-warning-strong text-standard-inverse-subtle border-warning-strong;
+}
+@utility box-info-subtle {
+  @apply bg-info-subtle text-standard-default-strong border-info-subtle;
+}
+@utility box-info-moderate {
+  @apply bg-info-moderate text-standard-fixed-dark border-info-emphasis;
+}
+@utility box-info-emphasis {
+  @apply bg-info-emphasis text-standard-fixed-dark border-info-emphasis;
+}
+@utility box-info-strong {
+  @apply bg-info-strong text-standard-inverse-subtle border-info-moderate;
+}
+@utility box-disabled-subtle {
+  @apply bg-disabled-subtle text-disabled-strong border-disabled-subtle;
+}
+@utility box-disabled-moderate {
+  @apply bg-disabled-moderate text-disabled-strong border-disabled-moderate;
+}
+@utility box-disabled-emphasis {
+  @apply bg-disabled-emphasis text-disabled-strong border-disabled-emphasis;
+}
+@utility box-disabled-strong {
+  @apply bg-disabled-strong text-disabled-subtle border-disabled-emphasis;
+}
+
 @layer components {
   .box {
     /* Color scheme: default */
     &.box--default {
       &.box--subtle {
-        @apply bg-standard-default-subtle text-standard-default-strong border-standard-default-subtle;
+        @apply box-default-subtle;
       }
       &.box--moderate {
-        @apply bg-standard-default-moderate text-standard-default-strong border-standard-default-subtle;
+        @apply box-default-moderate;
       }
       &.box--emphasis {
-        @apply bg-standard-default-emphasis text-standard-default-strong border-standard-default-emphasis;
+        @apply box-default-emphasis;
       }
       &.box--strong {
-        @apply bg-standard-default-strong text-standard-default-strong border-standard-default-emphasis;
+        @apply box-default-strong;
       }
     }
 
     /* Color scheme: primary */
     &.box--primary {
       &.box--subtle {
-        @apply bg-primary-subtle text-standard-default-strong border-primary-subtle;
+        @apply box-primary-subtle;
       }
       &.box--moderate {
-        @apply bg-primary-moderate text-standard-inverse-subtle border-primary-subtle;
+        @apply box-primary-moderate;
       }
       &.box--emphasis {
-        @apply bg-primary-emphasis text-standard-inverse-subtle border-primary-strong;
+        @apply box-primary-emphasis;
       }
       &.box--strong {
-        @apply bg-primary-strong text-standard-inverse-subtle border-primary-emphasis;
+        @apply box-primary-strong;
       }
     }
 
     /* Color scheme: secondary */
     &.box--secondary {
       &.box--subtle {
-        @apply bg-secondary-subtle text-standard-default-strong border-secondary-subtle;
+        @apply box-secondary-subtle;
       }
       &.box--moderate {
-        @apply bg-secondary-moderate text-standard-default-strong border-secondary-subtle;
+        @apply box-secondary-moderate;
       }
       &.box--emphasis {
-        @apply bg-secondary-emphasis text-standard-default-strong border-secondary-emphasis;
+        @apply box-secondary-emphasis;
       }
       &.box--strong {
-        @apply bg-secondary-strong text-standard-default-strong border-secondary-emphasis;
+        @apply box-secondary-strong;
       }
     }
 
     /* Color scheme: success */
     &.box--success {
       &.box--subtle {
-        @apply bg-success-subtle text-standard-default-strong border-success-subtle;
+        @apply box-success-subtle;
       }
       &.box--moderate {
-        @apply bg-success-moderate text-standard-fixed-dark border-success-moderate;
+        @apply box-success-moderate;
       }
       &.box--emphasis {
-        @apply bg-success-emphasis text-standard-fixed-dark border-success-emphasis;
+        @apply box-success-emphasis;
       }
       &.box--strong {
-        @apply bg-success-strong text-standard-inverse-subtle border-success-strong;
+        @apply box-success-strong;
       }
     }
 
     /* Color scheme: danger */
     &.box--danger {
       &.box--subtle {
-        @apply bg-danger-subtle text-standard-default-strong border-danger-subtle;
+        @apply box-danger-subtle;
       }
       &.box--moderate {
-        @apply bg-danger-moderate text-standard-default-strong border-danger-moderate;
+        @apply box-danger-moderate;
       }
       &.box--emphasis {
-        @apply bg-danger-emphasis text-standard-fixed-light border-danger-emphasis;
+        @apply box-danger-emphasis;
       }
       &.box--strong {
-        @apply bg-danger-strong text-standard-inverse-subtle border-danger-strong;
+        @apply box-danger-strong;
       }
     }
 
     /* Color scheme: warning */
     &.box--warning {
       &.box--subtle {
-        @apply bg-warning-subtle text-standard-default-strong border-warning-moderate;
+        @apply box-warning-subtle;
       }
       &.box--moderate {
-        @apply bg-warning-moderate text-standard-fixed-dark border-warning-moderate;
+        @apply box-warning-moderate;
       }
       &.box--emphasis {
-        @apply bg-warning-emphasis text-standard-fixed-dark border-warning-emphasis;
+        @apply box-warning-emphasis;
       }
       &.box--strong {
-        @apply bg-warning-strong text-standard-inverse-subtle border-warning-strong;
+        @apply box-warning-strong;
       }
     }
 
     /* Color scheme: info */
     &.box--info {
       &.box--subtle {
-        @apply bg-info-subtle text-standard-default-strong border-info-subtle;
+        @apply box-info-subtle;
       }
       &.box--moderate {
-        @apply bg-info-moderate text-standard-fixed-dark border-info-emphasis;
+        @apply box-info-moderate;
       }
       &.box--emphasis {
-        @apply bg-info-emphasis text-standard-fixed-dark border-info-emphasis;
+        @apply box-info-emphasis;
       }
       &.box--strong {
-        @apply bg-info-strong text-standard-inverse-subtle border-info-moderate;
+        @apply box-info-strong;
       }
     }
 
     /* Color scheme: disabled */
     &.box--disabled {
       &.box--subtle {
-        @apply bg-disabled-subtle text-disabled-strong border-disabled-subtle;
+        @apply box-disabled-subtle;
       }
       &.box--moderate {
-        @apply bg-disabled-moderate text-disabled-strong border-disabled-moderate;
+        @apply box-disabled-moderate;
       }
       &.box--emphasis {
-        @apply bg-disabled-emphasis text-disabled-strong border-disabled-emphasis;
+        @apply box-disabled-emphasis;
       }
       &.box--strong {
-        @apply bg-disabled-strong text-disabled-subtle border-disabled-emphasis;
+        @apply box-disabled-strong;
       }
     }
   }
