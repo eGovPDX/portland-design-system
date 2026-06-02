@@ -1,0 +1,35 @@
+{
+  "name": "@cityofportland/actions",
+  "private": true,
+  "version": "1.0.0-alpha.0",
+  "description": "Common classes and utilities used throughout the monorepo",
+  "type": "module",
+  "scripts": {
+    "build": "tsdown",
+    "dev": "pnpm build -w",
+    "lint": "eslint ./src/**/*.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eGovPDX/portland-design-system.git"
+  },
+  "author": "Mike McDonald <michael.mcdonald@portlandoregon.gov>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eGovPDX/portland-design-system/issues"
+  },
+  "homepage": "https://github.com/eGovPDX/portland-design-system#readme",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^9.1.1",
+    "js-yaml": "^4.1.1",
+    "lodash": "^4.18.1"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/lodash": "^4.17.24",
+    "@types/node": "^24.12.4",
+    "tsdown": "^0.22.0",
+    "typescript": "^5.9.3"
+  }
+}

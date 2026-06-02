@@ -1,0 +1,25 @@
+on:
+  push:
+
+jobs:
+  save-all:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./packages/actions/setup-build
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: turbo build
+
+      - name: Save dist folders as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist-folders
+          path: |
+            packages/**/dist
+            sites/**/dist
+            !**/node_modules/**

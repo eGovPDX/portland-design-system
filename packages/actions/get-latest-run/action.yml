@@ -1,0 +1,60 @@
+name: Get Latest Workflow Run
+description: Find the latest workflow run for a workflow ID with optional filters
+
+inputs:
+  github-token:
+    description: The GitHub token used to create an authenticated client
+    default: ${{ github.token }}
+    required: false
+  workflow_id:
+    description: Workflow file name, workflow name, or workflow ID to query
+    required: true
+
+  actor:
+    description: Filter runs by actor username
+    required: false
+  branch:
+    description: Filter runs by branch
+    required: false
+  conclusion:
+    description: Filter completed runs by conclusion (for example success)
+    required: false
+  event:
+    description: Filter runs by event type (for example push or pull_request)
+    required: false
+  head_sha:
+    description: Filter runs by HEAD commit SHA
+    required: false
+  owner:
+    description: Repository owner (defaults to current repository owner)
+    required: false
+  repo:
+    description: Repository name (defaults to current repository name)
+    required: false
+  status:
+    description: Filter runs by status (queued, in_progress, completed)
+    required: false
+
+outputs:
+  run_id:
+    description: ID of the latest matching run
+    value: ${{ steps.find.outputs.run_id }}
+  run_number:
+    description: Run number of the latest matching run
+    value: ${{ steps.find.outputs.run_number }}
+  run_attempt:
+    description: Run attempt of the latest matching run
+    value: ${{ steps.find.outputs.run_attempt }}
+  run_url:
+    description: HTML URL of the latest matching run
+    value: ${{ steps.find.outputs.run_url }}
+  head_sha:
+    description: HEAD SHA of the latest matching run
+    value: ${{ steps.find.outputs.head_sha }}
+  conclusion:
+    description: Conclusion of the latest matching run
+    value: ${{ steps.find.outputs.conclusion }}
+
+runs:
+  using: node24
+  main: ./action.mjs
