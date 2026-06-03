@@ -86,6 +86,29 @@ export const Box: BoxComponent = ({
 }) => {
   const Element = as || "div";
 
+  // Validate color and variant combinations
+  if (color === "fixed") {
+    if (variant !== "light" && variant !== "dark") {
+      console.error(
+        "[Box component] The 'fixed' color scheme can only be used with the 'light' and 'dark' variants. Please choose an appropriate variant for your Box component."
+      );
+
+      // Unset color and variant if an invalid combination is provided
+      variant = undefined;
+      color = undefined;
+    }
+  } else {
+    if (variant === "light" || variant === "dark") {
+      console.error(
+        "[Box component] The 'light' and 'dark' variants can only be used with the 'fixed' color scheme. Please choose an appropriate variant for your Box component."
+      );
+
+      // Unset color and variant if an invalid combination is provided
+      variant = undefined;
+      color = undefined;
+    }
+  }
+
   const classList = buildClassList({
     className,
     color,

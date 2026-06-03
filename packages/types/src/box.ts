@@ -16,6 +16,7 @@ export const BOX_COLORS = [
   "warning",
   "info",
   "disabled",
+  "fixed",
 ] as const;
 
 export type BoxColorScheme = (typeof BOX_COLORS)[number];
@@ -28,6 +29,8 @@ export const BOX_VARIANTS = [
   "moderate",
   "emphasis",
   "strong",
+  "light",
+  "dark",
 ] as const;
 
 export type BoxColorVariation = (typeof BOX_VARIANTS)[number];
