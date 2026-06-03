@@ -13,6 +13,7 @@ export interface ReactTagProps extends TagProps {
 export const Tag: React.FC<ReactTagProps> = ({
   variant = "info",
   children = null,
+  className = null,
   ...props
 }) => {
   function classes() {
@@ -20,9 +21,8 @@ export const Tag: React.FC<ReactTagProps> = ({
 
     classes.push(`tag--${variant}`);
 
-    if (props.className) {
-      classes.push(props.className);
-      delete props.className;
+    if (className) {
+      classes.push(className);
     }
 
     return classes;

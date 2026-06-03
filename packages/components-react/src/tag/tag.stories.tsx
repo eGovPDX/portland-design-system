@@ -61,24 +61,27 @@ export const Gallery: Story = {
 export const Page_Example: Story = {
   parameters: {
     controls: { exclude: ["variant", "children", "className"] },
+    layout: "fullscreen",
   },
   render: ({}) => (
     <>
-      <h1 className="heading-2xl">Space: the final frontier</h1>
-      <div className="my-sm">
-        <Tag variant="info">News article</Tag>
-        <Tag variant="danger">Unpublished</Tag>
-      </div>
-      <img
-        className="md:max-w-[40em]"
-        src="https://images.unsplash.com/photo-1777195680778-f89d025251ac?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="Earth rising over the moon's surface"
-      />
-      <p className="body-md my-sm max-w-[55em]">
-        We choose to go to the moon. We choose to go to the moon in this decade
-        and do the other things, not because they are easy, but because they are
-        hard.
-      </p>
+      <article className="p-xl">
+        <h1 className="heading-2xl">Space: the final frontier</h1>
+        <div className="my-sm flex flex-wrap gap-xs">
+          <Tag variant="info">News article</Tag>
+          <Tag variant="danger">Unpublished</Tag>
+        </div>
+        <img
+          className="md:max-w-[40em]"
+          src="https://images.unsplash.com/photo-1777195680778-f89d025251ac?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Earth rising over the moon's surface"
+        />
+        <p className="body-md my-sm max-w-[55em]">
+          We choose to go to the moon. We choose to go to the moon in this
+          decade and do the other things, not because they are easy, but because
+          they are hard.
+        </p>
+      </article>
     </>
   ),
 };
