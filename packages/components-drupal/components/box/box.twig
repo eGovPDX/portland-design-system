@@ -19,38 +19,45 @@
 
 {% set classes = ['box'] %}
 
+{# Validate color and variant combinations #}
+{% if color == "fixed" %}
+	{% if variant != "light" and variant != "dark" %}
+		<script>
+			console.error("[Box component] The 'fixed' color scheme can only be used with the 'light' and 'dark' variants. Please choose an appropriate variant for your Box component.");
+		</script>
+
+		{% set variant = undefined %}
+		{% set color = undefined %}
+	{% endif %}
+{% else %}
+	{% if variant == "light" or variant == "dark" %}
+		<script>
+			console.error("[Box component] The 'light' and 'dark' variants can only be used with the 'fixed' color scheme. Please choose an appropriate variant for your Box component.");
+		</script>
+
+		{% set variant = undefined %}
+		{% set color = undefined %}
+	{% endif %}
+{% endif %}
+
 {# Size classes #}
 {% if color is defined %}
-  {% set color = {
-    'default': ['box--default'],
-    'primary': ['box--primary'],
-    'secondary': ['box--secondary'],
-    'success': ['box--success'],
-    'danger': ['box--danger'],
-    'warning': ['box--warning'],
-    'info': ['box--info'],
-    'disabled': ['box--disabled'],
-  }[color] %}
+	{% set color = ["box--" ~ color] %}
 
-  {% set classes = classes|merge(color) %}
+	{% set classes = classes|merge(color) %}
 {% endif %}
 
 {# Variant classes #}
 {% if variant is defined %}
-  {% set variant = {
-    'subtle': ['box--subtle'],
-    'moderate': ['box--moderate'],
-    'emphasis': ['box--emphasis'],
-    'strong': ['box--strong'],
-  }[variant] %}
+	{% set variant = ["box--" ~ variant] %}
 
-  {% set classes = classes|merge(variant) %}
+	{% set classes = classes|merge(variant) %}
 {% endif %}
 
 <{{element}} {{attributes.addClass(classes)}}>
-  {% block box_content %}
-    {{ box_content }}
-  {% endblock %}
+	{% block box_content %}
+		{{ box_content }}
+	{% endblock %}
 </{{element}}>
 
 {% endapply %}

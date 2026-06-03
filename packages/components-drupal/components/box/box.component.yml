@@ -29,6 +29,7 @@ props:
         - warning
         - info
         - disabled
+        - fixed
       examples:
         - default
 
@@ -41,6 +42,8 @@ props:
         - moderate
         - emphasis
         - strong
+        - light
+        - dark
       examples:
         - moderate
 
