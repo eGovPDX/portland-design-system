@@ -339,6 +339,9 @@ importers:
       '@cityofportland/types':
         specifier: workspace:*
         version: link:../types
+      '@fortawesome/fontawesome-svg-core':
+        specifier: ^7.1.0
+        version: 7.1.0
       '@fortawesome/free-solid-svg-icons':
         specifier: ^7.1.0
         version: 7.1.0
