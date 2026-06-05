@@ -102,6 +102,14 @@
 @utility box-disabled-strong {
   @apply bg-disabled-strong text-disabled-subtle border-disabled-emphasis;
 }
+@utility box-fixed-light {
+  @apply bg-fixed-light text-standard-default-strong border-fixed-light;
+  @apply text-standard-fixed-dark;
+}
+@utility box-fixed-dark {
+  @apply bg-fixed-dark text-standard-default-strong border-fixed-dark;
+  @apply text-standard-fixed-light;
+}
 
 @layer components {
   .box {
@@ -230,6 +238,16 @@
       }
       &.box--strong {
         @apply box-disabled-strong;
+      }
+    }
+
+    /* Color scheme: fixed */
+    &.box--fixed {
+      &.box--light {
+        @apply box-fixed-light;
+      }
+      &.box--dark {
+        @apply box-fixed-dark;
       }
     }
   }
