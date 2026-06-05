@@ -18,22 +18,19 @@
 {% set element = as|default('div') %}
 
 {% set classes = ['box'] %}
+{% set errors = [] %}
 
 {# Validate color and variant combinations #}
 {% if color == "fixed" %}
 	{% if variant != "light" and variant != "dark" %}
-		<script>
-			console.error("[Box component] The 'fixed' color scheme can only be used with the 'light' and 'dark' variants. Please choose an appropriate variant for your Box component.");
-		</script>
-
+		{% set errors = errors|merge(['invalid-fixed-variant']) %}
+		
 		{% set variant = undefined %}
 		{% set color = undefined %}
 	{% endif %}
 {% else %}
 	{% if variant == "light" or variant == "dark" %}
-		<script>
-			console.error("[Box component] The 'light' and 'dark' variants can only be used with the 'fixed' color scheme. Please choose an appropriate variant for your Box component.");
-		</script>
+		{% set errors = errors|merge(['invalid-color-variant']) %}
 
 		{% set variant = undefined %}
 		{% set color = undefined %}
@@ -54,7 +51,7 @@
 	{% set classes = classes|merge(variant) %}
 {% endif %}
 
-<{{element}} {{attributes.addClass(classes)}}>
+<{{element}} {{ attributes.addClass(classes).setAttribute("data-errors", errors) }}>
 	{% block box_content %}
 		{{ box_content }}
 	{% endblock %}
