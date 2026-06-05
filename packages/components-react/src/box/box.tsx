@@ -1,4 +1,6 @@
 import type { BoxProps } from "@cityofportland/types/box";
+import { BOX_ERRORS } from "@cityofportland/types/box";
+
 import React from "react";
 
 import { mergeClasses } from "../utils";
@@ -89,9 +91,7 @@ export const Box: BoxComponent = ({
   // Validate color and variant combinations
   if (color === "fixed") {
     if (variant !== "light" && variant !== "dark") {
-      console.error(
-        "[Box component] The 'fixed' color scheme can only be used with the 'light' and 'dark' variants. Please choose an appropriate variant for your Box component."
-      );
+      console.error(BOX_ERRORS["invalid-fixed-variant"]);
 
       // Unset color and variant if an invalid combination is provided
       variant = undefined;
@@ -99,9 +99,7 @@ export const Box: BoxComponent = ({
     }
   } else {
     if (variant === "light" || variant === "dark") {
-      console.error(
-        "[Box component] The 'light' and 'dark' variants can only be used with the 'fixed' color scheme. Please choose an appropriate variant for your Box component."
-      );
+      console.error(BOX_ERRORS["invalid-color-variant"]);
 
       // Unset color and variant if an invalid combination is provided
       variant = undefined;
