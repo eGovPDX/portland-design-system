@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Template for Portland Tag component.
+ *
+ * Available variables:
+ * - variant: Tag visual style (info [default], success, warning, danger)
+ * - content: Tag content (slot)
+ * - attributes: Additional HTML attributes
+ */
+#}
+
+{% apply spaceless %}
+
+{# Set default values #}
+{% set variant = variant|default('info') %}
+
+{# Variant classes #}
+{% set variant_classes = {
+  'info': ['tag--info'],
+  'success': ['tag--success'],
+  'warning': ['tag--warning'],
+  'danger': ['tag--danger'],
+}[variant] %}
+
+{# Combine all classes #}
+{% set classes = ['tag']|merge(variant_classes) %}
+
+{% endapply %}
+<span {{attributes.addClass(classes)}}>
+	{% block content %}
+		{{ content }}
+	{% endblock %}
+</span>
