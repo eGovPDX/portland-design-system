@@ -9,5 +9,5 @@
 
 body {
   @apply font-sans;
-  @apply bg-standard-default-subtle;
+  @apply bg-standard-default-subtle text-standard-default-strong;
 }
