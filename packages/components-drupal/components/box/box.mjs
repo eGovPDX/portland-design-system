@@ -1,5 +1,5 @@
 import once from "@drupal/once";
-import { BOX_ERRORS } from "@cityofportland/types/box";
+import { validateBoxConfiguration } from "@cityofportland/types/box";
 
 (({ behaviors }) => {
   behaviors["@cityofportland/components-drupal/box"] = {
@@ -8,11 +8,16 @@ import { BOX_ERRORS } from "@cityofportland/types/box";
         "@cityofportland/components-drupal/box",
         context.querySelectorAll(".box")
       ).forEach((box) => {
-        box.attributes["data-errors"]?.value.split(" ").forEach((error) => {
-          console.error(
-            `${BOX_ERRORS[error] || `An unknown error (${error}) occurred with the Box component.`}`
-          );
-        });
+        const [color, variant] = validateBoxConfiguration(
+          box.dataset.color,
+          box.dataset.variant
+        );
+
+        // if anything is undefined, remove the set classes on the element
+        if (color === undefined)
+          box.classList.remove(`box--${box.dataset.color}`);
+        if (variant === undefined)
+          box.classList.remove(`box--${box.dataset.variant}`);
       });
     },
   };

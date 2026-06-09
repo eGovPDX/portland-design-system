@@ -1,5 +1,5 @@
 import type { BoxProps } from "@cityofportland/types/box";
-import { BOX_ERRORS } from "@cityofportland/types/box";
+import { validateBoxConfiguration } from "@cityofportland/types/box";
 
 import React from "react";
 
@@ -88,24 +88,7 @@ export const Box: BoxComponent = ({
 }) => {
   const Element = as || "div";
 
-  // Validate color and variant combinations
-  if (color === "fixed") {
-    if (variant !== "light" && variant !== "dark") {
-      console.error(BOX_ERRORS["invalid-fixed-variant"]);
-
-      // Unset color and variant if an invalid combination is provided
-      variant = undefined;
-      color = undefined;
-    }
-  } else {
-    if (variant === "light" || variant === "dark") {
-      console.error(BOX_ERRORS["invalid-color-variant"]);
-
-      // Unset color and variant if an invalid combination is provided
-      variant = undefined;
-      color = undefined;
-    }
-  }
+  [color, variant] = validateBoxConfiguration(color, variant);
 
   const classList = buildClassList({
     className,

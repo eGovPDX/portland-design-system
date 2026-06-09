@@ -18,43 +18,21 @@
 {% set element = as|default('div') %}
 
 {% set classes = ['box'] %}
-{% set errors = [] %}
 
-{# Validate color and variant combinations #}
-{% if color == "fixed" %}
-	{% if variant != "light" and variant != "dark" %}
-		{% set errors = errors|merge(['invalid-fixed-variant']) %}
-		
-		{% set variant = undefined %}
-		{% set color = undefined %}
-	{% endif %}
-{% else %}
-	{% if variant == "light" or variant == "dark" %}
-		{% set errors = errors|merge(['invalid-color-variant']) %}
-
-		{% set variant = undefined %}
-		{% set color = undefined %}
-	{% endif %}
-{% endif %}
-
-{# Size classes #}
 {% if color is defined %}
-	{% set color = ["box--" ~ color] %}
-
-	{% set classes = classes|merge(color) %}
+  {% set attributes = attributes.setAttribute("data-color", color) %}
+  {% set classes = classes|merge(["box--" ~ color]) %}
 {% endif %}
 
-{# Variant classes #}
 {% if variant is defined %}
-	{% set variant = ["box--" ~ variant] %}
-
-	{% set classes = classes|merge(variant) %}
+  {% set attributes = attributes.setAttribute("data-variant", variant) %}
+  {% set classes = classes|merge(["box--" ~ variant]) %}
 {% endif %}
 
-<{{element}} {{ attributes.addClass(classes).setAttribute("data-errors", errors) }}>
-	{% block box_content %}
-		{{ box_content }}
-	{% endblock %}
+<{{element}} {{ attributes.addClass(classes) }}>
+  {% block box_content %}
+    {{ box_content }}
+  {% endblock %}
 </{{element}}>
 
 {% endapply %}
