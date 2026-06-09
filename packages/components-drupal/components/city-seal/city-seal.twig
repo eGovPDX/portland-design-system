@@ -13,6 +13,7 @@
 
 {# Set default values #}
 {% set size = size|default('lg') %}
+{% set attributes = attributes|default(create_attribute()) %}
 
 {# size classes #}
 {% set size_classes = [] %}

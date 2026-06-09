@@ -24,6 +24,7 @@
 {% set size = size|default('default') %}
 {% set type = type|default('button') %}
 {% set disabled = disabled|default(false) %}
+{% set attributes = attributes|default(create_attribute()) %}
 
 {# Variant classes #}
 {% set variant_classes = [] %}
@@ -51,7 +52,6 @@
 {% set classes = ['button']|merge(variant_classes)|merge(size_classes) %}
 
 {# Process attributes #}
-{% set attributes = attributes|default({}) %}
 {% if attributes.class is defined %}
   {% set additional_classes = attributes.class %}
 {% else %}
