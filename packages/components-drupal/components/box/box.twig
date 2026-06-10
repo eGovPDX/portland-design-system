@@ -30,6 +30,14 @@
   {% set classes = classes|merge(["box--" ~ variant]) %}
 {% endif %}
 
+{# Put attribute classes at the end of the class list #}
+{% if attributes.get('class') is defined and attributes.get('class') is not empty %}
+  {# Hack to clone the attribute classes object #}
+  {% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
+  {% set attributes = attributes.removeClass(attribute_classes) %}
+  {% set classes = classes|merge(attribute_classes) %}
+{% endif %}
+
 <{{element}} {{ attributes.addClass(classes) }}>
   {% block box_content %}
     {{ box_content }}

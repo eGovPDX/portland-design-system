@@ -34,18 +34,6 @@ export const BOX_VARIANTS = [
 
 export type BoxColorVariation = (typeof BOX_VARIANTS)[number];
 
-/**
- * Error messages for invalid prop combinations in the Box component
- */
-export const BOX_ERRORS = {
-  "invalid-color-variant":
-    "[Box component] The 'light' and 'dark' variants can only be used with the 'fixed' color scheme. Please choose an appropriate variant for the Box component.",
-  "invalid-fixed-variant":
-    "[Box component] The 'fixed' color scheme can only be used with the 'light' and 'dark' variants. Please choose an appropriate variant for the Box component.",
-} as const;
-
-export type BoxError = (typeof BOX_ERRORS)[keyof typeof BOX_ERRORS];
-
 const STANDARD_BOX_VARIANTS: Array<BoxColorVariation> = [
   "subtle",
   "moderate",
@@ -80,12 +68,14 @@ export const validateBoxConfiguration = (
   }
 
   if (!BOX_VALID_CONFIGURATIONS.has(color)) {
-    console.error(`"${color}" is not a valid box color.`);
+    console.error(`[Box component] '${color}' is not a valid box color.`);
     return [undefined, undefined];
   }
 
   if (!BOX_VALID_CONFIGURATIONS.get(color)?.includes(variant)) {
-    console.error(`"${variant}" is not a valid variant for color "${color}".`);
+    console.error(
+      `[Box component] '${variant}' is not a valid variant for color '${color}'.`
+    );
     return [undefined, undefined];
   }
 
