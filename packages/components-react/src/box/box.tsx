@@ -49,9 +49,9 @@ function buildClassList({
 }: Partial<ReactBoxProps>): string {
   return mergeClasses(
     "box",
-    className,
     color ? `box--${color}` : "",
-    variant ? `box--${variant}` : ""
+    variant ? `box--${variant}` : "",
+    className
   );
 }
 
