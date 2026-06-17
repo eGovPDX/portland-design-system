@@ -103,12 +103,10 @@
   @apply bg-disabled-strong text-disabled-subtle border-disabled-emphasis;
 }
 @utility box-fixed-light {
-  @apply bg-fixed-light text-standard-default-strong border-fixed-light;
-  @apply text-standard-fixed-dark;
+  @apply bg-fixed-light text-standard-fixed-dark border-fixed-light;
 }
 @utility box-fixed-dark {
-  @apply bg-fixed-dark text-standard-default-strong border-fixed-dark;
-  @apply text-standard-fixed-light;
+  @apply bg-fixed-dark text-standard-fixed-light border-fixed-dark;
 }
 
 @layer components {
