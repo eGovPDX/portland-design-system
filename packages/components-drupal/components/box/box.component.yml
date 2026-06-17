@@ -29,6 +29,7 @@ props:
         - warning
         - info
         - disabled
+        - fixed
       examples:
         - default
 
@@ -41,6 +42,8 @@ props:
         - moderate
         - emphasis
         - strong
+        - light
+        - dark
       examples:
         - moderate
 
@@ -66,3 +69,9 @@ slots:
   box_content:
     title: Content
     description: The main content/text of the box.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+  js:
+    box.js: { attributes: { type: "module" } }
