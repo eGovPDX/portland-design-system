@@ -3,11 +3,11 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["prebuild", "^build"],
       "outputs": ["dist/**"]
     },
     "build:dev": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["prebuild", "^build"],
       "outputs": ["dist/**"]
     },
     "dev": {
@@ -24,7 +24,7 @@
       "cache": false
     },
     "storybook:build": {
-      "dependsOn": ["^build:dev", "build:dev"],
+      "dependsOn": ["build:dev"],
       "outputs": ["storybook-static/**"]
     }
   }

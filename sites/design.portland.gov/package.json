@@ -9,8 +9,7 @@
     "build": "astro build",
     "clean": "rm -rf dist/",
     "dev": "astro dev --host",
-    "preview": "astro preview",
-    "storybook:build": "echo \"All dependent storybooks built!\" && exit 0"
+    "preview": "astro preview"
   },
   "keywords": [],
   "author": "",
