@@ -9,10 +9,8 @@
 export const BUTTON_VARIANTS = [
   "primary",
   "secondary",
-  "base",
-  "outline",
-  "outline-inverse",
-  "unstyled",
+  "danger",
+  "inverse",
 ] as const;
 
 export type ButtonVariant = (typeof BUTTON_VARIANTS)[number];
@@ -46,6 +44,12 @@ export interface ButtonProps {
    * @default "default"
    */
   size?: ButtonSize;
+
+  /**
+   * Whether the button should have an outline style
+   * @default false
+   */
+  outline?: boolean;
 
   /**
    * Whether the button is disabled
