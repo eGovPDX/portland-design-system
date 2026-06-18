@@ -8,6 +8,7 @@ export default defineConfig({
   platform: "node",
   clean: true,
   splitting: true,
+  dts: true,
   sourcemap: true,
   bundle: true,
   external: ["prettier", "style-dictionary"],
