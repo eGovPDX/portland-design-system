@@ -31,14 +31,28 @@ For local development of a specific job, run `act -j <job> <event>`.
 For example, `act -j save-dist-folders push` will run the `save-dist-folders`
 job triggered with a `push` event.
 
-### Testing with artifacts
+### Overriding event variables
+
+You can create a JSON event file to simulate certain event/context variables
+(e.g. a push to the `main` branch ref). Creating an `event.json` file at the
+root of the repo will be ignored by git.
+
+**event.json**
+
+```json
+{
+  "ref": "refs/heads/main"
+}
+```
+
+Use an event file like so: `act -e event.json <...>`
+
+### Artifacts
 
 If you are using the `actions/upload-artifact` or `actions/download-artifact`
-action(s), you must enable act's artifact server by adding the following
-argument to the command:
+action(s), artifacts will be saved in the `.artifacts` folder at the top-level
+of the repo so you can test the full workflow of your action. This folder is
+added to the gitignore and will not be checked in to git.
 
-`act --artifact-server-path $PWD/.artifacts`
-
-This will save all artifacts in the `.artifacts` folder at the top-level of the
-repo so you can test the full workflow of your action. This folder is added to
-the gitignore and will not be checked in to git.
+This is controlled by the option in `.actrc`:
+`--artifact-server-path $PWD/.artifacts`

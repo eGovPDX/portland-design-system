@@ -6,3 +6,4 @@ dist/
 node_modules/
 storybook-static/
 .DS_Store
+/event.json
