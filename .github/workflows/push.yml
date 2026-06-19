@@ -2,8 +2,9 @@ on:
   push:
 
 jobs:
-  save-all:
+  save-dist-folders:
     runs-on: ubuntu-latest
+    if: github.ref_name == 'main'
     steps:
       - uses: actions/checkout@v6
 
@@ -16,10 +17,32 @@ jobs:
         run: turbo build
 
       - name: Save dist folders as artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v5
         with:
           name: dist-folders
           path: |
             packages/**/dist
             sites/**/dist
+            !**/node_modules/**
+
+  save-storybook-builds:
+    runs-on: ubuntu-latest
+    if: github.ref_name == 'main'
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./packages/actions/setup-build
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build storybooks
+        run: turbo storybook:build
+
+      - name: Save storybook builds as artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: storybook-builds
+          path: |
+            packages/**/storybook-static
             !**/node_modules/**

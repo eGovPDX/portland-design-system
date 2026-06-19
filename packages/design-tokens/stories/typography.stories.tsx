@@ -2,7 +2,6 @@ import base from "../dist/json/base.json";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import "react";
-import "@cityofportland/components-css/main.css";
 
 const meta: Meta = {
   title: "Design/Typography",
@@ -109,26 +108,6 @@ export const Sizes: Story = {
               </h2>
               <TEXT style={{ fontSize: value }} />
             </div>
-          ))}
-        </div>
-      </div>
-    );
-  },
-};
-
-export const Utility_Classes: Story = {
-  parameters: {
-    layout: "fullscreen",
-  },
-  render: () => {
-    return (
-      <div className="flex flex-col gap-sm p-xl">
-        <h2 className="heading-lg">Utility Heading Classes</h2>
-        <div className="flex flex-col gap-sm">
-          {Object.entries(base["font-size"].heading).map(([key, value]) => (
-            <h2 key={key} className={`heading-${key}`}>
-              City of Portland | <code>heading-{key}</code>
-            </h2>
           ))}
         </div>
       </div>
