@@ -24,6 +24,7 @@ jobs:
             packages/**/dist
             sites/**/dist
             !**/node_modules/**
+
   save-storybook-builds:
     runs-on: ubuntu-latest
     if: github.ref_name == 'main'
@@ -35,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build packages
+      - name: Build storybooks
         run: turbo storybook:build
 
       - name: Save storybook builds as artifact
