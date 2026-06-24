@@ -38,22 +38,16 @@ inputs:
 outputs:
   run_id:
     description: ID of the latest matching run
-    value: ${{ steps.find.outputs.run_id }}
   run_number:
     description: Run number of the latest matching run
-    value: ${{ steps.find.outputs.run_number }}
   run_attempt:
     description: Run attempt of the latest matching run
-    value: ${{ steps.find.outputs.run_attempt }}
   run_url:
     description: HTML URL of the latest matching run
-    value: ${{ steps.find.outputs.run_url }}
   head_sha:
     description: HEAD SHA of the latest matching run
-    value: ${{ steps.find.outputs.head_sha }}
   conclusion:
     description: Conclusion of the latest matching run
-    value: ${{ steps.find.outputs.conclusion }}
 
 runs:
   using: node24
