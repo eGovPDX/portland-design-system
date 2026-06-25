@@ -22,7 +22,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           workflow_id: push.yml
-          head_sha: ${{ github.event.release.target_commitish }}
+          head_sha: ${{ github.sha }}
 
       - uses: actions/download-artifact@v5
         with:
