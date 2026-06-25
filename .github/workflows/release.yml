@@ -1,0 +1,35 @@
+on:
+  release:
+
+jobs:
+  publish-packages:
+    if: ${{ github.event.action == 'published' && !github.event.release.draft }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./packages/actions/setup-build
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: turbo build
+        working-directory: packages/actions
+
+      - id: get-latest-run
+        uses: ./packages/actions/get-latest-run
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          workflow_id: push.yml
+          head_sha: ${{ github.sha }}
+
+      - uses: actions/download-artifact@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          name: dist-folders
+          run-id: ${{ steps.get-latest-run.outputs.run_id }}
+
+      - env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm publish --recursive --access public --no-git-checks
