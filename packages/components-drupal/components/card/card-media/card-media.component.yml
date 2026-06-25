@@ -1,0 +1,72 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Card Media
+
+status: experimental
+
+# Schema for the props. We support www.json-schema.org. Learn more about the
+# syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your
+  # component template.
+  type: object
+
+  properties:
+    src:
+      type: string
+      title: Source
+      description: The source URL of the media
+      default: ""
+      examples:
+        - "path/to/image.jpg"
+
+    alt:
+      type: string
+      title: Alternative Text
+      description: The alternative text for the media
+      default: ""
+      examples:
+        - "A beautiful landscape"
+
+    inset:
+      type: boolean
+      title: Inset
+      description: Whether the media is inset for vertical cards
+      default: false
+      examples:
+        - false
+        - true
+
+    position:
+      type: string
+      title: Position
+      description: The position of the media for horizontal cards
+      default: left
+      enum:
+        - left
+        - right
+      examples:
+        - left
+
+    attributes:
+      type: object
+      title: Additional Attributes
+      description: Additional HTML attributes to add to the card media element
+      properties:
+        class:
+          type: string
+          title: CSS Classes
+          description: Additional CSS classes for the card media
+        id:
+          type: string
+          title: Element ID
+          description: HTML ID attribute for the card media
+        data-*:
+          type: string
+          title: Data Attributes
+          description: Custom data attributes
+
+slots:
+  img:
+    title: Image
