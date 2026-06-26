@@ -1,0 +1,68 @@
+/**
+ * Alert component styles
+ * Uses Tailwind utilities and design tokens for consistent styling
+ */
+
+/* Tailwind base, components, and utilities */
+@import "./base.css";
+@reference "./utilities.css";
+
+@layer components {
+  .alert {
+    @apply flex items-start gap-md;
+    @apply p-md;
+  }
+
+  .alert--slim {
+    @apply gap-sm;
+    @apply px-md py-xs;
+  }
+
+  .alert__icon {
+    @apply mt-2xs;
+    @apply text-[32px];
+
+    .alert--slim & {
+      @apply mt-3xs;
+      @apply text-[20px];
+    }
+  }
+
+  .alert__content {
+    @apply grow;
+  }
+
+  .alert__heading {
+    @apply heading-md my-none;
+  }
+
+  .alert__text {
+    @apply body-md;
+
+    p + p {
+      @apply mt-sm;
+    }
+
+    /* REFACTOR: Use link utility classes */
+    & a {
+      &:link {
+        @apply underline;
+        text-underline-offset: 5px;
+        text-decoration-thickness: 2px;
+      }
+      &:hover {
+        text-decoration-thickness: 3px;
+      }
+    }
+  }
+
+  .alert__close {
+    @apply text-[18px];
+    @apply leading-none;
+    @apply cursor-pointer;
+
+    .alert--slim & {
+      @apply leading-body-md;
+    }
+  }
+}
