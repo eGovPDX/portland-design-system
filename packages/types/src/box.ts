@@ -8,6 +8,7 @@
  */
 export const BOX_COLORS = [
   "default",
+  "inverse",
   "primary",
   "secondary",
   "success",
