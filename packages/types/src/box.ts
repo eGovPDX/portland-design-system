@@ -64,6 +64,10 @@ export const validateBoxConfiguration = (
     [color, variant];
 
   if (!color || !variant) {
+    if (!color)
+      console.error(`[Box component] Required 'color' prop is missing.`);
+    if (!variant)
+      console.error(`[Box component] Required 'variant' prop is missing.`);
     return [undefined, undefined];
   }
 
@@ -88,13 +92,11 @@ export const validateBoxConfiguration = (
 export interface BoxProps {
   /**
    * Color scheme for background and content colors
-   * @default "default"
    */
   color?: BoxColorScheme;
 
   /**
    * Color variation within the chosen color scheme
-   * @default "moderate"
    */
   variant?: BoxColorVariation;
 }
