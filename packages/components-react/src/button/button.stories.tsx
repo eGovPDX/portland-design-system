@@ -1,24 +1,29 @@
-import {
-  BUTTON_VARIANTS,
-  BUTTON_SIZES,
-  BUTTON_TYPES,
-  type ButtonVariant,
-  type ButtonSize,
-} from "@cityofportland/types/button";
+import { BUTTON_SIZES, BUTTON_TYPES } from "@cityofportland/types/button";
 import {
   BOX_COLORS,
   BOX_VARIANTS,
   type BoxColorScheme,
   type BoxColorVariation,
 } from "@cityofportland/types/box";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faEllipsis,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import "react";
+import Color from "colorjs.io";
+import React, { useEffect, useState } from "react";
 import { fn } from "storybook/test";
 
 import { Box } from "../box";
 import { Button, type ReactButtonProps } from "./button";
+import boxStories from "../box/box.stories";
+
+type StoryProps = ReactButtonProps & {
+  left?: boolean | React.ReactNode;
+  right?: boolean | React.ReactNode;
+};
 
 const meta = {
   title: "Components/Button",
@@ -29,14 +34,10 @@ const meta = {
     },
   },
   argTypes: {
+    ...boxStories.argTypes,
     children: {
       control: "text",
       description: "The text content of the button",
-    },
-    variant: {
-      control: "select",
-      options: BUTTON_VARIANTS,
-      description: "The visual style of the button",
     },
     size: {
       control: "select",
@@ -67,8 +68,6 @@ const meta = {
   },
   args: {
     children: "{text}",
-    variant: "primary",
-    size: "default",
     type: "button",
     outline: false,
     disabled: false,
@@ -76,30 +75,123 @@ const meta = {
     right: false,
     onClick: fn(), // Add default action logger
   },
-} satisfies Meta<ReactButtonProps>;
+} satisfies Meta<StoryProps>;
 
-type Story = StoryObj<ReactButtonProps>;
+type Story = StoryObj<StoryProps>;
+
+const DemoButton = ({ left, right, children, ...args }: StoryProps) => (
+  <Button {...args}>
+    {left && <span>{left}</span>}
+    {children}
+    {right && <span>{right}</span>}
+  </Button>
+);
 
 // Default button
 export const Basic: Story = {
-  render: ({ left, right, ...args }) => (
-    <Button
-      {...args}
-      left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
-      right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
-    />
+  render: ({ children, ...args }) => (
+    <DemoButton {...args}>{children}</DemoButton>
   ),
 };
 
-const VALID_VARIANTS: Array<[ButtonVariant, string?]> = [
-  ["primary", "outline"],
-  ["secondary", "outline"],
-  ["danger", "outline"],
-  ["inverse"],
-];
+export const PortlandGov: Story = {
+  name: "portland.gov",
+  parameters: {
+    controls: {
+      exclude: [
+        "className",
+        "color",
+        "disabled",
+        "onClick",
+        "outline",
+        "size",
+        "variant",
+      ],
+    },
+  },
+  render({ children, left, right, ...props }) {
+    return (
+      <div className="grid gap-md">
+        <DemoButton
+          color="primary"
+          variant="moderate"
+          size="md"
+          className="rounded-md"
+          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
+          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+        >
+          {children}
+        </DemoButton>
+        <DemoButton
+          color="primary"
+          variant="moderate"
+          outline
+          size="md"
+          className="rounded-md"
+          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
+          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+        >
+          {children}
+        </DemoButton>
+        <DemoButton
+          color="secondary"
+          variant="emphasis"
+          size="md"
+          className="rounded-md"
+          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
+          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+        >
+          {children}
+        </DemoButton>
+        <DemoButton
+          color="secondary"
+          variant="emphasis"
+          outline
+          size="md"
+          className="rounded-md"
+          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
+          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+        >
+          {children}
+        </DemoButton>
+        <DemoButton
+          color="danger"
+          variant="emphasis"
+          size="md"
+          className="rounded-md"
+          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
+          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+        >
+          {children}
+        </DemoButton>
+        <DemoButton
+          color="danger"
+          variant="emphasis"
+          outline
+          size="md"
+          className="rounded-md"
+          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
+          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+        >
+          {children}
+        </DemoButton>
+        <DemoButton
+          color="inverse"
+          variant="subtle"
+          size="md"
+          className="rounded-md"
+          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
+          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+        >
+          {children}
+        </DemoButton>
+      </div>
+    );
+  },
+};
 
 export const Variants: StoryObj<
-  ReactButtonProps & {
+  StoryProps & {
     backgroundColor: BoxColorScheme;
     backgroundVariant: BoxColorVariation;
   }
@@ -117,6 +209,8 @@ export const Variants: StoryObj<
   args: {
     backgroundColor: "default",
     backgroundVariant: "subtle",
+    color: "default",
+    size: "md",
   },
   parameters: {
     layout: "fullscreen",
@@ -126,71 +220,121 @@ export const Variants: StoryObj<
         "className",
         "disabled",
         "left",
-        "outline",
         "onClick",
         "right",
+        "size",
         "variant",
       ],
     },
-    pseudo: {
-      hover: ".hover",
-      focus: ".focus",
-      active: ".active",
-    },
   },
-  render({ backgroundColor, backgroundVariant, onClick, size }) {
-    const states = ["default", "hover", "focus", "active"];
+  render({ backgroundColor, backgroundVariant, color, outline, ...props }) {
+    const [backgroundElement, setBackgroundElement] =
+      useState<HTMLElement | null>(null);
+    const [bgColor, setBgColor] = useState<Color>();
+
+    const getElement = (id: string) => document.querySelector(`#${id}`);
+
+    const getProperty = (id: string, name: string) => {
+      const element = getElement(id);
+
+      if (!element) {
+        return null;
+      }
+
+      return getComputedStyle(element).getPropertyValue(name).trim();
+    };
+
+    useEffect(() => {
+      if (!backgroundElement) return;
+      const style = getComputedStyle(backgroundElement);
+      setBgColor(new Color(style.backgroundColor));
+    }, [backgroundElement, backgroundColor, backgroundVariant, color]);
+
+    const ButtonTester = ({ color, variant }) => {
+      const id = `${color}-${variant}`;
+      const el = getElement(id);
+
+      const b = getProperty(id, "--box-background-color");
+      const bc =
+        bgColor && b && Color.contrastWCAG21(bgColor, new Color(b)).toFixed(2);
+      const r =
+        getProperty(id, "--box-ring-color") ||
+        (el && getComputedStyle(el).color);
+      const rc =
+        bgColor && r && Color.contrastWCAG21(bgColor, new Color(r)).toFixed(2);
+
+      const o = getProperty(id, "--box-outline-color");
+      const oc =
+        bgColor && o && Color.contrastWCAG21(bgColor, new Color(o)).toFixed(2);
+
+      return (
+        <div className="grid items-start gap-md">
+          <span key={`${variant}-label`} className="capitalize font-bold">
+            {variant}
+          </span>
+          <div className="grid md:grid-cols-2 gap-md">
+            <DemoButton
+              key={`${variant}`}
+              id={id}
+              color={color}
+              variant={variant}
+              outline={outline}
+              className="capitalize "
+              {...props}
+            >
+              {variant}
+            </DemoButton>
+            <dl className="grid sm:grid-cols-3 gap-xs">
+              {outline && r && (
+                <div className="flex-1 grid gap-xs">
+                  <dt className="font-bold">outline</dt>
+                  <dd>
+                    {new Color(r).toString({ format: "hex" })} ({rc}){" "}
+                    {Number(rc) >= 3 ? "✅" : "❌"}
+                  </dd>
+                </div>
+              )}
+              {!outline && (
+                <div className="flex-1 grid gap-xs">
+                  <dt className="font-bold">background</dt>
+                  <dd>
+                    {b} ({bgColor && bc}){" "}
+                    {bgColor && Number(bc) >= 3 ? "✅" : "❌"}
+                  </dd>
+                </div>
+              )}
+              <div className="flex-1 grid gap-xs">
+                <dt className="font-bold">focus</dt>
+                <dd>
+                  {o} ({oc}) {Number(oc) >= 3 ? "✅" : "❌"}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      );
+    };
 
     return (
       <Box
+        ref={setBackgroundElement}
         as="section"
         color={backgroundColor}
         variant={backgroundVariant}
-        className="min-h-screen p-xl grid grid-cols-1 md:grid-cols-5 gap-lg items-center"
+        className="min-h-screen p-xl"
       >
-        {VALID_VARIANTS.map(([variant, outline]) => {
-          const children = [
-            <span key={`${variant}-label`} className="capitalize font-bold">
-              {variant}
-            </span>,
-            ...states.map((state) => (
-              <Button
-                key={`${variant}-${state}`}
-                variant={variant}
-                size={size}
-                className={`capitalize ${state}`}
-                onClick={onClick}
-              >
-                {state}
-              </Button>
-            )),
-          ];
+        <span>current background: {bgColor?.toString({ format: "hex" })}</span>
+        <h2 className="heading-lg capitalize">Unset</h2>
+        <ButtonTester color="unset" variant="unset" />
 
-          if (outline) {
-            children.push(
-              <span
-                key={`${variant}-outline-label`}
-                className="capitalize font-bold"
-              >
-                {variant} Outline
-              </span>,
-              ...states.map((state) => (
-                <Button
-                  key={`${variant}-outline-${state}`}
-                  variant={variant}
-                  size={size}
-                  outline
-                  className={`capitalize ${state}`}
-                  onClick={onClick}
-                >
-                  {state}
-                </Button>
-              ))
-            );
-          }
-
-          return children;
-        })}
+        <div className="grid grid-cols-1 gap-lg items-center">
+          <h2 key={color} className="heading-lg capitalize">
+            {color}
+          </h2>
+          {BOX_VARIANTS.map((variant) => (
+            <ButtonTester color={color} variant={variant} />
+          ))}
+        </div>
       </Box>
     );
   },
@@ -198,31 +342,107 @@ export const Variants: StoryObj<
 
 export const Sizes: Story = {
   parameters: {
+    layout: "fullscreen",
     controls: {
       exclude: ["children", "className", "onClick", "size"],
     },
   },
-  render({ disabled, outline, variant, left, right, onClick }) {
+  render({ left, right, onClick, ...props }) {
     return (
-      <section className="flex flex-col lg:flex-row gap-lg items-center">
+      <section className="p-xl grid gap-lg">
         {BUTTON_SIZES.map((size) => (
-          <Button
-            key={size}
-            size={size}
-            variant={variant}
-            outline={outline}
-            disabled={disabled}
-            className="capitalize"
-            left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
-            right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
-            onClick={onClick}
-          >
-            {size} Button
-          </Button>
+          <div key={size}>
+            <h2 key={size} className="heading-md uppercase">
+              {size}
+            </h2>
+            <Button
+              key={size}
+              size={size}
+              left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
+              right={
+                right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined
+              }
+              onClick={onClick}
+              {...props}
+            >
+              {size.toLocaleUpperCase()} Button
+            </Button>
+          </div>
         ))}
       </section>
     );
   },
+};
+
+export const Incognito: StoryObj<StoryProps & { underline: boolean }> = {
+  args: {
+    underline: false,
+  },
+  render: ({ left, right, underline, ...props }) => (
+    <div className="grid gap-md">
+      <p className="text-body-lg">
+        There is a{" "}
+        <DemoButton
+          className={`${underline && "underline"}`}
+          left={left && <FontAwesomeIcon icon={faArrowRight} />}
+          right={right && <FontAwesomeIcon icon={faArrowLeft} />}
+          {...props}
+        >
+          button
+        </DemoButton>{" "}
+        hidden in this sentence.
+      </p>
+      <p className="text-body-lg">
+        There are two{" "}
+        <DemoButton
+          className={`${underline && "underline"}`}
+          left={left && <FontAwesomeIcon icon={faArrowRight} />}
+          right={right && <FontAwesomeIcon icon={faArrowLeft} />}
+          {...props}
+        >
+          buttons
+        </DemoButton>{" "}
+        hidden in this{" "}
+        <DemoButton
+          className={`${underline && "underline"}`}
+          left={left && <FontAwesomeIcon icon={faArrowRight} />}
+          right={right && <FontAwesomeIcon icon={faArrowLeft} />}
+          {...props}
+        >
+          sentence
+        </DemoButton>
+        .
+      </p>
+    </div>
+  ),
+};
+
+export const Stacked: Story = {
+  parameters: {
+    layout: "fullscreen",
+    controls: {
+      exclude: ["children", "className", "onClick"],
+    },
+  },
+  render: ({ color, variant, size, ...props }) => (
+    <div className="flex flex-col items-center justify-center min-h-screen max-w-screen-sm mx-auto gap-md">
+      <Box
+        as="div"
+        color={color}
+        variant={variant}
+        className={[
+          "pl-xs flex items-center justify-between gap-md hover:bg-(--box-background-color)",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
+        <span className="underline">Some text leading in</span>
+        <DemoButton size={size} className="h-full" {...props}>
+          <FontAwesomeIcon icon={faEllipsis} />
+        </DemoButton>
+      </Box>
+    </div>
+  ),
 };
 
 export default meta;

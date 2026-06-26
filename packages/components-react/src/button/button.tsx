@@ -2,57 +2,40 @@ import type { ButtonProps } from "@cityofportland/types/button";
 import React from "react";
 
 import "@cityofportland/components-css/button.css";
+import { mergeClasses } from "../utils";
+import { Box, type ReactBoxProps } from "../box";
 
 // Extend ButtonProps with React-specific props
 export type ReactButtonProps = ButtonProps &
+  ReactBoxProps &
   React.ButtonHTMLAttributes<HTMLButtonElement> &
-  React.PropsWithChildren & {
-    left?: React.ReactNode; // Left slot content
-    right?: React.ReactNode; // Right slot content
-  };
-
-const OUTLINE_VARIANTS = ["primary", "secondary", "danger"];
+  React.PropsWithChildren;
 
 export const Button: React.FC<ReactButtonProps> = ({
+  as = "button",
   children = null,
-  variant = "primary",
-  size = "default",
+  size,
   outline = false,
   disabled = false,
   type = "button",
-  left,
-  right,
-  className = "",
+  className,
   ...props
 }) => {
-  function classes() {
-    const classes = ["button"];
-
-    classes.push(`button--${size}`);
-
-    classes.push(`button--${variant}`);
-
-    if (outline && OUTLINE_VARIANTS.includes(variant)) {
-      classes.push("button--outline");
-    }
-    if (className) {
-      classes.push(className);
-    }
-
-    return classes;
-  }
-
   return (
-    <button
+    <Box
+      as={as}
       type={type}
-      className={classes().join(" ")}
+      className={mergeClasses(
+        "button",
+        size && `button--${size}`,
+        outline && "button--outline",
+        className
+      )}
       disabled={disabled}
       aria-disabled={disabled ? "true" : "false"}
       {...props}
     >
-      {left && <span>{left}</span>}
       {children}
-      {right && <span>{right}</span>}
-    </button>
+    </Box>
   );
 };

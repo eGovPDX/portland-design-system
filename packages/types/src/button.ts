@@ -2,25 +2,15 @@
  * @file Button component types
  * @description Shared TypeScript types for Button components across all frameworks
  */
-
-/**
- * Available button variants based on design system color tokens
- */
-export const BUTTON_VARIANTS = [
-  "primary",
-  "secondary",
-  "danger",
-  "inverse",
-] as const;
-
-export type ButtonVariant = (typeof BUTTON_VARIANTS)[number];
+import type { BoxProps } from "./box";
+import { SPACING, type Spacing } from "./spacing";
 
 /**
  * Available button sizes
  */
-export const BUTTON_SIZES = ["default", "small", "big"] as const;
+export const BUTTON_SIZES = SPACING;
 
-export type ButtonSize = (typeof BUTTON_SIZES)[number];
+export type ButtonSize = Spacing;
 
 /**
  * HTML button type attribute values
@@ -32,13 +22,7 @@ export type ButtonType = (typeof BUTTON_TYPES)[number];
 /**
  * Core button properties shared across all framework implementations
  */
-export interface ButtonProps {
-  /**
-   * Visual style variant of the button
-   * @default "primary"
-   */
-  variant?: ButtonVariant;
-
+export interface ButtonProps extends BoxProps {
   /**
    * Size of the button
    * @default "default"

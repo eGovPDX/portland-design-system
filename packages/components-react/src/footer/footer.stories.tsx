@@ -94,6 +94,9 @@ export const PortlandGov: Story = {
             </p>
           </div>
           <Button
+            color="primary"
+            variant="moderate"
+            size="lg"
             right={<FontAwesomeIcon icon={faArrowRight} />}
             className="shrink-0"
           >
