@@ -5,17 +5,12 @@
 
 /* Tailwind base, components, and utilities */
 @import "./base.css";
+@reference "./utilities.css";
 
 @layer components {
   .alert {
     @apply flex items-start gap-md;
     @apply p-md;
-    @apply font-sans;
-    @apply text-standard-fixed-dark;
-  }
-
-  .dark .alert--error {
-    @apply text-standard-default-emphasis;
   }
 
   .alert--slim {
@@ -25,11 +20,11 @@
 
   .alert__icon {
     @apply mt-2xs;
-    @apply text-(length:--spacing-2xl); /* 32px */
+    @apply text-[32px];
 
     .alert--slim & {
       @apply mt-3xs;
-      @apply text-(length:--spacing-lg); /* 20px */
+      @apply text-[20px];
     }
   }
 
@@ -38,16 +33,17 @@
   }
 
   .alert__heading {
-    @apply text-heading-md leading-heading-md font-bold;
+    @apply heading-md my-none;
   }
 
   .alert__text {
-    @apply text-body-md leading-body-md font-regular;
+    @apply body-md;
 
     p + p {
       @apply mt-sm;
     }
 
+    /* REFACTOR: Use link utility classes */
     & a {
       &:link {
         @apply underline;
@@ -61,7 +57,7 @@
   }
 
   .alert__close {
-    @apply text-(length:--spacing-lg); /* 24px */
+    @apply text-[18px];
     @apply leading-none;
     @apply cursor-pointer;
 

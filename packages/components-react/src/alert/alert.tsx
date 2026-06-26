@@ -47,7 +47,7 @@ export const Alert: React.FC<ReactAlertProps> = ({
   dismissible = true,
 }) => {
   function classes() {
-    const classes = ["alert"];
+    const classes = ["border-l-8", "alert"];
 
     classes.push(`alert--${type}`);
     if (variant !== "default") {
@@ -59,48 +59,45 @@ export const Alert: React.FC<ReactAlertProps> = ({
 
   return (
     <Box
-      className="border-l-8"
+      className={classes()}
       color={
         alert[type]["boxColor"] as "info" | "warning" | "danger" | "success"
       }
+      variant="moderate"
+      role={alert[type]["ariaRole"]}
+      aria-label={alert[type]["label"]}
     >
-      <div
-        className={classes()}
-        role={alert[type]["ariaRole"]}
-        aria-label={alert[type]["label"]}
-      >
-        {icon ? (
-          <FontAwesomeIcon
-            icon={alert[type]["fontAwesomeIcon"]}
-            className="alert__icon"
-            aria-label={alert[type]["label"]}
-          />
+      {icon ? (
+        <FontAwesomeIcon
+          icon={alert[type]["fontAwesomeIcon"]}
+          className="alert__icon"
+          aria-label={alert[type]["label"]}
+        />
+      ) : (
+        ""
+      )}
+      <div className="alert__content">
+        {heading && variant == "default" ? (
+          <div className="alert__heading">{heading}</div>
         ) : (
           ""
         )}
-        <div className="alert__content">
-          {heading && variant == "default" ? (
-            <div className="alert__heading">{heading}</div>
-          ) : (
-            ""
-          )}
-          <div className="alert__text">{children}</div>
-        </div>
-        {dismissible ? (
-          <button
-            className="alert__close"
-            aria-label="Close alert"
-            onClick={(event) => {
-              const alertElement = event.currentTarget.closest(".box");
-              alertElement?.remove();
-            }}
-          >
-            <FontAwesomeIcon icon={["fas", "xmark"]} />
-          </button>
-        ) : (
-          ""
-        )}
+        <div className="alert__text">{children}</div>
       </div>
+      {dismissible ? (
+        <button
+          className="alert__close"
+          aria-label="Dismiss alert"
+          onClick={(event) => {
+            const alertElement = event.currentTarget.closest(".box");
+            alertElement?.remove();
+          }}
+        >
+          <FontAwesomeIcon icon={["fas", "xmark"]} />
+        </button>
+      ) : (
+        ""
+      )}
     </Box>
   );
 };
