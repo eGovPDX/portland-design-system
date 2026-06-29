@@ -2,12 +2,24 @@
 
 @utility body-lg {
   @apply text-body-lg leading-body-lg tracking-[0%];
+
+  p + p {
+    @apply mt-xs;
+  }
 }
 @utility body-md {
   @apply text-body-md leading-body-md tracking-[0%];
+
+  p + p {
+    @apply mt-sm;
+  }
 }
 @utility body-sm {
   @apply text-body-sm leading-body-sm tracking-[0%];
+
+  p + p {
+    @apply mt-sm;
+  }
 }
 
 @utility link {
@@ -57,6 +69,126 @@
   @apply font-bold text-heading-xs leading-heading-xs tracking-[0%] my-xs;
 }
 
+@utility list-ordered {
+  @apply list-decimal mb-md pl-2xl;
+
+  ol {
+    @apply list-[upper-alpha] mb-none;
+
+    ol {
+      @apply list-[upper-roman];
+
+      ol {
+        @apply list-[lower-alpha];
+
+        ol {
+          @apply list-[lower-roman];
+
+          ol {
+            @apply list-decimal;
+          }
+        }
+      }
+    }
+  }
+}
+@utility list-unordered {
+  @apply list-disc mb-md pl-2xl;
+
+  ul {
+    @apply mb-none;
+    list-style-type: "- ";
+
+    ul {
+      @apply list-[circle];
+    }
+  }
+}
+
+@utility hr-md {
+  color: theme(--background-color-standard-inverse-strong);
+  @apply my-sm border-t;
+}
+
+@utility hr-lg {
+  color: theme(--background-color-standard-inverse-strong);
+  @apply my-sm border-t-2;
+}
+
+@utility hr-xl {
+  color: theme(--background-color-standard-inverse-strong);
+  @apply my-sm border-t-4;
+}
+
+@utility blockquote {
+  @apply px-xl py-md my-md border-l-4 border-l-standard-default-moderate;
+  @apply body-lg italic;
+}
+
+@utility code {
+  @apply bg-standard-default-moderate p-2xs rounded-sm wrap-break-word;
+}
+
+@utility code-block {
+  @apply block my-md break-normal overflow-auto;
+}
+
+@utility rich-text {
+  @apply body-md;
+
+  h1 {
+    @apply heading-2xl;
+  }
+
+  h2 {
+    @apply heading-xl;
+  }
+
+  h3 {
+    @apply heading-lg;
+  }
+
+  h4 {
+    @apply heading-md;
+  }
+
+  h5 {
+    @apply heading-sm;
+  }
+
+  h6 {
+    @apply heading-xs;
+  }
+
+  a {
+    @apply link;
+  }
+
+  ol {
+    @apply list-ordered;
+  }
+
+  ul {
+    @apply list-unordered;
+  }
+
+  hr {
+    @apply hr-md;
+  }
+
+  blockquote {
+    @apply blockquote;
+  }
+
+  code {
+    @apply code;
+  }
+
+  pre code {
+    @apply code-block;
+  }
+}
+
 @layer utilities {
   .body-lg {
     @apply body-lg;
@@ -68,6 +200,15 @@
 
   .body-sm {
     @apply body-sm;
+  }
+
+  .body-lg + .body-lg {
+    @apply mt-xs;
+  }
+
+  .body-md + .body-md,
+  .body-sm + .body-sm {
+    @apply mt-sm;
   }
 
   .link {
@@ -124,5 +265,34 @@
 
   .heading-xs {
     @apply heading-xs;
+  }
+
+  .hr-md {
+    @apply hr-md;
+  }
+
+  .hr-lg {
+    @apply hr-lg;
+  }
+
+  .hr-xl {
+    @apply hr-xl;
+  }
+
+  .blockquote {
+    @apply blockquote;
+  }
+
+  .code {
+    @apply code;
+  }
+
+  .code-block {
+    @apply code-block;
+  }
+
+  /* Use :where pseudo-class to reset CSS selector specificity so that elements can be overriden with utility classes if necessary */
+  :where(.rich-text) {
+    @apply rich-text;
   }
 }
