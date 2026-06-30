@@ -18,6 +18,17 @@ props:
   type: object
 
   properties:
+    as:
+      type: string
+      title: Card container element
+      description: The semantic HTML container element of the card
+      default: article
+      enum:
+        - article
+        - section
+      examples:
+        - article
+
     layout:
       type: string
       title: Card Layout

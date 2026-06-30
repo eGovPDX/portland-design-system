@@ -1,4 +1,5 @@
 import {
+  CARD_ELEMENTS,
   CARD_LAYOUTS,
   MEDIA_POSITIONS,
   type CardProps,
@@ -29,6 +30,12 @@ export default {
     `;
   },
   argTypes: {
+    as: {
+      control: "select",
+      options: CARD_ELEMENTS,
+      description:
+        "The semantic HTML container element of the Card, either article or section",
+    },
     layout: {
       control: "select",
       options: CARD_LAYOUTS,
@@ -65,6 +72,7 @@ export default {
     },
   },
   args: {
+    as: "article",
     layout: "vertical",
     "inset media": false,
     "media position": undefined,
@@ -107,6 +115,7 @@ export const Basic: Story<
     },
   },
   render: ({
+    as,
     layout,
     "inset media": insetMedia,
     "media position": mediaPosition,
@@ -129,6 +138,7 @@ export const Basic: Story<
           ...Card.args.defaultAttributes,
           ["style", [`width: ${width};`]],
         ],
+        as: as,
         layout: layout,
         header: `
           ${CardMedia.component({
@@ -156,7 +166,7 @@ export const Basic: Story<
 export const MultipleCards: Story = {
   parameters: {
     controls: {
-      exclude: ["header", "body", "footer"],
+      exclude: ["as", "header", "body", "footer"],
     },
   },
   render: ({
@@ -251,7 +261,7 @@ export const MultipleCards: Story = {
 export const MultipleButtons: Story = {
   parameters: {
     controls: {
-      exclude: ["header", "body", "footer"],
+      exclude: ["as", "header", "body", "footer"],
     },
   },
   render: ({
@@ -307,7 +317,7 @@ export const Icon: Story<Props & { icon: string }> = {
   },
   parameters: {
     controls: {
-      exclude: ["header", "body", "footer", "inset media"],
+      exclude: ["as", "header", "body", "footer", "inset media"],
     },
   },
   render: ({

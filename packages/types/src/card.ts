@@ -4,6 +4,13 @@
  */
 
 /**
+ * Semantic HTML container element of the card
+ */
+export const CARD_ELEMENTS = ["article", "section"] as const;
+
+export type CardElement = (typeof CARD_ELEMENTS)[number];
+
+/**
  * Available card layouts based on design system layout options
  */
 export const CARD_LAYOUTS = ["horizontal", "vertical"] as const;
@@ -21,6 +28,12 @@ export type MediaPosition = (typeof MEDIA_POSITIONS)[number];
  * Core card properties shared across all framework implementations
  */
 export interface CardProps {
+  /**
+   * Semantic HTML container element of the card
+   * @default "article"
+   */
+  as?: CardElement;
+
   /**
    * Layout of the card
    * @default "vertical"

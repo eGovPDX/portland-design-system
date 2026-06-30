@@ -4,6 +4,7 @@
  * Template for Portland Card component.
  *
  * Available variables:
+ * - as: Card container element (article, section)
  * - layout: Card layout (horizontal, vertical)
  * - header: Card header for media or icon (slot)
  * - content: Card content (slot)
@@ -13,6 +14,7 @@
 #}
 
 {# Set default values #}
+{% set element = as|default('article') %}
 {% set layout = layout|default('vertical') %}
 
 {# Layout classes #}
@@ -32,7 +34,7 @@
   {% set classes = classes|merge(attribute_classes) %}
 {% endif %}
 
-<div {{ attributes.addClass(classes) }}>
+<{{element}} {{ attributes.addClass(classes) }}>
   {% block header %}
     <div class="card__header">{{ header }}</div>
   {% endblock %}
@@ -46,4 +48,4 @@
       {% endif %}
     {% endblock %}
   </div>
-</div>
+</{{element}}>
