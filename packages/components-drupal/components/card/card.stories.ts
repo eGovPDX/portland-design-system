@@ -349,7 +349,7 @@ export const Icon: Story<Props & { icon: string }> = {
           <p>We choose to go to the moon and do other things, not because they are easy, but because they are hard.</p>
         `,
         footer: `
-          <a href="#">Learn more</a>
+          <a class="link" href="#">Learn more</a>
         `,
       })}
       <hr class="my-2xl" />
