@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Template for Portland Card component.
+ *
+ * Available variables:
+ * - as: Card container element (article, section)
+ * - layout: Card layout (horizontal, vertical)
+ * - header: Card header for media or icon (slot)
+ * - content: Card content (slot)
+ * - footer: Card footer for CTA buttons or links (slot)
+ * - attributes: Additional HTML attributes
+ */
+#}
+
+{# Set default values #}
+{% set element = as|default('article') %}
+{% set layout = layout|default('vertical') %}
+
+{# Layout classes #}
+{% set layout_classes = {
+  'horizontal': ['card--horizontal'],
+  'vertical': ['card--vertical'],
+}[layout] %}
+
+{# Combine all classes #}
+{% set classes = ['card']|merge(layout_classes)|merge(attributes.classes|default([])|join(' ')|split(' '))%}
+
+{# Put attribute classes at the end of the class list #}
+{% if attributes.get('class') is defined and attributes.get('class') is not empty %}
+  {# Hack to clone the attribute classes object #}
+  {% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
+  {% set attributes = attributes.removeClass(attribute_classes) %}
+  {% set classes = classes|merge(attribute_classes) %}
+{% endif %}
+
+<{{element}} {{ attributes.addClass(classes) }}>
+  {% block header %}
+    <div class="card__header">{{ header }}</div>
+  {% endblock %}
+  <div class="card__content">
+    {% block body %}
+      <div class="card__body">{{ body }}</div>
+    {% endblock %}
+    {% block footer %}
+      {% if footer|trim is not empty %}
+        <div class="card__footer">{{ footer }}</div>
+      {% endif %}
+    {% endblock %}
+  </div>
+</{{element}}>
