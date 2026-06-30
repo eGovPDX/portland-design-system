@@ -347,15 +347,14 @@ export const Icon: Story<Props & { icon: string }> = {
           <p>We choose to go to the moon and do other things, not because they are easy, but because they are hard.</p>
         `,
         footer: `
-          <!-- REFACTOR: Use link classes -->
-          <a class="text-(--text-color-primary-moderate)" href="#">Learn more</a>
+          <a href="#">Learn more</a>
         `,
       })}
       <hr class="my-2xl" />
       <h2 class="heading-md">How to change the icon</h2>
-      <!-- REFACTOR: Use list classes -->
+      <!-- REFACTOR: Use list utility class -->
       <ol class="list-decimal pl-lg">
-        <li><a class="text-(--text-color-primary-moderate)" href="https://fontawesome.com/search?ip=classic&ic=free-collection" target="_blank">Browse Font Awesome icons</a></li>
+        <li><a class="link" href="https://fontawesome.com/search?ip=classic&ic=free-collection" target="_blank">Browse Font Awesome icons</a></li>
         <li>Click on the desired icon and copy the SVG markup (not the "Full SVG" markup)</li>
         <li>Paste the SVG markup into the <em>icon</em> control in Storybook</li>
       </ol>

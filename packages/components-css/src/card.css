@@ -11,6 +11,10 @@
   .card {
     @apply outline-md outline-standard-default-subtle rounded-lg;
     @apply bg-standard-default-subtle;
+
+    a {
+      @apply link;
+    }
   }
 
   .card__icon {
@@ -24,6 +28,7 @@
   .card__content {
     @apply p-lg;
     @apply flex flex-col grow;
+    @apply body-md;
   }
 
   .card--horizontal {
