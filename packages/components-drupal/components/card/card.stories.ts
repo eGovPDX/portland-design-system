@@ -12,6 +12,7 @@ import CardMedia from "./card-media/card-media.component.yml";
 import CardIcon from "./card-icon/card-icon.component.yml";
 import CardTitle from "./card-title/card-title.component.yml";
 import Button from "../button/button.component.yml";
+import Box from "../box/box.component.yml";
 
 type Props = CardProps & {
   header: string | object;
@@ -151,6 +152,7 @@ export const Basic: Story<
         body: `
           ${CardTitle.component({
             content: title,
+            as: "h2",
           })}
           ${description}
         `,

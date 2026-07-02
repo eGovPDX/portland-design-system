@@ -16,6 +16,22 @@ props:
   type: object
 
   properties:
+    as:
+      type: string
+      title: HTML element type
+      description: The HTML element to render the box as (e.g., div, section, article)
+      enum:
+        - div
+        - section
+        - article
+        - aside
+        - main
+        - header
+        - footer
+        - nav
+      examples:
+        - div
+
     color:
       type: string
       title: Box color

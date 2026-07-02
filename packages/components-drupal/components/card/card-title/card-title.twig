@@ -1,5 +1,5 @@
-<h3 id="{{ id }}" class="heading-md">
-	{% block content %}
-		{{ content }}
-	{% endblock %}
-</h3>
+{% include 'portland:box' with { 
+	box_content: content, 
+	as: as|default('h3'),
+	attributes: attributes.addClass("heading-md"),
+} %}
