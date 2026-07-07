@@ -1,6 +1,10 @@
 on:
   release:
 
+permissions:
+  id-token: write # Required to use OIDC with NPM
+  contents: read
+
 jobs:
   publish-packages:
     if: ${{ github.event.action == 'published' && !github.event.release.draft }}
@@ -30,6 +34,4 @@ jobs:
           name: dist-folders
           run-id: ${{ steps.get-latest-run.outputs.run_id }}
 
-      - env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm publish --recursive --access public --no-git-checks
+      - run: pnpm publish --recursive --access public --no-git-checks
