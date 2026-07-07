@@ -2,10 +2,10 @@ name: Get Latest Workflow Run
 description: Find the latest workflow run for a workflow ID with optional filters
 
 inputs:
-  github-token:
+  github_token:
     description: The GitHub token used to create an authenticated client
     default: ${{ github.token }}
-    required: false
+    required: true
   workflow_id:
     description: Workflow file name, workflow name, or workflow ID to query
     required: true

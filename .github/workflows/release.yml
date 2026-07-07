@@ -20,7 +20,7 @@ jobs:
       - id: get-latest-run
         uses: ./packages/actions/get-latest-run
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow_id: push.yml
           head_sha: ${{ github.sha }}
 
