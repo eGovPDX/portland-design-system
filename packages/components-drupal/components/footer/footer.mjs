@@ -1,4 +1,3 @@
-import { ASSETS_CITY_SEAL } from "@cityofportland/design-tokens";
 import once from "@drupal/once";
 import z from "zod";
 
@@ -31,13 +30,6 @@ import z from "zod";
         const copyrightElement = document.createElement("p");
         copyrightElement.textContent = copyrightText;
         e.appendChild(copyrightElement);
-      });
-
-      once(
-        "@cityofportland/components-drupal/footer/copyright/image",
-        context.querySelectorAll(".footer__copyright-img")
-      ).forEach((img) => {
-        img.src = ASSETS_CITY_SEAL;
       });
     },
   };

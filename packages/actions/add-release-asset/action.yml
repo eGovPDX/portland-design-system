@@ -1,0 +1,24 @@
+name: Add release asset
+description: Add an asset to a release
+inputs:
+  content_type:
+    description: The content type of the asset being added (for example application/zip)
+    required: true
+  name:
+    description: The name for the asset being added to the release
+    required: true
+  path:
+    description: The file path of the asset being added
+    required: true
+  release_id:
+    description: The ID of the release to add the asset to
+    required: true
+
+  github-token:
+    description: The GitHub token used to create an authenticated client
+    default: ${{ github.token }}
+    required: false
+
+runs:
+  using: node24
+  main: ./action.mjs

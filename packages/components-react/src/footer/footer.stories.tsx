@@ -58,16 +58,13 @@ export const PortlandGov: Story = {
   render: (_args) => (
     <div className="min-h-screen flex flex-col">
       <style>{linkStyle}</style>
-      <Box
-        as="main"
-        color="default"
-        variant="subtle"
-        className="flex-1 w-full max-w-screen-xl mx-auto p-xl"
-      >
-        <h1 className="text-heading-2xl font-bold mb-lg">Page content</h1>
-        <section>
-          <p>Here is some content for the page.</p>
-        </section>
+      <Box as="main" color="default" variant="subtle" className="flex-1 p-xl">
+        <article className="max-w-screen-xl mx-auto">
+          <h1 className="text-heading-2xl font-bold mb-lg">Page content</h1>
+          <section>
+            <p>Here is some content for the page.</p>
+          </section>
+        </article>
       </Box>
       <Footer copyrightStart={2018}>
         <section>
@@ -234,16 +231,13 @@ export const Minimal: Story = {
   render: ({ color, copyrightStart, variant }) => (
     <div className="min-h-screen flex flex-col">
       <style>{linkStyle}</style>
-      <Box
-        as="main"
-        color="default"
-        variant="subtle"
-        className="flex-1 w-full max-w-screen-xl mx-auto p-xl"
-      >
-        <h1 className="text-heading-2xl font-bold mb-lg">Page content</h1>
-        <section>
-          <p>Here is some content for the page.</p>
-        </section>
+      <Box as="main" color="default" variant="subtle" className="flex-1 p-xl">
+        <article className="max-w-screen-xl mx-auto">
+          <h1 className="text-heading-2xl font-bold mb-lg">Page content</h1>
+          <section>
+            <p>Here is some content for the page.</p>
+          </section>
+        </article>
       </Box>
       <Footer
         copyrightStart={copyrightStart}

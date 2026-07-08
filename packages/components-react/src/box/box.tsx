@@ -1,4 +1,6 @@
 import type { BoxProps } from "@cityofportland/types/box";
+import { validateBoxConfiguration } from "@cityofportland/types/box";
+
 import React from "react";
 
 import { mergeClasses } from "../utils";
@@ -47,9 +49,9 @@ function buildClassList({
 }: Partial<ReactBoxProps>): string {
   return mergeClasses(
     "box",
-    className,
     color ? `box--${color}` : "",
-    variant ? `box--${variant}` : ""
+    variant ? `box--${variant}` : "",
+    className
   );
 }
 
@@ -85,6 +87,8 @@ export const Box: BoxComponent = ({
   ...rest
 }) => {
   const Element = as || "div";
+
+  [color, variant] = validateBoxConfiguration(color, variant);
 
   const classList = buildClassList({
     className,

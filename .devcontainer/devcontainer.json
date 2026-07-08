@@ -5,7 +5,9 @@
   },
   "features": {
     "ghcr.io/dhoeric/features/act:latest": {},
-    "ghcr.io/devcontainers/features/docker-in-docker": {}
+    "ghcr.io/devcontainers/features/docker-in-docker:3": {
+      "installDockerBuildx": false
+    }
   },
   "forwardPorts": [3000, 6006, 8080],
   "customizations": {

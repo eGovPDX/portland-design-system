@@ -87,7 +87,13 @@ export const Gallery: Story = {
       {BOX_COLORS.map((color) => (
         <div key={color} className="grid grid-cols-5 items-center gap-sm">
           <span className="font-bold capitalize">{color}</span>
-          {BOX_VARIANTS.map((variant) => (
+          {BOX_VARIANTS.filter((variant) => {
+            if (color === "fixed") {
+              return variant === "light" || variant === "dark";
+            } else {
+              return variant !== "light" && variant !== "dark";
+            }
+          }).map((variant) => (
             <Box
               as={as}
               key={variant}
@@ -116,7 +122,13 @@ export const Variants: Story = {
   },
   render: ({ as, color }) => (
     <div className="min-h-screen grid grid-cols-1">
-      {BOX_VARIANTS.map((variant) => (
+      {BOX_VARIANTS.filter((variant) => {
+        if (color === "fixed") {
+          return variant === "light" || variant === "dark";
+        } else {
+          return variant !== "light" && variant !== "dark";
+        }
+      }).map((variant) => (
         <Box
           as={as}
           key={variant}

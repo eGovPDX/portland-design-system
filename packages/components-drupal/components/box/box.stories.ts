@@ -113,8 +113,15 @@ export const Gallery: Story = {
           (color) => `
             <div class="grid grid-cols-5 items-center gap-sm">
               <span class="font-bold capitalize">${color}</span>
-              ${BOX_VARIANTS.map(
-                (variant) => `
+              ${BOX_VARIANTS.filter((variant) => {
+                if (color === "fixed") {
+                  return variant === "light" || variant === "dark";
+                } else {
+                  return variant !== "light" && variant !== "dark";
+                }
+              })
+                .map(
+                  (variant) => `
                   ${Box.component({
                     defaultAttributes: [
                       ...Box.args.defaultAttributes,
@@ -135,7 +142,8 @@ export const Gallery: Story = {
                     box_content: `<span class="justify-self-center p-sm uppercase">${variant}</span>`,
                   })}
                 `
-              ).join("")}
+                )
+                .join("")}
             </div>
           `
         ).join("")}
@@ -155,8 +163,15 @@ export const Variants: Story = {
   render: ({ as, color }) => {
     return `
       <div class="min-h-screen grid grid-cols-1">
-        ${BOX_VARIANTS.map(
-          (variant) => `
+        ${BOX_VARIANTS.filter((variant) => {
+          if (color === "fixed") {
+            return variant === "light" || variant === "dark";
+          } else {
+            return variant !== "light" && variant !== "dark";
+          }
+        })
+          .map(
+            (variant) => `
             ${Box.component({
               defaultAttributes: [
                 ...Box.args.defaultAttributes,
@@ -171,7 +186,8 @@ export const Variants: Story = {
               `,
             })}
           `
-        ).join("")}
+          )
+          .join("")}
       </div>
     `;
   },

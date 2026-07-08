@@ -15,6 +15,10 @@ export type ReactHeaderLogoProps = React.PropsWithChildren;
 
 export type ReactHeaderContentProps = React.PropsWithChildren;
 
+export type ReactHeaderNavProps = React.HTMLAttributes<HTMLElement> & {
+  children?: React.ReactNode;
+};
+
 export const HeaderBranding = <
   E extends React.ElementType<{ className?: string }> = "div",
 >({
@@ -33,6 +37,18 @@ export const HeaderLogo: React.FC<ReactHeaderLogoProps> = ({ children }) => (
 export const HeaderContent: React.FC<ReactHeaderContentProps> = ({
   children,
 }) => <div className="header__content">{children}</div>;
+
+export const HeaderNav: React.FC<ReactHeaderNavProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
+  return (
+    <nav className={mergeClasses(["header__nav"], className)} {...rest}>
+      {children}
+    </nav>
+  );
+};
 
 export type ReactHeaderNavLinkProps =
   React.AnchorHTMLAttributes<HTMLAnchorElement> & {

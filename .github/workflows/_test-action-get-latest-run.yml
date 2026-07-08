@@ -1,0 +1,75 @@
+name: Test Action - Get Latest Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      workflow_id:
+        description: Workflow file name, workflow name, or workflow ID
+        required: true
+        default: push.yml
+        type: string
+      branch:
+        description: Optional branch filter
+        required: false
+        default: main
+        type: string
+      event:
+        description: Optional event filter
+        required: false
+        default: push
+        type: string
+      conclusion:
+        description: Optional conclusion filter
+        required: false
+        default: success
+        type: string
+      head_sha:
+        description: Optional head SHA filter
+        required: false
+        type: string
+      require_result:
+        description: Fail if no run is found
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+  get-latest-run:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Get latest run
+        id: latest
+        uses: ./packages/actions/get-latest-run
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          workflow_id: ${{ inputs.workflow_id }}
+          branch: ${{ inputs.branch }}
+          event: ${{ inputs.event }}
+          conclusion: ${{ inputs.conclusion }}
+          head_sha: ${{ inputs.head_sha }}
+
+      - name: Enforce result if requested
+        if: ${{ inputs.require_result }}
+        run: |
+          test -n "${{ steps.latest.outputs.run_id }}" || {
+            echo "No matching run found" >&2
+            exit 1
+          }
+
+      - name: Write summary
+        run: |
+          {
+            echo "## get-latest-run outputs"
+            echo ""
+            echo "- run_id: ${{ steps.latest.outputs.run_id }}"
+            echo "- run_number: ${{ steps.latest.outputs.run_number }}"
+            echo "- run_attempt: ${{ steps.latest.outputs.run_attempt }}"
+            echo "- run_url: ${{ steps.latest.outputs.run_url }}"
+            echo "- head_sha: ${{ steps.latest.outputs.head_sha }}"
+            echo "- conclusion: ${{ steps.latest.outputs.conclusion }}"
+          } >> "$GITHUB_STEP_SUMMARY"

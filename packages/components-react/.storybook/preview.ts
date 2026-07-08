@@ -26,6 +26,11 @@ const preview: Preview = {
     docs: {
       codePanel: true,
     },
+    options: {
+      storySort: {
+        method: "alphabetical",
+      },
+    },
   },
 };
 

@@ -1,6 +1,6 @@
 import { ASSETS_CITY_SEAL } from "@cityofportland/design-tokens";
 import type { ArgTypes, Meta, StoryObj } from "@storybook/react-vite";
-import { useState, type MouseEvent } from "react";
+import { useId, useState, type KeyboardEvent, type MouseEvent } from "react";
 
 import { Button } from "../button";
 import BoxStories from "../box/box.stories";
@@ -10,23 +10,27 @@ import {
   HeaderBranding,
   HeaderContent,
   HeaderLogo,
+  HeaderNav,
   HeaderNavLink,
   type ReactHeaderProps,
 } from "./header";
 
 type StoryProps = ReactHeaderProps & {
   title: string;
-  links: boolean;
-  buttons: boolean;
+  showLinks?: boolean;
+  showButtons?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  menuButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+  menuButtonLabel?: string;
 };
 
 const DemoHeader = ({
   title,
-  links,
-  buttons,
-  children,
+  showLinks = false,
+  showButtons = false,
   onClick,
+  menuButtonProps,
+  menuButtonLabel,
   ...props
 }: StoryProps) => (
   <Header {...props}>
@@ -37,23 +41,25 @@ const DemoHeader = ({
       {title}
     </HeaderBranding>
     <HeaderContent>
-      {links && (
-        <ul className="header__nav-list">
-          <li>
-            <HeaderNavLink href="#">Home</HeaderNavLink>
-          </li>
-          <li>
-            <HeaderNavLink href="#">About</HeaderNavLink>
-          </li>
-          <li>
-            <HeaderNavLink href="#">Services</HeaderNavLink>
-          </li>
-          <li>
-            <HeaderNavLink href="#">Contact</HeaderNavLink>
-          </li>
-        </ul>
+      {showLinks && (
+        <HeaderNav aria-label="Primary navigation">
+          <ul className="header__nav-list">
+            <li>
+              <HeaderNavLink href="#">Home</HeaderNavLink>
+            </li>
+            <li>
+              <HeaderNavLink href="#">About</HeaderNavLink>
+            </li>
+            <li>
+              <HeaderNavLink href="#">Services</HeaderNavLink>
+            </li>
+            <li>
+              <HeaderNavLink href="#">Contact</HeaderNavLink>
+            </li>
+          </ul>
+        </HeaderNav>
       )}
-      {buttons && (
+      {showButtons && (
         <>
           <Button
             name="navigation"
@@ -63,8 +69,14 @@ const DemoHeader = ({
           >
             Navigation
           </Button>
-          <Button name="menu" variant="outline" size="small" onClick={onClick}>
-            Menu
+          <Button
+            name="menu"
+            variant="outline"
+            size="small"
+            onClick={onClick}
+            {...menuButtonProps}
+          >
+            {menuButtonLabel ?? "Menu"}
           </Button>
         </>
       )}
@@ -95,21 +107,10 @@ export default {
       control: "text",
       description: "Title text for the header",
     },
-    links: {
-      control: "boolean",
-      description:
-        "Whether to include example navigation links in the header content",
-    },
-    buttons: {
-      control: "boolean",
-      description: "Whether to include example buttons in the header content",
-    },
   },
   args: {
     color: "fixed",
     variant: "dark",
-    links: false,
-    buttons: false,
   },
 } satisfies Meta<StoryProps>;
 
@@ -121,16 +122,28 @@ export const Basic: Story = {
   },
 };
 
-export const Menu: Story = {
-  parameters: {
-    controls: { exclude: ["buttons", "onClick"] },
-  },
+export const Links: Story = {
   args: {
     ...Basic.args,
-    buttons: true,
+    showLinks: true,
+  },
+};
+
+export const Buttons: Story = {
+  args: {
+    ...Basic.args,
+    showButtons: true,
+  },
+};
+
+export const Menu: Story = {
+  args: {
+    ...Basic.args,
+    showButtons: true,
   },
   render: ({ ...args }: Omit<StoryProps, "onClick" | "buttons">) => {
     const [open, setOpen] = useState(false);
+    const panelId = useId();
 
     const handleClick = (e: MouseEvent) => {
       if (e.currentTarget instanceof HTMLButtonElement) {
@@ -142,14 +155,32 @@ export const Menu: Story = {
       }
     };
 
+    const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
     return (
       <>
-        <DemoHeader buttons={true} onClick={handleClick} {...args}></DemoHeader>
+        <DemoHeader
+          showButtons={true}
+          onClick={handleClick}
+          menuButtonProps={{
+            "aria-expanded": open,
+            "aria-controls": panelId,
+            "aria-label": open ? "Collapse menu" : "Expand menu",
+            onKeyDown: handleKeyDown,
+          }}
+          menuButtonLabel={open ? "Collapse menu" : "Expand menu"}
+          {...args}
+        ></DemoHeader>
         {open && (
           <Box
+            id={panelId}
             color="default"
             variant="moderate"
-            className="inset-ring-lg flex align-center justify-center p-5xl text-body-lg"
+            className="inset-ring-lg mt-md flex align-center justify-center p-5xl text-body-lg"
           >
             You clicked the menu button!
           </Box>

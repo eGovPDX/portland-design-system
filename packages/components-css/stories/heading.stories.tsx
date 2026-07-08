@@ -12,7 +12,7 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Headings: Story = {
+export const Heading: Story = {
   parameters: {
     layout: "fullscreen",
   },
@@ -25,7 +25,7 @@ export const Headings: Story = {
               <h2 className={`heading-${key}`}>
                 City of Portland | <code>heading-{key}</code>
               </h2>
-              <p>
+              <p className="body-md">
                 We choose to go to the moon. We choose to go to the moon in this
                 decade and do the other things, not because they are easy, but
                 because they are hard, because that goal will serve to organize

@@ -1,3 +1,4 @@
+/.act/
 .cursor/
 .pnpm-store/
 .turbo/
@@ -6,3 +7,4 @@ node_modules/
 storybook-static/
 
 .DS_Store
+

@@ -7,7 +7,7 @@
   /* Base Header Styles */
   .header {
     @apply w-full py-md px-xl;
-    @apply flex items-center justify-between;
+    @apply flex flex-wrap items-center justify-between gap-md;
   }
 
   .header__branding {
@@ -27,11 +27,15 @@
     }
   }
   .header__content {
-    @apply flex items-center gap-lg;
+    @apply flex flex-wrap items-center gap-lg;
+  }
+
+  .header__nav {
+    @apply flex flex-wrap items-center;
   }
 
   .header__nav-list {
-    @apply m-none p-none list-none flex flex-row items-center gap-lg;
+    @apply m-none p-none list-none flex flex-wrap flex-row items-center gap-lg;
   }
 
   .header__nav-item {
@@ -39,8 +43,8 @@
   }
 
   .header__nav-link {
-    @apply inline-block no-underline;
+    @apply inline-block underline decoration-2 underline-offset-4;
     @apply transition-colors;
-    @apply hover:underline hover:underline-offset-16;
+    @apply hover:decoration-2 hover:underline-offset-4;
   }
 }

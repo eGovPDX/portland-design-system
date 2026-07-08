@@ -1,36 +1,128 @@
 @import "./base.css";
 
+@utility body-lg {
+  @apply text-body-lg leading-body-lg tracking-[0%];
+}
+@utility body-md {
+  @apply text-body-md leading-body-md tracking-[0%];
+}
+@utility body-sm {
+  @apply text-body-sm leading-body-sm tracking-[0%];
+}
+
+@utility link {
+  @apply underline underline-offset-[30%] hover:underline-offset-[15%] decoration-[8%] cursor-pointer transition-[text-underline-offset] duration-100;
+  @apply focus:outline-md focus:outline-standard-inverse-emphasis focus:outline-offset-1 focus:rounded-sm;
+}
+@utility link-info {
+  @apply link decoration-dotted cursor-help;
+}
+
+@utility link-lg {
+  @apply link body-lg;
+}
+@utility link-md {
+  @apply link body-md;
+}
+@utility link-sm {
+  @apply link body-sm;
+}
+
+@utility link-info-lg {
+  @apply link-info body-lg;
+}
+@utility link-info-md {
+  @apply link-info body-md;
+}
+@utility link-info-sm {
+  @apply link-info body-sm;
+}
+
+@utility heading-2xl {
+  @apply font-bold text-heading-2xl leading-heading-2xl tracking-[0%] my-xs;
+}
+@utility heading-xl {
+  @apply font-bold text-heading-xl leading-heading-xl tracking-[0%] my-xs;
+}
+@utility heading-lg {
+  @apply font-bold text-heading-lg leading-heading-lg tracking-[0%] my-xs;
+}
+@utility heading-md {
+  @apply font-bold text-heading-md leading-heading-md tracking-[0%] my-xs;
+}
+@utility heading-sm {
+  @apply font-bold text-heading-sm leading-heading-sm tracking-[0%] my-xs;
+}
+@utility heading-xs {
+  @apply font-bold text-heading-xs leading-heading-xs tracking-[0%] my-xs;
+}
+
 @layer utilities {
-  .heading-2xl,
-  .heading-xl,
-  .heading-lg,
-  .heading-md,
-  .heading-sm,
-  .heading-xs {
-    @apply font-sans font-bold my-xs tracking-[0%];
+  .body-lg {
+    @apply body-lg;
+  }
+
+  .body-md {
+    @apply body-md;
+  }
+
+  .body-sm {
+    @apply body-sm;
+  }
+
+  .link {
+    @apply link;
+  }
+
+  .link-info {
+    @apply link-info;
+  }
+
+  .link-lg {
+    @apply link-lg;
+  }
+
+  .link-md {
+    @apply link-md;
+  }
+
+  .link-sm {
+    @apply link-sm;
+  }
+
+  .link-info-lg {
+    @apply link-info-lg;
+  }
+
+  .link-info-md {
+    @apply link-info-md;
+  }
+
+  .link-info-sm {
+    @apply link-info-sm;
   }
 
   .heading-2xl {
-    @apply text-heading-2xl leading-heading-2xl;
+    @apply heading-2xl;
   }
 
   .heading-xl {
-    @apply text-heading-xl leading-heading-xl;
+    @apply heading-xl;
   }
 
   .heading-lg {
-    @apply text-heading-lg leading-heading-lg;
+    @apply heading-lg;
   }
 
   .heading-md {
-    @apply text-heading-md leading-heading-md;
+    @apply heading-md;
   }
 
   .heading-sm {
-    @apply text-heading-sm leading-heading-sm;
+    @apply heading-sm;
   }
 
   .heading-xs {
-    @apply text-heading-xs leading-heading-xs;
+    @apply heading-xs;
   }
 }

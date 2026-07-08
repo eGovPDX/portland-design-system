@@ -1,0 +1,53 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Tag
+
+# A longer description.
+description: A native Twig Tag component that renders a simple colored tag. Server-side rendered implementation matching the Portland Design System tag styles.
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+# Schema for the props. We support www.json-schema.org. Learn more about the syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your component template.
+  type: object
+
+  properties:
+    variant:
+      type: string
+      title: Tag variant
+      description: Color variation within the chosen color scheme
+      default: info
+      enum:
+        - info
+        - success
+        - warning
+        - danger
+      examples:
+        - info
+
+    attributes:
+      type: object
+      title: Additional attributes
+      description: Additional HTML attributes to add to the tag element
+      properties:
+        class:
+          type: string
+          title: CSS classes
+          description: Additional CSS classes for the tag
+        id:
+          type: string
+          title: Element ID
+          description: HTML ID attribute for the tag
+        data-*:
+          type: string
+          title: Data attributes
+          description: Custom data attributes
+
+slots:
+  content:
+    title: Content
+    description: The main content/text of the tag.

@@ -1,0 +1,40 @@
+/**
+ * Tag component styles
+ * Uses Tailwind utilities and design tokens for consistent styling
+ */
+
+/* Tailwind moderate, components, and utilities */
+@import "./base.css";
+
+@reference "./box.css";
+
+@layer components {
+  .tag {
+    @apply inline-block;
+    @apply rounded-full;
+    @apply px-xs py-3xs;
+    @apply w-fit;
+
+    /* REFACTOR: Use box variant utility classes like box--info--subtle below when available */
+
+    /* Color variant: info */
+    &.tag--info {
+      @apply bg-info-subtle text-standard-default-strong border-info-subtle;
+    }
+
+    /* Color variant: success */
+    &.tag--success {
+      @apply bg-success-subtle text-standard-default-strong border-success-subtle;
+    }
+
+    /* Color variant: warning */
+    &.tag--warning {
+      @apply bg-warning-subtle text-standard-default-strong border-warning-moderate;
+    }
+
+    /* Color variant: danger */
+    &.tag--danger {
+      @apply bg-danger-subtle text-standard-default-strong border-danger-subtle;
+    }
+  }
+}

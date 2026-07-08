@@ -1,10 +1,10 @@
-import { ASSETS_CITY_SEAL } from "@cityofportland/design-tokens";
 import type { FooterProps } from "@cityofportland/types/footer";
 import React, { createContext, useContext, useId } from "react";
 import z from "zod";
 
 import "@cityofportland/components-css/footer.css";
 import { Box } from "../box";
+import { CitySeal } from "../city-seal";
 
 export type ReactFooterProps = FooterProps &
   React.PropsWithChildren<React.HTMLAttributes<HTMLElement>>;
@@ -177,10 +177,7 @@ export const Footer: React.FC<ReactFooterProps> = ({
     >
       {children}
       <section className="footer__copyright">
-        <img
-          src={ASSETS_CITY_SEAL}
-          alt="Official City of Portland seal. The image depicts Portlandia holding her trident backdropped by mountain and river, accompanied by the text 'City of Portland, Oregon 1851'"
-        />
+        <CitySeal size="sm" />
         <span className="footer__copyright-text">
           <h2>City of Portland, Oregon</h2>
           <p>© {copyrightText}</p>
