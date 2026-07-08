@@ -1,6 +1,7 @@
 import "@cityofportland/components-css/header.css";
 import React from "react";
 import { Box, type ReactBoxProps } from "../box";
+import { CitySeal } from "../city-seal";
 import { mergeClasses } from "../utils";
 
 export type ReactHeaderProps = React.PropsWithChildren<
@@ -31,7 +32,7 @@ export const HeaderBranding = <
 };
 
 export const HeaderLogo: React.FC<ReactHeaderLogoProps> = ({ children }) => (
-  <span className="header__logo">{children}</span>
+  <span className="header__logo">{children ?? <CitySeal size="sm" />}</span>
 );
 
 export const HeaderContent: React.FC<ReactHeaderContentProps> = ({
