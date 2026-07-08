@@ -1,4 +1,3 @@
-import { ASSETS_CITY_SEAL } from "@cityofportland/design-tokens";
 import type { ArgTypes, Meta, StoryObj } from "@storybook/react-vite";
 import { useState, type MouseEvent } from "react";
 
@@ -31,9 +30,7 @@ const DemoHeader = ({
 }: StoryProps) => (
   <Header {...props}>
     <HeaderBranding as="a" href="#">
-      <HeaderLogo>
-        <img src={ASSETS_CITY_SEAL} alt="City of Portland Seal" />
-      </HeaderLogo>
+      <HeaderLogo />
       {title}
     </HeaderBranding>
     <HeaderContent>
