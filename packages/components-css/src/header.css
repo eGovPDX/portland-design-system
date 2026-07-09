@@ -37,9 +37,4 @@
   .header__nav-item {
     @apply m-none;
   }
-
-  .header__nav-link {
-    @apply inline-block no-underline;
-    @apply transition-colors;
-  }
 }
