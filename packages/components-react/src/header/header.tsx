@@ -62,7 +62,7 @@ export const HeaderNavLink: React.FC<ReactHeaderNavLinkProps> = ({
   className = "",
   ...rest
 }) => {
-  const classes = ["header__nav-link", className].filter(Boolean).join(" ");
+  const classes = mergeClasses(["link", className]);
 
   return (
     <a href={href} className={classes} {...rest}>
