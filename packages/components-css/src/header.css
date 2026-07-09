@@ -45,6 +45,5 @@
   .header__nav-link {
     @apply inline-block underline decoration-2 underline-offset-4;
     @apply transition-colors;
-    @apply hover:decoration-2 hover:underline-offset-4;
   }
 }
