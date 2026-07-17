@@ -1,4 +1,3 @@
-import base from "@cityofportland/design-tokens/json/base.json";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import "react";
@@ -7,151 +6,202 @@ import "../src/utilities.css";
 
 const meta: Meta = {
   title: "Utility Classes",
+  parameters: {
+    layout: "fullscreen",
+  },
+  argTypes: {
+    negate: {
+      control: {
+        type: "boolean",
+      },
+    },
+  },
+  decorators: [
+    (story, { args }) => {
+      console.debug("args: ", args);
+      const { negate } = args;
+
+      const classes = ["max-w-dvw", "p-md", "xl:p-xl", "rich-text"];
+
+      if (negate) classes.push("not-rich-text");
+
+      return <div className={classes.join(" ")}>{story()}</div>;
+    },
+  ],
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Rich_Text: Story = {
+  args: { negate: false },
   render: () => {
     return (
-      <div className="rich-text">
+      <>
+        <h1>
+          <code>rich-text</code> utility class
+        </h1>
         <p>
-          All elements in this story exist inside a{" "}
-          <code>&lt;div class="rich-text"&gt;</code> element and are pure HTML
-          elements with no utility classes. All element styling is inherited
-          from the <code>rich-text</code> parent class.
-        </p>
-
-        <h1>Headings</h1>
-        <h1>Heading 1</h1>
-        <h2>
-          <a href="#">Heading 2 link</a>
-        </h2>
-        <h3>Heading 3</h3>
-        <h4>Heading 4</h4>
-        <h5>Heading 5</h5>
-        <h6>Heading 6</h6>
-
-        <h1>Paragraphs</h1>
-        <p>
-          We choose to <a href="#">go to the moon</a>. We choose to go to the
-          moon in this decade and do the other things, not because they are
-          easy, but because they are hard.
+          This story documents how the <code>rich-text</code> parent class
+          styles native HTML elements. Each section introduces a feature and
+          then demonstrates it with unstyled markup.
         </p>
         <p>
-          That goal will serve to organize and measure the best of our energies
-          and skills, because that challenge is one that we are willing to
-          accept, one we are unwilling to postpone, and one which we intend to
-          win, and the others, too.
+          This story is plain HTML elements inside a single wrapper with the
+          <code>rich-text</code> class. No extra classes are required unless a
+          section explicitly shows overrides.
         </p>
-        <p>To the moon!</p>
 
-        <h1>Lists</h1>
-        <ol>
-          <li>Item 1</li>
+        <h2>Headings and paragraphs</h2>
+        <h1>Heading level 1</h1>
+        <p>
+          <code>&lt;h1&gt;</code> does not have a default top margin like other
+          heading levels do because it is intended to be the first element of a
+          page.
+        </p>
+        <h2>Heading level 2</h2>
+        <h3>Heading level 3</h3>
+        <h4>Heading level 4</h4>
+        <h5>Heading level 5</h5>
+        <h6>Heading level 6</h6>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+
+        <h2>Inline text</h2>
+        <p>
+          Rich text should support <strong>strong emphasis</strong>,
+          <em> emphasized text</em>, inline <code>code snippets</code>, and
+          plain <a href="#">links</a> in the same paragraph.
+        </p>
+
+        <h2>Links and link contexts</h2>
+        <ul>
           <li>
-            <a href="#">Item 2 link</a>
+            <a href="#">Read the full guidance</a>
           </li>
-          <li>Item 3</li>
           <li>
-            Item 4
-            <ol>
-              <li>Subitem A</li>
-              <li>Subitem B</li>
+            <a href="#">
+              This is a longer link label intended to wrap to a second line in
+              narrow layouts for readability checks
+            </a>
+          </li>
+        </ul>
+        <h3>
+          <a href="#">Linked heading</a>
+        </h3>
+
+        <h2>Lists and nesting</h2>
+        <ol>
+          <li>
+            <h3>Ordered lists</h3>
+          </li>
+          <li>Top-level ordered item</li>
+          <li>
+            Ordered item with nested bullets
+            <ul>
+              <li>Nested unordered item</li>
               <li>
-                Subitem C
+                Nested item with <a href="#">a link</a> and inline{" "}
+                <code>code</code>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Deeply nested ordered list
+            <ol>
+              <li>Level 2</li>
+              <li>
+                Level 2 with children
                 <ol>
                   <li>
-                    Subsubitem I
-                    <ol>
-                      <li>
-                        Subsubsubitem a
-                        <ol>
-                          <li>
-                            Subsubsubsubitem i
-                            <ol>
-                              <li>Toomanysubitem 1</li>
-                            </ol>
-                          </li>
-                        </ol>
-                      </li>
-                    </ol>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
                   </li>
                 </ol>
               </li>
             </ol>
           </li>
-          <li>Item 5</li>
-          <li>Item 6</li>
-          <li>Item 7</li>
-          <li>Item 8</li>
-          <li>Item 9</li>
-          <li>Item 10</li>
         </ol>
         <ul>
-          <li>Item</li>
           <li>
-            <a href="#">Item link</a>
+            <h3>Unordered lists</h3>
           </li>
+          <li>Top-level unordered item</li>
           <li>
-            Item
+            Unordered item with nested list
             <ul>
-              <li>Subitem</li>
-              <li>Subitem</li>
+              <li>Nested bullet A</li>
               <li>
-                Subitem
-                <ul>
-                  <li>Subsubitem</li>
-                </ul>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </li>
             </ul>
           </li>
-          <li>Item</li>
         </ul>
 
-        <h1>Blockquote</h1>
+        <h2>Blockquotes</h2>
         <blockquote>
           <p>
-            We choose to go to the moon, not because it is easy, but because it
-            is hard.
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum."
           </p>
         </blockquote>
 
-        <h1>Code</h1>
+        <h2>Code formatting</h2>
         <p>
-          Use this is JavaScript code{" "}
-          <code>
-            function() {"{"} alert("Hello, World!"); {"}"}
-          </code>
-          to display an alert box.
+          Example command:{" "}
+          <code>pnpm --filter @cityofportland/components-css storybook</code>
         </p>
         <pre>
           <code>
-            function() {"{"}
-            <br />
-            &nbsp;&nbsp;alert("Hello, World!");
-            <br />
-            {"}"}
+            {`function formatStatus(message) {
+  return \`[\${new Date().toLocaleString()}] Status: \${message}\`;
+}`}
           </code>
         </pre>
 
-        <h1>Horizontal rule</h1>
+        <h2>Horizontal rule</h2>
+        <p>
+          There are several sizes of horizontal rules available. The default
+          size for <code>rich-text</code> is <code>hr-md</code>
+        </p>
         <hr />
 
-        <h1>Overriding default styles</h1>
+        <h2>Overriding</h2>
         <p className="body-lg">
-          This paragraph has <code>class="body-lg"</code> to demonstrate that
-          the default element styles can be overridden by applying utility
-          classes.
+          This paragraph applies <code>body-lg</code> to demonstrate opt-in
+          overrides.
         </p>
-        <h4 className="heading-lg">H4 styled as an H2</h4>
-        <p>
-          The <code>hr</code> element below is styled with{" "}
-          <code>className="hr-xl"</code>.
-        </p>
-        <hr className="hr-xl" />
-      </div>
+        <h4 className="heading-lg">
+          <code>h4</code> rendered with <code>heading-lg</code> utility
+        </h4>
+        <section className="not-rich-text">
+          <h3>
+            <code>not-rich-text</code>
+          </h3>
+          <p>
+            This section uses the <code>not-rich-text</code> class to opt an
+            entire section out of the <code>rich-text</code> defaults
+          </p>
+          <ul>
+            <li>listas are affected</li>
+          </ul>
+          <a href="#">as are links</a>.
+        </section>
+      </>
     );
   },
 };
