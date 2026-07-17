@@ -7,7 +7,10 @@ const { frontmatter, headings, title, className } = Astro.props;
 
 <SiteLayout title={title || frontmatter.title}>
   <article
-    class={["flex-1 content px-md md:px-none md:mt-xl md:mb-5xl", className]
+    class={[
+      "xl:col-span-3 rich-text px-md xl:px-none xl:mt-xl xl:mb-5xl",
+      className,
+    ]
       .filter(Boolean)
       .join(" ")}
   >
@@ -15,8 +18,8 @@ const { frontmatter, headings, title, className } = Astro.props;
   </article>
   {
     headings && headings.filter((h) => h.depth > 1).length > 0 && (
-      <aside class="flex-1 md:flex-none md:border-l-sm md:w-1/5">
-        <nav class="md:p-md flex flex-col md:max-h-dvh wrap-break-word md:sticky md:top-none overflow-auto">
+      <aside class="hidden xl:block">
+        <nav class="xl:p-md flex flex-col xl:max-h-dvh wrap-break-word xl:sticky xl:top-none overflow-auto">
           <h2 class="text-heading-sm">On this page</h2>
           {headings
             .filter((h) => h.depth > 1 && h.depth < 3)
@@ -33,9 +36,7 @@ const { frontmatter, headings, title, className } = Astro.props;
 
               return (
                 <NavItem as="a" href={`#${h.slug}`} className={classes}>
-                  <span class="text-body-sm font-semibold underline underline-offset-4">
-                    {h.text}
-                  </span>
+                  <span class="link text-body-sm font-semibold">{h.text}</span>
                 </NavItem>
               );
             })}

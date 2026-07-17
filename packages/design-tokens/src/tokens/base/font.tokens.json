@@ -4,6 +4,14 @@
       "sans": {
         "$type": "fontFamily",
         "$value": "Open Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'"
+      },
+      "serif": {
+        "$type": "fontFamily",
+        "$value": "ui-serif, serif, 'Apple Color Emoji', 'Segoe UI Emoji'"
+      },
+      "mono": {
+        "$type": "fontFamily",
+        "$value": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
       }
     },
     "weight": {

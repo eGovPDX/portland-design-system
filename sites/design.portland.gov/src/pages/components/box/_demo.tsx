@@ -7,8 +7,6 @@ import { Box } from "@cityofportland/components-react/box";
 import { useStore } from "@nanostores/react";
 import { atom } from "nanostores";
 
-import { Code } from "../../../components/code";
-
 const $color = atom<BoxColorScheme>("default");
 const $variant = atom("subtle");
 
@@ -17,13 +15,17 @@ export function DemoBox({ children }: React.PropsWithChildren<{}>) {
   const variant = useStore($variant);
 
   return (
-    <div className="grid gap-xs">
-      <Code
-        language="tsx"
-        code={`<Box as="div" color="${color}" variant="${variant}" className="border-lg p-2xl"></Box>`}
-        className="-mx-xs"
-      />
-      <Box color={color} variant={variant} className="border-lg p-2xl">
+    <div>
+      <pre>
+        <code>
+          {`<Box as="div" color="${color}" variant="${variant}" className="border-lg p-md" />`}
+        </code>
+      </pre>
+      <Box
+        color={color}
+        variant={variant}
+        className="border-lg p-md not-rich-text"
+      >
         {children}
       </Box>
     </div>

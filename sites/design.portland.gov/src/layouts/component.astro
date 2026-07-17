@@ -22,11 +22,7 @@ if (frontmatter.storybooks && frontmatter.storybooks.length > 0) {
 }
 ---
 
-<MarkdownLayout
-  title={frontmatter.title}
-  headings={headings}
-  className="md:max-w-3/5"
->
+<MarkdownLayout title={frontmatter.title} headings={headings}>
   <slot />
   {
     frontmatter.storybooks && frontmatter.storybooks.length > 0 && (

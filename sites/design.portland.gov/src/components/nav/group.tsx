@@ -1,4 +1,3 @@
-import { atom } from "nanostores";
 import React from "react";
 
 export function NavGroup({
