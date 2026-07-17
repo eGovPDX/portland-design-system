@@ -3,7 +3,7 @@ import { getOctokit, context } from "@actions/github";
 
 async function run() {
   try {
-    const e = getOctokit(getInput("github-token"));
+    const e = getOctokit(getInput("github_token"));
 
     const { data } = await e.rest.actions.listWorkflowRuns({
       owner: getInput("owner") || context.repo.owner,

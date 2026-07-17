@@ -14,7 +14,7 @@ inputs:
     description: The ID of the release to add the asset to
     required: true
 
-  github-token:
+  github_token:
     description: The GitHub token used to create an authenticated client
     default: ${{ github.token }}
     required: false

@@ -3,7 +3,7 @@ import { getOctokit, context } from "@actions/github";
 
 async function run() {
   try {
-    const github = getOctokit(getInput("github-token"));
+    const github = getOctokit(getInput("github_token"));
 
     await github.rest.repos.uploadReleaseAsset({
       repo: getInput("repo") || context.repo.repo,
