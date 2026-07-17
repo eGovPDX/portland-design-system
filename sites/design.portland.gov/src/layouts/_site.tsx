@@ -32,10 +32,7 @@ export function SiteNav({
             variant={current === route.href ? "subtle" : undefined}
           >
             <AccordionHeader>
-              <a
-                href={route.href}
-                className="font-semibold underline underline-offset-4"
-              >
+              <a href={route.href} className="link font-semibold">
                 {route.label}
               </a>
               <AccordionButton className="outline-2 focus:outline-4 outline-offset-2 rounded-sm px-2xs py-3xs text-body-sm ml-auto" />
@@ -56,9 +53,7 @@ export function SiteNav({
         variant={current === route.href ? "subtle" : undefined}
         href={route.href}
       >
-        <span className="text-body-md font-semibold underline underline-offset-4">
-          {route.label}
-        </span>
+        <span className="link font-semibold">{route.label}</span>
       </NavItem>
     );
   };

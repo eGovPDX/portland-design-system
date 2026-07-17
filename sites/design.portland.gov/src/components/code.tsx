@@ -20,6 +20,7 @@ export function Code({
       const highlighted = await codeToHtml(code.trim(), {
         theme,
         lang: language,
+        structure: "inline",
       });
       setHtml(highlighted);
     }
