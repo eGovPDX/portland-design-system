@@ -1,11 +1,11 @@
 import type { ButtonProps } from "@cityofportland/types/button";
 import React from "react";
 
-import "@cityofportland/components-css/button.css";
 import { mergeClasses } from "../utils";
 import { Box, type ReactBoxProps } from "../box";
 
-// Extend ButtonProps with React-specific props
+import "@cityofportland/components-css/button.css";
+
 export type ReactButtonProps = ButtonProps &
   ReactBoxProps &
   React.ButtonHTMLAttributes<HTMLButtonElement> &
