@@ -1,0 +1,44 @@
+/* Header Component Styles */
+@import "./base.css";
+
+@reference "./box.css";
+
+@layer components {
+  /* Base Header Styles */
+  .header {
+    @apply w-full py-md px-xl;
+    @apply flex flex-wrap items-center justify-between gap-md;
+  }
+
+  .header__branding {
+    @apply flex items-center gap-md;
+    @apply text-heading-lg font-bold;
+
+    .header__logo {
+      @apply inline-flex items-center justify-center shrink-0;
+
+      img {
+        @apply h-3xl xl:h-[56px] shrink-0;
+      }
+    }
+
+    .header__title {
+      @apply flex flex-col gap-xs;
+    }
+  }
+  .header__content {
+    @apply flex flex-wrap items-center gap-lg;
+  }
+
+  .header__nav {
+    @apply flex flex-wrap items-center;
+  }
+
+  .header__nav-list {
+    @apply m-none p-none list-none flex flex-wrap flex-row items-center gap-lg;
+  }
+
+  .header__nav-item {
+    @apply m-none;
+  }
+}
