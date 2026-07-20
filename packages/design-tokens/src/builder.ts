@@ -86,6 +86,7 @@ export class TokenBuilder {
             platforms.js,
             platforms.json,
             platforms.jsTypes,
+            platforms.scss,
           ].reduce(
             (acc, generator) => {
               acc[generator.name] = generator(
