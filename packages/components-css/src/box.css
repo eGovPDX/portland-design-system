@@ -1,5 +1,13 @@
 @import "./base.css";
 
+@utility box {
+  @apply bg-(--box-background-color);
+  @apply text-(--box-text-color);
+  @apply border-(--box-border-color);
+  @apply outline-(--box-outline-color);
+  @apply ring-(--box-ring-color);
+}
+
 @utility box-default-subtle {
   --box-background-color: var(
     --background-color-standard-default-subtle,
@@ -874,11 +882,7 @@
 
 @layer components {
   .box {
-    @apply bg-(--box-background-color);
-    @apply text-(--box-text-color);
-    @apply border-(--box-border-color);
-    @apply outline-(--box-outline-color);
-    @apply ring-(--box-ring-color);
+    @apply box;
 
     /* Color scheme: default */
     &.box--default {
