@@ -1,4 +1,8 @@
-import { getToken, type Token } from "@cityofportland/design-tokens/utils";
+import {
+  get as getToken,
+  traverse,
+  type Token,
+} from "@cityofportland/design-tokens/utils";
 import base from "@cityofportland/design-tokens/json/base.json" with { type: "json" };
 import dark from "@cityofportland/design-tokens/json/dark.json" with { type: "json" };
 import xl from "@cityofportland/design-tokens/json/xl.json" with { type: "json" };
@@ -18,7 +22,7 @@ export type HeadingFunction = (
   p: HeadingParam["path"],
   d: HeadingParam["depth"],
   v: HeadingParam["value"],
-  ...args: any[]
+  ...args: unknown[]
 ) => Heading | React.JSX.Element;
 
 export const retrieveToken = (source: Token | string, path: Path): Token => {
@@ -44,23 +48,18 @@ export const getTokens = (path: Path): Array<Heading> => {
     value: value,
   });
 
-  const headings: Array<Heading> = [heading(path, 1, value) as Heading];
+  const headings = new Array<Heading>();
 
   const depth = 1;
 
-  function traverse(o: Token, p: Array<string>, d: number) {
-    if (o !== null && typeof o == "object") {
-      Object.entries(o).forEach(([key, value]) => {
-        headings.push(heading([...p, key], d + 1, value) as Heading);
-        // key is either an array index or object key
-        traverse(value, [...p, key], d + 1);
-      });
-    } else {
-      // jsonObj is a number or string
-    }
-  }
-
-  traverse(value, path, depth);
+  traverse(
+    value,
+    (t, p, d) => {
+      headings.push(heading(p, d, t) as Heading);
+    },
+    path,
+    depth
+  );
 
   return headings;
 };

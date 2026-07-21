@@ -16,11 +16,13 @@ export function traverse(
   path: string[] = [],
   depth = 1
 ): void {
-  if (typeof source === "string") {
-    callback(source, path, depth);
-  } else {
-    for (const key in source) {
-      traverse(source[key], callback, [...path, key], depth + 1);
-    }
+  callback(source, path, depth);
+
+  if (typeof source !== "object" || source === null) {
+    return;
+  }
+
+  for (const key in source) {
+    traverse(source[key], callback, [...path, key], depth + 1);
   }
 }
