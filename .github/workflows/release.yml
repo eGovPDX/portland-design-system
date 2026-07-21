@@ -27,6 +27,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow_id: push.yml
           head_sha: ${{ github.sha }}
+          conclusion: "success"
 
       - uses: actions/download-artifact@v5
         with:
