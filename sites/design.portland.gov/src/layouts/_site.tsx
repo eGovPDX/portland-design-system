@@ -22,7 +22,7 @@ export function SiteNav({
   routes: Route[];
   current: string;
 }) {
-  const renderer = (route: Route) => {
+  const renderer = (route: Route, className?: string) => {
     if (route.children) {
       return (
         <Accordion key={route.href} open={current.startsWith(route.href)}>
@@ -31,16 +31,20 @@ export function SiteNav({
             color={current === route.href ? "primary" : undefined}
             variant={current === route.href ? "subtle" : undefined}
           >
-            <AccordionHeader>
+            <AccordionHeader className={className}>
               <a href={route.href} className="link font-semibold">
                 {route.label}
               </a>
-              <AccordionButton className="outline-2 focus:outline-4 outline-offset-2 rounded-sm px-2xs py-3xs text-body-sm ml-auto" />
+              <AccordionButton size="2xs" className="text-body-sm" />
             </AccordionHeader>
           </NavItem>
-          <AccordionContent className="p-xs grid gap-2xs">
-            {route.children.map((child) => renderer(child))}
-          </AccordionContent>
+          {route.children && route.children.length > 0 && (
+            <AccordionContent className="grid gap-2xs">
+              {route.children.map((child) =>
+                renderer(child, "px-2xs py-3xs pl-md")
+              )}
+            </AccordionContent>
+          )}
         </Accordion>
       );
     }
@@ -52,6 +56,7 @@ export function SiteNav({
         color={current === route.href ? "primary" : undefined}
         variant={current === route.href ? "subtle" : undefined}
         href={route.href}
+        className={className}
       >
         <span className="link font-semibold">{route.label}</span>
       </NavItem>
@@ -61,7 +66,7 @@ export function SiteNav({
   return (
     <Box className={[className].filter(Boolean).join(" ")}>
       {routes.map((route) => {
-        return renderer(route);
+        return renderer(route, "px-2xs py-3xs");
       })}
     </Box>
   );

@@ -1,6 +1,6 @@
 import { Box } from "@cityofportland/components-react/box";
-import { codeToHtml } from "shiki";
-import React from "react";
+import { codeToHtml, type ThemeRegistrationAny } from "shiki";
+import React, { useEffect, useState } from "react";
 
 export function Code({
   code,
@@ -11,16 +11,24 @@ export function Code({
 }: React.HTMLAttributes<HTMLElement> & {
   code: string;
   language?: string;
-  theme?: string;
+  theme?: ThemeRegistrationAny | string;
 }) {
-  const [html, setHtml] = React.useState("");
+  const [html, setHtml] = useState("");
 
-  React.useEffect(() => {
+  const classes = new Set<string>([]);
+
+  className?.split(" ").forEach(classes.add);
+
+  useEffect(() => {
     async function highlight() {
       const highlighted = await codeToHtml(code.trim(), {
-        theme,
+        themes: {
+          light: "github-light",
+          dark: "github-dark",
+        },
         lang: language,
         structure: "inline",
+        rootStyle: false,
       });
       setHtml(highlighted);
     }
@@ -30,6 +38,7 @@ export function Code({
   return (
     <Box as="pre" className={[className].filter(Boolean).join(" ")} {...props}>
       <code
+        className="shiki"
         dangerouslySetInnerHTML={{
           __html: html,
         }}
