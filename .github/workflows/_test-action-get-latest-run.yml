@@ -11,17 +11,14 @@ on:
       branch:
         description: Optional branch filter
         required: false
-        default: main
         type: string
       event:
         description: Optional event filter
         required: false
-        default: push
         type: string
       conclusion:
         description: Optional conclusion filter
         required: false
-        default: success
         type: string
       head_sha:
         description: Optional head SHA filter
