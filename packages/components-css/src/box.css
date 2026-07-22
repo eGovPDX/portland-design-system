@@ -359,8 +359,8 @@
     theme(--background-color-secondary-strong)
   );
   --box-text-color: var(
-    --text-color-standard-default-strong,
-    theme(--text-color-standard-default-strong)
+    --text-color-standard-fixed-light,
+    theme(--text-color-standard-fixed-light)
   );
   --box-border-color: var(
     --border-color-secondary-emphasis,
