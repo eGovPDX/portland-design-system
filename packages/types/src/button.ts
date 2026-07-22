@@ -13,13 +13,6 @@ export const BUTTON_SIZES = SPACING;
 export type ButtonSize = Spacing;
 
 /**
- * HTML button type attribute values
- */
-export const BUTTON_TYPES = ["button", "submit", "reset"] as const;
-
-export type ButtonType = (typeof BUTTON_TYPES)[number];
-
-/**
  * Core button properties shared across all framework implementations
  */
 export interface ButtonProps extends BoxProps {
@@ -40,12 +33,6 @@ export interface ButtonProps extends BoxProps {
    * @default false
    */
   disabled?: boolean;
-
-  /**
-   * HTML button type attribute
-   * @default "button"
-   */
-  type?: ButtonType;
 }
 
 /**
@@ -86,4 +73,20 @@ export interface ButtonPropsWithSlots extends ButtonProps {
    * Right icon or content
    */
   right?: string | unknown;
+}
+
+export const BUTTON_VALID_ELEMENTS = ["button", "a"] as const;
+
+export type ButtonValidElement = (typeof BUTTON_VALID_ELEMENTS)[number];
+
+export function validateButtonElement(
+  element: string
+): asserts element is ButtonValidElement {
+  if (!BUTTON_VALID_ELEMENTS.includes(element as ButtonValidElement)) {
+    throw new Error(
+      `Invalid button element "${element}". Valid elements are: ${BUTTON_VALID_ELEMENTS.join(
+        ", "
+      )}`
+    );
+  }
 }

@@ -9,35 +9,28 @@
 @layer components {
   .button {
     /* Dim the button color */
-    --button-hover-factor: 0.85;
+    --button-action-factor: 0.85;
 
     @variant dark {
-      --button-hover-factor: 1.1;
+      --button-action-factor: 1.15;
     }
 
-    --button-hover-color: oklch(
-      from var(--box-background-color) calc(l * var(--button-hover-factor))
-        calc(c * var(--button-hover-factor)) h
+    --button-action-color: oklch(
+      from var(--box-background-color) calc(l * var(--button-action-factor))
+        calc(c * var(--button-action-factor)) h
     );
 
     @apply max-w-full;
     @apply inline-flex items-center justify-center gap-xs;
     @apply wrap-anywhere;
     @apply cursor-pointer;
-    @apply transition;
+    @apply transition-colors;
+    @apply transition-shadow;
     @apply duration-100;
-
-    @apply disabled:bg-disabled-moderate;
-    @apply disabled:text-disabled-emphasis;
-    @apply disabled:cursor-not-allowed;
 
     @apply active:ring-0;
     @apply active:ring-offset-3xs;
-    @apply active:ring-offset-(--button-hover-color);
-
-    @apply not-disabled:hover:ring-0;
-    @apply not-disabled:hover:ring-offset-3xs;
-    @apply not-disabled:hover:ring-offset-(--button-hover-color);
+    @apply active:ring-offset-(--button-action-color);
 
     @apply focus:outline-lg;
     @apply focus:outline-offset-2xs;
@@ -45,31 +38,58 @@
     @apply focus-visible:outline-lg;
     @apply focus-visible:outline-offset-2xs;
 
-    @apply not-disabled:hover:active:ring-offset-2xs;
-
-    &:not(.button--outline) {
-      @apply active:bg-(--button-hover-color);
-
-      @apply not-disabled:hover:bg-(--button-hover-color);
-      @apply not-disabled:hover:ring-offset-(--button-hover-color);
-
-      @apply not-disabled:hover:active:bg-(--button-hover-color);
+    &.button--disabled,
+    &:disabled {
+      @apply bg-disabled-moderate;
+      @apply text-disabled-emphasis;
+      @apply cursor-not-allowed;
     }
-    &.button--outline {
-      --ring-color: var(--box-background-color, currentColor);
 
+    &:not(.button--disabled, :disabled) {
+      @apply active:ring-offset-3xs;
+      @apply active:ring-offset-(--button-action-color);
+
+      @apply hover:ring-0;
+      @apply hover:ring-offset-3xs;
+      @apply hover:ring-offset-(--button-action-color);
+
+      @apply hover:active:ring-offset-2xs;
+
+      &:not(.button--outline) {
+        @apply active:bg-(--button-action-color);
+
+        @apply hover:bg-(--button-action-color);
+        @apply hover:ring-offset-(--button-action-color);
+
+        @apply hover:active:bg-(--button-action-color);
+      }
+    }
+
+    &.button--outline {
       @apply bg-transparent;
       @apply text-inherit;
-      @apply inset-ring-md;
       @apply inset-ring-(--box-background-color);
       @apply ring-offset-(--box-background-color);
 
       @apply active:ring-offset-3xs;
-      @apply active:ring-offset-(--box-background-color);
+      @apply active:inset-ring-(--button-action-color);
+      @apply active:ring-offset-(--button-action-color);
 
-      @apply not-disabled:hover:ring-offset-(--box-background-color);
+      &.button--disabled,
+      &:disabled {
+        @apply bg-disabled-moderate;
+        @apply text-disabled-emphasis;
+        @apply cursor-not-allowed;
+      }
 
-      @apply not-disabled:hover:active:ring-offset-2xs;
+      &:not(.button--disabled, :disabled) {
+        @apply inset-ring-md;
+
+        @apply hover:inset-ring-(--button-action-color);
+        @apply hover:ring-offset-(--button-action-color);
+
+        @apply hover:active:ring-offset-2xs;
+      }
     }
 
     &.button--3xs {

@@ -1,4 +1,4 @@
-import { BUTTON_SIZES, BUTTON_TYPES } from "@cityofportland/types/button";
+import { BUTTON_SIZES } from "@cityofportland/types/button";
 import {
   BOX_COLORS,
   BOX_VARIANTS,
@@ -31,6 +31,10 @@ const meta = {
   },
   argTypes: {
     ...boxStories.argTypes,
+    as: {
+      control: "select",
+      options: ["button", "a"],
+    },
     children: {
       control: "text",
       description: "The text content of the button",
@@ -42,8 +46,9 @@ const meta = {
     },
     type: {
       control: "select",
-      options: BUTTON_TYPES,
+      options: ["button", "submit", "reset"],
       description: "The HTML button type attribute",
+      if: { arg: "as", eq: "button" },
     },
     outline: {
       control: "boolean",
@@ -63,10 +68,13 @@ const meta = {
     },
   },
   args: {
-    children: "{text}",
-    type: "button",
+    color: "inverse",
+    variant: "subtle",
+    size: "md",
     outline: false,
     disabled: false,
+    children: "{text}",
+    type: "button",
     left: false,
     right: false,
     onClick: fn(), // Add default action logger
@@ -75,13 +83,19 @@ const meta = {
 
 type Story = StoryObj<StoryProps>;
 
-const DemoButton = ({ left, right, children, ...args }: StoryProps) => (
-  <Button {...args}>
-    {left && <span>{left}</span>}
-    {children}
-    {right && <span>{right}</span>}
-  </Button>
-);
+const DemoButton = ({ as, left, right, children, ...args }: StoryProps) => {
+  if (as == "a") {
+    args["href"] = "#";
+  }
+
+  return (
+    <Button as={as} {...args}>
+      {left && <FontAwesomeIcon icon={faArrowLeft} />}
+      {children}
+      {right && <FontAwesomeIcon icon={faArrowRight} />}
+    </Button>
+  );
+};
 
 // Default button
 export const Basic: Story = {
@@ -105,7 +119,14 @@ export const PortlandGov: Story = {
       ],
     },
   },
-  render({ children, left, right, ...props }) {
+  render({
+    color: _color,
+    variant: _variant,
+    size: _size,
+    outline: _outline,
+    children,
+    ...props
+  }) {
     return (
       <div className="grid gap-md">
         <DemoButton
@@ -113,8 +134,7 @@ export const PortlandGov: Story = {
           variant="moderate"
           size="md"
           className="rounded-md"
-          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
-          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+          {...props}
         >
           {children}
         </DemoButton>
@@ -124,8 +144,7 @@ export const PortlandGov: Story = {
           outline
           size="md"
           className="rounded-md"
-          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
-          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+          {...props}
         >
           {children}
         </DemoButton>
@@ -134,8 +153,7 @@ export const PortlandGov: Story = {
           variant="emphasis"
           size="md"
           className="rounded-md"
-          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
-          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+          {...props}
         >
           {children}
         </DemoButton>
@@ -145,8 +163,7 @@ export const PortlandGov: Story = {
           outline
           size="md"
           className="rounded-md"
-          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
-          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+          {...props}
         >
           {children}
         </DemoButton>
@@ -155,8 +172,7 @@ export const PortlandGov: Story = {
           variant="emphasis"
           size="md"
           className="rounded-md"
-          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
-          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+          {...props}
         >
           {children}
         </DemoButton>
@@ -166,8 +182,7 @@ export const PortlandGov: Story = {
           outline
           size="md"
           className="rounded-md"
-          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
-          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+          {...props}
         >
           {children}
         </DemoButton>
@@ -176,8 +191,7 @@ export const PortlandGov: Story = {
           variant="subtle"
           size="md"
           className="rounded-md"
-          left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
-          right={right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined}
+          {...props}
         >
           {children}
         </DemoButton>
@@ -223,7 +237,14 @@ export const Variants: StoryObj<
       ],
     },
   },
-  render({ backgroundColor, backgroundVariant, color, outline, ...props }) {
+  render({
+    variant: _variant,
+    backgroundColor,
+    backgroundVariant,
+    color,
+    outline,
+    ...props
+  }) {
     const ButtonTester = ({ color, variant }) => {
       const id = `${color}-${variant}`;
 
@@ -239,7 +260,7 @@ export const Variants: StoryObj<
             color={color}
             variant={variant}
             outline={outline}
-            className="capitalize "
+            className="capitalize"
             {...props}
           >
             {variant}
@@ -279,7 +300,7 @@ export const Sizes: Story = {
       exclude: ["children", "className", "onClick", "size"],
     },
   },
-  render({ left, right, onClick, ...props }) {
+  render({ size: _size, ...props }) {
     return (
       <section className="p-xl grid gap-lg">
         {BUTTON_SIZES.map((size) => (
@@ -287,18 +308,9 @@ export const Sizes: Story = {
             <h2 key={size} className="heading-md uppercase">
               {size}
             </h2>
-            <Button
-              key={size}
-              size={size}
-              left={left ? <FontAwesomeIcon icon={faArrowLeft} /> : undefined}
-              right={
-                right ? <FontAwesomeIcon icon={faArrowRight} /> : undefined
-              }
-              onClick={onClick}
-              {...props}
-            >
+            <DemoButton key={size} size={size} {...props}>
               {size.toLocaleUpperCase()} Button
-            </Button>
+            </DemoButton>
           </div>
         ))}
       </section>
@@ -308,6 +320,9 @@ export const Sizes: Story = {
 
 export const Incognito: StoryObj<StoryProps & { underline: boolean }> = {
   args: {
+    color: undefined,
+    variant: undefined,
+    size: undefined,
     underline: false,
   },
   render: ({ left, right, underline, ...props }) => (
