@@ -39,6 +39,12 @@ export interface CardProps {
    * @default "vertical"
    */
   layout?: CardLayout;
+
+  /**
+   * Whether the card has a border or not
+   * @default true
+   */
+  border: boolean;
 }
 
 /**

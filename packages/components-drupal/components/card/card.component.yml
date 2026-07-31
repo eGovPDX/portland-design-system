@@ -40,6 +40,12 @@ props:
       examples:
         - vertical
 
+    border:
+      type: boolean
+      title: Card Border
+      description: Whether the card has a border or not
+      default: true
+
     attributes:
       type: object
       title: Additional Attributes

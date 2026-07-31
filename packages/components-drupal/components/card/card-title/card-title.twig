@@ -1,5 +1,5 @@
 {% include 'portland:box' with { 
-	box_content: content, 
-	as: as|default('h3'),
-	attributes: attributes.addClass("heading-md"),
+	box_content: card_title_content, 
+	as: as|default('header'),
+	attributes: attributes.addClass("card__title heading-md"),
 } %}

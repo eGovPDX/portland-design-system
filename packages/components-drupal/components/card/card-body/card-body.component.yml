@@ -1,7 +1,7 @@
 # This is so your IDE knows about the syntax for fixes and autocomplete.
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 
-name: Card Title
+name: Card Body
 
 status: experimental
 
@@ -15,5 +15,5 @@ props:
   properties: {}
 
 slots:
-  card_title_content:
-    title: Content
+  card_body_content:
+    title: Card Body Content
