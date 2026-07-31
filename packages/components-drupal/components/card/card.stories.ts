@@ -333,6 +333,10 @@ export const MultipleButtons: Story<Props & { buttons: string[] }> = {
                card_description_content: `<p>See hours, events, and services at branches near you.</p>`,
              })}
               ${CardFooter.component({
+                defaultAttributes: [
+                  ...CardFooter.args.defaultAttributes,
+                  ["class", ["inline-flex", "flex-wrap", "gap-sm"]],
+                ],
                 card_footer_content: `
                   ${buttons.map((button, index) => Button.component({ variant: index > 0 ? "outline" : "primary", content: button })).join("")}
                 `,

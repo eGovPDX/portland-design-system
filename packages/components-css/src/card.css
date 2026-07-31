@@ -32,8 +32,6 @@
 
       .card__footer {
         @apply mt-auto;
-        @apply inline-flex;
-        @apply gap-sm;
       }
 
       .card__title {
