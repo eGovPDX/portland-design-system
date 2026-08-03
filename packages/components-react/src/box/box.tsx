@@ -21,7 +21,7 @@ type ReactBoxOwnProps<E extends React.ElementType = DefaultElementType> =
      * The HTML element or React component to render as
      * @default "div"
      */
-    as?: E;
+    as?: E | string;
   };
 
 /**
@@ -35,8 +35,8 @@ export type ReactBoxProps<E extends React.ElementType = DefaultElementType> =
 /**
  * Generic Box component type for use with forwardRef
  */
-type BoxComponent = <E extends React.ElementType = DefaultElementType>(
-  props: ReactBoxProps<E>
+export type BoxComponent = <E extends React.ElementType = DefaultElementType>(
+  props: ReactBoxProps<E> & { ref?: React.Ref<HTMLElement> | undefined }
 ) => React.ReactNode;
 
 /**
@@ -77,28 +77,33 @@ function buildClassList({
  *   Custom component content
  * </Box>
  */
-export const Box: BoxComponent = ({
-  as = "div",
-  border,
-  children,
-  color,
-  variant,
-  className,
-  ...rest
-}) => {
-  const Element = as || "div";
+export const Box = React.forwardRef(
+  <E extends React.ElementType = DefaultElementType>(
+    {
+      as,
+      border,
+      children,
+      color,
+      variant,
+      className,
+      ...rest
+    }: ReactBoxProps<E>,
+    ref: React.Ref<React.ElementType<E>>
+  ) => {
+    const Element = as || "div";
 
-  [color, variant] = validateBoxConfiguration(color, variant);
+    [color, variant] = validateBoxConfiguration(color, variant);
 
-  const classList = buildClassList({
-    className,
-    color,
-    variant,
-  });
+    const classList = buildClassList({
+      className,
+      color,
+      variant,
+    });
 
-  return (
-    <Element className={classList} {...rest}>
-      {children}
-    </Element>
-  );
-};
+    return (
+      <Element ref={ref} className={classList} {...rest}>
+        {children}
+      </Element>
+    );
+  }
+) as BoxComponent;

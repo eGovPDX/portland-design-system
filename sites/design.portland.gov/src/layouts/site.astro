@@ -43,25 +43,32 @@ const navItems = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} | design.portland.gov</title>
   </head>
-  <body class="min-h-screen flex flex-col relative">
+  <Box
+    as="body"
+    color="default"
+    variant="subtle"
+    className="min-h-screen flex flex-col relative"
+  >
     <header class="p-xl border-b-sm">
       <div class="flex items-center gap-md">
         <a href="/" class="text-heading-md">Portland Design System</a>
       </div>
     </header>
     <main
-      class="flex-1 mb-5xl xl:mb-none xl:px-none grid grid-cols-1 xl:grid-cols-5 gap-md relative"
+      class="flex-1 xl:px-xl grid grid-cols-1 xl:grid-cols-5 gap-md relative"
     >
       <Box as="aside" className="">
         <SiteNav
           routes={navItems}
           current={currentPath}
-          className="flex flex-col gap-2xs p-xs xl:max-h-dvh wrap-break-word xl:sticky xl:top-none xl:overflow-auto"
+          className="flex flex-col gap-2xs p-xs xl:px-none xl:max-h-dvh wrap-break-word xl:sticky xl:top-none xl:overflow-auto"
           client:idle
         />
       </Box>
       <slot />
     </main>
     <Footer copyrightStart={2026} />
-  </body>
+  </Box>
+
+
 </html>

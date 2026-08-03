@@ -8,7 +8,7 @@ const { frontmatter, headings, title, className } = Astro.props;
 <SiteLayout title={title || frontmatter.title}>
   <article
     class={[
-      "xl:col-span-3 rich-text px-md xl:px-none xl:mt-xl xl:mb-5xl",
+      "xl:col-span-3 rich-text px-md xl:px-none xl:mt-xl xl:pb-5xl overflow-x-auto",
       className,
     ]
       .filter(Boolean)

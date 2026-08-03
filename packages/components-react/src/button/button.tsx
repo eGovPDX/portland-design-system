@@ -1,52 +1,51 @@
-import "@cityofportland/components-css/button.css";
-import type { ButtonProps } from "@cityofportland/types/button";
+import {
+  validateButtonElement,
+  type ButtonProps,
+} from "@cityofportland/types/button";
 import React from "react";
 
-// Extend ButtonProps with React-specific props
-export interface ReactButtonProps extends ButtonProps {
-  children?: React.ReactNode; // React's type for anything renderable
-  left?: React.ReactNode; // Left slot content
-  right?: React.ReactNode; // Right slot content
-  className?: string; // CSS classes
-  onClick?: React.MouseEventHandler<HTMLButtonElement>; // Click event handler
-}
+import { mergeClasses } from "../utils";
+import { Box, type ReactBoxProps } from "../box";
+
+import "@cityofportland/components-css/button.css";
+
+export type ReactButtonProps = ButtonProps &
+  ReactBoxProps<"button" | "a"> &
+  React.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> &
+  React.PropsWithChildren;
 
 export const Button: React.FC<ReactButtonProps> = ({
+  as = "button",
   children = null,
-  variant = "primary",
-  size = "default",
+  size,
+  outline = false,
   disabled = false,
-  type = "button",
-  left,
-  right,
-  className = "",
+  className,
   ...props
 }) => {
-  function classes() {
-    const classes = ["button"];
-
-    classes.push(`button--${size}`);
-
-    if (!disabled) classes.push(`button--${variant}`);
-
-    if (className) {
-      classes.push(className);
-    }
-
-    return classes;
+  try {
+    validateButtonElement(as);
+  } catch (err) {
+    console.warn(err);
+    as = "button";
   }
 
   return (
-    <button
-      type={type}
-      className={classes().join(" ")}
+    <Box
+      as={as}
+      className={mergeClasses(
+        "button",
+        size && `button--${size}`,
+        disabled && "button--disabled",
+        outline && "button--outline",
+        className
+      )}
       disabled={disabled}
       aria-disabled={disabled ? "true" : "false"}
+      role="button"
       {...props}
     >
-      {left && <span>{left}</span>}
       {children}
-      {right && <span>{right}</span>}
-    </button>
+    </Box>
   );
 };

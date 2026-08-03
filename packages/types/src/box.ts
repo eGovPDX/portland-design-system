@@ -8,6 +8,7 @@
  */
 export const BOX_COLORS = [
   "default",
+  "inverse",
   "primary",
   "secondary",
   "success",
@@ -46,6 +47,7 @@ export const BOX_VALID_CONFIGURATIONS: Map<
   Array<BoxColorVariation>
 > = new Map([
   ["default", STANDARD_BOX_VARIANTS],
+  ["inverse", STANDARD_BOX_VARIANTS],
   ["primary", STANDARD_BOX_VARIANTS],
   ["secondary", STANDARD_BOX_VARIANTS],
   ["success", STANDARD_BOX_VARIANTS],

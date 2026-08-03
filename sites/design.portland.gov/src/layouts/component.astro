@@ -26,9 +26,9 @@ if (frontmatter.storybooks && frontmatter.storybooks.length > 0) {
   <slot />
   {
     frontmatter.storybooks && frontmatter.storybooks.length > 0 && (
-      <section>
+      <>
         <h2 id="storybooks">Storybooks</h2>
-        <div class="grid md:grid-cols-2 gap-lg">
+        <div class="grid lg:grid-cols-2 gap-lg">
           {frontmatter.storybooks.map((s) => (
             <Box
               as="a"
@@ -42,7 +42,7 @@ if (frontmatter.storybooks && frontmatter.storybooks.length > 0) {
             </Box>
           ))}
         </div>
-      </section>
+      </>
     )
   }
 </MarkdownLayout>

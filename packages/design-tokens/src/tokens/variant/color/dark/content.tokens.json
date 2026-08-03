@@ -265,11 +265,11 @@
       },
       "moderate": {
         "$type": "color",
-        "$value": "{color.disabled.darker}"
+        "$value": "{color.disabled.medium}"
       },
       "emphasis": {
         "$type": "color",
-        "$value": "{color.disabled.darker}"
+        "$value": "{color.disabled.light}"
       },
       "strong": {
         "$type": "color",

@@ -8,81 +8,132 @@
 
 @layer components {
   .button {
-    @apply rounded-md px-lg py-sm;
+    /* Dim the button color */
+    --button-action-factor: 0.85;
+
+    @variant dark {
+      --button-action-factor: 1.15;
+    }
+
+    --button-action-color: oklch(
+      from var(--box-background-color) calc(l * var(--button-action-factor))
+        calc(c * var(--button-action-factor)) h
+    );
+
+    @apply max-w-full;
     @apply inline-flex items-center justify-center gap-xs;
-    @apply font-bold;
+    @apply wrap-anywhere;
     @apply cursor-pointer;
-    @apply focus:outline-4 focus:outline-offset-4 focus:outline-primary-vivid;
+    @apply transition-colors;
+    @apply transition-shadow;
+    @apply duration-100;
 
-    @apply disabled:bg-disabled-lighter disabled:text-disabled-emphasis disabled:cursor-not-allowed;
-  }
+    @apply active:ring-0;
+    @apply active:ring-offset-3xs;
+    @apply active:ring-offset-(--button-action-color);
 
-  .button--outline {
-    @apply border-sm;
-  }
+    @apply focus:outline-lg;
+    @apply focus:outline-offset-2xs;
 
-  /* Button variants */
-  .button--primary {
-    @apply bg-primary-moderate text-standard-inverse-subtle;
-    @apply hover:bg-primary-strong;
-    @apply active:bg-primary-emphasis;
-    @apply focus-visible:active:bg-primary-emphasis;
+    @apply focus-visible:outline-lg;
+    @apply focus-visible:outline-offset-2xs;
+
+    &.button--disabled,
+    &:disabled {
+      @apply bg-disabled-moderate;
+      @apply text-disabled-emphasis;
+      @apply cursor-not-allowed;
+    }
+
+    &:not(.button--disabled, :disabled) {
+      @apply active:ring-offset-3xs;
+      @apply active:ring-offset-(--button-action-color);
+
+      @apply hover:ring-0;
+      @apply hover:ring-offset-3xs;
+      @apply hover:ring-offset-(--button-action-color);
+
+      @apply hover:active:ring-offset-2xs;
+
+      &:not(.button--outline) {
+        @apply active:bg-(--button-action-color);
+
+        @apply hover:bg-(--button-action-color);
+        @apply hover:ring-offset-(--button-action-color);
+
+        @apply hover:active:bg-(--button-action-color);
+      }
+    }
 
     &.button--outline {
-      @apply bg-standard-default-subtle border-primary-moderate text-primary-strong;
-      @apply hover:border-primary-strong;
-      @apply active:border-primary-emphasis;
+      @apply bg-transparent;
+      @apply text-inherit;
+      @apply inset-ring-(--box-background-color);
+      @apply ring-offset-(--box-background-color);
+
+      @apply active:ring-offset-3xs;
+      @apply active:inset-ring-(--button-action-color);
+      @apply active:ring-offset-(--button-action-color);
+
+      &.button--disabled,
+      &:disabled {
+        @apply bg-disabled-moderate;
+        @apply text-disabled-emphasis;
+        @apply cursor-not-allowed;
+      }
+
+      &:not(.button--disabled, :disabled) {
+        @apply inset-ring-md;
+
+        @apply hover:inset-ring-(--button-action-color);
+        @apply hover:ring-offset-(--button-action-color);
+
+        @apply hover:active:ring-offset-2xs;
+      }
     }
-  }
 
-  .button--secondary {
-    @apply bg-secondary-moderate text-standard-default-strong;
-    @apply hover:bg-secondary-strong hover:text-standard-fixed-light;
-    @apply active:bg-secondary-emphasis active:text-standard-default-strong;
-    @apply focus-visible:bg-secondary-emphasis;
-
-    &.button--outline {
-      @apply bg-standard-default-subtle border-secondary-moderate text-standard-default-emphasis;
-      @apply hover:border-secondary-strong;
-      @apply active:border-secondary-emphasis;
+    &.button--3xs {
+      @apply px-3xs;
     }
-  }
 
-  .button--danger {
-    @apply bg-danger-emphasis text-standard-inverse-subtle;
-    @apply hover:bg-danger-strong;
-    @apply active:bg-danger-emphasis;
-    @apply focus-visible:bg-danger-emphasis;
-
-    &.button--outline {
-      @apply bg-standard-default-subtle border-danger-moderate text-danger-strong;
-      @apply hover:border-danger-strong;
-      @apply active:border-danger-emphasis;
+    &.button--2xs {
+      @apply px-2xs;
     }
-  }
 
-  .button--inverse {
-    @apply bg-standard-inverse-moderate text-standard-inverse-subtle;
-    @apply hover:bg-standard-inverse-subtle;
-    @apply active:bg-standard-inverse-emphasis;
-  }
+    &.button--xs {
+      @apply px-xs py-3xs;
+    }
 
-  .button--unstyled {
-    @apply bg-transparent;
-    @apply text-primary-moderate font-regular;
-    @apply underline;
-  }
+    &.button--sm {
+      @apply px-sm py-2xs;
+    }
 
-  /* Size variants */
-  .button--default {
-    @apply text-body-md;
-  }
+    &.button--md {
+      @apply px-md py-xs;
+    }
 
-  .button--small {
-    @apply text-body-sm;
-  }
+    &.button--lg {
+      @apply px-lg py-sm;
+    }
 
-  .button--big {
-    @apply text-body-lg;
+    &.button--xl {
+      @apply px-xl py-md;
+    }
+
+    &.button--2xl {
+      @apply px-2xl py-lg;
+    }
+
+    &.button--3xl {
+      @apply px-3xl py-xl;
+    }
+
+    &.button--4xl {
+      @apply px-4xl py-2xl;
+    }
+
+    &.button--5xl {
+      @apply px-5xl py-3xl;
+    }
   }
 }

@@ -125,7 +125,7 @@
 }
 
 @utility code {
-  @apply box-secondary-subtle p-2xs rounded-sm font-mono wrap-break-word;
+  @apply box box-secondary-subtle p-2xs rounded-sm font-mono wrap-break-word;
 }
 
 @utility code-block {

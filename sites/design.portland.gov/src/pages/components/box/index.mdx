@@ -10,26 +10,32 @@ storybooks:
 
 import { BOX_COLORS } from "@cityofportland/types/box";
 
-import { DemoBox, ColorGallery, VariantGallery } from "./_demo";
+import {
+  DemoBox,
+  ColorGallery,
+  ContrastGallery,
+  VariantGallery,
+} from "./_demo";
 
 # Box
 
-The Box component is a foundational layout surface for grouping related content.
-It applies consistent spacing, color, and contrast styles across the design
-system.
+Box helps you group related content so it feels organized and easy to scan. It
+gives each section a clear background, spacing, and readable text so pages feel
+consistent across the site.
 
 Use Box when you need to:
 
-- Group content into a clear visual section
-- Apply a semantic color context (default, primary, success, warning, etc.)
-- Build nested surfaces while keeping consistent component styling
-- Create a new component that needs accessible colors
+- Group content into a clear section
+- Add helpful visual meaning with color (like default, primary, success, or
+  warning)
+- Build new components with color combinations that are already
+  accessibility-friendly
 
 ## Properties
 
-The combination of `color` and `variant` controls the background, content, and
-border color for each use. This allows you to choose from accessible color
-patterns quickly.
+The `color` and `variant` settings work together to control the background,
+text, and border styles. Together, they make it easy to pick a look that is both
+clear and accessible.
 
 ### As
 
@@ -51,7 +57,7 @@ content. Click on any box to set the variant for all boxes on this page.
 
 <VariantGallery client:load />
 
-### Output
+## Output
 
 Below is the output of the Box component with the selected color and variant.
 Click on any box in the galleries above to change the color and variant of this
@@ -73,3 +79,17 @@ care about our org chart. We should structure our content to be community-first.
 - Reserve `emphasis` and `strong` for callouts or high-attention regions.
 - Keep content hierarchy clear by combining Box with semantic elements such as
   `section`, `article`, and `aside`.
+
+## Accessibility
+
+Box is designed so content inside it stays readable and high contrast. Using the
+`color` and `variant` options helps you choose combinations that support
+accessibility.
+
+You can also improve page structure by pairing Box with semantic elements like
+`section`, `article`, and `aside`, which helps assistive technology understand
+your content.
+
+Each individual Box is built with accessible color choices, but real pages can
+combine many boxes. When you nest or layer boxes, make sure the full layout
+still has strong contrast and clear structure.

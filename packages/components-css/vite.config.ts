@@ -2,13 +2,13 @@ import { readdirSync } from "fs";
 import { EOL } from "os";
 import { basename, resolve, extname } from "path";
 import tailwind from "@tailwindcss/vite";
-import { defineConfig, Plugin, PluginOption } from "vite";
+import { defineConfig, type Plugin, type PluginOption } from "vite";
 
 const COMPONENTS_DIR = resolve(__dirname, "src");
 const BASE_PATH = resolve(COMPONENTS_DIR, "base.css");
 
 // Find all component CSS files (excluding base files like preflight)
-const baseFiles = ["preflight.css", "base.css"];
+const baseFiles = ["base.css"];
 
 const all = readdirSync(COMPONENTS_DIR, {
   recursive: true,

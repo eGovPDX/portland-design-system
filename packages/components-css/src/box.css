@@ -1,116 +1,889 @@
-/**
- * Box component styles
- * Uses Tailwind utilities and design tokens for consistent styling
- */
-
-/* Tailwind moderate, components, and utilities */
 @import "./base.css";
 
+@utility box {
+  @apply bg-(--box-background-color);
+  @apply text-(--box-text-color);
+  @apply border-(--box-border-color);
+  @apply outline-(--box-outline-color);
+  @apply ring-(--box-ring-color);
+}
+
 @utility box-default-subtle {
-  @apply bg-standard-default-subtle text-standard-default-strong border-standard-default-subtle;
+  --box-background-color: var(
+    --background-color-standard-default-subtle,
+    theme(--background-color-standard-default-subtle)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-standard-default-subtle,
+    theme(--border-color-standard-default-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-standard-default-subtle,
+    theme(--outline-color-standard-default-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-standard-default-subtle,
+    theme(--ring-color-standard-default-subtle)
+  );
 }
+
 @utility box-default-moderate {
-  @apply bg-standard-default-moderate text-standard-default-strong border-standard-default-subtle;
+  --box-background-color: var(
+    --background-color-standard-default-moderate,
+    theme(--background-color-standard-default-moderate)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-standard-default-subtle,
+    theme(--border-color-standard-default-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-standard-default-subtle,
+    theme(--outline-color-standard-default-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-standard-default-subtle,
+    theme(--ring-color-standard-default-subtle)
+  );
 }
+
 @utility box-default-emphasis {
-  @apply bg-standard-default-emphasis text-standard-default-strong border-standard-default-emphasis;
+  --box-background-color: var(
+    --background-color-standard-default-emphasis,
+    theme(--background-color-standard-default-emphasis)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-standard-default-emphasis,
+    theme(--border-color-standard-default-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-standard-default-emphasis,
+    theme(--outline-color-standard-default-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-standard-default-emphasis,
+    theme(--ring-color-standard-default-emphasis)
+  );
 }
+
 @utility box-default-strong {
-  @apply bg-standard-default-strong text-standard-default-strong border-standard-default-emphasis;
+  --box-background-color: var(
+    --background-color-standard-default-strong,
+    theme(--background-color-standard-default-strong)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-standard-default-emphasis,
+    theme(--border-color-standard-default-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-standard-default-emphasis,
+    theme(--outline-color-standard-default-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-standard-default-emphasis,
+    theme(--ring-color-standard-default-emphasis)
+  );
 }
+
+@utility box-inverse-subtle {
+  --box-background-color: var(
+    --background-color-standard-inverse-subtle,
+    theme(--background-color-standard-inverse-subtle)
+  );
+  --box-text-color: var(
+    --text-color-standard-inverse-subtle,
+    theme(--text-color-standard-inverse-subtle)
+  );
+  --box-border-color: var(
+    --border-color-standard-inverse-subtle,
+    theme(--border-color-standard-inverse-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-standard-inverse-subtle,
+    theme(--outline-color-standard-inverse-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-standard-inverse-subtle,
+    theme(--ring-color-standard-inverse-subtle)
+  );
+}
+
+@utility box-inverse-moderate {
+  --box-background-color: var(
+    --background-color-standard-inverse-moderate,
+    theme(--background-color-standard-inverse-moderate)
+  );
+  --box-text-color: var(
+    --text-color-standard-inverse-subtle,
+    theme(--text-color-standard-inverse-subtle)
+  );
+  --box-border-color: var(
+    --border-color-standard-inverse-subtle,
+    theme(--border-color-standard-inverse-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-standard-inverse-subtle,
+    theme(--outline-color-standard-inverse-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-standard-inverse-subtle,
+    theme(--ring-color-standard-inverse-subtle)
+  );
+}
+
+@utility box-inverse-emphasis {
+  --box-background-color: var(
+    --background-color-standard-inverse-emphasis,
+    theme(--background-color-standard-inverse-emphasis)
+  );
+  --box-text-color: var(
+    --text-color-standard-inverse-subtle,
+    theme(--text-color-standard-inverse-subtle)
+  );
+  --box-border-color: var(
+    --border-color-standard-inverse-emphasis,
+    theme(--border-color-standard-inverse-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-standard-inverse-emphasis,
+    theme(--outline-color-standard-inverse-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-standard-inverse-emphasis,
+    theme(--ring-color-standard-inverse-emphasis)
+  );
+}
+
+@utility box-inverse-strong {
+  --box-background-color: var(
+    --background-color-standard-inverse-strong,
+    theme(--background-color-standard-inverse-strong)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-standard-inverse-emphasis,
+    theme(--border-color-standard-inverse-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-standard-inverse-emphasis,
+    theme(--outline-color-standard-inverse-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-standard-inverse-emphasis,
+    theme(--ring-color-standard-inverse-emphasis)
+  );
+}
+
 @utility box-primary-subtle {
-  @apply bg-primary-subtle text-standard-default-strong border-primary-subtle;
+  --box-background-color: var(
+    --background-color-primary-subtle,
+    theme(--background-color-primary-subtle)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-primary-subtle,
+    theme(--border-color-primary-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-primary-subtle,
+    theme(--outline-color-primary-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-primary-subtle,
+    theme(--ring-color-primary-subtle)
+  );
 }
+
 @utility box-primary-moderate {
-  @apply bg-primary-moderate text-standard-inverse-subtle border-primary-subtle;
+  --box-background-color: var(
+    --background-color-primary-moderate,
+    theme(--background-color-primary-moderate)
+  );
+  --box-text-color: var(
+    --text-color-standard-inverse-subtle,
+    theme(--text-color-standard-inverse-subtle)
+  );
+  --box-border-color: var(
+    --border-color-primary-subtle,
+    theme(--border-color-primary-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-primary-subtle,
+    theme(--outline-color-primary-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-primary-subtle,
+    theme(--ring-color-primary-subtle)
+  );
 }
+
 @utility box-primary-emphasis {
-  @apply bg-primary-emphasis text-standard-inverse-subtle border-primary-strong;
+  --box-background-color: var(
+    --background-color-primary-emphasis,
+    theme(--background-color-primary-emphasis)
+  );
+  --box-text-color: var(
+    --text-color-standard-inverse-subtle,
+    theme(--text-color-standard-inverse-subtle)
+  );
+  --box-border-color: var(
+    --border-color-primary-strong,
+    theme(--border-color-primary-strong)
+  );
+  --box-outline-color: var(
+    --outline-color-primary-strong,
+    theme(--outline-color-primary-strong)
+  );
+  --box-ring-color: var(
+    --ring-color-primary-strong,
+    theme(--ring-color-primary-strong)
+  );
 }
+
 @utility box-primary-strong {
-  @apply bg-primary-strong text-standard-inverse-subtle border-primary-emphasis;
+  --box-background-color: var(
+    --background-color-primary-strong,
+    theme(--background-color-primary-strong)
+  );
+  --box-text-color: var(
+    --text-color-standard-inverse-subtle,
+    theme(--text-color-standard-inverse-subtle)
+  );
+  --box-border-color: var(
+    --border-color-primary-emphasis,
+    theme(--border-color-primary-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-primary-emphasis,
+    theme(--outline-color-primary-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-primary-emphasis,
+    theme(--ring-color-primary-emphasis)
+  );
 }
+
 @utility box-secondary-subtle {
-  @apply bg-secondary-subtle text-standard-default-strong border-secondary-subtle;
+  --box-background-color: var(
+    --background-color-secondary-subtle,
+    theme(--background-color-secondary-subtle)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-secondary-subtle,
+    theme(--border-color-secondary-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-secondary-subtle,
+    theme(--outline-color-secondary-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-secondary-subtle,
+    theme(--ring-color-secondary-subtle)
+  );
 }
+
 @utility box-secondary-moderate {
-  @apply bg-secondary-moderate text-standard-default-strong border-secondary-subtle;
+  --box-background-color: var(
+    --background-color-secondary-moderate,
+    theme(--background-color-secondary-moderate)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-secondary-subtle,
+    theme(--border-color-secondary-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-secondary-subtle,
+    theme(--outline-color-secondary-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-secondary-subtle,
+    theme(--ring-color-secondary-subtle)
+  );
 }
+
 @utility box-secondary-emphasis {
-  @apply bg-secondary-emphasis text-standard-default-strong border-secondary-emphasis;
+  --box-background-color: var(
+    --background-color-secondary-emphasis,
+    theme(--background-color-secondary-emphasis)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-secondary-emphasis,
+    theme(--border-color-secondary-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-secondary-emphasis,
+    theme(--outline-color-secondary-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-secondary-emphasis,
+    theme(--ring-color-secondary-emphasis)
+  );
 }
+
 @utility box-secondary-strong {
-  @apply bg-secondary-strong text-standard-fixed-light border-secondary-emphasis;
+  --box-background-color: var(
+    --background-color-secondary-strong,
+    theme(--background-color-secondary-strong)
+  );
+  --box-text-color: var(
+    --text-color-standard-fixed-light,
+    theme(--text-color-standard-fixed-light)
+  );
+  --box-border-color: var(
+    --border-color-secondary-emphasis,
+    theme(--border-color-secondary-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-secondary-emphasis,
+    theme(--outline-color-secondary-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-secondary-emphasis,
+    theme(--ring-color-secondary-emphasis)
+  );
 }
+
 @utility box-success-subtle {
-  @apply bg-success-subtle text-standard-default-strong border-success-subtle;
+  --box-background-color: var(
+    --background-color-success-subtle,
+    theme(--background-color-success-subtle)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-success-subtle,
+    theme(--border-color-success-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-success-subtle,
+    theme(--outline-color-success-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-success-subtle,
+    theme(--ring-color-success-subtle)
+  );
 }
+
 @utility box-success-moderate {
-  @apply bg-success-moderate text-standard-fixed-dark border-success-moderate;
+  --box-background-color: var(
+    --background-color-success-moderate,
+    theme(--background-color-success-moderate)
+  );
+  --box-text-color: var(
+    --text-color-standard-fixed-dark,
+    theme(--text-color-standard-fixed-dark)
+  );
+  --box-border-color: var(
+    --border-color-success-moderate,
+    theme(--border-color-success-moderate)
+  );
+  --box-outline-color: var(
+    --outline-color-success-moderate,
+    theme(--outline-color-success-moderate)
+  );
+  --box-ring-color: var(
+    --ring-color-success-moderate,
+    theme(--ring-color-success-moderate)
+  );
 }
+
 @utility box-success-emphasis {
-  @apply bg-success-emphasis text-standard-fixed-dark border-success-emphasis;
+  --box-background-color: var(
+    --background-color-success-emphasis,
+    theme(--background-color-success-emphasis)
+  );
+  --box-text-color: var(
+    --text-color-standard-fixed-dark,
+    theme(--text-color-standard-fixed-dark)
+  );
+  --box-border-color: var(
+    --border-color-success-emphasis,
+    theme(--border-color-success-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-success-emphasis,
+    theme(--outline-color-success-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-success-emphasis,
+    theme(--ring-color-success-emphasis)
+  );
 }
+
 @utility box-success-strong {
-  @apply bg-success-strong text-standard-inverse-subtle border-success-strong;
+  --box-background-color: var(
+    --background-color-success-strong,
+    theme(--background-color-success-strong)
+  );
+  --box-text-color: var(
+    --text-color-standard-inverse-subtle,
+    theme(--text-color-standard-inverse-subtle)
+  );
+  --box-border-color: var(
+    --border-color-success-strong,
+    theme(--border-color-success-strong)
+  );
+  --box-outline-color: var(
+    --outline-color-success-strong,
+    theme(--outline-color-success-strong)
+  );
+  --box-ring-color: var(
+    --ring-color-success-strong,
+    theme(--ring-color-success-strong)
+  );
 }
+
 @utility box-danger-subtle {
-  @apply bg-danger-subtle text-standard-default-strong border-danger-subtle;
+  --box-background-color: var(
+    --background-color-danger-subtle,
+    theme(--background-color-danger-subtle)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-danger-subtle,
+    theme(--border-color-danger-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-danger-subtle,
+    theme(--outline-color-danger-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-danger-subtle,
+    theme(--ring-color-danger-subtle)
+  );
 }
+
 @utility box-danger-moderate {
-  @apply bg-danger-moderate text-standard-default-strong border-danger-moderate;
+  --box-background-color: var(
+    --background-color-danger-moderate,
+    theme(--background-color-danger-moderate)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-danger-moderate,
+    theme(--border-color-danger-moderate)
+  );
+  --box-outline-color: var(
+    --outline-color-danger-moderate,
+    theme(--outline-color-danger-moderate)
+  );
+  --box-ring-color: var(
+    --ring-color-danger-moderate,
+    theme(--ring-color-danger-moderate)
+  );
 }
+
 @utility box-danger-emphasis {
-  @apply bg-danger-emphasis text-standard-fixed-light border-danger-emphasis;
+  --box-background-color: var(
+    --background-color-danger-emphasis,
+    theme(--background-color-danger-emphasis)
+  );
+  --box-text-color: var(
+    --text-color-standard-fixed-light,
+    theme(--text-color-standard-fixed-light)
+  );
+  --box-border-color: var(
+    --border-color-danger-emphasis,
+    theme(--border-color-danger-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-danger-emphasis,
+    theme(--outline-color-danger-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-danger-emphasis,
+    theme(--ring-color-danger-emphasis)
+  );
 }
+
 @utility box-danger-strong {
-  @apply bg-danger-strong text-standard-inverse-subtle border-danger-strong;
+  --box-background-color: var(
+    --background-color-danger-strong,
+    theme(--background-color-danger-strong)
+  );
+  --box-text-color: var(
+    --text-color-standard-inverse-subtle,
+    theme(--text-color-standard-inverse-subtle)
+  );
+  --box-border-color: var(
+    --border-color-danger-strong,
+    theme(--border-color-danger-strong)
+  );
+  --box-outline-color: var(
+    --outline-color-danger-strong,
+    theme(--outline-color-danger-strong)
+  );
+  --box-ring-color: var(
+    --ring-color-danger-strong,
+    theme(--ring-color-danger-strong)
+  );
 }
+
 @utility box-warning-subtle {
-  @apply bg-warning-subtle text-standard-default-strong border-warning-moderate;
+  --box-background-color: var(
+    --background-color-warning-subtle,
+    theme(--background-color-warning-subtle)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-warning-moderate,
+    theme(--border-color-warning-moderate)
+  );
+  --box-outline-color: var(
+    --outline-color-warning-moderate,
+    theme(--outline-color-warning-moderate)
+  );
+  --box-ring-color: var(
+    --ring-color-warning-moderate,
+    theme(--ring-color-warning-moderate)
+  );
 }
+
 @utility box-warning-moderate {
-  @apply bg-warning-moderate text-standard-fixed-dark border-warning-moderate;
+  --box-background-color: var(
+    --background-color-warning-moderate,
+    theme(--background-color-warning-moderate)
+  );
+  --box-text-color: var(
+    --text-color-standard-fixed-dark,
+    theme(--text-color-standard-fixed-dark)
+  );
+  --box-border-color: var(
+    --border-color-warning-moderate,
+    theme(--border-color-warning-moderate)
+  );
+  --box-outline-color: var(
+    --outline-color-warning-moderate,
+    theme(--outline-color-warning-moderate)
+  );
+  --box-ring-color: var(
+    --ring-color-warning-moderate,
+    theme(--ring-color-warning-moderate)
+  );
 }
+
 @utility box-warning-emphasis {
-  @apply bg-warning-emphasis text-standard-fixed-dark border-warning-emphasis;
+  --box-background-color: var(
+    --background-color-warning-emphasis,
+    theme(--background-color-warning-emphasis)
+  );
+  --box-text-color: var(
+    --text-color-standard-fixed-dark,
+    theme(--text-color-standard-fixed-dark)
+  );
+  --box-border-color: var(
+    --border-color-warning-emphasis,
+    theme(--border-color-warning-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-warning-emphasis,
+    theme(--outline-color-warning-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-warning-emphasis,
+    theme(--ring-color-warning-emphasis)
+  );
 }
+
 @utility box-warning-strong {
-  @apply bg-warning-strong text-standard-inverse-subtle border-warning-strong;
+  --box-background-color: var(
+    --background-color-warning-strong,
+    theme(--background-color-warning-strong)
+  );
+  --box-text-color: var(
+    --text-color-standard-inverse-subtle,
+    theme(--text-color-standard-inverse-subtle)
+  );
+  --box-border-color: var(
+    --border-color-warning-strong,
+    theme(--border-color-warning-strong)
+  );
+  --box-outline-color: var(
+    --outline-color-warning-strong,
+    theme(--outline-color-warning-strong)
+  );
+  --box-ring-color: var(
+    --ring-color-warning-strong,
+    theme(--ring-color-warning-strong)
+  );
 }
+
 @utility box-info-subtle {
-  @apply bg-info-subtle text-standard-default-strong border-info-subtle;
+  --box-background-color: var(
+    --background-color-info-subtle,
+    theme(--background-color-info-subtle)
+  );
+  --box-text-color: var(
+    --text-color-standard-default-strong,
+    theme(--text-color-standard-default-strong)
+  );
+  --box-border-color: var(
+    --border-color-info-subtle,
+    theme(--border-color-info-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-info-subtle,
+    theme(--outline-color-info-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-info-subtle,
+    theme(--ring-color-info-subtle)
+  );
 }
+
 @utility box-info-moderate {
-  @apply bg-info-moderate text-standard-fixed-dark border-info-emphasis;
+  --box-background-color: var(
+    --background-color-info-moderate,
+    theme(--background-color-info-moderate)
+  );
+  --box-text-color: var(
+    --text-color-standard-fixed-dark,
+    theme(--text-color-standard-fixed-dark)
+  );
+  --box-border-color: var(
+    --border-color-info-emphasis,
+    theme(--border-color-info-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-info-emphasis,
+    theme(--outline-color-info-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-info-emphasis,
+    theme(--ring-color-info-emphasis)
+  );
 }
+
 @utility box-info-emphasis {
-  @apply bg-info-emphasis text-standard-fixed-dark border-info-emphasis;
+  --box-background-color: var(
+    --background-color-info-emphasis,
+    theme(--background-color-info-emphasis)
+  );
+  --box-text-color: var(
+    --text-color-standard-fixed-dark,
+    theme(--text-color-standard-fixed-dark)
+  );
+  --box-border-color: var(
+    --border-color-info-emphasis,
+    theme(--border-color-info-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-info-emphasis,
+    theme(--outline-color-info-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-info-emphasis,
+    theme(--ring-color-info-emphasis)
+  );
 }
+
 @utility box-info-strong {
-  @apply bg-info-strong text-standard-inverse-subtle border-info-moderate;
+  --box-background-color: var(
+    --background-color-info-strong,
+    theme(--background-color-info-strong)
+  );
+  --box-text-color: var(
+    --text-color-standard-inverse-subtle,
+    theme(--text-color-standard-inverse-subtle)
+  );
+  --box-border-color: var(
+    --border-color-info-moderate,
+    theme(--border-color-info-moderate)
+  );
+  --box-outline-color: var(
+    --outline-color-info-moderate,
+    theme(--outline-color-info-moderate)
+  );
+  --box-ring-color: var(
+    --ring-color-info-moderate,
+    theme(--ring-color-info-moderate)
+  );
 }
+
 @utility box-disabled-subtle {
-  @apply bg-disabled-subtle text-disabled-strong border-disabled-subtle;
+  --box-background-color: var(
+    --background-color-disabled-subtle,
+    theme(--background-color-disabled-subtle)
+  );
+  --box-text-color: var(
+    --text-color-disabled-strong,
+    theme(--text-color-disabled-strong)
+  );
+  --box-border-color: var(
+    --border-color-disabled-subtle,
+    theme(--border-color-disabled-subtle)
+  );
+  --box-outline-color: var(
+    --outline-color-disabled-subtle,
+    theme(--outline-color-disabled-subtle)
+  );
+  --box-ring-color: var(
+    --ring-color-disabled-subtle,
+    theme(--ring-color-disabled-subtle)
+  );
 }
+
 @utility box-disabled-moderate {
-  @apply bg-disabled-moderate text-disabled-strong border-disabled-moderate;
+  --box-background-color: var(
+    --background-color-disabled-moderate,
+    theme(--background-color-disabled-moderate)
+  );
+  --box-text-color: var(
+    --text-color-disabled-strong,
+    theme(--text-color-disabled-strong)
+  );
+  --box-border-color: var(
+    --border-color-disabled-moderate,
+    theme(--border-color-disabled-moderate)
+  );
+  --box-outline-color: var(
+    --outline-color-disabled-moderate,
+    theme(--outline-color-disabled-moderate)
+  );
+  --box-ring-color: var(
+    --ring-color-disabled-moderate,
+    theme(--ring-color-disabled-moderate)
+  );
 }
+
 @utility box-disabled-emphasis {
-  @apply bg-disabled-emphasis text-disabled-strong border-disabled-emphasis;
+  --box-background-color: var(
+    --background-color-disabled-emphasis,
+    theme(--background-color-disabled-emphasis)
+  );
+  --box-text-color: var(
+    --text-color-disabled-strong,
+    theme(--text-color-disabled-strong)
+  );
+  --box-border-color: var(
+    --border-color-disabled-emphasis,
+    theme(--border-color-disabled-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-disabled-emphasis,
+    theme(--outline-color-disabled-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-disabled-emphasis,
+    theme(--ring-color-disabled-emphasis)
+  );
 }
+
 @utility box-disabled-strong {
-  @apply bg-disabled-strong text-disabled-subtle border-disabled-emphasis;
+  --box-background-color: var(
+    --background-color-disabled-strong,
+    theme(--background-color-disabled-strong)
+  );
+  --box-text-color: var(
+    --text-color-disabled-subtle,
+    theme(--text-color-disabled-subtle)
+  );
+  --box-border-color: var(
+    --border-color-disabled-emphasis,
+    theme(--border-color-disabled-emphasis)
+  );
+  --box-outline-color: var(
+    --outline-color-disabled-emphasis,
+    theme(--outline-color-disabled-emphasis)
+  );
+  --box-ring-color: var(
+    --ring-color-disabled-emphasis,
+    theme(--ring-color-disabled-emphasis)
+  );
 }
 @utility box-fixed-light {
-  @apply bg-fixed-light text-standard-fixed-dark border-fixed-light;
+  --box-background-color: var(
+    --background-color-fixed-light,
+    theme(--background-color-fixed-light)
+  );
+  --box-text-color: var(
+    --text-color-standard-fixed-dark,
+    theme(--text-color-standard-fixed-dark)
+  );
+  --box-border-color: var(
+    --border-color-fixed-light,
+    theme(--border-color-fixed-light)
+  );
+  --box-outline-color: var(
+    --outline-color-fixed-light,
+    theme(--outline-color-fixed-light)
+  );
+  --box-ring-color: var(
+    --ring-color-fixed-light,
+    theme(--ring-color-fixed-light)
+  );
 }
 @utility box-fixed-dark {
-  @apply bg-fixed-dark text-standard-fixed-light border-fixed-dark;
+  --box-background-color: var(
+    --background-color-fixed-dark,
+    theme(--background-color-fixed-dark)
+  );
+  --box-text-color: var(
+    --text-color-standard-fixed-light,
+    theme(--text-color-standard-fixed-light)
+  );
+  --box-border-color: var(
+    --border-color-fixed-dark,
+    theme(--border-color-fixed-dark)
+  );
+  --box-outline-color: var(
+    --outline-color-fixed-dark,
+    theme(--outline-color-fixed-dark)
+  );
+  --box-ring-color: var(
+    --ring-color-fixed-dark,
+    theme(--ring-color-fixed-dark)
+  );
 }
 
 @layer components {
   .box {
+    @apply box;
+
     /* Color scheme: default */
     &.box--default {
       &.box--subtle {
@@ -124,6 +897,21 @@
       }
       &.box--strong {
         @apply box-default-strong;
+      }
+    }
+
+    &.box--inverse {
+      &.box--subtle {
+        @apply box-inverse-subtle;
+      }
+      &.box--moderate {
+        @apply box-inverse-moderate;
+      }
+      &.box--emphasis {
+        @apply box-inverse-emphasis;
+      }
+      &.box--strong {
+        @apply box-inverse-strong;
       }
     }
 

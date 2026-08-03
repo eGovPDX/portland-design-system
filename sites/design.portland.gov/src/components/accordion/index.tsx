@@ -21,9 +21,7 @@ export function AccordionButton({
 
   return (
     <Button
-      size="small"
-      variant="base"
-      className="ml-auto px-xs py-2xs"
+      className={[className, "ml-auto"].filter(Boolean).join(" ")}
       onClick={ctx.toggle}
       {...props}
     >
@@ -35,7 +33,6 @@ export function AccordionButton({
 export function AccordionHeader({
   as,
   children,
-  button = () => <AccordionButton />,
   className,
   ...props
 }: ReactBoxProps &

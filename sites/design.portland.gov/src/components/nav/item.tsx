@@ -1,3 +1,4 @@
+import { Button } from "@cityofportland/components-react/button";
 import { Box } from "@cityofportland/components-react/box";
 import {
   type BoxColorScheme,
@@ -24,22 +25,8 @@ export function NavItem({
       as={as}
       color={color}
       variant={variant}
-      className={[
-        "w-full",
-        "inline-flex",
-        "items-center",
-        "px-xs",
-        "py-2xs",
-        "rounded-md",
-        "focus:bg-standard-default-emphasis",
-        "focus-visible:outline-2",
-        "focus-visible:outline-offset-2",
-        "focus-visible:outline-standard-default-strong",
-        "hover:bg-standard-default-emphasis",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      // size="xs"
+      className={["w-full justify-start", className].filter(Boolean).join(" ")}
       {...rest}
     >
       {children}

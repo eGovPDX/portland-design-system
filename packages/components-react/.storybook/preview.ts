@@ -1,5 +1,6 @@
 import { withThemeByClassName } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react-vite";
+import { useEffect } from "react";
 
 import "./preview.css";
 
@@ -12,6 +13,17 @@ const preview: Preview = {
       },
       defaultTheme: "light",
     }),
+    (story) => {
+      const selector = "body";
+      useEffect(() => {
+        const element = document.querySelector(selector);
+
+        if (element) {
+          element.classList.add("box", "box--default", "box--subtle");
+        }
+      });
+      return story();
+    },
   ],
   parameters: {
     layout: "centered",
