@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { type ElementType } from "react";
 
 import { Box, type ReactBoxProps } from "../box/box";
+import { Button } from "../button/button";
 import { mergeClasses } from "../utils";
 
 export type ReactAlertProps = React.PropsWithChildren<
@@ -88,10 +89,10 @@ export const Alert: React.FC<ReactAlertProps> = ({
     >
       {children}
       {dismissible ? (
-        <button
+        <Button
           className="alert__close"
           aria-label="Dismiss alert"
-          onClick={(event) => {
+          onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
             const alertElement = event.currentTarget.closest(".alert");
 
             if (!alertElement) {
@@ -111,7 +112,7 @@ export const Alert: React.FC<ReactAlertProps> = ({
               "--fa-display": "block",
             }}
           />
-        </button>
+        </Button>
       ) : (
         ""
       )}
