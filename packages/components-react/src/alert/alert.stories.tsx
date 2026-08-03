@@ -1,12 +1,31 @@
-import { ALERT_VARIANTS, ALERT_TYPES } from "@cityofportland/types/alert";
+import { ALERT_SIZES } from "@cityofportland/types/alert";
+import type { BoxColorScheme } from "@cityofportland/types/box";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { IconProp } from "@fortawesome/fontawesome-svg-core";
+import {
+  faCircleCheck,
+  faCircleExclamation,
+  faCircleInfo,
+  faQuestionCircle,
+  faTriangleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import "react";
 
-import { Alert, type ReactAlertProps } from "./alert";
+import "@cityofportland/components-css/utilities.css";
 
-type StoryProps = ReactAlertProps & {
-  text: string;
-};
+import boxStories from "../box/box.stories";
+import {
+  Alert,
+  AlertContent,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  type ReactAlertProps,
+} from "./alert";
+
+type StoryProps = ReactAlertProps;
 
 export default {
   title: "Components/Alert",
@@ -24,47 +43,234 @@ export default {
     },
   },
   argTypes: {
-    variant: {
+    ...boxStories.argTypes,
+    size: {
       control: "select",
-      options: ALERT_VARIANTS,
+      options: ALERT_SIZES,
       description: "The visual style of the alert",
-    },
-    type: {
-      control: "select",
-      options: ALERT_TYPES,
-      description: "The type of alert",
-    },
-    icon: {
-      control: "boolean",
-      description: "Show an icon in the alert",
     },
     dismissible: {
       control: "boolean",
       description: "Allow the alert to be dismissed by the user",
     },
-    text: {
-      control: "text",
-      description: "The text content of the alert",
+    role: {
+      control: "select",
+      options: ["status", "alert"],
     },
   },
 } satisfies Meta<StoryProps>;
 
-type Story = StoryObj<StoryProps>;
-
-export const Basic: Story = {
-  args: {
-    heading: "Alert heading",
-    variant: "default",
-    type: "info",
-    icon: true,
-    dismissible: true,
-    text: "This is the alert text content.",
+export const Basic: StoryObj<
+  StoryProps & {
+    icon: boolean;
+    title: string;
+    description: string;
+    link: boolean;
+  }
+> = {
+  argTypes: {
+    icon: {
+      control: "boolean",
+      description: "Show an icon in the alert",
+    },
+    title: {
+      control: "text",
+      description: "The title for the alert",
+    },
+    description: {
+      control: "text",
+      description: "The text description of the alert",
+    },
+    link: {
+      control: "boolean",
+      description: "Show a 'read more' link in the alert description.",
+    },
   },
-  render: ({ text, ...args }) => (
-    <Alert {...args}>
-      <p>
-        {text} <a href="#">Read more</a>
-      </p>
-    </Alert>
-  ),
+  args: {
+    as: "div",
+    color: "info",
+    variant: "moderate",
+    role: "status",
+    size: "default",
+    dismissible: true,
+    icon: true,
+    title: "Alert heading",
+    description: "This is the alert text content.",
+    link: true,
+  },
+  render: ({ color, title, icon, link, size, description, ...args }) => {
+    const iconMap = new Map<BoxColorScheme, IconProp>([
+      ["danger", faCircleExclamation],
+      ["info", faCircleInfo],
+      ["success", faCircleCheck],
+      ["warning", faTriangleExclamation],
+    ]);
+
+    return (
+      <Alert color={color} size={size} {...args}>
+        {icon && (
+          <AlertIcon className={size == "slim" ? "text-[20px]" : "text-[32px]"}>
+            <FontAwesomeIcon
+              icon={iconMap.get(color!) || faQuestionCircle}
+              widthAuto
+              style={{
+                "--fa-display": "block",
+              }}
+            />
+          </AlertIcon>
+        )}
+        <AlertContent>
+          {title && <AlertTitle>{title}</AlertTitle>}
+          {description && (
+            <AlertDescription>
+              <p>
+                {description}{" "}
+                {link && (
+                  <a href="#" className="link">
+                    Read more
+                  </a>
+                )}
+              </p>
+            </AlertDescription>
+          )}
+        </AlertContent>
+      </Alert>
+    );
+  },
+};
+
+export const PortlandGov: StoryObj<
+  StoryProps & {
+    description: string;
+    icon: boolean;
+    link: boolean;
+    title: string;
+  }
+> = {
+  name: "portland.gov",
+  parameters: {
+    controls: {
+      exclude: ["as", "color", "role", "variant"],
+    },
+  },
+  argTypes: {
+    description: {
+      control: "text",
+      description: "The text description of the alert",
+    },
+    icon: {
+      control: "boolean",
+      description: "Show an icon in the alert",
+    },
+    link: {
+      control: "boolean",
+      description: "Show a 'read more' link in the alert description.",
+    },
+    title: {
+      control: "text",
+      description: "The title for the alert",
+    },
+  },
+  args: {
+    size: "default",
+    dismissible: true,
+    icon: true,
+    title: "Alert heading",
+    description: "This is the alert text content.",
+    link: true,
+  },
+  render: ({
+    description,
+    dismissible,
+    icon: iconEnabled,
+    link,
+    size,
+    title,
+  }) => {
+    const types = new Map<
+      string,
+      Pick<ReactAlertProps, "color" | "variant" | "role"> & { icon: IconProp }
+    >([
+      [
+        "info",
+        {
+          color: "info",
+          variant: "moderate",
+          role: "status",
+          icon: faCircleInfo,
+        },
+      ],
+      [
+        "warning",
+        {
+          color: "warning",
+          variant: "moderate",
+          role: "status",
+          icon: faTriangleExclamation,
+        },
+      ],
+      [
+        "error",
+        {
+          color: "danger",
+          variant: "moderate",
+          role: "alert",
+          icon: faCircleExclamation,
+        },
+      ],
+      [
+        "success",
+        {
+          color: "success",
+          variant: "moderate",
+          role: "status",
+          icon: faCircleCheck,
+        },
+      ],
+    ]);
+
+    return (
+      <section className="grid gap-sm">
+        {[...types.entries()].map(([key, { color, variant, role, icon }]) => (
+          <Alert
+            key={key}
+            color={color}
+            variant={variant}
+            size={size}
+            role={role}
+            dismissible={dismissible}
+          >
+            {iconEnabled && (
+              <AlertIcon
+                className={size == "slim" ? "text-[20px]" : "text-[32px]"}
+              >
+                <FontAwesomeIcon
+                  icon={icon}
+                  widthAuto
+                  style={{
+                    "--fa-display": "block",
+                  }}
+                />
+              </AlertIcon>
+            )}
+            <AlertContent>
+              {title && <AlertTitle>{title}</AlertTitle>}
+              {description && (
+                <AlertDescription>
+                  <p>
+                    {description}{" "}
+                    {link && (
+                      <a href="#" className="link">
+                        Read more
+                      </a>
+                    )}
+                  </p>
+                </AlertDescription>
+              )}
+            </AlertContent>
+          </Alert>
+        ))}
+      </section>
+    );
+  },
 };

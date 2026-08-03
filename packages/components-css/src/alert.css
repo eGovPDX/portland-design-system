@@ -5,56 +5,54 @@
 
 /* Tailwind base, components, and utilities */
 @import "./base.css";
+
 @reference "./utilities.css";
 
 @layer components {
   .alert {
-    @apply flex items-start gap-md;
+    @apply border-l-xl;
     @apply p-md;
-  }
+    @apply flex;
+    @apply items-start;
+    @apply gap-md;
 
-  .alert--slim {
-    @apply gap-sm;
-    @apply px-md py-xs;
-  }
+    &.alert--slim {
+      @apply gap-xs;
+      @apply px-md;
+      @apply py-xs;
+    }
 
-  .alert__icon {
-    @apply mt-2xs;
-    @apply text-[32px];
+    .alert__icon {
+      @apply size-3xl;
+      @apply p-2xs;
 
-    .alert--slim & {
-      @apply mt-3xs;
+      .alert--slim & {
+        @apply size-xl;
+        @apply p-3xs;
+      }
+    }
+
+    .alert__content {
+      @apply grow;
+    }
+
+    .alert__heading {
+      @apply heading-md;
+      @apply my-none;
+
+      .alert--slim & {
+        @apply hidden;
+      }
+    }
+
+    .alert__text {
+      @apply body-md;
+    }
+
+    .alert__close {
       @apply text-[20px];
-    }
-  }
-
-  .alert__content {
-    @apply grow;
-  }
-
-  .alert__heading {
-    @apply heading-md my-none;
-  }
-
-  .alert__text {
-    @apply body-md;
-
-    p + p {
-      @apply mt-sm;
-    }
-
-    a {
-      @apply link;
-    }
-  }
-
-  .alert__close {
-    @apply text-[18px];
-    @apply leading-none;
-    @apply cursor-pointer;
-
-    .alert--slim & {
-      @apply leading-body-md;
+      @apply p-3xs;
+      @apply cursor-pointer;
     }
   }
 }

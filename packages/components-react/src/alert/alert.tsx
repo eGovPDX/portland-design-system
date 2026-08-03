@@ -1,99 +1,116 @@
 import "@cityofportland/components-css/alert.css";
 import type { AlertProps } from "@cityofportland/types/alert";
-import React from "react";
-import { Box } from "../box/box";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import type { IconProp } from "@fortawesome/fontawesome-svg-core";
+import React, { type ElementType } from "react";
 
-library.add(fas);
+import { Box, type ReactBoxProps } from "../box/box";
+import { mergeClasses } from "../utils";
 
-export type ReactAlertProps = React.PropsWithChildren<AlertProps>;
+export type ReactAlertProps = React.PropsWithChildren<
+  AlertProps & ReactBoxProps & { onDismiss: (element: Element) => void }
+>;
 
-const alert = {
-  info: {
-    boxColor: "info",
-    label: "Information alert",
-    fontAwesomeIcon: ["fas", "circle-info"] as IconProp,
-    ariaRole: "status",
-  },
-  success: {
-    boxColor: "success",
-    label: "Success alert",
-    fontAwesomeIcon: ["fas", "circle-check"] as IconProp,
-    ariaRole: "status",
-  },
-  warning: {
-    boxColor: "warning",
-    label: "Warning alert",
-    fontAwesomeIcon: ["fas", "triangle-exclamation"] as IconProp,
-    ariaRole: "status",
-  },
-  error: {
-    boxColor: "danger",
-    label: "Error alert",
-    fontAwesomeIcon: ["fas", "circle-exclamation"] as IconProp,
-    ariaRole: "alert",
-  },
+export const AlertContent: React.FC<React.PropsWithChildren<ReactBoxProps>> = ({
+  children,
+  className,
+  ...props
+}) => {
+  return (
+    <Box className={mergeClasses(className, "alert__content")} {...props}>
+      {children}
+    </Box>
+  );
+};
+
+export const AlertDescription: React.FC<
+  React.PropsWithChildren<ReactBoxProps>
+> = ({ children, className, ...props }) => {
+  return (
+    <Box className={mergeClasses(className, "alert__text")} {...props}>
+      {children}
+    </Box>
+  );
+};
+
+export const AlertIcon: React.FC<React.PropsWithChildren<ReactBoxProps>> = ({
+  as = "span" as ElementType,
+  children,
+  className,
+  ...props
+}) => {
+  return (
+    <Box as={as} className={mergeClasses(className, "alert__icon")} {...props}>
+      {children}
+    </Box>
+  );
+};
+
+export const AlertTitle: React.FC<React.PropsWithChildren<ReactBoxProps>> = ({
+  as = "header" as ElementType,
+  children,
+  className,
+  ...props
+}) => {
+  return (
+    <Box
+      as={as}
+      className={mergeClasses(className, "alert__heading")}
+      {...props}
+    >
+      {children}
+    </Box>
+  );
 };
 
 export const Alert: React.FC<ReactAlertProps> = ({
-  variant = "default",
-  type = "info",
-  icon = true,
-  heading,
+  as = "div",
+  color,
+  variant,
+  size = "default",
+  role = "status",
   children,
   dismissible = true,
+  className,
+  "aria-label": ariaLabel = `${color} alert`,
+  onDismiss,
+  ...props
 }) => {
-  function classes() {
-    const classes = ["border-l-8", "alert"];
-
-    classes.push(`alert--${type}`);
-    if (variant !== "default") {
-      classes.push(`alert--${variant}`);
-    }
-
-    return classes.join(" ");
-  }
-
   return (
     <Box
-      className={classes()}
-      color={
-        alert[type]["boxColor"] as "info" | "warning" | "danger" | "success"
-      }
-      variant="moderate"
-      role={alert[type]["ariaRole"]}
-      aria-label={alert[type]["label"]}
+      as={as}
+      className={mergeClasses(className, "alert", `alert--${size}`)}
+      color={color}
+      variant={variant}
+      role={role}
+      aria-label={ariaLabel}
+      {...props}
     >
-      {icon ? (
-        <FontAwesomeIcon
-          icon={alert[type]["fontAwesomeIcon"]}
-          className="alert__icon"
-          aria-label={alert[type]["label"]}
-        />
-      ) : (
-        ""
-      )}
-      <div className="alert__content">
-        {heading && variant == "default" ? (
-          <div className="alert__heading">{heading}</div>
-        ) : (
-          ""
-        )}
-        <div className="alert__text">{children}</div>
-      </div>
+      {children}
       {dismissible ? (
         <button
           className="alert__close"
           aria-label="Dismiss alert"
           onClick={(event) => {
-            const alertElement = event.currentTarget.closest(".box");
-            alertElement?.remove();
+            const alertElement = event.currentTarget.closest(".alert");
+
+            if (!alertElement) {
+              console.warn("Could not find alert to dismiss");
+              return;
+            }
+
+            alertElement.remove();
+
+            if (onDismiss) onDismiss(alertElement);
           }}
         >
-          <FontAwesomeIcon icon={["fas", "xmark"]} />
+          <FontAwesomeIcon
+            icon={faXmark}
+            widthAuto
+            style={{
+              "--fa-display": "block",
+            }}
+          />
         </button>
       ) : (
         ""
