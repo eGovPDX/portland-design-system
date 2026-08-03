@@ -1,0 +1,58 @@
+/**
+ * Alert component styles
+ * Uses Tailwind utilities and design tokens for consistent styling
+ */
+
+/* Tailwind base, components, and utilities */
+@import "./base.css";
+
+@reference "./utilities.css";
+
+@layer components {
+  .alert {
+    @apply border-l-xl;
+    @apply p-md;
+    @apply flex;
+    @apply items-start;
+    @apply gap-md;
+
+    &.alert--slim {
+      @apply gap-xs;
+      @apply px-md;
+      @apply py-xs;
+    }
+
+    .alert__icon {
+      @apply size-3xl;
+      @apply p-2xs;
+
+      .alert--slim & {
+        @apply size-xl;
+        @apply p-3xs;
+      }
+    }
+
+    .alert__content {
+      @apply grow;
+    }
+
+    .alert__heading {
+      @apply heading-md;
+      @apply my-none;
+
+      .alert--slim & {
+        @apply hidden;
+      }
+    }
+
+    .alert__text {
+      @apply body-md;
+    }
+
+    .alert__close {
+      @apply text-[20px];
+      @apply p-3xs;
+      @apply cursor-pointer;
+    }
+  }
+}
