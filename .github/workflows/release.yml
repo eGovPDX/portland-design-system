@@ -15,6 +15,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: ./packages/actions/setup-build
+        with:
+          package_manager_cache: false
+          registry_url: "https://registry.npmjs.org/"
 
       - run: pnpm install --frozen-lockfile
 
