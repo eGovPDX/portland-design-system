@@ -1,0 +1,95 @@
+/**
+ * Card component styles
+ * Uses Tailwind utilities and design tokens for consistent styling
+ */
+
+/* Tailwind moderate, components, and utilities */
+@import "./base.css";
+
+@reference "./utilities.css";
+
+@layer components {
+  .card {
+    @apply rounded-lg;
+    @apply flex;
+    @apply gap-lg;
+
+    &.card--bordered {
+      @apply border-md;
+      @apply p-md;
+    }
+
+    .card__body {
+      @apply grow;
+      @apply flex;
+      @apply flex-col;
+      @apply gap-sm;
+      @apply self-stretch;
+
+      .card__description {
+        @apply flex-auto;
+      }
+
+      .card__footer {
+        @apply mt-auto;
+      }
+
+      .card__title {
+        @apply heading-md;
+      }
+    }
+
+    .card__media {
+      @apply flex;
+
+      > img,
+      video {
+        @apply flex-none;
+        @apply rounded-lg;
+        @apply w-full;
+        @apply h-auto;
+        @apply max-w-full;
+        @apply max-h-full;
+        @apply object-cover;
+        @apply object-center;
+      }
+    }
+
+    &.card--horizontal {
+      @apply flex-row;
+      @apply items-start;
+
+      .card__media {
+        @apply max-w-1/3;
+
+        > img,
+        > video {
+          @apply aspect-4/3;
+        }
+
+        &.card__media--left {
+          @apply order-first;
+        }
+
+        &.card__media--right {
+          @apply order-last;
+
+          img {
+            @apply rounded-r-lg;
+          }
+        }
+      }
+    }
+
+    &.card--vertical {
+      @apply flex-col;
+
+      .card__media {
+        > img,
+        video {
+          @apply aspect-2/1;
+        }
+      }
+    }
+  }
+}

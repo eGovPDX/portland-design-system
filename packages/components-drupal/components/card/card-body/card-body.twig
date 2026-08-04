@@ -1,0 +1,12 @@
+{% set element = as|default('div') %}
+
+{% set classes = ["card__body"] %}
+
+{% embed "portland:box" with {
+	as: element,
+	attributes: attributes.addClass(classes)
+}%}
+  {% block box_content %}
+    {{ card_body_content }}
+  {% endblock %}
+{% endembed %}

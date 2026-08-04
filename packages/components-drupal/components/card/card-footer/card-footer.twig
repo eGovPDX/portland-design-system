@@ -1,0 +1,12 @@
+{% set element = as|default('footer') %}
+
+{% set classes = ["card__footer"] %}
+
+{% embed "portland:box" with {
+	as: element,
+	attributes: attributes.addClass(classes)
+}%}
+  {% block box_content %}
+    {{ card_footer_content }}
+  {% endblock %}
+{% endembed %}

@@ -313,6 +313,9 @@ export const Variants: StoryObj<
       </section>
     `;
   },
+  // parameters: {
+  //   background: { default: "dark" },
+  // },
 };
 
 export const Sizes: Story = {
