@@ -1,7 +1,7 @@
 {
   "name": "@cityofportland/types",
   "private": true,
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Shared TypeScript types for Portland Design System components",
   "author": {
     "name": "City of Portland, Oregon"

@@ -1,14 +1,14 @@
 {
   "name": "@cityofportland/portland-design-system",
   "private": true,
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Monorepo for Portland Design System using design tokens from Figma",
   "author": {
     "name": "City of Portland, Oregon"
   },
   "license": "MIT",
   "type": "module",
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@11.18.0",
   "workspaces": [
     "packages/*"
   ],
