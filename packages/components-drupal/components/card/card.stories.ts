@@ -174,7 +174,15 @@ export const Basic: Story<
               button
                 ? CardFooter.component({
                     card_footer_content: `
-                  ${Button.component({ content: button })}
+                  ${Button.component({
+                    color: "primary",
+                    variant: "moderate",
+                    content: button,
+                    defaultAttributes: [
+                      ...CardMedia.args.defaultAttributes,
+                      ["class", ["rounded-md"]],
+                    ],
+                  })}
                 `,
                   })
                 : ""
@@ -338,7 +346,20 @@ export const MultipleButtons: Story<Props & { buttons: string[] }> = {
                   ["class", ["inline-flex", "flex-wrap", "gap-sm"]],
                 ],
                 card_footer_content: `
-                  ${buttons.map((button, index) => Button.component({ variant: index > 0 ? "outline" : "primary", content: button })).join("")}
+                  ${buttons
+                    .map((button, index) =>
+                      Button.component({
+                        color: index > 0 ? "secondary" : "primary",
+                        variant: "moderate",
+                        // outline: index > 0,
+                        content: button,
+                        defaultAttributes: [
+                          ...CardMedia.args.defaultAttributes,
+                          ["class", ["rounded-md"]],
+                        ],
+                      })
+                    )
+                    .join("")}
                 `,
               })}
               `,
