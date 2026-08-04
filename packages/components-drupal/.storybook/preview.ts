@@ -43,6 +43,17 @@ const preview: Preview = {
       setTimeout(() => Drupal.attachBehaviors(document.body), 0);
       return story;
     },
+    (story) => {
+      const selector = "body";
+
+      const element = document.querySelector(selector);
+
+      if (element) {
+        element.classList.add("box", "box--default", "box--subtle");
+      }
+
+      return story();
+    },
   ],
 };
 
