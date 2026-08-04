@@ -18,63 +18,100 @@ props:
   type: object
 
   properties:
-    variant:
+    as:
       type: string
-      title: Button Variant
-      description: The visual style of the button
-      default: primary
+      title: Render element
+      description: HTML element to render as
+      default: button
       enum:
+        - button
+        - a
+
+    color:
+      type: string
+      title: Button color
+      description: Color scheme for background and content colors
+      default: inverse
+      enum:
+        - default
+        - inverse
         - primary
         - secondary
-        - accent-cool
-        - accent-warm
-        - base
-        - outline
-        - outline-inverse
-        - unstyled
-      examples:
-        - primary
+        - success
+        - danger
+        - warning
+        - info
+        - disabled
+        - fixed
+
+    variant:
+      type: string
+      title: Button variant
+      description: Color variation within the chosen color scheme
+      default: subtle
+      enum:
+        - subtle
+        - moderate
+        - emphasis
+        - strong
+        - light
+        - dark
 
     size:
       type: string
-      title: Button Size
-      description: The size of the button
-      default: default
+      title: Button size
+      description: Size of the button using spacing scale
+      default: md
       enum:
-        - default
-        - big
-        - small
-      examples:
-        - default
+        - 3xs
+        - 2xs
+        - xs
+        - sm
+        - md
+        - lg
+        - xl
+        - 2xl
+        - 3xl
+        - 4xl
+        - 5xl
+
+    outline:
+      type: boolean
+      title: Outline style
+      description: Whether the button should have an outline style
+      default: false
 
     type:
       type: string
-      title: Button Type
-      description: The HTML button type attribute
+      title: Button type
+      description: The HTML button type attribute for button elements
       default: button
       enum:
         - button
         - submit
         - reset
+
+    href:
+      type: string
+      title: Link URL
+      description: URL to use when rendering as an anchor element
       examples:
-        - button
+        - "#"
 
     disabled:
       type: boolean
-      title: Disabled State
+      title: Disabled state
       description: Whether the button is disabled
       default: false
-      examples:
-        - false
 
     attributes:
       type: object
-      title: Additional Attributes
+      title: Additional attributes
       description: Additional HTML attributes to add to the button element
       properties:
         class:
           type: string
-          title: CSS Classes
+          title: CSS classes
           description: Additional CSS classes for the button
         id:
           type: string
@@ -82,7 +119,7 @@ props:
           description: HTML ID attribute for the button
         data-*:
           type: string
-          title: Data Attributes
+          title: Data attributes
           description: Custom data attributes
 
 slots:
