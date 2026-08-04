@@ -1,15 +1,13 @@
 on:
   release:
 
-permissions:
-  id-token: write # Required to use OIDC with NPM
-  contents: read
-
 jobs:
   publish-packages:
     if: ${{ github.event.action == 'published' && !github.event.release.draft }}
     runs-on: ubuntu-latest
     permissions:
+      id-token: write # Required to use OIDC with NPM
+      contents: read
       actions: read
     steps:
       - uses: actions/checkout@v4
