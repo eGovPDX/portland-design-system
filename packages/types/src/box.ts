@@ -66,10 +66,6 @@ export const validateBoxConfiguration = (
     [color, variant];
 
   if (!color || !variant) {
-    if (!color)
-      console.error(`[Box component] Required 'color' prop is missing.`);
-    if (!variant)
-      console.error(`[Box component] Required 'variant' prop is missing.`);
     return [undefined, undefined];
   }
 
