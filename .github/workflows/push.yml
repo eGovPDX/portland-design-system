@@ -14,7 +14,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build packages
-        run: turbo build
+        run: turbo build --filter=./packages/*
 
       - name: Save dist folders as artifact
         uses: actions/upload-artifact@v5
@@ -22,7 +22,6 @@ jobs:
           name: dist-folders
           path: |
             packages/**/dist
-            sites/**/dist
             !**/node_modules/**
 
   save-storybook-builds:
@@ -37,7 +36,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build storybooks
-        run: turbo storybook:build
+        run: turbo storybook:build --filter=./packages/*
 
       - name: Save storybook builds as artifact
         uses: actions/upload-artifact@v5
