@@ -2,15 +2,26 @@ on:
   pull_request:
 
 jobs:
-  test-builds:
+  test-packages-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
 
       - uses: ./packages/actions/setup-build
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
-      - name: Build packages
-        run: turbo build
+      - run: turbo build --filter=./packages/*
+
+  test-site-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./packages/actions/setup-build
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: turbo storybook:build --filter=./packages/*
+
+      - run: turbo build --filter=./sites/*
