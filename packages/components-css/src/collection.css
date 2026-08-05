@@ -1,0 +1,23 @@
+@import "./base.css";
+
+@reference "./utilities.css";
+
+@layer components {
+  .collection {
+    @apply grid;
+    @apply grid-cols-1;
+    @apply gap-lg;
+
+    &.collection--divided {
+      > *:not(:last-child) {
+        @apply border-b-sm;
+      }
+    }
+
+    .collection__item {
+      @apply pb-lg;
+      @apply grid;
+      @apply grid-cols-1;
+    }
+  }
+}

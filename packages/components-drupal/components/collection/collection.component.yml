@@ -1,0 +1,52 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Collection
+
+# A longer description.
+description: A native Twig collection component that contains content in a list format.
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+# Schema for the props. We support www.json-schema.org. Learn more about the
+# syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your
+  # component template.
+  type: object
+
+  properties:
+    as:
+      type: string
+      title: Collection container element
+      description: The semantic HTML container element of the collection
+      default: ul
+      enum:
+        - ol
+        - ul
+        - div
+      examples:
+        - ul
+
+    divider:
+      type: boolean
+      title: Collection Divider
+      description: Whether the collection has dividers between items
+      default: true
+
+    attributes:
+      type: object
+      title: Additional Attributes
+      description: Additional HTML attributes to add to the collection element
+      properties:
+        class:
+          type: string
+          title: CSS Classes
+          description: Additional CSS classes for the collection
+
+slots:
+  collection_content:
+    title: Collection content
+    description: The content of the collection, typically a list of collection items or cards.
