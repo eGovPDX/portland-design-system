@@ -38,3 +38,58 @@ jobs:
           run-id: ${{ steps.get-latest-run.outputs.run_id }}
 
       - run: pnpm publish --recursive --access public --no-git-checks
+
+  publish-site:
+    if: ${{ github.event.action == 'published' && !github.event.release.draft }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+      pages: write
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./packages/actions/setup-build
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: turbo build
+        working-directory: packages/actions
+
+      - id: get-latest-run
+        uses: ./packages/actions/get-latest-run
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow_id: push.yml
+          branch: main
+          head_sha: ${{ github.sha }}
+          conclusion: success
+
+      - uses: actions/download-artifact@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          name: storybook-builds
+          run-id: ${{ steps.get-latest-run.outputs.run_id }}
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - working-directory: sites/design.portland.gov
+        run: |
+          turbo build \
+          --site "${{ steps.pages.outputs.origin }}" \
+          --base "${{ steps.pages.outputs.base_path }}"
+
+      - run: tar -czhf github-pages.tar.gz -C ./sites/design.portland.gov/dist .
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: github-pages
+          path: github-pages.tar.gz
+
+      - id: deployment
+        uses: actions/deploy-pages@v5
