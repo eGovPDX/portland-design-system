@@ -18,7 +18,7 @@ export default defineConfig({
       rehypeHeadingIds,
       () => {
         // All remark and rehype plugins return a separate function
-        return function (tree, file) {
+        return function (_tree, file) {
           if (!file.data.astro) return;
 
           const p = path

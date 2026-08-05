@@ -1,4 +1,3 @@
-import { Button } from "@cityofportland/components-react/button";
 import { Box } from "@cityofportland/components-react/box";
 import {
   type BoxColorScheme,
@@ -25,7 +24,6 @@ export function NavItem({
       as={as}
       color={color}
       variant={variant}
-      // size="xs"
       className={["w-full justify-start", className].filter(Boolean).join(" ")}
       {...rest}
     >
