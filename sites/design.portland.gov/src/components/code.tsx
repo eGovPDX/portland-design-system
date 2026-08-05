@@ -7,8 +7,9 @@ export function Code({
   language = "javascript",
   theme = "github-dark",
   className,
+  color: _color,
   ...props
-}: React.HTMLAttributes<HTMLElement> & {
+}: React.HTMLAttributes<HTMLPreElement> & {
   code: string;
   language?: string;
   theme?: ThemeRegistrationAny | string;
