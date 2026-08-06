@@ -60,25 +60,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: turbo build
-        working-directory: packages/actions
-
-      - id: get-latest-run
-        uses: ./packages/actions/get-latest-run
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          workflow_id: push.yml
-          branch: main
-          head_sha: ${{ github.sha }}
-          conclusion: success
-
-      - uses: actions/download-artifact@v5
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          name: storybook-builds
-          run-id: ${{ steps.get-latest-run.outputs.run_id }}
-
-      - run: pnpm --recursive build:dev
+      - run: turbo build:dev
 
       - env:
           BASE_URL: "${{ steps.pages.outputs.base_path }}/storybook/css/"
