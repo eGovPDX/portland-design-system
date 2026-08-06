@@ -4,6 +4,8 @@ import react from "@vitejs/plugin-react";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
+const BASE_URL = process.env.BASE_URL || "/";
+
 /**
  * This function is used to resolve the absolute path of a package.
  * It is needed in projects that use Yarn PnP or are set up within a monorepo.
@@ -19,12 +21,15 @@ const config: StorybookConfig = {
   ],
   addons: ["@storybook/addon-themes"],
   framework: getAbsolutePath("@storybook/react-vite"),
-
+  managerHead(head) {
+    return head?.concat(`<base href="${BASE_URL}">`);
+  },
   async viteFinal(config) {
     // Merge custom configuration into the default config
     const { mergeConfig } = await import("vite");
 
     return mergeConfig(config, {
+      base: BASE_URL,
       // Add dependencies to pre-optimization
       plugins: [react(), tailwind()],
     });

@@ -32,7 +32,10 @@ export function SiteNav({
             variant={current === route.href ? "subtle" : undefined}
           >
             <AccordionHeader className={className}>
-              <a href={route.href} className="link font-semibold">
+              <a
+                href={`${import.meta.env.BASE_URL}/${route.href}`}
+                className="link font-semibold"
+              >
                 {route.label}
               </a>
               <AccordionButton size="2xs" className="text-body-sm" />
@@ -55,7 +58,7 @@ export function SiteNav({
         as="a"
         color={current === route.href ? "primary" : undefined}
         variant={current === route.href ? "subtle" : undefined}
-        href={route.href}
+        href={`${import.meta.env.BASE_URL}${route.href}`}
         className={className}
       >
         <span className="link font-semibold">{route.label}</span>

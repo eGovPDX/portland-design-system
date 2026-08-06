@@ -51,6 +51,9 @@ jobs:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
     steps:
+      - id: pages
+        uses: actions/configure-pages@v5
+
       - uses: actions/checkout@v4
 
       - uses: ./packages/actions/setup-build
@@ -75,14 +78,32 @@ jobs:
           name: storybook-builds
           run-id: ${{ steps.get-latest-run.outputs.run_id }}
 
-      - id: pages
-        uses: actions/configure-pages@v5
+      - run: pnpm --recursive build:dev
+
+      - env:
+          BASE_URL: "${{ steps.pages.outputs.base_path }}/storybook/css/"
+        working-directory: packages/components-css
+        run: pnpm storybook:build
+
+      - env:
+          BASE_URL: "${{ steps.pages.outputs.base_path }}/storybook/drupal/"
+        working-directory: packages/components-drupal
+        run: pnpm storybook:build
+
+      - env:
+          BASE_URL: "${{ steps.pages.outputs.base_path }}/storybook/react/"
+        working-directory: packages/components-react
+        run: pnpm storybook:build
+        
+      - env:
+          BASE_URL: "${{ steps.pages.outputs.base_path }}/storybook/tokens/"
+        working-directory: packages/design-tokens
+        run: pnpm storybook:build
 
       - working-directory: sites/design.portland.gov
-        run: |
-          turbo build \
-          --site "${{ steps.pages.outputs.origin }}" \
-          --base "${{ steps.pages.outputs.base_path }}"
+        run: 
+          pnpm --filter="{.}^..." build
+          pnpm build --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}"
 
       - run: tar -czhf github-pages.tar.gz -C ./sites/design.portland.gov/dist .
 
