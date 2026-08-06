@@ -3,6 +3,8 @@ import tailwind from "@tailwindcss/vite";
 import { join } from "path";
 import { cwd } from "process";
 
+const BASE_URL = process.env.BASE_URL || "/";
+
 const config: StorybookConfig = {
   stories: ["../components/**/*.story.yml", "../components/**/*.stories.[jt]s"], // 2. Set components glob.
   addons: [
@@ -29,8 +31,12 @@ const config: StorybookConfig = {
     name: "@storybook/html-vite",
     options: {},
   },
+  managerHead(head) {
+    return head?.concat(`<base href="${BASE_URL}">`);
+  },
   async viteFinal(config) {
     // customize the Vite config here
+    config.base = BASE_URL;
     config.plugins = [...(config.plugins || []), tailwind()];
     return config;
   },

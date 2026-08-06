@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-const PRODUCTION_BASE = "/storybook/tokens/";
+const BASE_URL = process.env.BASE_URL || "/";
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -21,16 +21,13 @@ const config: StorybookConfig = {
   ],
   addons: ["@storybook/addon-themes"],
   framework: getAbsolutePath("@storybook/react-vite"),
-  managerHead: (head, { configType }) =>
-    [head, configType === "PRODUCTION" && `<base href="${PRODUCTION_BASE}">`]
-      .filter(Boolean)
-      .join(""),
-  async viteFinal(config, { configType }) {
+  managerHead: (head) => head?.concat(`<base href="${BASE_URL}">`),
+  async viteFinal(config) {
     // Merge custom configuration into the default config
     const { mergeConfig } = await import("vite");
 
     return mergeConfig(config, {
-      base: configType === "PRODUCTION" ? PRODUCTION_BASE : "/",
+      base: BASE_URL,
       // Add dependencies to pre-optimization
       plugins: [react(), tailwind()],
     });
