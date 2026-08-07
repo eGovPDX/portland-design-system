@@ -13,7 +13,6 @@ import CardTitle from "../card/card-title/card-title.component.yml";
 import Tag from "../tag/tag.component.yml";
 
 import Collection from "./collection.component.yml";
-
 import CollectionItem from "./collection-item/collection-item.component.yml";
 
 type Props = CollectionProps;
@@ -45,7 +44,7 @@ export default {
     as: "ul",
     divider: true,
   },
-} satisfies Meta;
+} satisfies Meta<Props>;
 
 type Story<T> = StoryObj<T>;
 
@@ -55,23 +54,63 @@ export const Basic: Story<Props> = {
     return `
       ${Collection.component({
         defaultAttributes: [...Collection.args.defaultAttributes],
-        as: as,
+        as,
         divider: divider ?? true,
         collection_content: `
           ${CollectionItem.component({
             defaultAttributes: [...CollectionItem.args.defaultAttributes],
             collection_item_content: `
-              <article><h3 class="heading-md"><a href="#" class="link">Preparing for a paperless future</a></h3></article>
+            ${Card.component({
+              layout: "horizontal",
+              defaultAttributes: [...Card.args.defaultAttributes],
+              card_content: `
+              ${CardBody.component({
+                defaultAttributes: [
+                  ...CardBody.args.defaultAttributes,
+                  ["class", ["flex flex-col gap-3xs"]],
+                ],
+                card_body_content: `
+                ${CardTitle.component({
+                  defaultAttributes: [...CardTitle.args.defaultAttributes],
+                  card_title_content: `
+                    <h3><a href="#" class="link">Preparing for a paperless future</a></h3>
+                  `,
+                })}
+                `,
+              })}
+              `,
+            })}
             `,
           })}
           ${CollectionItem.component({
             defaultAttributes: [...CollectionItem.args.defaultAttributes],
             collection_item_content: `
-              <article class="grid gap-3xs">
-                <h3 class="heading-md"><a href="#" class="link">Women-owned small business dashboard</a></h3>
-                <p>In honor of National Women's Small Business Month, we've partnered with SBA's Office of Government Contracting and Business Development and Office of Program Performance, Analysis, and Evaluation to highlight the Women-Owned Small Businesses (WOSBs) data dashboard!</p>
-              </article>
-            `,
+            ${Card.component({
+              layout: "horizontal",
+              defaultAttributes: [...Card.args.defaultAttributes],
+              card_content: `
+              ${CardBody.component({
+                defaultAttributes: [
+                  ...CardBody.args.defaultAttributes,
+                  ["class", ["flex flex-col gap-3xs"]],
+                ],
+                card_body_content: `
+                  ${CardTitle.component({
+                    defaultAttributes: [...CardTitle.args.defaultAttributes],
+                    card_title_content: `
+                      <h3><a href="#" class="link">Women-owned small business dashboard</a></h3>
+                    `,
+                  })}
+                  ${CardDescription.component({
+                    defaultAttributes: [
+                      ...CardDescription.args.defaultAttributes,
+                    ],
+                    card_description_content: `
+                      <p>In honor of National Women's Small Business Month, we've partnered with SBA's Office of Government Contracting and Business Development and Office of Program Performance, Analysis, and Evaluation to highlight the Women-Owned Small Businesses (WOSBs) data dashboard!</p>
+                    `,
+                  })}`,
+              })}`,
+            })}`,
           })}
           ${CollectionItem.component({
             defaultAttributes: [...CollectionItem.args.defaultAttributes],
