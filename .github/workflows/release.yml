@@ -85,12 +85,20 @@ jobs:
           pnpm --filter="{.}^..." build
           pnpm build --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}"
 
-      - run: tar -czhf github-pages.tar.gz -C ./sites/design.portland.gov/dist .
+      - run: |
+          tar \
+          --dereference --hard-dereference \
+          --directory ./sites/design.portland.gov/dist \
+          -cvf "$RUNNER_TEMP/github-pages.tar" \
+          --exclude=.git \
+          --exclude=.github \
+          --exclude=.[^/]* \
+          .
 
       - uses: actions/upload-artifact@v7
         with:
           name: github-pages
-          path: github-pages.tar.gz
+          path: ${{ runner.temp }}/github-pages.tar
 
       - id: deployment
         uses: actions/deploy-pages@v5
