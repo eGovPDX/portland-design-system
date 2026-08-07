@@ -81,7 +81,7 @@ jobs:
         run: turbo storybook:build
 
       - working-directory: sites/design.portland.gov
-        run: 
+        run: |
           pnpm --filter="{.}^..." build
           pnpm build --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}"
 
