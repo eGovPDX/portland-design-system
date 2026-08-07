@@ -21,6 +21,7 @@
         "@cityofportland/design-tokens#build",
         "@cityofportland/types#build"
       ],
+      "env": ["BASE_URL"],
       "outputs": ["storybook-static/**"]
     }
   }
