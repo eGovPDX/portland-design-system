@@ -20,6 +20,7 @@
         "@cityofportland/design-tokens#build:dev",
         "@cityofportland/types#build"
       ],
+      "env": ["BASE_URL"],
       "outputs": ["storybook-static/**"]
     }
   }

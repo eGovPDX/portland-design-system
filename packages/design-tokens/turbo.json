@@ -25,6 +25,7 @@
     },
     "storybook:build": {
       "dependsOn": ["build:dev"],
+      "env": ["BASE_URL"],
       "outputs": ["storybook-static/**"]
     }
   }
