@@ -5,3 +5,5 @@ declare module "*.component.yml" {
     [key: string]: unknown;
   };
 }
+
+declare module "*.css" {}
