@@ -60,27 +60,25 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: turbo build:dev
-
       - env:
           BASE_URL: "${{ steps.pages.outputs.base_path }}/storybook/css/"
         working-directory: packages/components-css
-        run: pnpm storybook:build
+        run: turbo storybook:build
 
       - env:
           BASE_URL: "${{ steps.pages.outputs.base_path }}/storybook/drupal/"
         working-directory: packages/components-drupal
-        run: pnpm storybook:build
+        run: turbo storybook:build
 
       - env:
           BASE_URL: "${{ steps.pages.outputs.base_path }}/storybook/react/"
         working-directory: packages/components-react
-        run: pnpm storybook:build
+        run: turbo storybook:build
         
       - env:
           BASE_URL: "${{ steps.pages.outputs.base_path }}/storybook/tokens/"
         working-directory: packages/design-tokens
-        run: pnpm storybook:build
+        run: turbo storybook:build
 
       - working-directory: sites/design.portland.gov
         run: 
