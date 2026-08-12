@@ -7,7 +7,7 @@
   /* Base Header Styles */
   .header {
     @apply w-full py-md px-xl;
-    @apply flex items-center justify-between;
+    @apply flex items-center justify-between gap-sm flex-wrap;
   }
 
   .header__branding {
@@ -27,7 +27,7 @@
     }
   }
   .header__content {
-    @apply flex items-center gap-lg;
+    @apply flex items-center gap-lg flex-wrap;
   }
 
   .header__nav-list {
