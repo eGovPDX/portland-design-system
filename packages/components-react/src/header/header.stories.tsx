@@ -54,13 +54,23 @@ const DemoHeader = ({
         <>
           <Button
             name="navigation"
-            variant="primary"
-            size="small"
+            color="primary"
+            variant="moderate"
+            size="sm"
+            className="rounded-md"
             onClick={onClick}
           >
             Navigation
           </Button>
-          <Button name="menu" variant="outline" size="small" onClick={onClick}>
+          <Button
+            name="menu"
+            color="fixed"
+            variant="light"
+            outline
+            size="sm"
+            className="rounded-md"
+            onClick={onClick}
+          >
             Menu
           </Button>
         </>
