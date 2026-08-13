@@ -8,28 +8,33 @@ export type ReactHeaderProps = React.PropsWithChildren<
   Omit<ReactBoxProps<"header">, "as">
 >;
 
-export type ReactHeaderBrandingProps<
-  E extends React.ElementType<{ className?: string }> = "div",
-> = ReactBoxProps<E>;
+type HeaderBrandingTypes = "a" | "div" | "span";
+
+export type ReactHeaderBrandingProps<E extends HeaderBrandingTypes = "a"> =
+  ReactBoxProps<E> & {
+    children?: React.ReactNode;
+    className?: string;
+  };
 
 export type ReactHeaderLogoProps = React.PropsWithChildren;
 
 export type ReactHeaderContentProps = React.PropsWithChildren;
 
-export const HeaderBranding = <
-  E extends React.ElementType<{ className?: string }> = "div",
->({
+export const HeaderBranding = <E extends HeaderBrandingTypes = "a">({
+  children,
   className,
-  ...rest
+  ...props
 }: ReactHeaderBrandingProps<E>) => {
   return (
-    <Box {...rest} className={mergeClasses(["header__branding"], className)} />
+    <Box className={mergeClasses(["header__branding"], className)} {...props}>
+      {children}
+    </Box>
   );
 };
 
-export const HeaderLogo: React.FC<ReactHeaderLogoProps> = ({ children }) => (
-  <span className="header__logo">{children ?? <CitySeal size="sm" />}</span>
-);
+export const HeaderLogo: React.FC<ReactHeaderLogoProps> = ({
+  children = <CitySeal size="sm" />,
+}) => <span className="header__logo">{children}</span>;
 
 export const HeaderContent: React.FC<ReactHeaderContentProps> = ({
   children,

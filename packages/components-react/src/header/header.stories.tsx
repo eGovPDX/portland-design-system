@@ -87,17 +87,7 @@ export default {
     layout: "fullscreen",
   },
   argTypes: {
-    ...Object.entries(BoxStories.argTypes!)
-      .filter(([key]) => key !== "as")
-      .reduce(
-        (acc, [key, value]) => {
-          acc[key] = {
-            ...value,
-          };
-          return acc;
-        },
-        {} satisfies Partial<ArgTypes<ReactBoxProps>>
-      ),
+    ...BoxStories.argTypes,
     title: {
       control: "text",
       description: "Title text for the header",
@@ -130,7 +120,7 @@ export const Basic: Story = {
 
 export const Menu: Story = {
   parameters: {
-    controls: { exclude: ["buttons", "onClick"] },
+    controls: { exclude: ["as", "buttons", "onClick"] },
   },
   args: {
     ...Basic.args,
