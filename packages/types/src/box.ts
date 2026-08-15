@@ -93,6 +93,12 @@ export const validateBoxConfiguration = (
  */
 export interface BoxProps {
   /**
+   * HTML element type to render the Box as. Defaults to 'div'.
+   * @default "div"
+   */
+  as?: keyof HTMLElementTagNameMap;
+
+  /**
    * Color scheme for background and content colors
    */
   color?: BoxColorScheme;

@@ -15,7 +15,7 @@ import Tag from "../tag/tag.component.yml";
 import Collection from "./collection.component.yml";
 import CollectionItem from "./collection-item/collection-item.component.yml";
 
-type Props = CollectionProps & { as?: string };
+type Props = CollectionProps;
 
 export default {
   title: "Components/Collection",
