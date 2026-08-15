@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { resolve, dirname } from "path";
 import fs from "fs";
 import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 /**
  * Vite configuration for the Portland Design System React components package.
@@ -41,7 +42,7 @@ export default defineConfig(({ mode }) => ({
         .reduce(
           (acc, file) => {
             const name = dirname(file);
-            acc[name] = resolve(__dirname, "src", file);
+            acc[`${name}/${name}`] = resolve(__dirname, "src", file);
             return acc;
           },
           {} as Record<string, string>
@@ -50,7 +51,13 @@ export default defineConfig(({ mode }) => ({
       formats: ["es"],
       fileName: (format, name) => `${name}.${format}.js`,
     },
+    rollupOptions: {
+      output: {
+        // put emitted CSS next to JS path instead of dist/assets/*
+        assetFileNames: () => "[name]/[name].[ext]",
+      },
+    },
     minify: mode === "production" ? "esbuild" : false, // Only minify in production
   },
-  plugins: [react(), tailwind()],
+  plugins: [dts({ exclude: ["**/*.stories.*"] }), react(), tailwind()],
 }));

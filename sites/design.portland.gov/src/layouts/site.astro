@@ -1,5 +1,10 @@
 ---
 import { Box } from "@cityofportland/components-react/box";
+import {
+  Header,
+  HeaderBranding,
+  HeaderLogo,
+} from "@cityofportland/components-react/header";
 import { Footer } from "@cityofportland/components-react/footer";
 
 import { SiteNav } from "./_site";
@@ -49,14 +54,13 @@ const navItems = [
     variant="subtle"
     className="min-h-screen flex flex-col relative"
   >
-    <header class="p-xl border-b-sm">
-      <div class="flex items-center gap-md">
-        <a href="/" class="text-heading-md">Portland Design System</a>
-      </div>
-    </header>
-    <main
-      class="flex-1 xl:px-xl grid grid-cols-1 xl:grid-cols-5 gap-md relative"
-    >
+    <Header color="default" variant="subtle">
+      <HeaderBranding as="a" href={import.meta.env.BASE_URL}>
+        <HeaderLogo />
+        Design System
+      </HeaderBranding>
+    </Header>
+    <main class="flex-1 grid grid-cols-1 xl:grid-cols-5 gap-md relative">
       <Box as="aside">
         <SiteNav
           routes={navItems}

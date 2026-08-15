@@ -1011,6 +1011,13 @@
       }
     }
 
+    /* Color scheme: fixed-dark */
+    &.box--fixed {
+      &.box--dark {
+        @apply box-fixed-dark;
+      }
+    }
+
     /* Color scheme: disabled */
     &.box--disabled {
       &.box--subtle {

@@ -30,7 +30,7 @@ type ReactBoxOwnProps<E extends React.ElementType = DefaultElementType> =
  */
 export type ReactBoxProps<E extends React.ElementType = DefaultElementType> =
   ReactBoxOwnProps<E> &
-    Omit<React.ComponentProps<E>, keyof ReactBoxOwnProps<E>>;
+    Omit<React.ComponentPropsWithoutRef<E>, keyof ReactBoxOwnProps<E>>;
 
 /**
  * Generic Box component type for use with forwardRef
@@ -85,8 +85,7 @@ function buildClassList({
 export const Box = React.forwardRef(
   <E extends React.ElementType = DefaultElementType>(
     {
-      as,
-      border,
+      as = "div",
       children,
       color,
       variant,
@@ -106,7 +105,11 @@ export const Box = React.forwardRef(
     });
 
     return (
-      <Element ref={ref} className={classList} {...rest}>
+      <Element
+        ref={ref}
+        className={classList.length ? classList : undefined}
+        {...rest}
+      >
         {children}
       </Element>
     );

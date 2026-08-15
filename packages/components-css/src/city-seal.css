@@ -9,20 +9,21 @@
 @layer components {
   .city-seal {
     content: --theme(--assets-city-seal);
+    @apply w-auto;
 
     /* Size: extra-large */
     &.city-seal--xl {
-      @apply w-[120px] h-[120px];
+      height: theme(--scale-3000);
     }
 
     /* Size: large */
     &.city-seal--lg {
-      @apply w-[80px] h-[80px];
+      height: theme(--scale-2000);
     }
 
     /* Size: small */
     &.city-seal--sm {
-      @apply w-[56px] h-[56px];
+      height: theme(--scale-1400);
     }
   }
 }

@@ -1,0 +1,37 @@
+/* Header Component Styles */
+@import "./base.css";
+
+@reference "./box.css";
+
+@layer components {
+  /* Base Header Styles */
+  .header {
+    @apply w-full py-md px-xl;
+    @apply flex items-center justify-between gap-sm flex-wrap;
+  }
+
+  .header__branding {
+    @apply flex-none;
+    @apply flex items-center gap-md;
+    @apply text-heading-lg font-bold;
+
+    .header__logo {
+      @apply inline-flex items-center justify-center shrink-0;
+    }
+
+    .header__title {
+      @apply flex flex-col gap-xs;
+    }
+  }
+  .header__content {
+    @apply flex items-center gap-lg flex-wrap;
+  }
+
+  .header__nav-list {
+    @apply m-none p-none list-none flex flex-row items-center gap-lg;
+  }
+
+  .header__nav-item {
+    @apply m-none;
+  }
+}

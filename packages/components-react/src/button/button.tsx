@@ -9,12 +9,13 @@ import { Box, type ReactBoxProps } from "../box";
 
 import "@cityofportland/components-css/button.css";
 
-export type ReactButtonProps = ButtonProps &
-  ReactBoxProps<"button" | "a"> &
-  React.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> &
+type ElementType = "button" | "a";
+
+export type ReactButtonProps<E extends ElementType = "button"> = ButtonProps &
+  ReactBoxProps<E> &
   React.PropsWithChildren;
 
-export const Button: React.FC<ReactButtonProps> = ({
+export const Button = <E extends ElementType = "button">({
   as = "button",
   children = null,
   size,
@@ -22,7 +23,7 @@ export const Button: React.FC<ReactButtonProps> = ({
   disabled = false,
   className,
   ...props
-}) => {
+}: ReactButtonProps<E>) => {
   try {
     validateButtonElement(as);
   } catch (err) {
