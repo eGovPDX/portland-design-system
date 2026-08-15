@@ -896,7 +896,7 @@
         @apply box-default-emphasis;
       }
       &.box--strong {
-        @apply box-info-strong;
+        @apply box-default-strong;
       }
     }
 
