@@ -105,7 +105,11 @@ export const Box = React.forwardRef(
     });
 
     return (
-      <Element ref={ref} className={classList} {...rest}>
+      <Element
+        ref={ref}
+        className={classList.length ? classList : undefined}
+        {...rest}
+      >
         {children}
       </Element>
     );
