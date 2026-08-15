@@ -15,7 +15,7 @@ import Tag from "../tag/tag.component.yml";
 import Collection from "./collection.component.yml";
 import CollectionItem from "./collection-item/collection-item.component.yml";
 
-type Props = CollectionProps;
+type Props = CollectionProps & { as?: string };
 
 export default {
   title: "Components/Collection",
@@ -24,7 +24,7 @@ export default {
       ${Collection.component({ ...args })}
     `;
   },
-  decorators: [(Story) => `<div class="p-lg">${Story()}</div>`],
+  decorators: [(Story) => `<div class="@container p-lg">${Story()}</div>`],
   parameters: {
     layout: "fullscreen",
   },
@@ -59,6 +59,7 @@ export const Basic: Story<Props> = {
         collection_content: `
           ${CollectionItem.component({
             defaultAttributes: [...CollectionItem.args.defaultAttributes],
+            as: as == "div" ? "div" : "li",
             collection_item_content: `
             ${Card.component({
               layout: "horizontal",
@@ -84,6 +85,7 @@ export const Basic: Story<Props> = {
           })}
           ${CollectionItem.component({
             defaultAttributes: [...CollectionItem.args.defaultAttributes],
+            as: as == "div" ? "div" : "li",
             collection_item_content: `
             ${Card.component({
               layout: "horizontal",
@@ -114,6 +116,7 @@ export const Basic: Story<Props> = {
           })}
           ${CollectionItem.component({
             defaultAttributes: [...CollectionItem.args.defaultAttributes],
+            as: as == "div" ? "div" : "li",
             collection_item_content: `
               ${Card.component({
                 layout: "horizontal",
