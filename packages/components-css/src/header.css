@@ -11,15 +11,12 @@
   }
 
   .header__branding {
+    @apply flex-none;
     @apply flex items-center gap-md;
     @apply text-heading-lg font-bold;
 
     .header__logo {
       @apply inline-flex items-center justify-center shrink-0;
-
-      img {
-        @apply h-3xl xl:h-[56px] shrink-0;
-      }
     }
 
     .header__title {
