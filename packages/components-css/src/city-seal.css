@@ -13,17 +13,17 @@
 
     /* Size: extra-large */
     &.city-seal--xl {
-      @apply h-[120px];
+      height: theme(--scale-3000);
     }
 
     /* Size: large */
     &.city-seal--lg {
-      @apply h-[80px];
+      height: theme(--scale-2000);
     }
 
     /* Size: small */
     &.city-seal--sm {
-      @apply h-[56px];
+      height: theme(--scale-1400);
     }
   }
 }
