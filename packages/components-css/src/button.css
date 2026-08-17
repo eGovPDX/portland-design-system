@@ -24,13 +24,11 @@
     @apply inline-flex items-center justify-center gap-xs;
     @apply wrap-anywhere;
     @apply cursor-pointer;
-    @apply transition-colors;
-    @apply transition-shadow;
-    @apply duration-100;
+    @apply transition-[background-color,box-shadow,--tw-ring-offset-color,--tw-ring-offset-width];
+    @apply duration-200;
 
-    @apply active:ring-0;
-    @apply active:ring-offset-3xs;
-    @apply active:ring-offset-(--button-action-color);
+    @apply ring-0;
+    @apply ring-offset-(--box-background-color);
 
     @apply focus:outline-lg;
     @apply focus:outline-offset-2xs;
@@ -46,20 +44,20 @@
     }
 
     &:not(.button--disabled, :disabled) {
-      @apply active:ring-offset-3xs;
+      @apply active:ring-offset-2xs;
       @apply active:ring-offset-(--button-action-color);
 
-      @apply hover:ring-0;
       @apply hover:ring-offset-3xs;
       @apply hover:ring-offset-(--button-action-color);
 
       @apply hover:active:ring-offset-2xs;
 
       &:not(.button--outline) {
+        @apply ring-(--button-action-color);
+
         @apply active:bg-(--button-action-color);
 
         @apply hover:bg-(--button-action-color);
-        @apply hover:ring-offset-(--button-action-color);
 
         @apply hover:active:bg-(--button-action-color);
       }
@@ -73,7 +71,6 @@
 
       @apply active:ring-offset-3xs;
       @apply active:inset-ring-(--button-action-color);
-      @apply active:ring-offset-(--button-action-color);
 
       &.button--disabled,
       &:disabled {
@@ -86,7 +83,6 @@
         @apply inset-ring-md;
 
         @apply hover:inset-ring-(--button-action-color);
-        @apply hover:ring-offset-(--button-action-color);
 
         @apply hover:active:ring-offset-2xs;
       }
