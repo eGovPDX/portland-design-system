@@ -38,9 +38,7 @@ const renderButton = (rawArgs: ButtonStoryArgs) => {
   const componentArgs: Record<string, unknown> = {
     ...args,
     as,
-    content,
-    left: left ? arrowLeft.html.join(" ") : undefined,
-    right: right ? arrowRight.html.join(" ") : undefined,
+    button_content: `${left ? arrowLeft.html.join(" ") : ""}${content}${right ? arrowRight.html.join(" ") : ""}`,
   };
 
   if (as === "a") {
@@ -54,7 +52,7 @@ const renderButton = (rawArgs: ButtonStoryArgs) => {
     ];
   }
 
-  return Button.component(componentArgs as never);
+  return Button.component(componentArgs);
 };
 
 export default {
@@ -313,9 +311,6 @@ export const Variants: StoryObj<
       </section>
     `;
   },
-  // parameters: {
-  //   background: { default: "dark" },
-  // },
 };
 
 export const Sizes: Story = {
@@ -347,22 +342,27 @@ export const Sizes: Story = {
 
 export const Incognito: StoryObj<ButtonStoryArgs & { underline: boolean }> = {
   args: {
-    color: undefined,
-    variant: undefined,
-    size: undefined,
+    color: "default",
+    size: "3xs",
     underline: false,
   },
+  parameters: {
+    controls: {
+      exclude: ["content"],
+    },
+  },
   render: ({ left, right, underline, ...props }) => {
+    const content = (text: string) =>
+      `${left ? arrowRight.html.join(" ") : ""}${text}${right ? arrowLeft.html.join(" ") : ""}`;
+
     return `
       <div class="grid gap-md">
         <p class="text-body-lg">
           There is a
           ${renderButton({
             ...props,
-            left: right,
-            right: left,
             attributes: { class: underline ? "underline" : "" },
-            content: "button",
+            content: content("button"),
           })}
           hidden in this sentence.
         </p>
@@ -370,18 +370,14 @@ export const Incognito: StoryObj<ButtonStoryArgs & { underline: boolean }> = {
           There are two
           ${renderButton({
             ...props,
-            left: right,
-            right: left,
             attributes: { class: underline ? "underline" : "" },
-            content: "buttons",
+            content: content("buttons"),
           })}
           hidden in this
           ${renderButton({
             ...props,
-            left: right,
-            right: left,
             attributes: { class: underline ? "underline" : "" },
-            content: "sentence",
+            content: content("sentence"),
           })}.
         </p>
       </div>

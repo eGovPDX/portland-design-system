@@ -16,7 +16,7 @@ const config: StorybookConfig = {
       name: "storybook-addon-sdc", // 3. Configure addon.
       options: {
         sdcStorybookOptions: {
-          twigLig: "twig",
+          namespace: "portland",
         },
         vitePluginTwigDrupalOptions: {
           // vite-plugin-twig-drupal options.
