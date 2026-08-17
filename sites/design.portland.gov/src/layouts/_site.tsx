@@ -23,18 +23,34 @@ export function SiteNav({
   current: string;
 }) {
   const renderer = (route: Route, className?: string) => {
+    const tree = (path: string) => path.split("/").filter(Boolean);
+
+    const sameOrdered = (a: string[], b: string[]) =>
+      a.length === b.length && a.every((v, i) => v === b[i]);
+
     if (route.children) {
       return (
-        <Accordion key={route.href} open={current.startsWith(route.href)}>
+        <Accordion
+          key={route.href}
+          open={tree(route.href).every((n) => tree(current).includes(n))}
+        >
           <NavItem
             as="div"
-            color={current === route.href ? "primary" : undefined}
-            variant={current === route.href ? "subtle" : undefined}
+            color={
+              sameOrdered(tree(current), tree(route.href))
+                ? "primary"
+                : undefined
+            }
+            variant={
+              sameOrdered(tree(current), tree(route.href))
+                ? "subtle"
+                : undefined
+            }
           >
             <AccordionHeader className={className}>
               <a
-                href={`${import.meta.env.BASE_URL}/${route.href}`}
-                className="link font-semibold"
+                href={`${import.meta.env.BASE_URL}${route.href}`}
+                className="grow link font-semibold"
               >
                 {route.label}
               </a>
@@ -42,9 +58,9 @@ export function SiteNav({
             </AccordionHeader>
           </NavItem>
           {route.children && route.children.length > 0 && (
-            <AccordionContent className="grid gap-2xs">
+            <AccordionContent className="border-l-xl grid">
               {route.children.map((child) =>
-                renderer(child, "px-2xs py-3xs pl-md")
+                renderer(child, "pl-xl pr-xs py-xs")
               )}
             </AccordionContent>
           )}
@@ -56,8 +72,12 @@ export function SiteNav({
       <NavItem
         key={route.href}
         as="a"
-        color={current === route.href ? "primary" : undefined}
-        variant={current === route.href ? "subtle" : undefined}
+        color={
+          sameOrdered(tree(current), tree(route.href)) ? "primary" : undefined
+        }
+        variant={
+          sameOrdered(tree(current), tree(route.href)) ? "subtle" : undefined
+        }
         href={`${import.meta.env.BASE_URL}${route.href}`}
         className={className}
       >
@@ -69,7 +89,7 @@ export function SiteNav({
   return (
     <Box className={[className].filter(Boolean).join(" ")}>
       {routes.map((route) => {
-        return renderer(route, "px-2xs py-3xs");
+        return renderer(route, "pl-xl pr-xs py-xs");
       })}
     </Box>
   );

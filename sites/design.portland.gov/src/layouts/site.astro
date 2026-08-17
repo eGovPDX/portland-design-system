@@ -17,27 +17,27 @@ const currentPath = Astro.url.pathname;
 
 const navItems = [
   {
-    href: "/tokens",
+    href: "tokens",
     label: "Tokens",
     children: [
-      { href: "/tokens/background", label: "Background" },
-      { href: "/tokens/border", label: "Border" },
-      { href: "/tokens/border-width", label: "Border Width" },
-      { href: "/tokens/breakpoint", label: "Breakpoint" },
-      { href: "/tokens/color", label: "Color" },
-      { href: "/tokens/content", label: "Content" },
-      { href: "/tokens/font", label: "Font" },
-      { href: "/tokens/font-size", label: "Font Size" },
-      { href: "/tokens/line-height", label: "Line Height" },
-      { href: "/tokens/radius", label: "Radius" },
-      { href: "/tokens/scale", label: "Scale" },
-      { href: "/tokens/spacing", label: "Spacing" },
+      { href: "tokens/background", label: "Background" },
+      { href: "tokens/border", label: "Border" },
+      { href: "tokens/border-width", label: "Border Width" },
+      { href: "tokens/breakpoint", label: "Breakpoint" },
+      { href: "tokens/color", label: "Color" },
+      { href: "tokens/content", label: "Content" },
+      { href: "tokens/font", label: "Font" },
+      { href: "tokens/font-size", label: "Font Size" },
+      { href: "tokens/line-height", label: "Line Height" },
+      { href: "tokens/radius", label: "Radius" },
+      { href: "tokens/scale", label: "Scale" },
+      { href: "tokens/spacing", label: "Spacing" },
     ],
   },
   {
-    href: "/components",
+    href: "components",
     label: "Components",
-    children: [{ href: "/components/box", label: "Box" }],
+    children: [{ href: "components/box", label: "Box" }],
   },
 ];
 ---
@@ -65,7 +65,7 @@ const navItems = [
         <SiteNav
           routes={navItems}
           current={currentPath}
-          className="flex flex-col gap-2xs p-xs xl:px-none xl:max-h-dvh wrap-break-word xl:sticky xl:top-none xl:overflow-auto"
+          className="flex flex-col xl:max-h-dvh wrap-break-word overflow-x-visible xl:sticky xl:top-none xl:overflow-y-auto"
           client:idle
         />
       </Box>
