@@ -245,7 +245,10 @@ export const Variants: StoryObj<
     outline,
     ...props
   }) {
-    const ButtonTester = ({ color, variant }) => {
+    const ButtonTester = ({
+      color,
+      variant,
+    }: Pick<ReactButtonProps, "color" | "variant">) => {
       const id = `${color}-${variant}`;
 
       return (
@@ -329,34 +332,25 @@ export const Incognito: StoryObj<StoryProps & { underline: boolean }> = {
     <div className="grid gap-md">
       <p className="text-body-lg">
         There is a{" "}
-        <DemoButton
-          className={`${underline && "underline"}`}
-          left={left && <FontAwesomeIcon icon={faArrowRight} />}
-          right={right && <FontAwesomeIcon icon={faArrowLeft} />}
-          {...props}
-        >
+        <DemoButton className={`${underline && "underline"}`} {...props}>
+          {left && <FontAwesomeIcon icon={faArrowRight} />}
           button
+          {right && <FontAwesomeIcon icon={faArrowLeft} />}
         </DemoButton>{" "}
         hidden in this sentence.
       </p>
       <p className="text-body-lg">
         There are two{" "}
-        <DemoButton
-          className={`${underline && "underline"}`}
-          left={left && <FontAwesomeIcon icon={faArrowRight} />}
-          right={right && <FontAwesomeIcon icon={faArrowLeft} />}
-          {...props}
-        >
+        <DemoButton className={`${underline && "underline"}`} {...props}>
+          {left && <FontAwesomeIcon icon={faArrowRight} />}
           buttons
+          {right && <FontAwesomeIcon icon={faArrowLeft} />}
         </DemoButton>{" "}
         hidden in this{" "}
-        <DemoButton
-          className={`${underline && "underline"}`}
-          left={left && <FontAwesomeIcon icon={faArrowRight} />}
-          right={right && <FontAwesomeIcon icon={faArrowLeft} />}
-          {...props}
-        >
+        <DemoButton className={`${underline && "underline"}`} {...props}>
+          {left && <FontAwesomeIcon icon={faArrowRight} />}
           sentence
+          {right && <FontAwesomeIcon icon={faArrowLeft} />}
         </DemoButton>
         .
       </p>

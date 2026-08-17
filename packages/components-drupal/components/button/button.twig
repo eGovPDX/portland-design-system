@@ -13,7 +13,7 @@
  * - href: Link URL when rendered as an anchor
  * - disabled: Whether button is disabled
  * - attributes: Additional HTML attributes
- * - content: Button content (slot)
+ * - button_content: Button content (slot)
  * - left: Content to the left of default slot (slot)
  * - right: Content to the right of default slot (slot)
  */
@@ -37,10 +37,7 @@
 {% set attributes = attributes|default(create_attribute()) %}
 
 
-{% set attributes = attributes
-  .addClass("button")
-  .setAttribute('aria-disabled', disabled ? 'true' : 'false')
-%}
+{% set attributes = attributes.addClass("button") %}
 
 {% if size %}
   {% set attributes = attributes.addClass('button--' ~ size) %}
@@ -70,22 +67,8 @@
   
 } %}
   {% block box_content %}
-    {% block left %}
-      {% if left is defined and left is not empty %}
-        <span>{{ left }}</span>
-      {% endif %}
-    {% endblock %}
-
-    {% block content %}
-      {% if content is defined and content is not empty %}
-        <span>{{ content }}</span>
-      {% endif %}
-    {% endblock %}
-
-    {% block right %}
-      {% if right is defined and right is not empty %}
-        <span>{{ right }}</span>
-      {% endif %}
+    {% block button_content %}
+      {{ button_content }}
     {% endblock %}
   {% endblock %}
 {% endembed %}
