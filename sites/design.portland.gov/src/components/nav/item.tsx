@@ -1,29 +1,18 @@
-import { Box } from "@cityofportland/components-react/box";
-import {
-  type BoxColorScheme,
-  type BoxColorVariation,
-} from "@cityofportland/types/box";
+import { Box, type ReactBoxProps } from "@cityofportland/components-react/box";
 import React from "react";
 
-export function NavItem({
-  as = "div",
+type NavItemProps<E extends React.ElementType = "a"> = ReactBoxProps<E> & {
+  children?: React.ReactNode;
+  className?: string;
+};
+
+export function NavItem<E extends React.ElementType = "a">({
   children,
   className,
-  color,
-  variant,
   ...rest
-}: {
-  as?: React.ElementType;
-  children: React.ReactNode;
-  className?: string;
-  color?: BoxColorScheme;
-  variant?: BoxColorVariation;
-}) {
+}: NavItemProps<E>) {
   return (
     <Box
-      as={as}
-      color={color}
-      variant={variant}
       className={["w-full justify-start", className].filter(Boolean).join(" ")}
       {...rest}
     >

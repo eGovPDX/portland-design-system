@@ -1,4 +1,4 @@
-import { Box, type BoxComponent } from "@cityofportland/components-react/box";
+import { Box, type ReactBoxProps } from "@cityofportland/components-react/box";
 import {
   BOX_COLORS,
   BOX_VARIANTS,
@@ -11,7 +11,7 @@ import Color from "colorjs.io";
 import { atom } from "nanostores";
 
 import { Code } from "../../../components/code";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const $color = atom<BoxColorScheme>("default");
 const $variant = atom<BoxColorVariation>("subtle");
@@ -21,7 +21,7 @@ const getProperty = (element: Element, name: string) => {
 };
 
 function handleKeyPress(
-  e: KeyboardEvent,
+  e: React.KeyboardEvent,
   filter: Array<string>,
   callback: () => void
 ) {
@@ -42,16 +42,15 @@ export function ColorGallery() {
         if (!vc || !vv) return;
 
         return (
-          <div className="grid gap-xs">
+          <div key={`cg-${c}-${variant}`} className="grid gap-xs">
             <Box
               as="button"
-              key={`cg-${c}-${variant}`}
               color={c}
               variant={variant}
               className="border-lg flex flex-col items-center divide-y-sm cursor-pointer"
-              tabindex="0"
+              tabIndex={0}
               onClick={() => $color.set(c)}
-              onKeyPress={(e: KeyboardEvent) =>
+              onKeyDown={(e) =>
                 handleKeyPress(e, ["Enter", " "], () => $color.set(c))
               }
             >
@@ -69,7 +68,7 @@ export function ContrastGallery() {
   const color = useStore($color);
   const variant = useStore($variant);
 
-  const [backgroundColor, setBackgroundColor] = useState<string>();
+  const [backgroundColor, setBackgroundColor] = useState<string>("transparent");
   const [backgroundElement, setBackgroundElement] = useState<HTMLElement>();
 
   useEffect(() => {
@@ -87,7 +86,7 @@ export function ContrastGallery() {
     variant,
     property,
     ...props
-  }: BoxComponent & {
+  }: ReactBoxProps & {
     background: string;
     property: string;
   }) => {
@@ -204,9 +203,9 @@ export function VariantGallery() {
             color={color}
             variant={v}
             className="border-lg flex flex-col items-center divide-y-sm cursor-pointer"
-            tabindex="0"
+            tabIndex={0}
             onClick={() => $variant.set(v)}
-            onKeyPress={(e: KeyboardEvent) =>
+            onKeyUp={(e: React.KeyboardEvent) =>
               handleKeyPress(e, ["Enter", " "], () => $variant.set(v))
             }
           >
