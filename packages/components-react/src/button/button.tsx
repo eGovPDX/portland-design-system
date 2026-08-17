@@ -1,7 +1,4 @@
-import {
-  validateButtonElement,
-  type ButtonProps,
-} from "@cityofportland/types/button";
+import { type ButtonProps } from "@cityofportland/types/button";
 import React from "react";
 
 import { mergeClasses } from "../utils";
@@ -9,31 +6,32 @@ import { Box, type ReactBoxProps } from "../box";
 
 import "@cityofportland/components-css/button.css";
 
-type ElementType = "button" | "a";
+type ButtonElementType = "button" | "a";
 
-export type ReactButtonProps<E extends ElementType = "button"> = ButtonProps &
-  ReactBoxProps<E> &
-  React.PropsWithChildren;
+const DefaultElementType: ButtonElementType = "button";
 
-export const Button = <E extends ElementType = "button">({
-  as = "button",
+type ButtonOwnProps = Omit<ButtonProps, keyof ReactBoxProps>;
+
+export type ReactButtonProps<
+  T extends ButtonElementType = typeof DefaultElementType,
+> = React.PropsWithChildren<ButtonOwnProps & ReactBoxProps<T>>;
+
+export const Button = <
+  T extends ButtonElementType = typeof DefaultElementType,
+>({
+  as,
   children = null,
   size,
   outline = false,
   disabled = false,
   className,
   ...props
-}: ReactButtonProps<E>) => {
-  try {
-    validateButtonElement(as);
-  } catch (err) {
-    console.warn(err);
-    as = "button";
-  }
+}: ReactButtonProps<T>) => {
+  const element: ButtonElementType = as ?? DefaultElementType;
 
   return (
     <Box
-      as={as}
+      as={element}
       className={mergeClasses(
         "button",
         size && `button--${size}`,
