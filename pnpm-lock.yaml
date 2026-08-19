@@ -336,6 +336,9 @@ importers:
       '@cityofportland/design-tokens':
         specifier: workspace:*
         version: link:../design-tokens
+      '@cityofportland/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@cityofportland/types':
         specifier: workspace:*
         version: link:../types
