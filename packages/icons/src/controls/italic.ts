@@ -1,0 +1,15 @@
+import type { IconDefinition } from "@cityofportland/types/icon";
+
+export default {
+  name: "italic",
+  comments: [
+    "! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.",
+  ],
+  width: 640,
+  height: 640,
+  paths: [
+    {
+      d: "M256 128C256 110.3 270.3 96 288 96L480 96C497.7 96 512 110.3 512 128C512 145.7 497.7 160 480 160L421.3 160L288 480L352 480C369.7 480 384 494.3 384 512C384 529.7 369.7 544 352 544L160 544C142.3 544 128 529.7 128 512C128 494.3 142.3 480 160 480L218.7 480L352 160L288 160C270.3 160 256 145.7 256 128z",
+    },
+  ],
+} as IconDefinition;

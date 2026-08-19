@@ -1,0 +1,15 @@
+import type { IconDefinition } from "@cityofportland/types/icon";
+
+export default {
+  name: "minus",
+  comments: [
+    "! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.",
+  ],
+  width: 640,
+  height: 640,
+  paths: [
+    {
+      d: "M96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z",
+    },
+  ],
+} as IconDefinition;
