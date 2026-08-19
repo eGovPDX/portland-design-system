@@ -1,0 +1,49 @@
+{
+  "name": "@cityofportland/icons",
+  "version": "1.0.0-alpha.3",
+  "description": "Icons used by the portland design system and its components",
+  "author": {
+    "name": "City of Portland, Oregon"
+  },
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/js/index.js"
+    },
+    "./*.svg": {
+      "import": "./dist/svgs/*.svg",
+      "require": "./dist/svgs/*.svg"
+    },
+    "./*": {
+      "types": "./dist/js/*.d.ts",
+      "import": "./dist/js/*.js"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "devDependencies": {
+    "@cityofportland/types": "workspace:*",
+    "cheerio": "^1.2.0",
+    "picocolors": "^1.1.1",
+    "svgo": "^3.3.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "optionalDependencies": {
+    "@fortawesome/fontawesome-free": "^7.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eGovPDX/portland-design-system.git"
+  },
+  "homepage": "https://egovpdx.github.io/portland-design-system"
+}
