@@ -3,6 +3,7 @@ import { watch } from "fs";
 
 import { ASSETS_DIR, TOKENS_DIR } from "../config/constants.js";
 import { TOKEN_BUILDER } from "../builder.js";
+import { ASSET_COPIER } from "../copier.js";
 import args from "./args.js";
 
 /**
@@ -26,6 +27,10 @@ async function run(): Promise<void> {
 
   building = TOKEN_BUILDER.build(args.mode).finally(() => {
     building = null;
+  });
+
+  ASSET_COPIER.copy().catch((error) => {
+    console.error("❌ Error copying assets:", error);
   });
 
   return building;
