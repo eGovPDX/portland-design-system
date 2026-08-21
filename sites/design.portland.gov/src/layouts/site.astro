@@ -3,10 +3,14 @@ import { Box } from "@cityofportland/components-react/box";
 import {
   Header,
   HeaderBranding,
+  HeaderContent,
   HeaderLogo,
 } from "@cityofportland/components-react/header";
+import { Icon } from "@cityofportland/components-react/icon";
 import { Footer } from "@cityofportland/components-react/footer";
+import github from "@cityofportland/icons/social/github";
 
+import packageJson from "../../package.json" assert { type: "json" };
 import { SiteNav } from "./_site";
 
 import "../styles/global.css";
@@ -59,6 +63,14 @@ const navItems = [
         <HeaderLogo />
         Design System
       </HeaderBranding>
+      <HeaderContent>
+        <a
+          href={packageJson.repository.url}
+          aria-label="View the Portland Design System on GitHub"
+        >
+          <Icon icon={github} size="lg" />
+        </a>
+      </HeaderContent>
     </Header>
     <main class="flex-1 grid grid-cols-1 xl:grid-cols-5 gap-md relative">
       <Box as="aside">
