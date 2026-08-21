@@ -1,6 +1,6 @@
 {
   "name": "@cityofportland/components-react",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "Portland Component Library using design tokens from Figma",
   "author": {
     "name": "City of Portland, Oregon"
