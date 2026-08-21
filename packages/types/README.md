@@ -1,148 +1,39 @@
 # @cityofportland/types
 
-Shared TypeScript types for Portland Design System components across all
-framework implementations.
+This package keeps the other packages consistent with each other. It's a set of
+shared TypeScript contracts — prop shapes, literal unions, runtime constant
+lists — that React, Lit, and Drupal component packages all build against, so a
+button means the same thing no matter which framework is rendering it.
 
-## Overview
+It has no dependencies of its own; it's pure types and small runtime helpers
+that other packages pull in.
 
-This package provides centralized type definitions that ensure consistency
-across React, Lit, Drupal, and other component implementations. By using shared
-types, we guarantee that components have the same API regardless of the
-framework.
-
-## Installation
+## Using it
 
 ```bash
 pnpm add @cityofportland/types
 ```
 
-## Usage
-
-### Importing All Types
-
-```typescript
-import { ButtonProps, HeaderProps } from "@cityofportland/types";
+```ts
+import type { ButtonProps, ButtonSize } from "@cityofportland/types";
+import { BUTTON_SIZES } from "@cityofportland/types/button";
 ```
 
-### Importing Specific Component Types
+Use `import type` when you only need the type, and pull runtime constants from
+the component-specific entry points.
 
-```typescript
-import { ButtonVariant, ButtonSize } from "@cityofportland/types/button";
-import { HeaderProps } from "@cityofportland/types/header";
-```
-
-### Using in Component Implementations
-
-#### Lit Component
-
-```typescript
-import { ButtonProps, ButtonVariant } from "@cityofportland/types";
-
-@customElement("portland-button")
-export class Button extends LitElement implements ButtonProps {
-  @property({ type: String }) variant: ButtonVariant = "primary";
-  // ... other properties
-}
-```
-
-#### React Component
-
-```typescript
-import { ButtonProps } from "@cityofportland/types";
-
-export const Button: React.FC<ButtonProps> = ({
-  variant = "primary",
-  size = "default",
-  // ... other props
-}) => {
-  // component implementation
-};
-```
-
-#### TypeScript Validation
-
-```typescript
-import { BUTTON_VARIANTS, ButtonVariant } from "@cityofportland/types/button";
-
-function isValidVariant(value: string): value is ButtonVariant {
-  return BUTTON_VARIANTS.includes(value as ButtonVariant);
-}
-```
-
-## Available Types
-
-### Button Types
-
-- `ButtonProps` - Core button properties
-- `ButtonPropsWithSlots` - Extended props with slot content
-- `ButtonVariant` - Available button style variants
-- `ButtonSize` - Available button sizes
-- `ButtonType` - HTML button type attribute values
-- `BUTTON_VARIANTS` - Readonly array of all variants
-- `BUTTON_SIZES` - Readonly array of all sizes
-- `BUTTON_TYPES` - Readonly array of all types
-
-### Header Types
-
-- `HeaderProps` - Core header properties
-- `HeaderPropsWithSlots` - Extended props with slot content
-- `HeaderSlots` - Available header slots
-
-### Common Types
-
-- `BaseComponentProps` - Base properties shared by most components
-- `DisableableProps` - Props for disableable components
-- `ClickableProps` - Props for clickable components
-- `LinkableProps` - Props for components that can act as links
-- `IconSlotProps` - Props for components with icon slots
-- `CommonSize` - Standard size tokens
-- `ColorToken` - Design system color tokens
-- `SpacingToken` - Spacing scale tokens
-
-## Benefits
-
-### Type Safety
-
-Ensures components have consistent APIs across frameworks and catches errors at
-compile time.
-
-### Autocomplete
-
-IDEs provide intelligent autocomplete for component properties.
-
-### Documentation
-
-Types serve as inline documentation for component APIs.
-
-### Refactoring
-
-Centralized types make it easy to update component interfaces across all
-implementations.
-
-## Contributing
-
-When adding new components:
-
-1. Create a new type file in `src/` (e.g., `src/card.ts`)
-2. Export types in `src/index.ts`
-3. Update this README with the new types
-4. Run `pnpm build` to generate type declarations
-
-## Development
+## Developing
 
 ```bash
-# Build type declarations
-pnpm build
-
-# Watch mode for development
-pnpm build:watch
-
-# Type check
-pnpm type-check
-
-# Clean build artifacts
-pnpm clean
+turbo build --filter=@cityofportland/types
+turbo dev --filter=@cityofportland/types
 ```
+
+`dev` runs the TypeScript compiler in watch mode. There's also a `type-check`
+script if you just want to verify types without emitting anything.
+
+When you add a new contract, keep any literal unions and their matching runtime
+arrays in sync with each other.
 
 ## License
 

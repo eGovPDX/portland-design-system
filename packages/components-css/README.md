@@ -1,118 +1,44 @@
 # @cityofportland/components-css
 
-CSS component styles for the Portland Design System built with Tailwind CSS and
-PostCSS.
+This is the plain CSS layer of the design system, with no framework required.
+It's built with Tailwind and Vite on top of `@cityofportland/design-tokens`, so
+everything here is styled using the same tokens (colors, spacing, etc.) as the
+rest of the system rather than hard-coded values.
 
-## Overview
+Use this package for styled markup without React, Lit, or Drupal. It's also what
+`components-react` and `components-drupal` use for their own styling, so changes
+here affect both.
 
-This package provides pre-built, minified CSS for Portland Design System
-components. It uses:
-
-- **Tailwind CSS** - Utility-first CSS framework with design token integration
-- **Vite** - Fast build tooling for bundling and minification
-- **Design Tokens** - Integrated theme from `@cityofportland/design-tokens`
-
-## Installation
+## Using it
 
 ```bash
 pnpm add @cityofportland/components-css
 ```
 
-## Usage
-
-### Import Preflight styles to reset user agent
+Import the CSS you need for the piece of UI you're building:
 
 ```css
-@import "@cityofportland/components-css/preflight";
+@import "@cityofportland/components-css/button.css";
 ```
 
-Or in JavaScript/TypeScript:
+The same import works from a `.ts`/`.js` file too, if your bundler supports CSS
+imports.
 
-```javascript
-import "@cityofportland/components-css/preflight.css";
-```
-
-### Import Individual Components
-
-For better performance, import only the components you need:
-
-```css
-@import "@cityofportland/components-css/button";
-```
-
-```javascript
-import "@cityofportland/components-css/button.css";
-```
-
-## Development
-
-### Build workspace dependencies
+## Developing
 
 ```bash
-pnpm --filter="{.}^..." build
+turbo build --filter=@cityofportland/components-css
+turbo dev --filter=@cityofportland/components-css
+turbo storybook --filter=@cityofportland/components-css
 ```
 
-### Build CSS
+`turbo build` rebuilds `design-tokens` first automatically, so build order isn't
+something you need to manage. Storybook runs on port `6007` and is the easiest
+way to review your changes.
 
-```bash
-pnpm build
-```
-
-Outputs:
-
-- `dist/preflight.css` - Reset styles
-- `dist/button.css` - Individual component styles
-- All files are minified with cssnano
-
-### Watch Mode
-
-```bash
-pnpm dev
-```
-
-Watches for changes and rebuilds automatically.
-
-### Clean Build Directory
-
-```bash
-pnpm clean
-```
-
-## Architecture
-
-### Build Pipeline
-
-1. **Source CSS** (`src/`) - Component styles using Tailwind `@apply` directives
-2. **Vite Build** - Bundles and minifies with Lightning CSS
-3. **Output** (`dist/`) - Production-ready CSS files
-
-### Design Token Integration
-
-This package imports the Tailwind theme generated from
-`@cityofportland/design-tokens`:
-
-```css
-@import "@cityofportland/design-tokens/tailwind/theme.css";
-```
-
-All Tailwind utilities reference CSS custom properties from the design tokens,
-ensuring consistency across all Portland Design System packages.
-
-## Adding New Components
-
-1. Create a new directory in `src/` (e.g., `src/card/`)
-2. Add your component CSS file (e.g., `card.css`)
-3. Add boilerplate to create independent CSS:
-
-```css
-@layer theme, components, utilities;
-
-@import "@cityofportland/design-tokens/tailwind/theme.css" layer(theme);
-@import "tailwindcss/utilities" layer(utilities);
-```
-
-4. Wrap your work in `@layer components {...}`
-5. Use Tailwind utilities with `@apply`
+When adding or editing styles, keep selectors scoped, use token variables
+instead of hard-coded values, and check your changes in both Storybook and in a
+package that consumes the styles (like `components-react`).
 
 ## License
 
