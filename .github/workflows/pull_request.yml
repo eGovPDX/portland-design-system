@@ -5,7 +5,7 @@ jobs:
   test-packages-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: ./packages/actions/setup-build
 
@@ -16,7 +16,7 @@ jobs:
   test-site-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: ./packages/actions/setup-build
 
