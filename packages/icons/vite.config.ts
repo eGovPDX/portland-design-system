@@ -115,11 +115,7 @@ const generateSVGs = (): Plugin => {
             .join(EOL)}
           </svg>`;
 
-          const distPath = resolve(
-            DIST_SVGS_DIR,
-            parsed.dir,
-            `${parsed.name}.svg`
-          );
+          const distPath = resolve(DIST_SVGS_DIR, `${parsed.name}.svg`);
 
           const distDir = dirname(distPath);
 
