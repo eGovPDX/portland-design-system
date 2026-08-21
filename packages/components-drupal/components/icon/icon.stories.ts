@@ -9,11 +9,7 @@ const meta: Meta<IconProps> = {
   argTypes: {
     icon: {
       control: "select",
-      options: Object.keys(Icons).map((key) => {
-        const parts =
-          key.match(/[A-Z]+(?=[A-Z][a-z]|\d|$)|[A-Z]?[a-z]+|\d+/g) ?? [];
-        return parts.map((part) => part.toLowerCase()).join("-");
-      }),
+      options: Object.entries(Icons).map(([_, def]) => def.name),
       description: "Which icon to display",
     },
     size: {
@@ -55,7 +51,7 @@ export const Sizes: StoryObj<IconProps> = {
   },
   render: ({ icon }) => {
     return `
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+      <div class="flex flex-wrap gap-xl">
         ${ICON_SIZES.map(
           (size) => `
           <div class="grid justify-items-center">
