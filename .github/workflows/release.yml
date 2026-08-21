@@ -36,6 +36,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           name: dist-folders
           run-id: ${{ steps.get-latest-run.outputs.run_id }}
+          path: packages
 
       - run: pnpm publish --recursive --access public --no-git-checks
 
