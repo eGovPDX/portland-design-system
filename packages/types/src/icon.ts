@@ -1,14 +1,4 @@
-export const ICON_SIZES = [
-  "xs",
-  "sm",
-  "md",
-  "lg",
-  "xl",
-  "2xl",
-  "3xl",
-  "4xl",
-  "5xl",
-] as const;
+export const ICON_SIZES = ["xs", "sm", "md", "lg"] as const;
 
 export type IconSize = (typeof ICON_SIZES)[number];
 
@@ -21,6 +11,7 @@ export type IconDefinition = {
   paths: {
     d: string;
     fill?: string;
+    [index: string]: string | undefined;
   }[];
 };
 
