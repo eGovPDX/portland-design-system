@@ -12,16 +12,19 @@
     @apply w-auto;
 
     /* Size: extra-large */
+    &.city-seal--xl,
     &.city-seal--xl > svg {
       @apply h-scale-3000;
     }
 
     /* Size: large */
+    &.city-seal--lg,
     &.city-seal--lg > svg {
       @apply h-scale-2000;
     }
 
     /* Size: small */
+    &.city-seal--sm,
     &.city-seal--sm > svg {
       @apply h-scale-1400;
     }
