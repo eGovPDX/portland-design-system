@@ -10,7 +10,7 @@ jobs:
       contents: read
       actions: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: ./packages/actions/setup-build
         with:
@@ -36,6 +36,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           name: dist-folders
           run-id: ${{ steps.get-latest-run.outputs.run_id }}
+          path: packages
 
       - run: pnpm publish --recursive --access public --no-git-checks
 
@@ -54,7 +55,7 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: ./packages/actions/setup-build
 
