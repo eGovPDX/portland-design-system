@@ -6,29 +6,51 @@
 @layer components {
   /* Base Header Styles */
   .header {
-    @apply w-full py-md px-xl;
-    @apply flex items-center justify-between gap-sm flex-wrap;
+    @apply w-full;
+    @apply py-md;
+    @apply px-xl;
+    @apply flex;
+    @apply items-center;
+    @apply justify-between;
+    @apply gap-sm;
+    @apply flex-wrap;
   }
 
   .header__branding {
     @apply flex-none;
-    @apply flex items-center gap-md;
-    @apply text-heading-lg font-bold;
+    @apply flex;
+    @apply items-center;
+    @apply gap-md;
+    @apply text-heading-lg;
+    @apply font-bold;
 
     .header__logo {
-      @apply inline-flex items-center justify-center shrink-0;
+      @apply flex-none;
+      @apply inline-flex;
+      @apply items-center;
+      @apply justify-center;
     }
 
     .header__title {
-      @apply flex flex-col gap-xs;
+      @apply flex;
+      @apply flex-col;
+      @apply gap-xs;
     }
   }
   .header__content {
-    @apply flex items-center gap-lg flex-wrap;
+    @apply flex;
+    @apply items-center;
+    @apply gap-lg;
+    @apply flex-wrap;
   }
 
   .header__nav-list {
-    @apply m-none p-none list-none flex flex-row items-center gap-lg;
+    @apply m-none;
+    @apply p-none;
+    @apply list-none;
+    @apply flex;
+    @apply flex-row;
+    @apply items-center gap-lg;
   }
 
   .header__nav-item {
