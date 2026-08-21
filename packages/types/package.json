@@ -24,7 +24,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
-    "dev": "tsc --watch",
+    "dev": "tsc --watch --preserveWatchOutput",
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
