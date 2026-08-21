@@ -1,12 +1,13 @@
-import "@cityofportland/components-css/alert.css";
+import xmark from "@cityofportland/icons/controls/xmark";
 import type { AlertProps } from "@cityofportland/types/alert";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { type ElementType } from "react";
 
 import { Box, type ReactBoxProps } from "../box/box";
 import { Button } from "../button/button";
+import { Icon } from "../icon/icon";
 import { mergeClasses } from "../utils";
+
+import "@cityofportland/components-css/alert.css";
 
 export type ReactAlertProps = React.PropsWithChildren<
   AlertProps & ReactBoxProps & { onDismiss: (element: Element) => void }
@@ -89,30 +90,25 @@ export const Alert: React.FC<ReactAlertProps> = ({
     >
       {children}
       {dismissible ? (
-        <Button
-          className="alert__close"
-          aria-label="Dismiss alert"
-          onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-            const alertElement = event.currentTarget.closest(".alert");
+        <span className="alert__close">
+          <Button
+            aria-label="Dismiss alert"
+            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+              const alertElement = event.currentTarget.closest(".alert");
 
-            if (!alertElement) {
-              console.warn("Could not find alert to dismiss");
-              return;
-            }
+              if (!alertElement) {
+                console.warn("Could not find alert to dismiss");
+                return;
+              }
 
-            alertElement.remove();
+              alertElement.remove();
 
-            if (onDismiss) onDismiss(alertElement);
-          }}
-        >
-          <FontAwesomeIcon
-            icon={faXmark}
-            widthAuto
-            style={{
-              "--fa-display": "block",
+              if (onDismiss) onDismiss(alertElement);
             }}
-          />
-        </Button>
+          >
+            <Icon icon={xmark} size="sm" />
+          </Button>
+        </span>
       ) : (
         ""
       )}

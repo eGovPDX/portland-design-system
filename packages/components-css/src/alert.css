@@ -25,7 +25,7 @@
       .alert__icon {
         img,
         svg {
-          @apply h-scale-600;
+          @apply h-600;
         }
       }
     }
@@ -36,7 +36,7 @@
 
       img,
       svg {
-        @apply h-scale-1000;
+        @apply h-1000;
       }
     }
 
