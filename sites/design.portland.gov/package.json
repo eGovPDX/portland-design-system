@@ -21,6 +21,7 @@
     "@cityofportland/components-css": "workspace:*",
     "@cityofportland/components-react": "workspace:*",
     "@cityofportland/design-tokens": "workspace:*",
+    "@cityofportland/icons": "workspace:*",
     "@nanostores/react": "^1.1.0",
     "@tailwindcss/vite": "^4.2.4",
     "@types/react": "^19.2.14",
@@ -37,5 +38,8 @@
     "@astrojs/markdown-remark": "^7.1.2",
     "@cityofportland/types": "workspace:*",
     "shiki": "^4.1.0"
+  },
+  "repository": {
+    "url": "https://github.com/eGovPDX/portland-design-system"
   }
 }
