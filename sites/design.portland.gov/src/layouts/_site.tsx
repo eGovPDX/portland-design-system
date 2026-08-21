@@ -58,9 +58,9 @@ export function SiteNav({
             </AccordionHeader>
           </NavItem>
           {route.children && route.children.length > 0 && (
-            <AccordionContent className="border-l-xl grid">
+            <AccordionContent className="grid">
               {route.children.map((child) =>
-                renderer(child, "pl-xl pr-xs py-xs")
+                renderer(child, "border-l-xl pl-xl pr-xs py-xs")
               )}
             </AccordionContent>
           )}
