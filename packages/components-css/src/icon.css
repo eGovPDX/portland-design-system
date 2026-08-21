@@ -11,54 +11,24 @@
     @apply shrink-0;
     @apply w-auto;
 
-    &.icon--2xs,
-    &.icon--2xs svg {
-      @apply h-scale-200;
-    }
-
     &.icon--xs,
     &.icon--xs svg {
-      @apply h-scale-400;
+      @apply h-400;
     }
 
     &.icon--sm,
     &.icon--sm svg {
-      @apply h-scale-600;
+      @apply h-600;
     }
 
     &.icon--md,
     &.icon--md svg {
-      @apply h-scale-1000;
+      @apply h-1000;
     }
 
     &.icon--lg,
     &.icon--lg svg {
-      @apply h-scale-1400;
-    }
-
-    &.icon--xl,
-    &.icon--xl svg {
-      @apply h-scale-2000;
-    }
-
-    &.icon--2xl,
-    &.icon--2xl svg {
-      @apply h-scale-2400;
-    }
-
-    &.icon--3xl,
-    &.icon--3xl svg {
-      @apply h-scale-2600;
-    }
-
-    &.icon--4xl,
-    &.icon--4xl svg {
-      @apply h-scale-2800;
-    }
-
-    &.icon--5xl,
-    &.icon--5xl svg {
-      @apply h-scale-3000;
+      @apply h-1500;
     }
   }
 }
