@@ -8,55 +8,46 @@
     @apply items-center;
     @apply justify-center;
     @apply shrink-0;
+    @apply w-auto;
 
     &.icon--2xs {
-      width: theme(--scale-200);
-      height: theme(--scale-200);
+      @apply h-scale-200;
     }
 
     &.icon--xs {
-      width: theme(--scale-400);
-      height: theme(--scale-400);
+      @apply h-scale-400;
     }
 
     &.icon--sm {
-      width: theme(--scale-600);
-      height: theme(--scale-600);
+      @apply h-scale-600;
     }
 
     &.icon--md {
-      width: theme(--scale-1000);
-      height: theme(--scale-1000);
+      @apply h-scale-1000;
     }
 
     &.icon--lg {
-      width: theme(--scale-1500);
-      height: theme(--scale-1500);
+      @apply h-scale-1500;
     }
 
     &.icon--xl {
-      width: theme(--scale-2000);
-      height: theme(--scale-2000);
+      @apply h-scale-2000;
     }
 
     &.icon--2xl {
-      width: theme(--scale-2400);
-      height: theme(--scale-2400);
+      @apply h-scale-2400;
     }
 
     &.icon--3xl {
-      width: theme(--scale-2600);
-      height: theme(--scale-2600);
+      @apply h-scale-2600;
     }
 
     &.icon--4xl {
-      width: theme(--scale-2800);
-      height: theme(--scale-2800);
+      @apply h-scale-2800;
     }
 
     &.icon--5xl {
-      width: theme(--scale-3000);
-      height: theme(--scale-3000);
+      @apply h-scale-3000;
     }
   }
 }

@@ -7,3 +7,11 @@
 @source not "stories/**/*.{ts,tsx}";
 
 @reference "@cityofportland/design-tokens/tailwind/base.css" layer(theme);
+
+@utility h-scale-* {
+  height: --value(--scale-*);
+}
+
+@utility w-scale-* {
+  width: --value(--scale-*);
+}

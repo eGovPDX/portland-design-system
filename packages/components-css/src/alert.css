@@ -10,6 +10,7 @@
 
 @layer components {
   .alert {
+    @apply w-full;
     @apply border-l-xl;
     @apply p-md;
     @apply flex;
@@ -20,20 +21,23 @@
       @apply gap-xs;
       @apply px-md;
       @apply py-xs;
-    }
 
-    .alert__icon {
-      @apply size-3xl;
-      @apply p-2xs;
-
-      .alert--slim & {
-        @apply size-xl;
-        @apply p-3xs;
+      .alert__icon {
+        img,
+        svg {
+          @apply h-scale-600;
+        }
       }
     }
 
-    .alert__content {
-      @apply grow;
+    .alert__icon {
+      @apply shrink-0;
+      @apply inline-flex;
+
+      img,
+      svg {
+        @apply h-scale-1000;
+      }
     }
 
     .alert__heading {
@@ -50,9 +54,9 @@
     }
 
     .alert__close {
-      @apply text-[20px];
-      @apply p-3xs;
       @apply cursor-pointer;
+      @apply ml-auto;
+      @apply inline-flex;
     }
   }
 }
