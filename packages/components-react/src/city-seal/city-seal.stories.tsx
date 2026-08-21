@@ -37,16 +37,16 @@ export const Sizes: StoryObj<ReactCitySealProps> = {
   },
   render: ({}) => {
     return (
-      <div className="grid grid-cols-3 items-top gap-xl text-standard-default-strong">
-        <div>
+      <div className="flex items-start gap-xl">
+        <div className="grid justify-items-center">
           <h1 className="font-bold py-md">Extra large</h1>
           <CitySeal size="xl" />
         </div>
-        <div>
+        <div className="grid justify-items-center">
           <h1 className="font-bold py-md">Large</h1>
           <CitySeal size="lg" />
         </div>
-        <div>
+        <div className="grid justify-items-center">
           <h1 className="font-bold py-md">Small</h1>
           <CitySeal size="sm" />
         </div>

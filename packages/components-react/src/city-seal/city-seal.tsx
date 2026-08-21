@@ -1,31 +1,13 @@
+import seal from "@cityofportland/design-tokens/assets/city-seal.svg";
 import type { CitySealProps } from "@cityofportland/types/city-seal";
 import React from "react";
 
 import "@cityofportland/components-css/city-seal.css";
+import { mergeClasses } from "../utils";
 
 export interface ReactCitySealProps extends CitySealProps {
   size?: CitySealProps["size"]; // size of the City Seal, default is "lg"
   className?: string; // CSS classes
-}
-
-/**
- * Build the class list for the CitySeal component
- */
-function buildClassList({
-  className = "",
-  size = "lg",
-}: Partial<ReactCitySealProps>): string {
-  const classes: Set<string> = new Set(["city-seal"]);
-
-  // Size variation
-  classes.add(`city-seal--${size}`);
-
-  // Custom classes
-  if (className) {
-    className.split(" ").forEach((c) => classes.add(c));
-  }
-
-  return Array.from(classes).join(" ");
 }
 
 /**
@@ -42,12 +24,13 @@ function buildClassList({
 export const CitySeal: React.FC<ReactCitySealProps> = ({
   size = "lg",
   className,
-  ...rest
+  ...props
 }) => {
-  const classList = buildClassList({
-    className,
-    size,
-  });
-
-  return <img className={classList} alt="" {...rest} />;
+  return (
+    <img
+      src={seal}
+      className={mergeClasses("city-seal", `city-seal--${size}`, className)}
+      {...props}
+    />
+  );
 };
