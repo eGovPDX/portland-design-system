@@ -13,6 +13,7 @@
   "exports": {
     ".": "./dist/js/base.js",
     "./*": "./dist/*.js",
+    "./assets/*": "./dist/assets/*",
     "./css/*": "./dist/css/*",
     "./js/*": "./dist/js/*",
     "./json/*": "./dist/json/*",
