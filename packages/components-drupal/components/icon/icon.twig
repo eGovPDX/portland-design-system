@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Template for Portland Icon component.
+ *
+ * Available variables:
+ * - icon: The name of the icon to render (e.g., "arrow-right", "check", etc.)
+ * - size: Icon size (2xs, xs, sm, md, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl, 8xl, 9xl)
+ * - attributes: Additional HTML attributes
+ */
+#}
+
+{% apply spaceless %}
+
+{# Set default values #}
+{% set attributes = attributes|default(create_attribute()) %}
+
+{# size classes #}
+{% set size_classes = [] %}
+{% if size is defined %}
+  {% set size_classes = {
+    '3xs': ['icon--3xs'],
+    '2xs': ['icon--2xs'],
+    'xs': ['icon--xs'],
+    'sm': ['icon--sm'],
+    'md': ['icon--md'],
+    'lg': ['icon--lg'],
+    'xl': ['icon--xl'],
+    '2xl': ['icon--2xl'],
+    '3xl': ['icon--3xl'],
+    '4xl': ['icon--4xl'],
+    '5xl': ['icon--5xl'],
+  }[size] %}
+{% endif %}
+
+{# Combine all classes #}
+{% set classes = ['icon']|merge(size_classes) %}
+
+<span {{ attributes.addClass(classes) }}>
+  {{ source('node_modules/@cityofportland/icons/dist/svgs/' ~ icon ~ '.svg') }}
+</span>
+{% endapply %}

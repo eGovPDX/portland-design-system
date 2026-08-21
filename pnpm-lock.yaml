@@ -144,6 +144,9 @@ importers:
 
   packages/components-drupal:
     dependencies:
+      '@cityofportland/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@drupal/once':
         specifier: ^1.0.1
         version: 1.0.1
