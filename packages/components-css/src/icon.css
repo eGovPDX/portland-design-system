@@ -5,9 +5,7 @@
   .icon,
   .icon svg {
     @apply fill-current;
-    @apply inline-flex;
-    @apply items-center;
-    @apply justify-center;
+    @apply block;
     @apply shrink-0;
     @apply w-auto;
 
