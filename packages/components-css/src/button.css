@@ -21,8 +21,7 @@
     );
 
     @apply max-w-full;
-    @apply inline-grid;
-    @apply grid-flow-col;
+    @apply inline-flex;
     @apply items-center;
     @apply justify-center;
     @apply gap-xs;
