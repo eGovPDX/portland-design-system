@@ -134,9 +134,12 @@ export const PortlandGov: Story = {
               </p>
             </div>
             ${Button.component({
+              defaultAttributes: [
+                ...Button.args.defaultAttributes,
+                ["class", ["shrink-0"]],
+              ],
               right: arrowRight.html.join(" "),
-              attributes: { class: "shrink-0" },
-              content: "Explore all services",
+              button_content: "Explore all services",
             })}
           </section>
           ${FooterNavigation.component({
@@ -246,7 +249,7 @@ export const Wireframe: StoryObj<StoryProps & { menus: number }> = {
             ${FooterMenuItem.component({ content: `<a href="#">FooterMenuItem 2</a>` })}
             ${FooterMenuItem.component({ content: `<a href="#">pneumonoultramicroscopicsilicovolcanoconiosis</a>` })}
             `,
-          })}  
+          })}
          `
           )
           .join("")}

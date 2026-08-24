@@ -177,9 +177,9 @@ export const Basic: Story<
                   ${Button.component({
                     color: "primary",
                     variant: "moderate",
-                    content: button,
+                    button_content: button,
                     defaultAttributes: [
-                      ...CardMedia.args.defaultAttributes,
+                      ...Button.args.defaultAttributes,
                       ["class", ["rounded-md"]],
                     ],
                   })}
@@ -188,9 +188,6 @@ export const Basic: Story<
                 : ""
             }`,
           })}
-
-          
-
         `,
       })}
     `;
@@ -287,7 +284,7 @@ export const MultipleCards: Story<
                 button &&
                 CardFooter.component({
                   card_footer_content: `
-                  ${Button.component({ defaultAttributes: [...CardMedia.args.defaultAttributes, ["class", ["rounded-lg"]]], content: button })}
+                  ${Button.component({ defaultAttributes: [...Button.args.defaultAttributes, ["class", ["rounded-lg"]]], button_content: button })}
                 `,
                 })
               }
@@ -352,9 +349,9 @@ export const MultipleButtons: Story<Props & { buttons: string[] }> = {
                         color: index > 0 ? "secondary" : "primary",
                         variant: "moderate",
                         // outline: index > 0,
-                        content: button,
+                        button_content: button,
                         defaultAttributes: [
-                          ...CardMedia.args.defaultAttributes,
+                          ...Button.args.defaultAttributes,
                           ["class", ["rounded-md"]],
                         ],
                       })
