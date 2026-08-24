@@ -63,24 +63,6 @@ props:
       examples:
         - moderate
 
-    attributes:
-      type: object
-      title: Additional attributes
-      description: Additional HTML attributes to add to the box element
-      properties:
-        class:
-          type: string
-          title: CSS classes
-          description: Additional CSS classes for the box
-        id:
-          type: string
-          title: Element ID
-          description: HTML ID attribute for the box
-        data-*:
-          type: string
-          title: Data attributes
-          description: Custom data attributes
-
 slots:
   box_content:
     title: Content

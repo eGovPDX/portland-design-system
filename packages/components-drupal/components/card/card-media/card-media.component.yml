@@ -49,24 +49,6 @@ props:
       examples:
         - left
 
-    attributes:
-      type: object
-      title: Additional Attributes
-      description: Additional HTML attributes to add to the card media element
-      properties:
-        class:
-          type: string
-          title: CSS Classes
-          description: Additional CSS classes for the card media
-        id:
-          type: string
-          title: Element ID
-          description: HTML ID attribute for the card media
-        data-*:
-          type: string
-          title: Data Attributes
-          description: Custom data attributes
-
 slots:
   img:
     title: Image

@@ -29,24 +29,6 @@ props:
       examples:
         - info
 
-    attributes:
-      type: object
-      title: Additional attributes
-      description: Additional HTML attributes to add to the tag element
-      properties:
-        class:
-          type: string
-          title: CSS classes
-          description: Additional CSS classes for the tag
-        id:
-          type: string
-          title: Element ID
-          description: HTML ID attribute for the tag
-        data-*:
-          type: string
-          title: Data attributes
-          description: Custom data attributes
-
 slots:
   content:
     title: Content

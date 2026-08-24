@@ -46,24 +46,6 @@ props:
       description: Whether the card has a border or not
       default: true
 
-    attributes:
-      type: object
-      title: Additional Attributes
-      description: Additional HTML attributes to add to the card element
-      properties:
-        class:
-          type: string
-          title: CSS Classes
-          description: Additional CSS classes for the card
-        id:
-          type: string
-          title: Element ID
-          description: HTML ID attribute for the card
-        data-*:
-          type: string
-          title: Data Attributes
-          description: Custom data attributes
-
 slots:
   header:
     title: Card media
