@@ -106,24 +106,6 @@ props:
       description: Whether the button is disabled
       default: false
 
-    attributes:
-      type: object
-      title: Additional attributes
-      description: Additional HTML attributes to add to the button element
-      properties:
-        class:
-          type: string
-          title: CSS classes
-          description: Additional CSS classes for the button
-        id:
-          type: string
-          title: Element ID
-          description: HTML ID attribute for the button
-        data-*:
-          type: string
-          title: Data attributes
-          description: Custom data attributes
-
 slots:
   button_content:
     title: Content
