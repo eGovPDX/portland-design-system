@@ -18,7 +18,7 @@ export type ButtonSize = Spacing;
 export interface ButtonProps extends BoxProps {
   /**
    * Size of the button
-   * @default "default"
+   * @default "md"
    */
   size?: ButtonSize;
 

@@ -21,13 +21,13 @@ export const Button = <
 >({
   as,
   children = null,
-  size,
+  size = "md",
   outline = false,
   disabled = false,
   className,
   ...props
 }: ReactButtonProps<T>) => {
-  const element: ButtonElementType = as ?? DefaultElementType;
+  const element = as ?? DefaultElementType;
 
   return (
     <Box

@@ -38,6 +38,7 @@ export default {
       ${Card.component({ ...args })}
     `;
   },
+  // TODO: Find out why Mike added these lines, which top-align the card in Storybook
   decorators: [(Story) => `<div class="p-lg">${Story()}</div>`],
   parameters: {
     layout: "fullscreen",
