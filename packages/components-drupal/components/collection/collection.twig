@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Template for Portland Collection component.
+ *
+ * Available variables:
+ * - as: Card container element (ul, ol)
+ * - attributes: Additional HTML attributes
+ * - collection_content: Collection content (slot)
+ */
+#}
+
+{# Set default values #}
+{% set element = as|default('ul') %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+
+{% set classes = ["collection"] %}
+
+{% if divider %}
+  {% set classes = classes|merge(['collection--divided']) %}
+{% endif %}
+
+{# Combine all classes #}
+{% set classes = classes|merge(attributes.classes|default([])|join(' ')|split(' '))%}
+
+{# Put attribute classes at the end of the class list #}
+{% if attributes.get('class') is defined and attributes.get('class') is not empty %}
+  {# Hack to clone the attribute classes object #}
+  {% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
+  {% set attributes = attributes.removeClass(attribute_classes) %}
+  {% set classes = classes|merge(attribute_classes) %}
+{% endif %}
+
+{% embed 'portland:box' with { 
+  as: element,
+  attributes: attributes.addClass(classes),
+} %}
+{% block box_content %}
+  {{ collection_content }}
+{% endblock %}
+{% endembed %}

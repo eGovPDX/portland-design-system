@@ -15,14 +15,16 @@ type DefaultElementType = "div";
 /**
  * Props that are specific to the React implementation
  */
-type ReactBoxOwnProps<E extends React.ElementType = DefaultElementType> =
-  BoxProps & {
-    /**
-     * The HTML element or React component to render as
-     * @default "div"
-     */
-    as?: E | string;
-  };
+type ReactBoxOwnProps<E extends React.ElementType = DefaultElementType> = Omit<
+  BoxProps,
+  "as"
+> & {
+  /**
+   * The HTML element or React component to render as
+   * @default "div"
+   */
+  as?: E;
+};
 
 /**
  * Polymorphic Box props that merge own props with the element's native props
@@ -94,7 +96,7 @@ export const Box = React.forwardRef(
     }: ReactBoxProps<E>,
     ref: React.Ref<React.ElementType<E>>
   ) => {
-    const Element = as || "div";
+    const Element = as || ("div" as React.ElementType);
 
     [color, variant] = validateBoxConfiguration(color, variant);
 

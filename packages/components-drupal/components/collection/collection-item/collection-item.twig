@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Template for Portland Collection Item component.
+ *
+ * Available variables:
+ * - as: Collection item container element (li)
+ * - attributes: Additional HTML attributes
+ * - collection_item_content: Collection item content (slot)
+ */
+#}
+
+{# Set default values #}
+{% set element = as|default('li') %}
+{% set attributes = attributes|default(create_attribute()) %}
+
+{# Combine all classes #}
+{% set classes = ['collection__item']|merge(attributes.classes|default([])|join(' ')|split(' '))%}
+
+{# Put attribute classes at the end of the class list #}
+{% if attributes.get('class') is defined and attributes.get('class') is not empty %}
+  {# Hack to clone the attribute classes object #}
+  {% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
+  {% set attributes = attributes.removeClass(attribute_classes) %}
+  {% set classes = classes|merge(attribute_classes) %}
+{% endif %}
+
+{% embed 'portland:box' with { 
+  as: element,
+  attributes: attributes.addClass(classes),
+} %}
+{% block box_content %}
+  {{ collection_item_content }}
+{% endblock %}
+{% endembed %}
