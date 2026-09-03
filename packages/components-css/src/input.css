@@ -16,9 +16,6 @@
     @apply items-center;
     @apply gap-xs;
 
-    @apply focus:outline-lg;
-    @apply focus:outline-offset-2xs;
-
     > input {
       @apply w-full;
       @apply p-xs;
@@ -31,6 +28,12 @@
       &:has(~ .input-addon--end) {
         @apply pr-none;
       }
+    }
+
+    &:has(> input:focus),
+    &:has(> input:focus-visible) {
+      @apply outline-lg;
+      @apply outline-offset-2xs;
     }
 
     &:has(> input:disabled),
