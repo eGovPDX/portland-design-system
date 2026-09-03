@@ -1,0 +1,70 @@
+@import "./base.css";
+@reference "./box.css";
+
+@layer components {
+  .input {
+    color-scheme: light;
+
+    @variant dark {
+      color-scheme: dark;
+    }
+
+    @apply w-full;
+    @apply ring-sm;
+    /* @apply ring-standard-default-strong; */
+    @apply inline-flex;
+    @apply items-center;
+    @apply gap-xs;
+
+    @apply focus:outline-lg;
+    @apply focus:outline-offset-2xs;
+
+    > input {
+      @apply w-full;
+      @apply p-xs;
+      @apply focus:outline-none;
+
+      &:has(~ .input-addon--start) {
+        @apply pl-none;
+      }
+
+      &:has(~ .input-addon--end) {
+        @apply pr-none;
+      }
+    }
+
+    &:has(> input:disabled),
+    &.input--disabled {
+      @apply box-disabled-subtle!;
+      /* @apply bg-disabled-subtle; */
+      /* @apply text-disabled-strong; */
+      @apply ring-disabled-moderate;
+    }
+
+    &:has(> input:invalid),
+    &.input--error {
+      @apply ring-lg;
+      @apply ring-danger-emphasis;
+    }
+
+    &:has(> input:user-valid),
+    &.input--success {
+      @apply ring-lg;
+      @apply ring-success-emphasis;
+    }
+
+    .input-addon {
+      @apply flex-none;
+
+      &.input-addon--start {
+        @apply order-first;
+        @apply ml-xs;
+      }
+
+      &.input-addon--end {
+        @apply order-last;
+        @apply mr-xs;
+      }
+    }
+  }
+}
