@@ -1,7 +1,7 @@
 import type { BoxProps } from "@cityofportland/types/box";
 import React from "react";
 
-import { Box, type ReactBoxProps } from "../../box";
+import { Box, type ReactBoxProps } from "../box";
 
 export type ReactCardFooterProps = React.PropsWithChildren<
   Omit<ReactBoxProps<"footer">, keyof BoxProps> & {

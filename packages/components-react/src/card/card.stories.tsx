@@ -6,11 +6,11 @@ import {
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Card, type ReactCardProps } from "./card";
-import { CardMedia } from "./card-media/card-media";
-import { CardBody } from "./card-body/card-body";
-import { CardTitle } from "./card-title/card-title";
-import { CardDescription } from "./card-description/card-description";
-import { CardFooter } from "./card-footer/card-footer";
+import { CardMedia } from "./card-media";
+import { CardBody } from "./card-body";
+import { CardTitle } from "./card-title";
+import { CardDescription } from "./card-description";
+import { CardFooter } from "./card-footer";
 import { Button } from "../button";
 
 export default {
@@ -190,7 +190,11 @@ export const MultipleCards: StoryObj<MultipleCardsStoryProps> = {
             {description && <CardDescription>{description}</CardDescription>}
             {button && (
               <CardFooter>
-                <Button color="primary" variant="moderate">
+                <Button
+                  color="primary"
+                  variant="moderate"
+                  className="rounded-md"
+                >
                   {button}
                 </Button>
               </CardFooter>

@@ -2,7 +2,7 @@ import type { BoxProps } from "@cityofportland/types/box";
 import type { MediaPosition } from "@cityofportland/types/card";
 import React from "react";
 
-import { Box, type ReactBoxProps } from "../../box";
+import { Box, type ReactBoxProps } from "../box";
 
 export type ReactCardMediaProps = React.PropsWithChildren<
   Omit<ReactBoxProps<"figure">, keyof BoxProps> & {
