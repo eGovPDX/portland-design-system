@@ -120,12 +120,18 @@ export const Basic: StoryObj<
 };
 
 export const Addons: StoryObj<TextInputProps> = {
+  parameters: {
+    controls: {
+      exclude: ["id", "name"],
+    },
+  },
   render: (args) => `
 	<article class="rich-text">
 		<h2>With text addons</h2>
 		${Input.component({
       ...args,
       id: "input-text",
+      name: "input-text",
       content: `
       ${InputAddon.component({ orientation: "start", content: "https://" })}
       ${InputAddon.component({ orientation: "end", content: ".com" })}
@@ -135,6 +141,7 @@ export const Addons: StoryObj<TextInputProps> = {
 		${Input.component({
       ...args,
       id: "input-icon",
+      name: "input-icon",
       content: `
       ${InputAddon.component({
         orientation: "start",
@@ -150,6 +157,7 @@ export const Addons: StoryObj<TextInputProps> = {
 		${Input.component({
       ...args,
       id: "input-button",
+      name: "input-button",
       content: `
       ${InputAddon.component({
         defaultAttributes: [
