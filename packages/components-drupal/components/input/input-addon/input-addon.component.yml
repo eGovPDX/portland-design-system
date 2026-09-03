@@ -1,0 +1,21 @@
+name: Input addon
+description: A native HTML input with Portland Design System styling.
+status: experimental
+
+props:
+  type: object
+  required:
+    - type
+  properties:
+    orientation:
+      type: string
+      title: Input addon orientation
+      description: The orientation of the input addon relative to the input field
+      enum:
+        - start
+        - end
+      default: start
+
+slots:
+  content:
+    description: Slot for content inside the input addon.

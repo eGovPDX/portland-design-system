@@ -1,0 +1,61 @@
+{% set wrapper_attributes = create_attribute() %}
+{% set input_attributes = input_attributes|default(create_attribute()) %}
+{% set type = type|default('text') %}
+{% set required = required|default(false) %}
+{% set disabled = disabled|default(false) %}
+{% set multiple = multiple|default(false) %}
+
+{% set wrapper_attributes = wrapper_attributes.addClass(['box', 'input']) %}
+
+{% set input_attributes = input_attributes
+  .setAttribute('type', type)
+  .setAttribute('name', name|default(null))
+  .setAttribute('id', id|default(null))
+  .setAttribute('value', value|default(null))
+  .setAttribute('placeholder', placeholder|default(null))
+  .setAttribute('autocomplete', autoComplete|default(null))
+  .setAttribute('autofocus', autoFocus|default(null))
+  .setAttribute('min', min|default(null))
+  .setAttribute('max', max|default(null))
+  .setAttribute('step', step|default(null))
+  .setAttribute('minlength', minLength|default(null))
+  .setAttribute('maxlength', maxLength|default(null))
+  .setAttribute('pattern', pattern|default(null))
+  .setAttribute('accept', accept|default(null))
+%}
+
+
+{% if required %}
+  {% set input_attributes = input_attributes.setAttribute('required', true) %}
+{% endif %}
+
+{% if disabled or state == 'disabled' %}
+  {% if state is not defined %}
+    {% set state = 'disabled' %}
+  {% endif %}
+  {% set input_attributes = input_attributes.setAttribute('disabled', true) %}
+{% endif %}
+
+{% if readOnly %}
+  {% set input_attributes = input_attributes.setAttribute('readonly', true) %}
+{% endif %}
+
+{% if multiple %}
+  {% set input_attributes = input_attributes.setAttribute('multiple', true) %}
+{% endif %}
+
+{% if state is defined %}
+  {% set wrapper_attributes = wrapper_attributes.addClass('input--' ~ state) %}
+{% endif %}
+
+{% embed "portland:box" with {
+  as: "span",
+  color,
+  variant,
+  attributes: wrapper_attributes,
+} %}
+  {% block box_content %}
+    <input {{ input_attributes }}>
+    {{ content }}
+  {% endblock %}
+{% endembed %}

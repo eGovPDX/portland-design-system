@@ -17,6 +17,7 @@
 {# Set default values #}
 {% set element = as|default('div') %}
 {% set attributes = attributes|default(create_attribute()) %}
+{% set classes = [] %}
 
 {% if color is defined and variant is defined %}
   {% set classes = ['box'] %}
