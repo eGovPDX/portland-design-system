@@ -5,7 +5,7 @@
 {% set disabled = disabled|default(false) %}
 {% set multiple = multiple|default(false) %}
 
-{% set wrapper_attributes = wrapper_attributes.addClass('input') %}
+{% set wrapper_attributes = wrapper_attributes.addClass(['box', 'input']) %}
 
 {% set input_attributes = input_attributes
   .setAttribute('type', type)
@@ -24,15 +24,15 @@
   .setAttribute('accept', accept|default(null))
 %}
 
-{% if state is defined %}
-  {% set wrapper_attributes = wrapper_attributes.addClass('input--' ~ state) %}
-{% endif %}
 
 {% if required %}
   {% set input_attributes = input_attributes.setAttribute('required', true) %}
 {% endif %}
 
-{% if disabled %}
+{% if disabled or state == 'disabled' %}
+  {% if state is not defined %}
+    {% set state = 'disabled' %}
+  {% endif %}
   {% set input_attributes = input_attributes.setAttribute('disabled', true) %}
 {% endif %}
 
@@ -42,6 +42,10 @@
 
 {% if multiple %}
   {% set input_attributes = input_attributes.setAttribute('multiple', true) %}
+{% endif %}
+
+{% if state is defined %}
+  {% set wrapper_attributes = wrapper_attributes.addClass('input--' ~ state) %}
 {% endif %}
 
 {% embed "portland:box" with {
