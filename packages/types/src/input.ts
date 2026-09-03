@@ -1,3 +1,9 @@
+import type { BoxProps } from "./box";
+
+export const INPUT_STATES = ["error", "success"] as const;
+
+export type InputState = (typeof INPUT_STATES)[number];
+
 export const INPUT_TYPES = [
   "button",
   "checkbox",
@@ -25,6 +31,15 @@ export const INPUT_TYPES = [
 
 export type InputType = (typeof INPUT_TYPES)[number];
 
+export const TEXT_INPUT_TYPES = [
+  "text",
+  "email",
+  "password",
+  "search",
+  "tel",
+  "url",
+] as const;
+
 export type TextInputType =
   | "text"
   | "email"
@@ -35,8 +50,10 @@ export type TextInputType =
 
 export type NumberInputType = "number" | "range";
 
-export interface InputProps<T extends InputType = InputType> {
+export interface InputProps<T extends InputType = InputType>
+  extends Omit<BoxProps, "as"> {
   type: T;
+  state?: InputState;
   name?: string;
   id?: string;
   value?: string | number;
