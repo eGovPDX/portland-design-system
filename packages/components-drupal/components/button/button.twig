@@ -21,53 +21,56 @@
 
 {% apply spaceless %}
 
-{% set element = as|default('button') %}
+  {% set element = as|default('button') %}
 
-{% if element not in ['button', 'a'] %}
-  {% set element = 'button' %}
-{% endif %}
-
-{% set outline = outline|default(false) %}
-{% set type = type|default('button') %}
-{% set href = href|default('#') %}
-{% set disabled = disabled|default(false) %}
-{% set attributes = attributes|default(create_attribute()) %}
-
-
-{% set attributes = attributes.addClass("button") %}
-
-{% if size %}
-  {% set attributes = attributes.addClass('button--' ~ size) %}
-{% endif %}
-
-{% if outline %}
-  {% set attributes = attributes.addClass('button--outline') %}
-{% endif %}
-
-{% if disabled %}
-  {% set attributes = attributes.addClass('button--disabled') %}
-{% endif %}
-
-{% if element == 'button' %}
-  {% set attributes = attributes.setAttribute('type', type) %}
-  {% if disabled %}
-    {% set attributes = attributes.setAttribute('disabled', 'disabled') %}
+  {% if element not in ['button', 'a'] %}
+    {% set element = 'button' %}
   {% endif %}
-{% elseif element == 'a' and attributes.get('href') is empty %}
-  {% set attributes = attributes.setAttribute('href', href) %}
-{% endif %}
 
-{% embed 'portland:box' with {
+  {% set color = color %}
+  {% set variant = variant %}
+  {% set size = size|default('md') %}
+  {% set outline = outline|default(false) %}
+  {% set type = type|default('button') %}
+  {% set href = href|default('#') %}
+  {% set disabled = disabled|default(false) %}
+  {% set attributes = attributes|default(create_attribute()) %}
+
+
+  {% set attributes = attributes.addClass("button") %}
+
+  {% if size %}
+    {% set attributes = attributes.addClass('button--' ~ size) %}
+  {% endif %}
+
+  {% if outline %}
+    {% set attributes = attributes.addClass('button--outline') %}
+  {% endif %}
+
+  {% if disabled %}
+    {% set attributes = attributes.addClass('button--disabled') %}
+  {% endif %}
+
+  {% if element == 'button' %}
+    {% set attributes = attributes.setAttribute('type', type) %}
+    {% if disabled %}
+      {% set attributes = attributes.setAttribute('disabled', 'disabled') %}
+    {% endif %}
+  {% elseif element == 'a' and attributes.get('href') is empty %}
+    {% set attributes = attributes.setAttribute('href', href) %}
+  {% endif %}
+
+  {% embed 'portland:box' with {
   as: element,
   color,
   variant,
   
 } %}
-  {% block box_content %}
-    {% block button_content %}
-      {{ button_content }}
+    {% block box_content %}
+      {% block button_content %}
+        {{ button_content }}
+      {% endblock %}
     {% endblock %}
-  {% endblock %}
-{% endembed %}
+  {% endembed %}
 
 {% endapply %}
