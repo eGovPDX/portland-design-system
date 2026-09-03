@@ -39,6 +39,7 @@ export default {
       control: "select",
       options: INPUT_STATES,
       description: "The visual state of the input",
+      if: { arg: "disabled", truthy: false },
     },
     name: {
       control: "text",
@@ -63,6 +64,7 @@ export default {
     disabled: {
       control: "boolean",
       description: "Whether the input is disabled",
+      if: { arg: "state", neq: "disabled" },
     },
     readOnly: {
       control: "boolean",
@@ -91,6 +93,8 @@ export default {
   },
   args: {
     type: "text",
+    color: "default",
+    variant: "subtle",
     state: undefined,
     id: "input",
     name: "input",
@@ -115,23 +119,8 @@ export const Basic: StoryObj<
   `,
 };
 
-export const Addons: StoryObj<
-  TextInputProps & {
-    start?: string;
-    end?: string;
-  }
-> = {
-  argTypes: {
-    start: {
-      control: "text",
-      description: "Content for the start input addon",
-    },
-    end: {
-      control: "text",
-      description: "Content for the end input addon",
-    },
-  },
-  render: ({ start, end, ...args }) => `
+export const Addons: StoryObj<TextInputProps> = {
+  render: (args) => `
 	<article class="rich-text">
 		<h2>With text addons</h2>
 		${Input.component({
@@ -169,7 +158,7 @@ export const Addons: StoryObj<
         ],
         orientation: "start",
         content: Button.component({
-          disabled: args.disabled,
+          disabled: args.disabled || args.state === "disabled",
           button_content: "Clear",
         }),
       })}
@@ -180,7 +169,7 @@ export const Addons: StoryObj<
         ],
         orientation: "end",
         content: Button.component({
-          disabled: args.disabled,
+          disabled: args.disabled || args.state === "disabled",
           button_content: "Submit",
         }),
       })}

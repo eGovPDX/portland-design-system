@@ -1,6 +1,6 @@
 import type { BoxProps } from "./box";
 
-export const INPUT_STATES = ["error", "success"] as const;
+export const INPUT_STATES = ["disabled", "error", "success"] as const;
 
 export type InputState = (typeof INPUT_STATES)[number];
 
