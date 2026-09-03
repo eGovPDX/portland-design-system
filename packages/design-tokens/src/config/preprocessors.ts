@@ -39,6 +39,7 @@ export const tailwindNamespaces: Preprocessor = {
         ["text", "color"],
         ["color", "content"],
       ],
+      scale: [["height"], ["scale"], ["spacing"], ["width"]],
       spacing: [
         ["spacing"],
         ["outline", "offset"],

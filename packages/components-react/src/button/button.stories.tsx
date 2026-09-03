@@ -1,3 +1,4 @@
+import { arrowLeft, arrowRight } from "@cityofportland/icons";
 import { BUTTON_SIZES } from "@cityofportland/types/button";
 import {
   BOX_COLORS,
@@ -6,13 +7,12 @@ import {
   type BoxColorScheme,
   type BoxColorVariation,
 } from "@cityofportland/types/box";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { fn } from "storybook/test";
 
 import { Box } from "../box";
+import { Icon } from "../icon";
 import { Button, type ReactButtonProps } from "./button";
 import boxStories from "../box/box.stories";
 
@@ -90,9 +90,9 @@ const DemoButton = ({ as, left, right, children, ...args }: StoryProps) => {
 
   return (
     <Button as={as} {...args}>
-      {left && <FontAwesomeIcon icon={faArrowLeft} />}
+      {left && <Icon icon={arrowLeft} size="sm" />}
       {children}
-      {right && <FontAwesomeIcon icon={faArrowRight} />}
+      {right && <Icon icon={arrowRight} size="sm" />}
     </Button>
   );
 };
@@ -333,24 +333,24 @@ export const Incognito: StoryObj<StoryProps & { underline: boolean }> = {
       <p className="text-body-lg">
         There is a{" "}
         <DemoButton className={`${underline && "underline"}`} {...props}>
-          {left && <FontAwesomeIcon icon={faArrowRight} />}
+          {left && <Icon icon={arrowRight} className="h-[1em]" />}
           button
-          {right && <FontAwesomeIcon icon={faArrowLeft} />}
+          {right && <Icon icon={arrowLeft} className="h-[1em]" />}
         </DemoButton>{" "}
         hidden in this sentence.
       </p>
       <p className="text-body-lg">
         There are two{" "}
         <DemoButton className={`${underline && "underline"}`} {...props}>
-          {left && <FontAwesomeIcon icon={faArrowRight} />}
+          {left && <Icon icon={arrowRight} className="h-[1em]" />}
           buttons
-          {right && <FontAwesomeIcon icon={faArrowLeft} />}
+          {right && <Icon icon={arrowLeft} className="h-[1em]" />}
         </DemoButton>{" "}
         hidden in this{" "}
         <DemoButton className={`${underline && "underline"}`} {...props}>
-          {left && <FontAwesomeIcon icon={faArrowRight} />}
+          {left && <Icon icon={arrowRight} className="h-[1em]" />}
           sentence
-          {right && <FontAwesomeIcon icon={faArrowLeft} />}
+          {right && <Icon icon={arrowLeft} className="h-[1em]" />}
         </DemoButton>
         .
       </p>

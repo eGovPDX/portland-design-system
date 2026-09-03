@@ -21,8 +21,12 @@
     );
 
     @apply max-w-full;
-    @apply inline-flex items-center justify-center gap-xs;
+    @apply inline-flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply gap-xs;
     @apply wrap-anywhere;
+    @apply align-bottom;
     @apply cursor-pointer;
     @apply transition-[background-color,box-shadow,--tw-ring-offset-color,--tw-ring-offset-width];
     @apply duration-200;

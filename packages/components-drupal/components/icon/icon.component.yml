@@ -1,0 +1,42 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Icon
+
+# A longer description.
+description: A native Twig Icon component that renders an icon from our library.
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+# Schema for the props. We support www.json-schema.org. Learn more about the syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your component template.
+  type: object
+
+  properties:
+    icon:
+      type: string
+      title: Icon name
+      description: The name of the icon to render from the icon library.
+      examples:
+        - info-circle
+
+    size:
+      type: string
+      title: Icon size
+      description: The size of the icon. Can be one of the predefined sizes or a custom value.
+      default: md
+      enum:
+        - 3xs
+        - 2xs
+        - xs
+        - sm
+        - md
+        - lg
+        - xl
+        - 2xl
+        - 3xl
+        - 4xl
+        - 5xl

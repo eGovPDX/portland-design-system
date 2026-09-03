@@ -1,0 +1,15 @@
+import type { IconDefinition } from "@cityofportland/types/icon";
+
+export default {
+  name: "note-sticky",
+  comments: [
+    "! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.",
+  ],
+  width: 640,
+  height: 640,
+  paths: [
+    {
+      d: "M160 544C124.7 544 96 515.3 96 480L96 160C96 124.7 124.7 96 160 96L480 96C515.3 96 544 124.7 544 160L544 373.5C544 390.5 537.3 406.8 525.3 418.8L418.7 525.3C406.7 537.3 390.4 544 373.4 544L160 544zM485.5 368L392 368C378.7 368 368 378.7 368 392L368 485.5L485.5 368z",
+    },
+  ],
+} as IconDefinition;

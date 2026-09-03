@@ -1,0 +1,32 @@
+@import "./base.css";
+
+@layer components {
+  /* Base Icon Styles */
+  .icon,
+  .icon svg {
+    @apply fill-current;
+    @apply block;
+    @apply shrink-0;
+    @apply w-auto;
+
+    &.icon--xs,
+    &.icon--xs svg {
+      @apply h-400;
+    }
+
+    &.icon--sm,
+    &.icon--sm svg {
+      @apply h-600;
+    }
+
+    &.icon--md,
+    &.icon--md svg {
+      @apply h-1000;
+    }
+
+    &.icon--lg,
+    &.icon--lg svg {
+      @apply h-1500;
+    }
+  }
+}

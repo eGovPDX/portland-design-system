@@ -43,9 +43,9 @@ export function getVariants(): VariantFile[] {
           ...VARIANT_CATEGORIES.map((category) =>
             variantPath(category, DEFAULT_VARIANTS[category])
           ),
-          resolve(TOKENS_DIR, "primitive", "**/*.tokens.json"),
         ],
         description: "Default tokens",
+        filter: () => true,
       },
     ],
   ]);

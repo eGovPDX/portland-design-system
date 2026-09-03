@@ -1,21 +1,21 @@
+import {
+  circleCheck,
+  circleExclamation,
+  circleInfo,
+  circleQuestion,
+  triangleExclamation,
+} from "@cityofportland/icons";
 import { ALERT_SIZES } from "@cityofportland/types/alert";
 import type { BoxColorScheme } from "@cityofportland/types/box";
+import type { IconDefinition } from "@cityofportland/types/icon";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import {
-  faCircleCheck,
-  faCircleExclamation,
-  faCircleInfo,
-  faQuestionCircle,
-  faTriangleExclamation,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "react";
 
 import "@cityofportland/components-css/utilities.css";
 
 import boxStories from "../box/box.stories";
+import { Icon } from "../icon/icon";
 import {
   Alert,
   AlertContent,
@@ -99,24 +99,18 @@ export const Basic: StoryObj<
     link: true,
   },
   render: ({ color, title, icon, link, size, description, ...args }) => {
-    const iconMap = new Map<BoxColorScheme, IconProp>([
-      ["danger", faCircleExclamation],
-      ["info", faCircleInfo],
-      ["success", faCircleCheck],
-      ["warning", faTriangleExclamation],
+    const iconMap = new Map<BoxColorScheme, IconDefinition>([
+      ["danger", circleExclamation],
+      ["info", circleInfo],
+      ["success", circleCheck],
+      ["warning", triangleExclamation],
     ]);
 
     return (
       <Alert color={color} size={size} {...args}>
         {icon && (
-          <AlertIcon className={size == "slim" ? "text-[20px]" : "text-[32px]"}>
-            <FontAwesomeIcon
-              icon={iconMap.get(color!) || faQuestionCircle}
-              widthAuto
-              style={{
-                "--fa-display": "block",
-              }}
-            />
+          <AlertIcon>
+            <Icon icon={iconMap.get(color!) || circleQuestion} />
           </AlertIcon>
         )}
         <AlertContent>
@@ -189,7 +183,9 @@ export const PortlandGov: StoryObj<
   }) => {
     const types = new Map<
       string,
-      Pick<ReactAlertProps, "color" | "variant" | "role"> & { icon: IconProp }
+      Pick<ReactAlertProps, "color" | "variant" | "role"> & {
+        icon: IconDefinition;
+      }
     >([
       [
         "info",
@@ -197,7 +193,7 @@ export const PortlandGov: StoryObj<
           color: "info",
           variant: "moderate",
           role: "status",
-          icon: faCircleInfo,
+          icon: circleInfo,
         },
       ],
       [
@@ -206,7 +202,7 @@ export const PortlandGov: StoryObj<
           color: "warning",
           variant: "moderate",
           role: "status",
-          icon: faTriangleExclamation,
+          icon: triangleExclamation,
         },
       ],
       [
@@ -215,7 +211,7 @@ export const PortlandGov: StoryObj<
           color: "danger",
           variant: "moderate",
           role: "alert",
-          icon: faCircleExclamation,
+          icon: circleExclamation,
         },
       ],
       [
@@ -224,7 +220,7 @@ export const PortlandGov: StoryObj<
           color: "success",
           variant: "moderate",
           role: "status",
-          icon: faCircleCheck,
+          icon: circleCheck,
         },
       ],
     ]);
@@ -241,16 +237,8 @@ export const PortlandGov: StoryObj<
             dismissible={dismissible}
           >
             {iconEnabled && (
-              <AlertIcon
-                className={size == "slim" ? "text-[20px]" : "text-[32px]"}
-              >
-                <FontAwesomeIcon
-                  icon={icon}
-                  widthAuto
-                  style={{
-                    "--fa-display": "block",
-                  }}
-                />
+              <AlertIcon>
+                <Icon icon={icon} />
               </AlertIcon>
             )}
             <AlertContent>

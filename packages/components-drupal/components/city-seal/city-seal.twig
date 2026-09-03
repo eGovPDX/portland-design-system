@@ -26,5 +26,7 @@
 {# Combine all classes #}
 {% set classes = ['city-seal']|merge(size_classes) %}
 
+<span {{ attributes.addClass(classes) }}>
+  {{ source('node_modules/@cityofportland/design-tokens/dist/assets/city-seal.svg') }}
+</span>
 {% endapply %}
-<img {{attributes.addClass(classes)}} src="" alt=""/>

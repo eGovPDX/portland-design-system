@@ -9,7 +9,15 @@ import { ASSETS_DIR, TOKENS_DIR } from "./constants.js";
  */
 function convertToBase64(filePath: string): string {
   const file = readFileSync(filePath);
-  const mimeType = extname(filePath) === ".svg" ? "image/svg+xml" : "image/png";
+
+  const mimeTypeMap = new Map<string, string>([
+    [".svg", "image/svg+xml"],
+    [".png", "image/png"],
+  ]);
+
+  const mimeType =
+    mimeTypeMap.get(extname(filePath)) ?? "application/octet-stream";
+
   return `data:${mimeType};base64,${file.toString("base64")}`;
 }
 

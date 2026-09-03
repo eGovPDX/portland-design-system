@@ -9,6 +9,8 @@ import type { Meta, StoryObj } from "@storybook/html-vite";
 
 import "../box/box.component.yml";
 import Button from "../button/button.component.yml";
+import Icon from "../icon/icon.component.yml";
+import IconStories from "../icon/icon.stories";
 
 import Card from "./card.component.yml";
 
@@ -284,7 +286,13 @@ export const MultipleCards: Story<
                 button &&
                 CardFooter.component({
                   card_footer_content: `
-                  ${Button.component({ defaultAttributes: [...Button.args.defaultAttributes, ["class", ["rounded-lg"]]], button_content: button })}
+                  ${Button.component({
+                    defaultAttributes: [
+                      ...Button.args.defaultAttributes,
+                      ["class", ["rounded-lg"]],
+                    ],
+                    button_content: button,
+                  })}
                 `,
                 })
               }
@@ -367,17 +375,13 @@ export const MultipleButtons: Story<Props & { buttons: string[] }> = {
 };
 
 // Card with icon in header
-export const Icon: Story<Props & { icon: string }> = {
+export const IconStory: Story<Props & { icon: string }> = {
+  name: "Icon",
   argTypes: {
-    icon: {
-      control: "text",
-      description: "The SVG markup for the icon to display in the header",
-    },
+    icon: IconStories.argTypes!.icon,
   },
   args: {
-    icon: `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5xl h-5xl"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M128 320L24.5 320c-24.9 0-40.2-27.1-27.4-48.5L50 183.3C58.7 168.8 74.3 160 91.2 160l95 0c76.1-128.9 189.6-135.4 265.5-124.3 12.8 1.9 22.8 11.9 24.6 24.6 11.1 75.9 4.6 189.4-124.3 265.5l0 95c0 16.9-8.8 32.5-23.3 41.2l-88.2 52.9c-21.3 12.8-48.5-2.6-48.5-27.4L192 384c0-35.3-28.7-64-64-64l-.1 0zM400 160a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"/></svg>
-    `,
+    icon: "moon",
   },
   parameters: {
     controls: {
@@ -398,7 +402,10 @@ export const Icon: Story<Props & { icon: string }> = {
           defaultAttributes: [...CardMedia.args.defaultAttributes],
           position: mediaPosition,
           inset: true,
-          card_media_content: icon,
+          card_media_content: `${Icon.component({
+            icon,
+            size: "lg",
+          })}`,
         })}
         ${CardBody.component({
           card_body_content: `
@@ -415,13 +422,5 @@ export const Icon: Story<Props & { icon: string }> = {
         })}
         `,
       })}
-      <hr class="my-2xl" />
-      <h2 class="heading-md">How to change the icon</h2>
-      <!-- REFACTOR: Use list utility class -->
-      <ol class="list-decimal pl-lg">
-        <li><a class="link" href="https://fontawesome.com/search?ip=classic&ic=free-collection" target="_blank">Browse Font Awesome icons</a></li>
-        <li>Click on the desired icon and copy the SVG markup (not the "Full SVG" markup)</li>
-        <li>Paste the SVG markup into the <em>icon</em> control in Storybook</li>
-      </ol>
   `,
 };

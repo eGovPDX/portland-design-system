@@ -17,9 +17,14 @@
     "storybook": "storybook dev -p 6006 --no-open",
     "storybook:build": "storybook build"
   },
+  "dependencies": {
+    "@cityofportland/design-tokens": "workspace:*",
+    "@cityofportland/icons": "workspace:*",
+    "@drupal/once": "^1.0.1",
+    "zod": "^4.4.3"
+  },
   "devDependencies": {
     "@cityofportland/components-css": "workspace:*",
-    "@cityofportland/design-tokens": "workspace:*",
     "@cityofportland/types": "workspace:*",
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
@@ -52,9 +57,5 @@
   "bugs": {
     "url": "https://github.com/eGovPDX/portland-design-system/issues"
   },
-  "homepage": "https://github.com/eGovPDX/portland-design-system#readme",
-  "dependencies": {
-    "@drupal/once": "^1.0.1",
-    "zod": "^4.4.3"
-  }
+  "homepage": "https://github.com/eGovPDX/portland-design-system#readme"
 }

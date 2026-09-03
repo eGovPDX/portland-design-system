@@ -7,6 +7,7 @@
       "outputs": ["dist/**"]
     },
     "storybook": {
+      "dependsOn": ["@cityofportland/icons#build"],
       "with": [
         "@cityofportland/components-css#dev",
         "@cityofportland/types#dev"
@@ -18,6 +19,7 @@
       "dependsOn": [
         "@cityofportland/components-css#build:dev",
         "@cityofportland/design-tokens#build:dev",
+        "@cityofportland/icons#build",
         "@cityofportland/types#build"
       ],
       "env": ["BASE_URL"],
