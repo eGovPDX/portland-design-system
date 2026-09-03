@@ -74,10 +74,6 @@ export default {
       control: "text",
       description: "The browser autocomplete hint",
     },
-    autoFocus: {
-      control: "boolean",
-      description: "Whether the input receives focus on page load",
-    },
     minLength: {
       control: "number",
       description: "The minimum number of characters",
@@ -102,7 +98,6 @@ export default {
     required: false,
     disabled: false,
     readOnly: false,
-    autoFocus: false,
   },
 } satisfies Meta<InputStoryArgs>;
 
