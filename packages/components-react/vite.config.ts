@@ -66,6 +66,10 @@ export default defineConfig(({ mode }) => ({
       bundledPackages: ["@cityofportland/types"],
       entryRoot: "src",
       afterBuild: async () => {
+        if (!fs.existsSync(resolve(__dirname, "dist"))) {
+          return;
+        }
+
         const files = fs
           .readdirSync(resolve(__dirname, "dist"), {
             encoding: "utf-8",
