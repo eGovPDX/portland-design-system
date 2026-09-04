@@ -49,11 +49,10 @@ function buildClassList({
   color,
   variant,
 }: Partial<ReactBoxProps>): string {
-  const classes = [];
+  const classes = ["box"];
 
   if (color && variant) {
     classes.push(
-      "box",
       color ? `box--${color}` : "",
       variant ? `box--${variant}` : ""
     );
@@ -86,17 +85,10 @@ function buildClassList({
  */
 export const Box = React.forwardRef(
   <E extends React.ElementType = DefaultElementType>(
-    {
-      as = "div",
-      children,
-      color,
-      variant,
-      className,
-      ...rest
-    }: ReactBoxProps<E>,
+    { as, children, color, variant, className, ...rest }: ReactBoxProps<E>,
     ref: React.Ref<React.ElementType<E>>
   ) => {
-    const Element = as || ("div" as React.ElementType);
+    const Element: React.ElementType = as || "div";
 
     [color, variant] = validateBoxConfiguration(color, variant);
 
