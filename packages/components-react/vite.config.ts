@@ -1,6 +1,6 @@
 import tailwind from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
-import { resolve, dirname } from "path";
+import { dirname, resolve } from "path";
 import fs from "fs";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
@@ -59,5 +59,28 @@ export default defineConfig(({ mode }) => ({
     },
     minify: mode === "production" ? "esbuild" : false, // Only minify in production
   },
-  plugins: [dts({ exclude: ["**/*.stories.*"] }), react(), tailwind()],
+  plugins: [
+    dts({
+      exclude: ["**/*.stories.*", "**/*.test.*"],
+      rollupTypes: true,
+      bundledPackages: ["@cityofportland/types"],
+      entryRoot: "src",
+      afterBuild: async () => {
+        const files = fs
+          .readdirSync(resolve(__dirname, "dist"), {
+            encoding: "utf-8",
+          })
+          .filter((file) => file.endsWith(".d.ts"));
+
+        for (const file of files) {
+          const dir = file.split(".")[0];
+          const target = resolve(__dirname, "dist", dir, `${dir}.d.ts`);
+          if (file !== target)
+            fs.renameSync(resolve(__dirname, "dist", file), target);
+        }
+      },
+    }),
+    react(),
+    tailwind(),
+  ],
 }));
