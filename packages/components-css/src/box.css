@@ -9,6 +9,14 @@
   @apply inset-ring-(--box-ring-color);
 }
 
+@utility box-revert {
+  --box-background-color: revert !important;
+  --box-text-color: revert !important;
+  --box-border-color: revert !important;
+  --box-outline-color: revert !important;
+  --box-ring-color: revert !important;
+}
+
 @utility box-default-subtle {
   --box-background-color: var(
     --background-color-standard-default-subtle,
