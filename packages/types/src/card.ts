@@ -27,7 +27,7 @@ export interface CardProps extends BoxProps {
    * Whether the card has a border or not
    * @default true
    */
-  border: boolean;
+  border?: boolean;
 
   /**
    * Layout of the card
