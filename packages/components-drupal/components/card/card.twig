@@ -7,7 +7,7 @@
  * - as: Card container element (article, section)
  * - layout: Card layout (horizontal, vertical)
  * - header: Card header for media or icon (slot)
- * - content: Card content (slot)
+ * - card_content: Card content (slot)
  * - footer: Card footer for CTA buttons or links (slot)
  * - attributes: Additional HTML attributes
  */
@@ -16,8 +16,6 @@
 {# Set default values #}
 {% set element = as|default('article') %}
 {% set layout = layout|default('vertical') %}
-{% set color = color|default('default') %}
-{% set variant = variant|default('subtle') %}
 
 {# Layout classes #}
 {% set layout_classes = {

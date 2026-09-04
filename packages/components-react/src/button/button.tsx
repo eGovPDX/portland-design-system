@@ -27,9 +27,12 @@ export const Button = <
   className,
   ...props
 }: ReactButtonProps<T>) => {
-  const element: ButtonElementType = as ?? DefaultElementType;
+  const element = as ?? DefaultElementType;
 
   return (
+    //@ts-expect-error Impossible to dynamically determine the set of valid properties.
+    // Would need to know what the "as" property is at type checking time.
+    // Users of this component will get valid type-checking
     <Box
       as={element}
       className={mergeClasses(

@@ -18,7 +18,7 @@ export type ButtonSize = Spacing;
 export interface ButtonProps extends BoxProps {
   /**
    * Size of the button
-   * @default "default"
+   * @default "md"
    */
   size?: ButtonSize;
 
@@ -35,45 +35,7 @@ export interface ButtonProps extends BoxProps {
   disabled?: boolean;
 }
 
-/**
- * Button slots for framework implementations that support slotted content
- */
-export interface ButtonSlots {
-  /**
-   * Default slot for button content
-   */
-  content?: unknown;
-
-  /**
-   * Left/start icon or content slot
-   */
-  left?: unknown;
-
-  /**
-   * Right/end icon or content slot
-   */
-  right?: unknown;
-}
-
-/**
- * Extended button props including slots for template-based frameworks
- */
-export interface ButtonPropsWithSlots extends ButtonProps {
-  /**
-   * Main button content
-   */
-  content?: string | unknown;
-
-  /**
-   * Left icon or content
-   */
-  left?: string | unknown;
-
-  /**
-   * Right icon or content
-   */
-  right?: string | unknown;
-}
+export type ButtonOwnProps = Omit<ButtonProps, keyof BoxProps>;
 
 export const BUTTON_VALID_ELEMENTS = ["button", "a"] as const;
 

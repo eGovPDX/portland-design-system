@@ -1,5 +1,4 @@
 import "@cityofportland/components-css/tag.css";
-// TODO: Replace with @reference when PGOV-2044 is merged
 import "@cityofportland/components-css/utilities.css";
 import type { TagProps } from "@cityofportland/types/tag";
 import React from "react";

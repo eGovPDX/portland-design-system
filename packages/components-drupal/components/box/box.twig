@@ -18,9 +18,9 @@
 {% set element = as|default('div') %}
 {% set attributes = attributes|default(create_attribute()) %}
 
-{% if color is defined and variant is defined %}
-  {% set classes = ['box'] %}
+{% set classes = ['box'] %}
 
+{% if color is defined and variant is defined %}
   {% set attributes = attributes.setAttribute("data-color", color) %}
   {% set classes = classes|merge(["box--" ~ color]) %}
 

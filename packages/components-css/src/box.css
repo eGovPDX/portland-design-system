@@ -6,6 +6,15 @@
   @apply border-(--box-border-color);
   @apply outline-(--box-outline-color);
   @apply ring-(--box-ring-color);
+  @apply inset-ring-(--box-ring-color);
+}
+
+@utility box-revert {
+  --box-background-color: revert !important;
+  --box-text-color: revert !important;
+  --box-border-color: revert !important;
+  --box-outline-color: revert !important;
+  --box-ring-color: revert !important;
 }
 
 @utility box-default-subtle {
