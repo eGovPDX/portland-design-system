@@ -21,7 +21,7 @@ export const Button = <
 >({
   as,
   children = null,
-  size = "md",
+  size,
   outline = false,
   disabled = false,
   className,

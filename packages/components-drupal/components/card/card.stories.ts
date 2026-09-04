@@ -191,6 +191,7 @@ export const Basic: Story<
                   ${Button.component({
                     color: "primary",
                     variant: "moderate",
+                    size: "md",
                     button_content: button,
                     defaultAttributes: [
                       ...Button.args.defaultAttributes,
@@ -304,6 +305,9 @@ export const MultipleCards: Story<
                       ...Button.args.defaultAttributes,
                       ["class", ["rounded-lg"]],
                     ],
+                    color: "primary",
+                    variant: "moderate",
+                    size: "md",
                     button_content: button,
                   })}
                 `,
@@ -370,7 +374,7 @@ export const MultipleButtons: Story<Props & { buttons: string[] }> = {
                       Button.component({
                         color: index > 0 ? "secondary" : "primary",
                         variant: "moderate",
-                        // outline: index > 0,
+                        size: "md",
                         button_content: button,
                         defaultAttributes: [
                           ...Button.args.defaultAttributes,

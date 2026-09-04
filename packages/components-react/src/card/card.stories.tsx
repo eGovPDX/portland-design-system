@@ -136,7 +136,12 @@ export const Basic: StoryObj<BasicStoryProps> = {
         {description && <CardDescription>{description}</CardDescription>}
         {button && (
           <CardFooter>
-            <Button color="primary" variant="moderate" className="rounded-md">
+            <Button
+              color="primary"
+              variant="moderate"
+              size="md"
+              className="rounded-md"
+            >
               {button}
             </Button>
           </CardFooter>
@@ -210,6 +215,7 @@ export const MultipleCards: StoryObj<MultipleCardsStoryProps> = {
                   <Button
                     color="primary"
                     variant="moderate"
+                    size="md"
                     className="rounded-md"
                   >
                     {button}
@@ -260,6 +266,7 @@ export const MultipleButtons: StoryObj<MultipleButtonsStoryProps> = {
               key={button}
               color={index > 0 ? "secondary" : "primary"}
               variant="moderate"
+              size="md"
               className="rounded-md"
             >
               {button}
