@@ -6,6 +6,7 @@
   @apply border-(--box-border-color);
   @apply outline-(--box-outline-color);
   @apply ring-(--box-ring-color);
+  @apply inset-ring-(--box-ring-color);
 }
 
 @utility box-default-subtle {
