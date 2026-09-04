@@ -1,6 +1,6 @@
 {
   "name": "@cityofportland/components-css",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "CSS component styles for the Portland Design System built with Tailwind and PostCSS",
   "author": {
     "name": "City of Portland, Oregon"

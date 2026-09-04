@@ -1,6 +1,6 @@
 {
   "name": "@cityofportland/design.portland.gov",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "private": true,
   "description": "",
   "main": "index.js",
@@ -40,6 +40,7 @@
     "shiki": "^4.1.0"
   },
   "repository": {
+    "type": "git",
     "url": "https://github.com/eGovPDX/portland-design-system"
   }
 }

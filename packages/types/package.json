@@ -1,7 +1,7 @@
 {
   "name": "@cityofportland/types",
   "private": true,
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "Shared TypeScript types for Portland Design System components",
   "author": {
     "name": "City of Portland, Oregon"
@@ -24,7 +24,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
-    "dev": "tsc --watch",
+    "dev": "tsc --watch --preserveWatchOutput",
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {

@@ -84,7 +84,7 @@ jobs:
       - working-directory: sites/design.portland.gov
         run: |
           pnpm --filter="{.}^..." build
-          pnpm build --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}"
+          pnpm build --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}/"
 
       - run: |
           tar \
