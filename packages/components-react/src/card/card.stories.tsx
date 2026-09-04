@@ -1,9 +1,14 @@
 import {
-  CARD_ELEMENTS,
   CARD_LAYOUTS,
   MEDIA_POSITIONS,
+  type MediaPosition,
 } from "@cityofportland/types/card";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import boxStories from "../box/box.stories";
+import { Button } from "../button";
+import { Icon } from "../icon/icon";
+import IconStories from "../icon/icon.stories";
 
 import { Card, type ReactCardProps } from "./card";
 import { CardMedia } from "./card-media";
@@ -11,17 +16,28 @@ import { CardBody } from "./card-body";
 import { CardTitle } from "./card-title";
 import { CardDescription } from "./card-description";
 import { CardFooter } from "./card-footer";
-import { Button } from "../button";
+import type { IconDefinition } from "@cityofportland/types/icon";
+import { moon } from "@cityofportland/icons";
+
+type RootStoryProps = ReactCardProps & {
+  mediaPosition: MediaPosition;
+};
 
 export default {
   title: "Components/Card",
   component: Card,
+  parameters: {
+    layout: "fullscreen",
+  },
+  decorators: [
+    (story) => (
+      <div className="@container flex flex-col justify-center p-lg">
+        {story()}
+      </div>
+    ),
+  ],
   argTypes: {
-    as: {
-      control: "select",
-      options: CARD_ELEMENTS,
-      description: "The semantic HTML container element of the card",
-    },
+    ...boxStories.argTypes,
     layout: {
       control: "select",
       options: CARD_LAYOUTS,
@@ -31,7 +47,8 @@ export default {
       control: "boolean",
       description: "Whether the card has a border or not",
     },
-    "media position": {
+    mediaPosition: {
+      name: "media postition",
       control: "select",
       options: MEDIA_POSITIONS,
       description: "The position of the media in horizontal cards",
@@ -45,17 +62,16 @@ export default {
     as: "article",
     layout: "vertical",
     border: true,
-    "media position": undefined,
+    mediaPosition: undefined,
   },
-} satisfies Meta<ReactCardProps>;
+} satisfies Meta<RootStoryProps>;
 
-type BasicStoryProps = ReactCardProps & {
-  title: string;
-  description: string;
+type BasicStoryProps = RootStoryProps & {
   button: string;
-  imageHeight: number;
+  description: string;
   imageWidth: number;
-  "media position"?: (typeof MEDIA_POSITIONS)[number];
+  imageHeight: number;
+  title: string;
 };
 
 export const Basic: StoryObj<BasicStoryProps> = {
@@ -86,7 +102,7 @@ export const Basic: StoryObj<BasicStoryProps> = {
     title: "Find your nearest library",
     description: "See hours, events, and services at branches near you.",
     button: "View library information",
-    "media position": "left",
+    mediaPosition: "left",
     imageWidth: 1600,
     imageHeight: 900,
   },
@@ -94,7 +110,7 @@ export const Basic: StoryObj<BasicStoryProps> = {
     controls: { exclude: ["className", "children"] },
   },
   render: ({
-    "media position": mediaPosition,
+    mediaPosition: mediaPosition,
     title,
     description,
     button,
@@ -158,7 +174,7 @@ export const MultipleCards: StoryObj<MultipleCardsStoryProps> = {
     title: "Find your nearest library",
     description: "See hours, events, and services at branches near you.",
     button: "View library information",
-    "media position": "left",
+    mediaPosition: "left",
     imageWidth: 800,
     imageHeight: 500,
     numCards: 3,
@@ -167,7 +183,7 @@ export const MultipleCards: StoryObj<MultipleCardsStoryProps> = {
     controls: { exclude: ["as", "children", "className"] },
   },
   render: ({
-    "media position": mediaPosition,
+    mediaPosition,
     title,
     description,
     button,
@@ -176,31 +192,33 @@ export const MultipleCards: StoryObj<MultipleCardsStoryProps> = {
     numCards,
     ...args
   }) => (
-    <div className="grid gap-md md:grid-cols-3">
+    <div className="grid grid-cols-1 gap-md md:grid-cols-3">
       {Array.from({ length: numCards }, (_, index) => (
-        <Card key={index} {...args}>
-          <CardMedia position={mediaPosition}>
-            <img
-              src={`https://picsum.photos/${imageWidth}/${imageHeight}?random=${index}`}
-              alt="A random image from Picsum Photos"
-            />
-          </CardMedia>
-          <CardBody>
-            <CardTitle>{title}</CardTitle>
-            {description && <CardDescription>{description}</CardDescription>}
-            {button && (
-              <CardFooter>
-                <Button
-                  color="primary"
-                  variant="moderate"
-                  className="rounded-md"
-                >
-                  {button}
-                </Button>
-              </CardFooter>
-            )}
-          </CardBody>
-        </Card>
+        <div key={index} className="@container">
+          <Card {...args}>
+            <CardMedia position={mediaPosition}>
+              <img
+                src={`https://picsum.photos/${imageWidth}/${imageHeight}?random=${index}`}
+                alt="A random image from Picsum Photos"
+              />
+            </CardMedia>
+            <CardBody>
+              <CardTitle>{title}</CardTitle>
+              {description && <CardDescription>{description}</CardDescription>}
+              {button && (
+                <CardFooter>
+                  <Button
+                    color="primary"
+                    variant="moderate"
+                    className="rounded-md"
+                  >
+                    {button}
+                  </Button>
+                </CardFooter>
+              )}
+            </CardBody>
+          </Card>
+        </div>
       ))}
     </div>
   ),
@@ -253,28 +271,26 @@ export const MultipleButtons: StoryObj<MultipleButtonsStoryProps> = {
   ),
 };
 
-type IconStoryProps = ReactCardProps & {
-  icon: string;
+type IconStoryProps = RootStoryProps & {
+  icon: IconDefinition;
 };
 
-export const Icon: StoryObj<IconStoryProps> = {
+export const IconStory: StoryObj<IconStoryProps> = {
+  name: "Icon",
   argTypes: {
-    icon: {
-      control: "text",
-      description: "The SVG markup for the icon to display in the header",
-    },
+    icon: IconStories.argTypes!.icon,
   },
   args: {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5xl h-5xl"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M128 320L24.5 320c-24.9 0-40.2-27.1-27.4-48.5L50 183.3C58.7 168.8 74.3 160 91.2 160l95 0c76.1-128.9 189.6-135.4 265.5-124.3 12.8 1.9 22.8 11.9 24.6 24.6 11.1 75.9 4.6 189.4-124.3 265.5l0 95c0 16.9-8.8 32.5-23.3 41.2l-88.2 52.9c-21.3 12.8-48.5-2.6-48.5-27.4L192 384c0-35.3-28.7-64-64-64l-.1 0zM400 160a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"/></svg>`,
+    icon: moon,
   },
   parameters: {
     controls: { exclude: ["as", "children", "className"] },
   },
-  render: ({ icon, "media position": mediaPosition, ...args }) => (
+  render: ({ icon, mediaPosition, ...args }) => (
     <>
       <Card {...args}>
-        <CardMedia inset position={mediaPosition}>
-          <span dangerouslySetInnerHTML={{ __html: icon }} />
+        <CardMedia position={mediaPosition}>
+          <Icon icon={icon} size="lg" />
         </CardMedia>
         <CardBody>
           <CardTitle>Why go to the moon?</CardTitle>
@@ -289,27 +305,6 @@ export const Icon: StoryObj<IconStoryProps> = {
           </CardFooter>
         </CardBody>
       </Card>
-      <hr className="my-2xl" />
-      <h2 className="heading-md">How to change the icon</h2>
-      {/* REFACTOR: Use list utility class */}
-      <ol className="list-decimal pl-lg">
-        <li>
-          <a
-            className="link"
-            href="https://fontawesome.com/search?ip=classic&ic=free-collection"
-            target="_blank"
-          >
-            Browse Font Awesome icons
-          </a>
-        </li>
-        <li>
-          Click on the desired icon and copy the SVG markup (not the "Full SVG"
-          markup)
-        </li>
-        <li>
-          Paste the SVG markup into the <em>icon</em> control in Storybook
-        </li>
-      </ol>
     </>
   ),
 };

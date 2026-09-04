@@ -1,48 +1,34 @@
-import "@cityofportland/components-css/card.css";
-import "@cityofportland/components-css/utilities.css";
-import type { BoxProps } from "@cityofportland/types/box";
 import type { CardProps } from "@cityofportland/types/card";
 import React from "react";
 
 import { Box } from "../box";
+import { mergeClasses } from "../utils";
 
-import { type MediaPosition } from "@cityofportland/types/card";
+import "@cityofportland/components-css/card.css";
+import "@cityofportland/components-css/utilities.css";
 
-export type ReactCardProps = Omit<CardProps, "border"> & {
-  border?: boolean;
-  children?: React.ReactNode;
+export type ReactCardProps = CardProps & {
+  children: React.ReactNode;
   className?: string;
-  "media position"?: MediaPosition;
-} & Omit<
-    React.ComponentPropsWithoutRef<"article">,
-    keyof CardProps | keyof BoxProps | "className"
-  >;
+};
 
 export const Card = ({
-  as,
+  as = "article",
   layout = "vertical",
   border = true,
   children = null,
   className,
   ...props
 }: ReactCardProps) => {
-  const classes = [
+  const classes = mergeClasses(
     "card",
     `card--${layout}`,
     border && "card--bordered",
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+    className
+  );
 
   return (
-    <Box
-      as={as ?? "article"}
-      color="default"
-      variant="subtle"
-      className={classes}
-      {...props}
-    >
+    <Box as={as} className={classes} {...props}>
       {children}
     </Box>
   );

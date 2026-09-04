@@ -1,5 +1,4 @@
 import {
-  CARD_ELEMENTS,
   CARD_LAYOUTS,
   MEDIA_POSITIONS,
   type CardProps,
@@ -21,13 +20,13 @@ import CardMedia from "./card-media/card-media.component.yml";
 import CardTitle from "./card-title/card-title.component.yml";
 
 import "@cityofportland/components-css/utilities.css";
+import boxStories from "../box/box.stories";
 
 type Props = CardProps & {
   header: string | object;
   body: string | object;
   footer: string | object;
-  "inset media": boolean;
-  "media position"?: MediaPosition;
+  mediaPosition?: MediaPosition;
   attributes: Record<string, string>;
 };
 
@@ -39,17 +38,12 @@ export default {
     `;
   },
   // TODO: Find out why Mike added these lines, which top-align the card in Storybook
-  decorators: [(Story) => `<div class="p-lg">${Story()}</div>`],
+  decorators: [(Story) => `<div class="@container p-lg">${Story()}</div>`],
   parameters: {
     layout: "fullscreen",
   },
   argTypes: {
-    as: {
-      control: "select",
-      options: CARD_ELEMENTS,
-      description:
-        "The semantic HTML container element of the Card, either article or section",
-    },
+    ...boxStories.argTypes,
     layout: {
       control: "select",
       options: CARD_LAYOUTS,
@@ -59,7 +53,8 @@ export default {
       control: "boolean",
       description: "Whether the card has a border or not",
     },
-    "media position": {
+    mediaPosition: {
+      name: "media position",
       control: "select",
       options: MEDIA_POSITIONS,
       description: "Whether the horizontal media is on the left or right",
@@ -73,7 +68,7 @@ export default {
     as: "article",
     layout: "vertical",
     border: true,
-    "media position": undefined,
+    mediaPosition: undefined,
   },
 } satisfies Meta<Props>;
 
@@ -116,7 +111,7 @@ export const Basic: Story<
     title: "Find your nearest library",
     description: "See hours, events, and services at branches near you.",
     button: "View library information",
-    "media position": "left",
+    mediaPosition: "left",
     imageWidth: 1600,
     imageHeight: 900,
   },
@@ -129,12 +124,13 @@ export const Basic: Story<
     as,
     layout,
     border,
-    "media position": mediaPosition,
+    mediaPosition: mediaPosition,
     title,
     description,
     button,
     imageWidth,
     imageHeight,
+    ...args
   }: Props & {
     title: string;
     description: string;
@@ -142,18 +138,29 @@ export const Basic: Story<
     imageWidth: number;
     imageHeight: number;
   }) => {
+    const attrs = [...Card.args.defaultAttributes];
+
+    if (as == "a") {
+      attrs.push(["href", ["#"]]);
+    }
+
+    const title_content =
+      as != "a"
+        ? `<h3 class="link"><a href="#">${title}</a></h3>`
+        : `<h3 class="link">${title}</h3>`;
+
     return `
       ${Card.component({
-        defaultAttributes: [...Card.args.defaultAttributes],
+        defaultAttributes: attrs,
         as: as,
         layout: layout,
         border: border ?? true,
+        ...args,
         card_content: `
           ${
             imageHeight && imageWidth
               ? CardMedia.component({
                   defaultAttributes: [...CardMedia.args.defaultAttributes],
-
                   position: mediaPosition,
                   card_media_content: `
             <img src="https://picsum.photos/${imageWidth}/${imageHeight}" alt="A random image from Picsum Photos" />
@@ -161,21 +168,25 @@ export const Basic: Story<
                 })
               : ""
           }
-
           ${CardBody.component({
+            defaultAttributes: [...CardBody.args.defaultAttributes],
+            as: "div",
             card_body_content: `
             ${CardTitle.component({
-              card_title_content: `<h3><a href="#" class="link">${title}</a></h3>`,
+              defaultAttributes: [...CardTitle.args.defaultAttributes],
+              card_title_content: `${title_content}`,
             })}
             ${
               description &&
               CardDescription.component({
+                defaultAttributes: [...CardDescription.args.defaultAttributes],
                 card_description_content: `<p>${description}</p>`,
               })
             }
             ${
               button
                 ? CardFooter.component({
+                    defaultAttributes: [...CardFooter.args.defaultAttributes],
                     card_footer_content: `
                   ${Button.component({
                     color: "primary",
@@ -236,7 +247,7 @@ export const MultipleCards: Story<
     title: "Find your nearest library",
     description: "See hours, events, and services at branches near you.",
     button: "View library information",
-    "media position": "left",
+    mediaPosition: "left",
     imageWidth: 800,
     imageHeight: 500,
     numCards: 3,
@@ -244,7 +255,7 @@ export const MultipleCards: Story<
   render: ({
     layout,
     border,
-    "media position": mediaPosition,
+    mediaPosition: mediaPosition,
     title,
     description,
     button,
@@ -252,15 +263,16 @@ export const MultipleCards: Story<
     imageHeight,
     numCards,
   }) => `
-    <div class="grid md:grid-cols-3 gap-md">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
       ${[...Array(numCards)]
         .map(
           (_value, index) => `
-        ${Card.component({
-          defaultAttributes: [...Card.args.defaultAttributes],
-          layout: layout,
-          border: border ?? true,
-          card_content: `
+        <div class="@container">
+          ${Card.component({
+            defaultAttributes: [...Card.args.defaultAttributes],
+            layout: layout,
+            border: border ?? true,
+            card_content: `
             ${
               imageWidth && imageHeight
                 ? CardMedia.component({
@@ -300,7 +312,8 @@ export const MultipleCards: Story<
               `,
             })}
           `,
-        })}
+          })}
+        </div>
       `
         )
         .join("")}
@@ -323,9 +336,9 @@ export const MultipleButtons: Story<Props & { buttons: string[] }> = {
   },
   args: {
     buttons: ["View library information", "View events", "View services"],
-    "media position": "left",
+    mediaPosition: "left",
   },
-  render: ({ layout, border, "media position": mediaPosition, buttons }) => `
+  render: ({ layout, border, mediaPosition: mediaPosition, buttons }) => `
       ${Card.component({
         defaultAttributes: [...Card.args.defaultAttributes],
         layout: layout,
@@ -393,7 +406,7 @@ export const IconStory: Story<Props & { icon: string }> = {
     border,
     layout,
     icon,
-    "media position": mediaPosition,
+    mediaPosition: mediaPosition,
   }: Props & { icon: string }) => `
       ${Card.component({
         border: border,

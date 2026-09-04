@@ -1,35 +1,29 @@
-import type { BoxProps } from "@cityofportland/types/box";
-import type { MediaPosition } from "@cityofportland/types/card";
+import type { CardMediaProps } from "@cityofportland/types/card";
 import React from "react";
 
-import { Box, type ReactBoxProps } from "../box";
+import { Box } from "../box";
+import { mergeClasses } from "../utils";
 
 export type ReactCardMediaProps = React.PropsWithChildren<
-  Omit<ReactBoxProps<"figure">, keyof BoxProps> & {
+  CardMediaProps & {
     className?: string;
-    inset?: boolean;
-    position?: MediaPosition;
   }
 >;
 
 export const CardMedia: React.FC<ReactCardMediaProps> = ({
   children,
   className,
-  inset = false,
-  position = "left",
+  position,
   ...props
 }) => (
   <Box
     {...props}
     as="figure"
-    className={[
+    className={mergeClasses(
       "card__media",
-      inset && "card__media--inset",
       `card__media--${position}`,
-      className,
-    ]
-      .filter(Boolean)
-      .join(" ")}
+      className
+    )}
   >
     {children}
   </Box>

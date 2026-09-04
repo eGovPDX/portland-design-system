@@ -3,12 +3,7 @@
  * @description Shared TypeScript types for Card components across all frameworks
  */
 
-/**
- * Semantic HTML container element of the card
- */
-export const CARD_ELEMENTS = ["article", "section"] as const;
-
-export type CardElement = (typeof CARD_ELEMENTS)[number];
+import type { BoxProps } from "./box";
 
 /**
  * Available card layouts based on design system layout options
@@ -27,62 +22,24 @@ export type MediaPosition = (typeof MEDIA_POSITIONS)[number];
 /**
  * Core card properties shared across all framework implementations
  */
-export interface CardProps {
+export interface CardProps extends BoxProps {
   /**
-   * Semantic HTML container element of the card
-   * @default "article"
+   * Whether the card has a border or not
+   * @default true
    */
-  as?: CardElement;
+  border: boolean;
 
   /**
    * Layout of the card
    * @default "vertical"
    */
   layout?: CardLayout;
-
-  /**
-   * Whether the card has a border or not
-   * @default true
-   */
-  border: boolean;
 }
 
-/**
- * Card slots for framework implementations that support slotted content
- */
-export interface CardSlots {
+export interface CardMediaProps extends BoxProps {
   /**
-   * Header slot for card media or icon
+   * Position of the media within the card
+   * @default "left"
    */
-  header?: unknown;
-
-  /**
-   * Body slot for card content
-   */
-  body?: unknown;
-
-  /**
-   * Footer slot for card CTA button or links
-   */
-  footer?: unknown;
-}
-
-/**
- * Extended Card props including slots for template-based frameworks
- */
-export interface CardPropsWithSlots extends CardProps {
-  /**
-   * Header slot for card media or icon
-   */
-  header?: string | unknown;
-
-  /**
-   * Body slot for card content
-   */
-  body?: string | unknown;
-
-  /**
-   * Footer slot for card CTA button or links
-   */
-  footer?: string | unknown;
+  position?: MediaPosition;
 }

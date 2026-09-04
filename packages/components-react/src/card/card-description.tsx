@@ -1,10 +1,10 @@
-import type { BoxProps } from "@cityofportland/types/box";
 import React from "react";
 
 import { Box, type ReactBoxProps } from "../box";
+import { mergeClasses } from "../utils";
 
 export type ReactCardDescriptionProps = React.PropsWithChildren<
-  Omit<ReactBoxProps<"div">, keyof BoxProps> & {
+  ReactBoxProps & {
     className?: string;
   }
 >;
@@ -14,10 +14,7 @@ export const CardDescription: React.FC<ReactCardDescriptionProps> = ({
   className,
   ...props
 }) => (
-  <Box
-    className={["card__description", className].filter(Boolean).join(" ")}
-    {...props}
-  >
+  <Box className={mergeClasses("card__description", className)} {...props}>
     {children}
   </Box>
 );
