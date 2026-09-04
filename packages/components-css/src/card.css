@@ -6,6 +6,7 @@
 /* Tailwind moderate, components, and utilities */
 @import "./base.css";
 
+@reference "./box.css";
 @reference "./utilities.css";
 
 @layer components {
@@ -15,8 +16,12 @@
     @apply gap-lg;
 
     &.card--bordered {
-      @apply border-md;
+      @apply inset-ring-md;
       @apply p-md;
+    }
+
+    &:not(.card--bordered) {
+      @apply box-revert;
     }
 
     .card__body {
