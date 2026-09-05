@@ -56,6 +56,7 @@ export default defineConfig(({ mode }) => ({
         // put emitted CSS next to JS path instead of dist/assets/*
         assetFileNames: () => "[name]/[name].[ext]",
       },
+      external: ["react", "react-dom", "react/jsx-runtime", /^react\/.*/],
     },
     minify: mode === "production" ? "esbuild" : false, // Only minify in production
   },
