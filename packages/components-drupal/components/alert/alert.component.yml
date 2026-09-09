@@ -37,8 +37,8 @@ props:
 
     color:
       type: string
-      title: Box color
-      description: Color scheme for the alert background and content colors
+      title: Alert color
+      description: Color scheme for background and content colors
       enum:
         - default
         - inverse
@@ -55,7 +55,7 @@ props:
 
     variant:
       type: string
-      title: Box variant
+      title: Alert variant
       description: Color variation within the chosen color scheme
       enum:
         - subtle
