@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Template for Portland Header Logo component.
+ */
+#}
+
+{% set attributes = attributes|default(create_attribute()) %}
+
+<span {{ attributes.addClass('header__logo') }}>
+    {% if header_logo_content is not empty %}
+        {% block header_logo_content %}{{ header_logo_content }}{% endblock %}
+    {% else %}
+        {% include 'portland:city-seal' with {size: 'sm'} only %}
+    {% endif %}
+</span>
