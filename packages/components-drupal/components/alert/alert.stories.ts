@@ -138,7 +138,7 @@ export const Basic: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
 };
 
 export const PortlandGov: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
-  name: "portland.gov",
+  name: "variations",
   parameters: {
     controls: {
       exclude: ["as", "color", "role", "variant"],
