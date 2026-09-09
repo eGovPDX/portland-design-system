@@ -1,0 +1,72 @@
+{#
+/**
+ * @file
+ * Template for Portland Alert component.
+ *
+ * Available variables:
+ * - as: HTML element to use (div, section, article, aside)
+ * - color: Alert color scheme (default, primary, secondary, success, danger, warning, info, disabled, fixed)
+ * - variant: Alert color variation (subtle, moderate, emphasis, strong, light, dark)
+ * - size: Alert visual style (default, slim)
+ * - role: ARIA role (status, alert)
+ * - dismissible: Whether the alert can be dismissed
+ * - icon: Name of an icon to show alongside the alert content
+ * - title: Alert heading text
+ * - alert_content: Alert text content (slot)
+ * - attributes: Additional HTML attributes
+ */
+#}
+
+{% apply spaceless %}
+
+	{% set element = as|default('div') %}
+	{% set size = size|default('default') %}
+	{% set role = role|default('status') %}
+	{% set dismissible = dismissible is defined ? dismissible : true %}
+	{% set attributes = attributes|default(create_attribute()) %}
+
+	{% set classes = ['alert', 'alert--' ~ size] %}
+
+	{% if attributes.get('class') is defined and attributes.get('class') is not empty %}
+		{% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
+		{% set attributes = attributes.removeClass(attribute_classes) %}
+		{% set classes = classes|merge(attribute_classes) %}
+	{% endif %}
+
+	{% set attributes = attributes.setAttribute('role', role) %}
+
+	{% if attributes.get('aria-label') is empty %}
+		{% set attributes = attributes.setAttribute('aria-label', (color|default('')) ~ ' alert') %}
+	{% endif %}
+
+	{% embed 'portland:box' with {
+  as: element,
+  color: color,
+  variant: variant,
+  attributes: attributes.addClass(classes),
+} %}
+		{% block box_content %}
+			{% if icon %}
+				<span class="alert__icon">
+					{% include 'portland:icon' with {icon: icon, attributes: create_attribute().setAttribute('aria-hidden', 'true')} only %}
+				</span>
+			{% endif %}
+			<div class="alert__content">
+				{% if title %}
+					<h3 class="alert__heading">{{ title }}</h3>
+				{% endif %}
+				{% block alert_content %}
+					<div class="alert__text">{{ alert_content }}</div>
+				{% endblock %}
+			</div>
+			{% if dismissible %}
+				<span class="alert__close">
+					<button type="button" class="button p-none" aria-label="Dismiss alert">
+						{% include 'portland:icon' with {icon: 'xmark', size: 'sm', attributes: create_attribute().setAttribute('aria-hidden', 'true')} only %}
+					</button>
+				</span>
+			{% endif %}
+		{% endblock %}
+	{% endembed %}
+
+{% endapply %}
