@@ -3,15 +3,14 @@
 
 @layer components {
   .input {
-    color-scheme: light;
+    @apply scheme-light;
 
     @variant dark {
-      color-scheme: dark;
+      @apply scheme-dark;
     }
 
     @apply w-full;
     @apply ring-sm;
-    /* @apply ring-standard-default-strong; */
     @apply inline-flex;
     @apply items-center;
     @apply gap-xs;
@@ -20,6 +19,7 @@
       @apply w-full;
       @apply p-xs;
       @apply focus:outline-none;
+      @apply focus-visible:outline-none;
 
       &:has(~ .input__addon--start) {
         @apply pl-none;
@@ -38,22 +38,16 @@
 
     &:has(> input:disabled),
     &.input--disabled {
-      @apply box-disabled-subtle!;
-      /* @apply bg-disabled-subtle; */
-      /* @apply text-disabled-strong; */
+      @apply box;
+      @apply box-disabled-subtle;
       @apply ring-disabled-moderate;
     }
 
     &:has(> input:invalid),
     &.input--error {
-      @apply ring-lg;
+      @apply inset-ring-md;
       @apply ring-danger-emphasis;
-    }
-
-    &:has(> input:user-valid),
-    &.input--success {
-      @apply ring-lg;
-      @apply ring-success-emphasis;
+      @apply inset-ring-danger-emphasis;
     }
 
     .input__addon {

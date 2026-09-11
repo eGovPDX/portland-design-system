@@ -5,7 +5,7 @@
 {% set disabled = disabled|default(false) %}
 {% set multiple = multiple|default(false) %}
 
-{% set wrapper_attributes = wrapper_attributes.addClass(['box', 'input']) %}
+{% set wrapper_attributes = wrapper_attributes.addClass(['input']) %}
 
 {% set input_attributes = input_attributes
   .setAttribute('type', type)
@@ -48,14 +48,9 @@
   {% set wrapper_attributes = wrapper_attributes.addClass('input--' ~ state) %}
 {% endif %}
 
-{% embed "portland:box" with {
-  as: "span",
-  color,
-  variant,
-  attributes: wrapper_attributes,
-} %}
-  {% block box_content %}
-    <input {{ input_attributes }}>
+<span {{ wrapper_attributes }}>
+  <input {{ input_attributes }}>
+  {% block content %}
     {{ content }}
   {% endblock %}
-{% endembed %}
+</span>

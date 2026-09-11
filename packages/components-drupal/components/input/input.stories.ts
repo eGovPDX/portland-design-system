@@ -6,9 +6,6 @@ import {
 } from "@cityofportland/types/input";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 
-import "../box/box.component.yml";
-import boxStories from "../box/box.stories";
-import Button from "../button/button.component.yml";
 import Icon from "../icon/icon.component.yml";
 
 import Input from "./input.component.yml";
@@ -19,17 +16,11 @@ type InputStoryArgs = TextInputProps & {
 };
 
 export default {
-  title: "Components/Inputs/Text",
+  title: "Components/Forms/Text",
   render: (args) => `
 		${Input.component({ ...args })}
 	`,
   argTypes: {
-    color: {
-      ...boxStories.argTypes.color,
-    },
-    variant: {
-      ...boxStories.argTypes.variant,
-    },
     type: {
       control: "select",
       options: TEXT_INPUT_TYPES,
