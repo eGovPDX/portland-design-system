@@ -9,19 +9,19 @@
 
 {% set input_attributes = input_attributes
   .setAttribute('type', type)
-  .setAttribute('name', name|default(null))
-  .setAttribute('id', id|default(null))
-  .setAttribute('value', value|default(null))
-  .setAttribute('placeholder', placeholder|default(null))
-  .setAttribute('autocomplete', autoComplete|default(null))
+  .setAttribute('name', name|default(null)|escape)
+  .setAttribute('id', id|default(null)|escape)
+  .setAttribute('value', value|default(null)|escape)
+  .setAttribute('placeholder', placeholder|default(null)|escape)
+  .setAttribute('autocomplete', autoComplete|default(null)|escape)
   .setAttribute('autofocus', autoFocus|default(null))
   .setAttribute('min', min|default(null))
   .setAttribute('max', max|default(null))
   .setAttribute('step', step|default(null))
   .setAttribute('minlength', minLength|default(null))
   .setAttribute('maxlength', maxLength|default(null))
-  .setAttribute('pattern', pattern|default(null))
-  .setAttribute('accept', accept|default(null))
+  .setAttribute('pattern', pattern|default(null)|escape)
+  .setAttribute('accept', accept|default(null)|escape)
 %}
 
 
