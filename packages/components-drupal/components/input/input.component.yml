@@ -7,37 +7,6 @@ props:
   required:
     - type
   properties:
-    color:
-      type: string
-      title: Box color
-      description: Color scheme for background and content colors
-      enum:
-        - default
-        - primary
-        - secondary
-        - success
-        - danger
-        - warning
-        - info
-        - disabled
-        - fixed
-      examples:
-        - default
-
-    variant:
-      type: string
-      title: Box variant
-      description: Color variation within the chosen color scheme
-      enum:
-        - subtle
-        - moderate
-        - emphasis
-        - strong
-        - light
-        - dark
-      examples:
-        - moderate
-
     type:
       type: string
       title: Input type
@@ -48,16 +17,6 @@ props:
         - search
         - tel
         - url
-        - number
-        - range
-        - date
-        - datetime-local
-        - month
-        - week
-        - time
-        - color
-        - file
-        - hidden
 
     state:
       type: string
