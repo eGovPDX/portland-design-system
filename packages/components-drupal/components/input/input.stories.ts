@@ -12,7 +12,7 @@ import Input from "./input.component.yml";
 import InputAddon from "./input-addon/input-addon.component.yml";
 
 type InputStoryArgs = TextInputProps & {
-  attributes?: Record<string, string>;
+  customValidity?: string;
 };
 
 export default {
@@ -77,11 +77,13 @@ export default {
       control: "text",
       description: "A pattern the input value must match",
     },
+    customValidity: {
+      control: "text",
+      description: "Custom validity message for the input",
+    },
   },
   args: {
     type: "text",
-    color: "default",
-    variant: "subtle",
     state: undefined,
     id: "input",
     name: "input",
@@ -89,86 +91,97 @@ export default {
     required: false,
     disabled: false,
     readOnly: false,
+    customValidity: "",
   },
 } satisfies Meta<InputStoryArgs>;
 
-export const Basic: StoryObj<
-  TextInputProps & {
-    start?: string;
-    end?: string;
-  }
-> = {
-  render: ({ start, end, ...args }) => `
-    ${Input.component({
-      ...args,
-    })}
-  `,
+export const Basic: StoryObj<InputStoryArgs> = {
+  afterEach: ({ args }) => {
+    const { id, customValidity } = args;
+
+    if (id && customValidity) {
+      const element = document.getElementById(id) as HTMLInputElement;
+
+      if (element) {
+        element.setCustomValidity(customValidity);
+      }
+    }
+  },
+  render: ({ id, name, customValidity, ...args }) => {
+    return `
+    <div class="grid grid-cols-1 gap-xs">
+      <label for="${id}" class="capitalize">${name}</label>
+      ${Input.component({
+        id,
+        name,
+        ...args,
+      })}
+    </div>
+  `;
+  },
 };
 
-export const Addons: StoryObj<TextInputProps> = {
+export const Addons: StoryObj<InputStoryArgs> = {
   parameters: {
     controls: {
       exclude: ["id", "name"],
     },
   },
+  afterEach: ({ args }) => {
+    const { customValidity } = args;
+
+    if (customValidity) {
+      const elements = document.getElementsByTagName(
+        "input"
+      ) as HTMLCollectionOf<HTMLInputElement>;
+
+      for (const element of elements) {
+        element.setCustomValidity(customValidity);
+      }
+    }
+  },
   render: (args) => `
-	<article class="rich-text">
-		<h2>With text addons</h2>
-		${Input.component({
-      ...args,
-      id: "input-text",
-      name: "input-text",
-      content: `
-      ${InputAddon.component({ orientation: "start", content: "https://" })}
-      ${InputAddon.component({ orientation: "end", content: ".com" })}
-    `,
-    })}
-		<h2>With icon addons</h2>
-		${Input.component({
-      ...args,
-      id: "input-icon",
-      name: "input-icon",
-      content: `
-      ${InputAddon.component({
-        orientation: "start",
-        content: Icon.component({ icon: creditCard.name, size: "sm" }),
+	<form class="grid grid-cols-1 gap-xl">
+    <div>
+      <label for="input-text" class="font-semibold text-heading-lg">With text addons</label>
+      ${Input.component({
+        ...args,
+        id: "input-text",
+        name: "input-text",
+        content: `
+        ${InputAddon.component({
+          defaultAttributes: [...InputAddon.args.defaultAttributes],
+          orientation: "start",
+          content: "https://",
+        })}
+        ${InputAddon.component({
+          defaultAttributes: [...InputAddon.args.defaultAttributes],
+          orientation: "end",
+          content: ".com",
+        })}
+      `,
       })}
-      ${InputAddon.component({
-        orientation: "end",
-        content: Icon.component({ icon: circleArrowRight.name, size: "sm" }),
+    </div>
+    <div>
+      <label for="input-icon" class="font-semibold text-heading-lg">With icon addons</label>
+      ${Input.component({
+        ...args,
+        id: "input-icon",
+        name: "input-icon",
+        content: `
+        ${InputAddon.component({
+          defaultAttributes: [...InputAddon.args.defaultAttributes],
+          orientation: "start",
+          content: Icon.component({ icon: creditCard.name, size: "sm" }),
+        })}
+        ${InputAddon.component({
+          defaultAttributes: [...InputAddon.args.defaultAttributes],
+          orientation: "end",
+          content: Icon.component({ icon: circleArrowRight.name, size: "sm" }),
+        })}
+      `,
       })}
-    `,
-    })}
-		<h2>With button addons</h2>
-		${Input.component({
-      ...args,
-      id: "input-button",
-      name: "input-button",
-      content: `
-      ${InputAddon.component({
-        defaultAttributes: [
-          ...InputAddon.args.defaultAttributes,
-          ["class", ["ml-none"]],
-        ],
-        orientation: "start",
-        content: Button.component({
-          disabled: args.disabled || args.state === "disabled",
-          button_content: "Clear",
-        }),
-      })}
-      ${InputAddon.component({
-        defaultAttributes: [
-          ...InputAddon.args.defaultAttributes,
-          ["class", ["mr-none"]],
-        ],
-        orientation: "end",
-        content: Button.component({
-          disabled: args.disabled || args.state === "disabled",
-          button_content: "Submit",
-        }),
-      })}
-    `,
-    })}
-	</article>
+    </div>
+	</form>
   `,
 };
