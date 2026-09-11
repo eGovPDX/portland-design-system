@@ -1,9 +1,11 @@
+{% set attributes = attributes|default(create_attribute()) %}
+
 {% set element = "span" %}
 
-{% set classes = ["input-addon", "input-addon--" ~ orientation] %}
+{% set classes = ["input__addon", "input__addon--" ~ orientation] %}
 
-<{{element}} {{ attributes.addClass(classes) }}>
-  {% block content %}
-    {{ content }}
-  {% endblock %}
-</{{element}}>
+<{{ element }} {{ attributes.addClass(classes) }}>
+{% block content %}
+  {{ content }}
+{% endblock %}
+</{{ element }}>

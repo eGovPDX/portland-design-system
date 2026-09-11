@@ -21,11 +21,11 @@
       @apply p-xs;
       @apply focus:outline-none;
 
-      &:has(~ .input-addon--start) {
+      &:has(~ .input__addon--start) {
         @apply pl-none;
       }
 
-      &:has(~ .input-addon--end) {
+      &:has(~ .input__addon--end) {
         @apply pr-none;
       }
     }
@@ -56,15 +56,16 @@
       @apply ring-success-emphasis;
     }
 
-    .input-addon {
+    .input__addon {
       @apply flex-none;
+      @apply select-none;
 
-      &.input-addon--start {
+      &.input__addon--start {
         @apply order-first;
         @apply ml-xs;
       }
 
-      &.input-addon--end {
+      &.input__addon--end {
         @apply order-last;
         @apply mr-xs;
       }
