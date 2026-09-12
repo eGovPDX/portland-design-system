@@ -6,6 +6,8 @@ import {
 } from "@cityofportland/types/box";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 
+import "../city-seal/city-seal.component.yml";
+
 import Button from "../button/button.component.yml";
 import HeaderBranding from "./header-branding/header-branding.component.yml";
 import HeaderContent from "./header-content/header-content.component.yml";
