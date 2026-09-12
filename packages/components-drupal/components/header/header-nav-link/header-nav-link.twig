@@ -4,14 +4,15 @@
  * Template for Portland Header Nav Link component.
  */
 #}
+{% apply spaceless %}
+    {% set attributes = attributes|default(create_attribute()) %}
+    {% set attributes = attributes.addClass('link') %}
 
-{% set attributes = attributes|default(create_attribute()) %}
-{% set attributes = attributes.addClass('link') %}
+    {% if attributes.get('href') is empty %}
+        {% set attributes = attributes.setAttribute('href', href|default('#')) %}
+    {% endif %}
 
-{% if attributes.get('href') is empty %}
-    {% set attributes = attributes.setAttribute('href', href|default('#')) %}
-{% endif %}
-
-<a {{ attributes }}>
-    {% block header_nav_link_content %}{{ header_nav_link_content }}{% endblock %}
-</a>
+    <a {{ attributes }}>
+        {% block header_nav_link_content %}{{ header_nav_link_content }}{% endblock %}
+    </a>
+{% endapply %}

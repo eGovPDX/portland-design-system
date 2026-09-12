@@ -4,17 +4,18 @@
  * Template for Portland Header Branding component.
  */
 #}
+{% apply spaceless %}
+    {% set element = as|default('a') %}
+    {% set attributes = attributes|default(create_attribute()) %}
+    {% set attributes = attributes.addClass('header__branding') %}
 
-{% set element = as|default('a') %}
-{% set attributes = attributes|default(create_attribute()) %}
-{% set attributes = attributes.addClass('header__branding') %}
+    {% if element == 'a' and attributes.get('href') is empty %}
+        {% set attributes = attributes.setAttribute('href', href|default('#')) %}
+    {% endif %}
 
-{% if element == 'a' and attributes.get('href') is empty %}
-    {% set attributes = attributes.setAttribute('href', href|default('#')) %}
-{% endif %}
-
-{% include 'portland:box' with {
-    as: element,
-    attributes: attributes,
-    box_content: header_branding_content,
-} only %}
+    {% include 'portland:box' with {
+        as: element,
+        attributes: attributes,
+        box_content: header_branding_content,
+    } only %}
+{% endapply %}

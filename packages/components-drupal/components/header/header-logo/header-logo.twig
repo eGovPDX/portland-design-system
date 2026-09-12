@@ -4,13 +4,16 @@
  * Template for Portland Header Logo component.
  */
 #}
+{% apply spaceless %}
+    {% set attributes = attributes|default(create_attribute()) %}
 
-{% set attributes = attributes|default(create_attribute()) %}
-
-<span {{ attributes.addClass('header__logo') }}>
-    {% if header_logo_content is not empty %}
-        {% block header_logo_content %}{{ header_logo_content }}{% endblock %}
-    {% else %}
-        {% include 'portland:city-seal' with {size: 'sm'} only %}
-    {% endif %}
-</span>
+    <span {{ attributes.addClass('header__logo') }}>
+        {% block header_logo_content %}
+            {% if header_logo_content is not empty %}
+                {{ header_logo_content }}
+            {% else %}
+                {% include 'portland:city-seal' with {size: 'sm'} only %}
+            {% endif %}
+        {% endblock %}
+    </span>
+{% endapply %}
