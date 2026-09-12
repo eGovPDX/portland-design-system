@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Template for Portland Header Nav List component.
+ */
+#}
+{% apply spaceless %}
+  {% set attributes = attributes|default(create_attribute()) %}
+  {% set attributes = attributes.addClass('header__nav-list') %}
+
+  <ul {{ attributes }}>
+    {% block header_nav_list_content %}{{ header_nav_list_content }}{% endblock %}
+  </ul>
+{% endapply %}

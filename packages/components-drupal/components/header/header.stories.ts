@@ -13,6 +13,7 @@ import HeaderBranding from "./header-branding/header-branding.component.yml";
 import HeaderContent from "./header-content/header-content.component.yml";
 import HeaderLogo from "./header-logo/header-logo.component.yml";
 import HeaderNavLink from "./header-nav-link/header-nav-link.component.yml";
+import HeaderNavList from "./header-nav-list/header-nav-list.component.yml";
 import Header from "./header.component.yml";
 
 const HEADER_ELEMENTS = [
@@ -60,17 +61,21 @@ const renderHeader = ({
       header_content_content: `
       ${
         links
-          ? `<ul class="header__nav-list">
-              <li>${HeaderNavLink.component({ header_nav_link_content: "Home" })}</li>
-              <li>${HeaderNavLink.component({ header_nav_link_content: "About" })}</li>
-              <li>${HeaderNavLink.component({ header_nav_link_content: "Services" })}</li>
-              <li>${HeaderNavLink.component({ header_nav_link_content: "Contact" })}</li>
-            </ul>`
+          ? HeaderNavList.component({
+              header_nav_list_content: `
+                <li>${HeaderNavLink.component({ header_nav_link_content: "Home" })}</li>
+                <li>${HeaderNavLink.component({ header_nav_link_content: "About" })}</li>
+                <li>${HeaderNavLink.component({ header_nav_link_content: "Services" })}</li>
+                <li>${HeaderNavLink.component({ header_nav_link_content: "Contact" })}</li>
+              `,
+            })
           : ""
       }
       ${
         buttons
-          ? `${Button.component({
+          ? `
+          <div class="flex gap-sm">
+            ${Button.component({
               color: "primary",
               variant: "moderate",
               size: "sm",
@@ -90,7 +95,8 @@ const renderHeader = ({
                 ["class", ["rounded-md"]],
               ],
               button_content: "Menu",
-            })}`
+            })}
+          </div>`
           : ""
       }
       `,
@@ -146,6 +152,4 @@ const meta: Meta<HeaderStoryArgs> = {
 export default meta;
 type Story = StoryObj<HeaderStoryArgs>;
 
-export const Basic: Story = {
-  args: {},
-};
+export const Basic: Story = {};
