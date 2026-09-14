@@ -2,27 +2,25 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 
 # The human readable name.
-name: Box
+name: Header
 
 # A longer description.
-description: A native Twig Box component that renders a simple colored box. Server-side rendered implementation matching the Portland Design System box styles.
+description: A native Twig header component matching the Portland Design System header.
 
 # Status can be: "experimental", "stable", "deprecated", "obsolete".
 status: experimental
 
-# Schema for the props. We support www.json-schema.org. Learn more about the syntax there.
 props:
-  # Props are always an object with keys. Each key is a variable in your component template.
   type: object
 
   properties:
     as:
       type: string
       title: HTML element type
-      description: The HTML element to render the box as (e.g., div, section, article)
+      description: The HTML element to render the header as
+      default: header
       enum:
         - div
-        - a
         - section
         - article
         - aside
@@ -30,16 +28,15 @@ props:
         - header
         - footer
         - nav
-        - span
-      examples:
-        - div
 
     color:
       type: string
       title: Box color
       description: Color scheme for background and content colors
+      default: default
       enum:
         - default
+        - inverse
         - primary
         - secondary
         - success
@@ -48,13 +45,12 @@ props:
         - info
         - disabled
         - fixed
-      examples:
-        - default
 
     variant:
       type: string
       title: Box variant
       description: Color variation within the chosen color scheme
+      default: subtle
       enum:
         - subtle
         - moderate
@@ -62,16 +58,11 @@ props:
         - strong
         - light
         - dark
-      examples:
-        - moderate
 
 slots:
-  box_content:
+  header_branding:
+    title: Branding
+    description: The header brand, logo, and title.
+  header_content:
     title: Content
-    description: The main content/text of the box.
-
-libraryOverrides:
-  dependencies:
-    - core/drupal
-  js:
-    box.js: { attributes: { type: "module" } }
+    description: Navigation links and actions in the header.

@@ -36,5 +36,8 @@
     "zsh": {
       "path": "zsh"
     }
+  },
+  "chat.tools.terminal.autoApprove": {
+    "pnpm": true
   }
 }
