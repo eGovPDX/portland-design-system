@@ -1,0 +1,13 @@
+{% set attributes = attributes|default(create_attribute()) %}
+
+{% set element = "span" %}
+
+{% set classes = ["input__addon", "input__addon--" ~ orientation] %}
+
+{% set attributes = attributes.setAttribute("aria-hidden", "true") %}
+
+<{{ element }} {{ attributes.addClass(classes) }}>
+{% block content %}
+  {{ content }}
+{% endblock %}
+</{{ element }}>

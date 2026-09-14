@@ -1,0 +1,83 @@
+name: Input
+description: A native HTML input with Portland Design System styling.
+status: experimental
+
+props:
+  type: object
+  required:
+    - type
+  properties:
+    type:
+      type: string
+      title: Input type
+      enum:
+        - text
+        - email
+        - password
+        - search
+        - tel
+        - url
+
+    state:
+      type: string
+      title: Input state
+      description: Visual state of the input
+      enum:
+        - error
+        - success
+
+    name:
+      type: string
+
+    id:
+      type: string
+
+    value:
+      type: string
+
+    placeholder:
+      type: string
+
+    required:
+      type: boolean
+      default: false
+
+    disabled:
+      type: boolean
+      default: false
+
+    readonly:
+      type: boolean
+      default: false
+
+    autocomplete:
+      type: string
+
+    min:
+      type: string
+
+    max:
+      type: string
+
+    step:
+      type: string
+
+    minlength:
+      type: integer
+
+    maxlength:
+      type: integer
+
+    pattern:
+      type: string
+
+    accept:
+      type: string
+
+    multiple:
+      type: boolean
+      default: false
+
+slots:
+  content:
+    description: Slot for additional content inside the input wrapper.

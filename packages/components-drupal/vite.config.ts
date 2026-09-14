@@ -1,5 +1,5 @@
 import tailwind from "@tailwindcss/vite";
-import { defineConfig, PluginOption } from "vite";
+import { defineConfig, type PluginOption } from "vite";
 import * as fs from "fs";
 import { basename, extname, resolve } from "path";
 import { stringify } from "yaml";
