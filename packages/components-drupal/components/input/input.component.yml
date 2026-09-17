@@ -1,3 +1,6 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
 name: Input
 description: A native HTML input with Portland Design System styling.
 status: experimental
@@ -24,13 +27,15 @@ props:
       description: Visual state of the input
       enum:
         - error
-        - success
+        - disabled
 
     name:
       type: string
+      required: true
 
     id:
       type: string
+      required: true
 
     value:
       type: string
@@ -53,15 +58,6 @@ props:
     autocomplete:
       type: string
 
-    min:
-      type: string
-
-    max:
-      type: string
-
-    step:
-      type: string
-
     minlength:
       type: integer
 
@@ -74,10 +70,10 @@ props:
     accept:
       type: string
 
-    multiple:
-      type: boolean
-      default: false
-
 slots:
   content:
     description: Slot for additional content inside the input wrapper.
+  prefix:
+    description: Slot for content to be displayed before the input field.
+  suffix:
+    description: Slot for content to be displayed after the input field.

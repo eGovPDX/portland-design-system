@@ -41,14 +41,17 @@ export const TEXT_INPUT_TYPES = [
 ] as const;
 
 export type TextInputType =
-  "text" | "email" | "password" | "search" | "tel" | "url";
+  | "text"
+  | "email"
+  | "password"
+  | "search"
+  | "tel"
+  | "url";
 
 export type NumberInputType = "number" | "range";
 
-export interface InputProps<T extends InputType = InputType> extends Omit<
-  BoxProps,
-  "as"
-> {
+export interface InputProps<T extends InputType = InputType>
+  extends Omit<BoxProps, "as"> {
   type: T;
   state?: InputState;
   name?: string;

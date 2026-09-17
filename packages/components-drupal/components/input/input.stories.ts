@@ -121,11 +121,27 @@ export const Basic: StoryObj<InputStoryArgs> = {
   },
 };
 
-export const Addons: StoryObj<InputStoryArgs> = {
+export const Addons: StoryObj<
+  InputStoryArgs & { prefix: boolean; suffix: boolean }
+> = {
   parameters: {
     controls: {
       exclude: ["id", "name"],
     },
+  },
+  argTypes: {
+    prefix: {
+      control: "boolean",
+      description: "Whether to show the prefix addon",
+    },
+    suffix: {
+      control: "boolean",
+      description: "Whether to show the suffix addon",
+    },
+  },
+  args: {
+    prefix: true,
+    suffix: true,
   },
   afterEach: ({ args }) => {
     const { customValidity } = args;
@@ -143,43 +159,54 @@ export const Addons: StoryObj<InputStoryArgs> = {
   render: (args) => `
 	<form class="grid grid-cols-1 gap-xl">
     <div>
-      <label for="input-text" class="font-semibold text-heading-lg">With text addons</label>
+      <label for="input-text" class="font-semibold text-heading-lg">With text addons that are announced</label>
       ${Input.component({
         ...args,
         id: "input-text",
         name: "input-text",
-        content: `
-        ${InputAddon.component({
-          defaultAttributes: [...InputAddon.args.defaultAttributes],
-          orientation: "start",
-          content: "https://",
-        })}
-        ${InputAddon.component({
-          defaultAttributes: [...InputAddon.args.defaultAttributes],
-          orientation: "end",
-          content: ".com",
-        })}
-      `,
+        prefix: prefix
+          ? InputAddon.component({
+              id: "input-text",
+              orientation: "start",
+              content: "https://",
+              announce: true,
+            })
+          : null,
+        suffix: suffix
+          ? InputAddon.component({
+              id: "input-text",
+              orientation: "end",
+              content: ".com",
+              announce: true,
+            })
+          : null,
       })}
     </div>
     <div>
-      <label for="input-icon" class="font-semibold text-heading-lg">With icon addons</label>
+      <label for="input-icon" class="font-semibold text-heading-lg">With icon addons that are not announced</label>
       ${Input.component({
         ...args,
         id: "input-icon",
         name: "input-icon",
-        content: `
-        ${InputAddon.component({
-          defaultAttributes: [...InputAddon.args.defaultAttributes],
-          orientation: "start",
-          content: Icon.component({ icon: creditCard.name, size: "sm" }),
-        })}
-        ${InputAddon.component({
-          defaultAttributes: [...InputAddon.args.defaultAttributes],
-          orientation: "end",
-          content: Icon.component({ icon: circleArrowRight.name, size: "sm" }),
-        })}
-      `,
+        prefix: prefix
+          ? InputAddon.component({
+              id: "input-icon",
+              orientation: "start",
+              content: Icon.component({ icon: creditCard.name, size: "sm" }),
+              announce: false,
+            })
+          : null,
+        suffix: suffix
+          ? InputAddon.component({
+              id: "input-icon",
+              orientation: "end",
+              content: Icon.component({
+                icon: circleArrowRight.name,
+                size: "sm",
+              }),
+              announce: false,
+            })
+          : null,
       })}
     </div>
 	</form>
