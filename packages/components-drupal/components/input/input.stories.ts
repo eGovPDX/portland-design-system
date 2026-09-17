@@ -12,7 +12,7 @@ import Input from "./input.component.yml";
 import InputAddon from "./input-addon/input-addon.component.yml";
 
 type InputStoryArgs = TextInputProps & {
-  customValidity?: string;
+  customValidity?: boolean;
 };
 
 export default {
@@ -78,8 +78,9 @@ export default {
       description: "A pattern the input value must match",
     },
     customValidity: {
-      control: "text",
-      description: "Custom validity message for the input",
+      control: "boolean",
+      description: "Add a custom validity message for the input",
+      if: { arg: "state", neq: "disabled" },
     },
   },
   args: {
@@ -91,7 +92,7 @@ export default {
     required: false,
     disabled: false,
     readOnly: false,
-    customValidity: "",
+    customValidity: false,
   },
 } satisfies Meta<InputStoryArgs>;
 
@@ -103,7 +104,9 @@ export const Basic: StoryObj<InputStoryArgs> = {
       const element = document.getElementById(id) as HTMLInputElement;
 
       if (element) {
-        element.setCustomValidity(customValidity);
+        element.setCustomValidity(
+          customValidity ? "Custom validity message" : ""
+        );
       }
     }
   },
@@ -152,11 +155,13 @@ export const Addons: StoryObj<
       ) as HTMLCollectionOf<HTMLInputElement>;
 
       for (const element of elements) {
-        element.setCustomValidity(customValidity);
+        element.setCustomValidity(
+          customValidity ? "Custom validity message" : ""
+        );
       }
     }
   },
-  render: (args) => `
+  render: ({ prefix, suffix, ...args }) => `
 	<form class="grid grid-cols-1 gap-xl">
     <div>
       <label for="input-text" class="font-semibold text-heading-lg">With text addons that are announced</label>
