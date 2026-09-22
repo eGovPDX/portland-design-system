@@ -50,7 +50,11 @@ export default defineConfig({
         };
       },
     ],
-    syntaxHighlight: false,
+    syntaxHighlight: "shiki",
+    shikiConfig: {
+      theme: "github-light",
+      wrap: true,
+    },
   },
   vite: {
     plugins: [
