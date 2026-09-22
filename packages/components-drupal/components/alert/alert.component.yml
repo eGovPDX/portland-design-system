@@ -100,6 +100,21 @@ props:
       examples:
         - Alert heading
 
+    title_as:
+      type: string
+      title: Alert title element
+      description: The HTML element for the alert title wrapper. Use a heading element when the page context requires one.
+      default: header
+      enum:
+        - header
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+      examples:
+        - h3
+
 slots:
   alert_content:
     title: Content

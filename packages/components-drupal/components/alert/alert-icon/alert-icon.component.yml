@@ -1,0 +1,19 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Alert Icon
+status: experimental
+
+props:
+  type: object
+  properties:
+    as:
+      type: string
+      title: HTML element type
+      default: span
+    attributes:
+      type: object
+      title: Additional attributes
+
+slots:
+  alert_icon_content:
+    title: Alert icon content

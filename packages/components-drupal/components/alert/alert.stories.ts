@@ -27,6 +27,7 @@ type Props = AlertProps & {
   role: "status" | "alert";
   icon: string;
   title: string;
+  title_as: "header" | "h2" | "h3" | "h4" | "h5" | "h6";
   description: string;
   link: boolean;
   attributes: Record<string, string>;
@@ -99,6 +100,7 @@ export default {
     dismissible: true,
     icon: "circle-info",
     title: "Alert heading",
+    title_as: "header",
     description: "This is the alert text content.",
     link: true,
   },
@@ -123,6 +125,9 @@ export const Basic: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
       description: "Show a 'read more' link in the alert description.",
     },
   },
+  args: {
+    icon: false,
+  },
   render: ({ description, icon, link, title, ...args }) => {
     return `
       ${Alert.component({
@@ -138,7 +143,7 @@ export const Basic: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
 };
 
 export const PortlandGov: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
-  name: "variations",
+  name: "portland.gov",
   parameters: {
     controls: {
       exclude: ["as", "color", "role", "variant"],
@@ -170,7 +175,7 @@ export const PortlandGov: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
     description: "This is the alert text content.",
     link: true,
   },
-  render: ({ description, dismissible, icon, link, size, title }) => {
+  render: ({ description, dismissible, icon, link, size, title, title_as }) => {
     const types = [
       ["info", "moderate", "status", "circle-info"],
       ["warning", "moderate", "status", "triangle-exclamation"],
@@ -191,6 +196,7 @@ export const PortlandGov: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
               dismissible,
               icon: icon ? alertIcon : "",
               title,
+              title_as,
               alert_content: `<p>${description}${
                 link ? ' <a href="#" class="link">Read more</a>' : ""
               }</p>`,

@@ -12,6 +12,7 @@
  * - dismissible: Whether the alert can be dismissed
  * - icon: Name of an icon to show alongside the alert content
  * - title: Alert heading text
+ * - title_as: HTML element for the alert title wrapper
  * - alert_content: Alert text content (slot)
  * - attributes: Additional HTML attributes
  */
@@ -47,18 +48,28 @@
 } %}
 		{% block box_content %}
 			{% if icon %}
-				<span class="alert__icon">
+				{% set alert_icon_content %}
 					{% include 'portland:icon' with {icon: icon, attributes: create_attribute().setAttribute('aria-hidden', 'true')} only %}
-				</span>
+				{% endset %}
+				{% include 'portland:alert-icon' with {alert_icon_content: alert_icon_content} only %}
 			{% endif %}
-			<div class="alert__content">
+			{% set alert_title_content %}
+				{{ title }}
+			{% endset %}
+			{% set alert_title_markup %}
 				{% if title %}
-					<h3 class="alert__heading">{{ title }}</h3>
+					{% include 'portland:alert-title' with {
+						as: title_as|default('header'),
+						alert_title_content: alert_title_content
+					} only %}
 				{% endif %}
-				{% block alert_content %}
-					<div class="alert__text">{{ alert_content }}</div>
-				{% endblock %}
-			</div>
+			{% endset %}
+			{% set alert_description_markup %}
+				{% include 'portland:alert-description' with {alert_description_content: alert_content} only %}
+			{% endset %}
+			{% include 'portland:alert-content' with {
+				alert_content: alert_title_markup ~ alert_description_markup
+			} only %}
 			{% if dismissible %}
 				<span class="alert__close">
 					<button type="button" class="button p-none" aria-label="Dismiss alert">
