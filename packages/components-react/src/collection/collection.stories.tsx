@@ -38,7 +38,7 @@ export default {
   },
   args: {
     as: "ul",
-    divider: false,
+    divider: true,
   },
 } satisfies Meta<ReactCollectionProps>;
 
