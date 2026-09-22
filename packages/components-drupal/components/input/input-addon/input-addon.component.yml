@@ -1,0 +1,36 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Input addon
+description: A native HTML input with Portland Design System styling.
+status: experimental
+
+props:
+  type: object
+  required:
+    - type
+  properties:
+    id:
+      type: string
+      title: Input id
+      description: The unique identifier for the parent input.
+      required: true
+
+    orientation:
+      type: string
+      title: Input addon orientation
+      description: The orientation of the input addon relative to the input field
+      enum:
+        - start
+        - end
+      default: start
+
+    announce:
+      type: boolean
+      title: Announce
+      description: Whether the input addon should be announced by screen readers.
+      default: false
+
+slots:
+  content:
+    description: Slot for content inside the input addon.
