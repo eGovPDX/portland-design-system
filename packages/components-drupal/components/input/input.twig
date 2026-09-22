@@ -47,11 +47,11 @@
 {% set describedby = input_attributes.getAttribute('aria-describedby') ? input_attributes.getAttribute('aria-describedby')|split(' ') : [] %}
 
 {% if prefix is defined and prefix is not empty %}
-  {% set describedby = describedby|merge([id ~ '-prefix']) %}
+  {% set describedby = describedby|merge([id ~ '__prefix']) %}
 {% endif %}
 
 {% if suffix is defined and suffix is not empty %}
-  {% set describedby = describedby|merge([id ~ '-suffix']) %}
+  {% set describedby = describedby|merge([id ~ '__suffix']) %}
 {% endif %}
 
 <span {{ wrapper_attributes }}>

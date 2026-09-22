@@ -14,7 +14,7 @@
 
 {% set announcement = orientation == "start" ? "prefix" : "suffix" %}
 
-{% set attributes = attributes.setAttribute("id", id ~ '-' ~ announcement) %}
+{% set attributes = attributes.setAttribute("id", id ~ '__' ~ announcement) %}
 
 {% apply spaceless %}
   <{{ element }} {{ attributes.addClass(classes) }}>
