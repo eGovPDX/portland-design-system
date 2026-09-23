@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import { dirname, resolve } from "path";
 import fs from "fs";
 import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
+import dts from "unplugin-dts/vite";
 
 /**
  * Vite configuration for the Portland Design System React components package.
@@ -42,7 +42,7 @@ export default defineConfig(({ mode }) => ({
         .reduce(
           (acc, file) => {
             const name = dirname(file);
-            acc[`${name}/${name}`] = resolve(__dirname, "src", file);
+            acc[`${name}/${name}.lib`] = resolve(__dirname, "src", file);
             return acc;
           },
           {} as Record<string, string>
@@ -54,7 +54,7 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         // put emitted CSS next to JS path instead of dist/assets/*
-        assetFileNames: () => "[name]/[name].[ext]",
+        assetFileNames: () => "[name]/[name].lib.[ext]",
       },
       external: ["react", "react-dom", "react/jsx-runtime", /^react\/.*/],
     },
@@ -63,26 +63,9 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     dts({
       exclude: ["**/*.stories.*", "**/*.test.*"],
-      rollupTypes: true,
-      bundledPackages: ["@cityofportland/types"],
       entryRoot: "src",
-      afterBuild: async () => {
-        if (!fs.existsSync(resolve(__dirname, "dist"))) {
-          return;
-        }
-
-        const files = fs
-          .readdirSync(resolve(__dirname, "dist"), {
-            encoding: "utf-8",
-          })
-          .filter((file) => file.endsWith(".d.ts"));
-
-        for (const file of files) {
-          const dir = file.split(".")[0];
-          const target = resolve(__dirname, "dist", dir, `${dir}.d.ts`);
-          if (file !== target)
-            fs.renameSync(resolve(__dirname, "dist", file), target);
-        }
+      bundleTypes: {
+        bundledPackages: ["@cityofportland/types"],
       },
     }),
     react(),
