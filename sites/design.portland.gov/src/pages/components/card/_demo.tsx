@@ -1,6 +1,13 @@
 import { Box, type ReactBoxProps } from "@cityofportland/components-react/box";
 import { Button } from "@cityofportland/components-react/button";
-import { Card } from "@cityofportland/components-react/card";
+import {
+  Card,
+  CardBody,
+  CardDescription,
+  CardFooter,
+  CardMedia,
+  CardTitle,
+} from "@cityofportland/components-react/card";
 import {
   BOX_COLORS,
   BOX_VARIANTS,
@@ -11,16 +18,9 @@ import {
 import { useStore } from "@nanostores/react";
 import Color from "colorjs.io";
 import { atom } from "nanostores";
+import React, { useEffect, useState } from "react";
 
 import { Code } from "../../../components/code";
-import React, { useEffect, useState } from "react";
-import {
-  CardMedia,
-  CardBody,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "../../../../../../packages/components-react/src/card";
 
 const $color = atom<BoxColorScheme>("default");
 const $variant = atom<BoxColorVariation>("subtle");
