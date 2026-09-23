@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import boxStories from "../box/box.stories";
 import { Card } from "../card/card";
 import { CardBody } from "../card/card-body";
 import { CardDescription } from "../card/card-description";
