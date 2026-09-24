@@ -29,46 +29,54 @@ import dts from "unplugin-dts/vite";
  * ```
  * This will generate entry points: `{ button: 'src/button/index.ts', card: 'src/card/index.ts' }`
  */
-export default defineConfig(({ mode }) => ({
-  build: {
-    cssCodeSplit: true,
-    lib: {
-      entry: fs
-        .readdirSync(resolve(__dirname, "src"), {
-          recursive: true,
-          encoding: "utf-8",
-        })
-        .filter((file) => file.endsWith("index.ts"))
-        .reduce(
-          (acc, file) => {
-            const name = dirname(file);
-            acc[`${name}/${name}.lib`] = resolve(__dirname, "src", file);
-            return acc;
-          },
-          {} as Record<string, string>
-        ),
-      name: "ComponentsReact",
-      formats: ["es"],
-      fileName: (format, name) => `${name}.${format}.js`,
-    },
-    rollupOptions: {
-      output: {
-        // put emitted CSS next to JS path instead of dist/assets/*
-        assetFileNames: () => "[name]/[name].lib.[ext]",
+export default defineConfig(({ mode }) => {
+  const isStorybook = process.env.STORYBOOK === "true";
+
+  return {
+    build: {
+      cssCodeSplit: true,
+      lib: {
+        entry: fs
+          .readdirSync(resolve(__dirname, "src"), {
+            recursive: true,
+            encoding: "utf-8",
+          })
+          .filter((file) => file.endsWith("index.ts"))
+          .reduce(
+            (acc, file) => {
+              const name = dirname(file);
+              acc[`${name}/${name}.lib`] = resolve(__dirname, "src", file);
+              return acc;
+            },
+            {} as Record<string, string>
+          ),
+        name: "ComponentsReact",
+        formats: ["es"],
+        fileName: (format, name) => `${name}.${format}.js`,
       },
-      external: ["react", "react-dom", "react/jsx-runtime", /^react\/.*/],
-    },
-    minify: mode === "production" ? "esbuild" : false, // Only minify in production
-  },
-  plugins: [
-    dts({
-      exclude: ["**/*.stories.*", "**/*.test.*"],
-      entryRoot: "src",
-      bundleTypes: {
-        bundledPackages: ["@cityofportland/types"],
+      rollupOptions: {
+        output: {
+          // put emitted CSS next to JS path instead of dist/assets/*
+          assetFileNames: () => "[name]/[name].lib.[ext]",
+        },
+        external: ["react", "react-dom", "react/jsx-runtime", /^react\/.*/],
       },
-    }),
-    react(),
-    tailwind(),
-  ],
-}));
+      minify: mode === "production" ? "esbuild" : false, // Only minify in production
+    },
+    plugins: [
+      ...(!isStorybook
+        ? [
+            dts({
+              exclude: ["**/*.stories.*", "**/*.test.*"],
+              entryRoot: "src",
+              bundleTypes: {
+                bundledPackages: ["@cityofportland/types"],
+              },
+            }),
+          ]
+        : []),
+      react(),
+      tailwind(),
+    ],
+  };
+});

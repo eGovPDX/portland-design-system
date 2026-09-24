@@ -52,7 +52,11 @@ export default defineConfig({
     ],
     syntaxHighlight: "shiki",
     shikiConfig: {
-      theme: "github-light",
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
+      defaultColor: false,
       wrap: true,
     },
   },

@@ -8,17 +8,13 @@ storybooks:
     url: "?path=/story/components-card--basic"
 ---
 
-import { BOX_COLORS } from "@cityofportland/types/box";
-
 import {
   DemoCard,
-  ColorGallery,
-  VariantGallery,
 } from "./_demo";
 
 # Card
 
-A card is usually a summary of a larger idea and acts as an entry point to more 
+A Card is usually a summary of a larger idea and acts as an entry point to more 
 detailed information. This summary can contain text, images, buttons, and links.
 
 An individual card is typically a member of a collection of similar cards, not a 
@@ -28,7 +24,7 @@ with a border.
 Cards are also modular, which means you can change the order of cards in a 
 collection without affecting any individual card's meaning.
 
-Use a card when you need to:
+Use a Card when you need to:
 
 - Present a collection of related groups of content, like articles or sections of a website.
 - Present a summary of information that links to more detailed content.
@@ -41,10 +37,6 @@ When to consider using a different component:
 
 
 ## Properties
-
-Internally, Cards use the [Box](/components/box) component so they share the same `color` 
-and `variant` properties. These settings work together to control the background and 
-text colors.
 
 ### As
 
@@ -67,17 +59,14 @@ subcomponent's`position` prop.
 
 ### Color
 
-The following demonstration shows the different color types for the selected
-variant. Click on any box to set the color for all boxes and cards on this page.
-
-<ColorGallery client:load />
+This prop is inherited from the Box component and is used to set the background and text colors of 
+the card. The available color options are described in the [Box](/components/box) documentation.
 
 ### Variant
 
-Each color has a set of variants that help provide emphasis to the grouped
-content. Click on any box to set the variant for all boxes and cards on this page.
-
-<VariantGallery client:load />
+This prop is inherited from the Box component and is used to set the color variant of the card, 
+which affects its appearance and emphasis. The available variant options are described in the 
+[Box](/components/box) documentation.
 
 
 ## Subcomponents
@@ -122,34 +111,6 @@ It ensures that the footer content is properly spaced and aligned within the car
 ## Example
 
 This basic React example shows how to use the Card component with its subcomponents to create a standard card layout.
-
-```tsx
-<Card>
-  <CardMedia>
-    <img
-      src="https://picsum.photos/800/450"
-      alt="A random image from Picsum Photos"
-    />
-  </CardMedia>
-  <CardBody>
-    <CardTitle>
-      <h3>Card title</h3>
-    </CardTitle>
-    <CardDescription>
-      <p>This is a description or summary of the card content.</p>
-    </CardDescription>
-    <CardFooter>
-      <Button>Learn more</Button>
-    </CardFooter>
-  </CardBody>
-</Card>
-```
-
-## Output
-
-Below is the output of the Card component with the selected color and variant.
-Click on any box in the galleries above to change the color and variant of this
-card.
 
 <DemoCard client:load />
 
