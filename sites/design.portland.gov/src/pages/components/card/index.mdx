@@ -38,13 +38,6 @@ When to consider using a different component:
 
 ## Properties
 
-### As
-
-A Card is rendered as an `article` by default but can be changed to another semantic element
-with the `as` prop. `article` is generally the preferred element for cards, as it represents 
-a self-contained unit of content that could stand alone. But `section` is more generic and may 
-be appropriate for certain use cases.
-
 ### Border
 
 A boolean prop that controls whether the card has a border. The default is `true`, which 
@@ -54,18 +47,27 @@ means the card will have a border. Setting it to `false` will remove the border.
 
 The `layout` prop controls the layout of the card's media and content. The default is `vertical`, 
 which means the media is stacked vertically above the content. Setting it to `horizontal` will 
-arrange the media either to the left or right of the content, based on the value of the CardMedia
+arrange the media either to the left or right of the content, based on the value of the Card Media
 subcomponent's`position` prop.
+
+## Inherited Box Properties
+
+### As
+
+A Card is rendered as an `article` by default but can be changed to another semantic element
+with the `as` prop. `article` is generally the preferred element for cards, as it represents 
+a self-contained unit of content that could stand alone. But `section` is more generic and may 
+be appropriate for certain use cases.
 
 ### Color
 
-This prop is inherited from the Box component and is used to set the background and text colors of 
-the card. The available color options are described in the [Box](/components/box) documentation.
+This prop is used to set the background and text colors of the card. The available color 
+options are described in the [Box](/components/box) documentation.
 
 ### Variant
 
-This prop is inherited from the Box component and is used to set the color variant of the card, 
-which affects its appearance and emphasis. The available variant options are described in the 
+This prop is used to set the color variant of the card, which affects its appearance and 
+emphasis. The available variant options are described in the 
 [Box](/components/box) documentation.
 
 
@@ -74,7 +76,7 @@ which affects its appearance and emphasis. The available variant options are des
 The Card component has several subcomponents that can be used together to 
 create a standardized card layout.
 
-### CardMedia
+### Card Media
 
 This subcomponent is used to display an image or other media in the card. 
 
@@ -86,24 +88,24 @@ The `position` prop is only used with Cards that have a horizontal layout, and i
 controls on which side of the content the media is displayed.
 It can be set to either `left` or `right`. The default is `left`.
 
-### CardBody
+### Card Body
 
 This subcomponent is used to wrap the main content of the card, including the title, 
 description, and footer. It ensures that the content is properly spaced and aligned within the card.
 
-### CardTitle
+### Card Title
 
 This subcomponent is used to wrap the title of the card. It ensures that the title is properly 
 formatted and spaced within the card. It should contain a heading element at the proper level 
 (e.g., `<h2>`, `<h3>`) to maintain proper semantic structure and accessibility.
 
-### CardDescription
+### Card Description
 
 This subcomponent is used to wrap the description or summary text of the card. It ensures that the
 description is properly formatted and spaced within the card. It should contain a paragraph
 element (e.g., `<p>`) to maintain proper semantic structure and accessibility.
 
-### CardFooter
+### Card Footer
 
 This subcomponent is used to wrap the footer content of the card, such as buttons or links. 
 It ensures that the footer content is properly spaced and aligned within the card.
@@ -129,4 +131,4 @@ This basic React example shows how to use the Card component with its subcompone
 - Card is designed so content inside it stays readable and high contrast. Using the
 `color` and `variant` options helps you choose combinations that support
 accessibility.
-- Use the appropriate heading level for your page. Update the heading level of the `CardTitle` based on the content of your page to maintain the correct, logical outline order.
+- Use the appropriate heading level for your page. Update the heading level of the Card Title based on the content of your page to maintain the correct, logical outline order.
