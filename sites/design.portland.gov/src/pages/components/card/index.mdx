@@ -1,0 +1,134 @@
+---
+layout: ../../../layouts/component.astro
+title: Card
+storybooks:
+  - name: "React"
+    url: "?path=/story/components-card--basic"
+  - name: "Drupal"
+    url: "?path=/story/components-card--basic"
+---
+
+import {
+  DemoCard,
+} from "./_demo";
+
+# Card
+
+A Card is usually a summary of a larger idea and acts as an entry point to more 
+detailed information. This summary can contain text, images, buttons, and links.
+
+An individual card is typically a member of a collection of similar cards, not a 
+single card in isolation. A card can be distinguished from the broader page context 
+with a border.
+
+Cards are also modular, which means you can change the order of cards in a 
+collection without affecting any individual card's meaning.
+
+Use a Card when you need to:
+
+- Present a collection of related groups of content, like articles or sections of a website.
+- Present a summary of information that links to more detailed content.
+
+When to consider using a different component:
+
+- Simple calls to action: Use a button or link instead.
+- Callout elements: Consider using an `aside`, `blockquote`, or a [Box](/components/box) with a semantic element like `section` or `article`.
+- Sequential content: Cards should be self-contained and modular. If the reader is meant to read from card to card, consider a list or simple body text and headings.
+
+
+## Properties
+
+### Border
+
+A boolean prop that controls whether the card has a border. The default is `true`, which 
+means the card will have a border. Setting it to `false` will remove the border.
+
+### Layout
+
+The `layout` prop controls the layout of the card's media and content. The default is `vertical`, 
+which means the media is stacked vertically above the content. Setting it to `horizontal` will 
+arrange the media either to the left or right of the content, based on the value of the Card Media
+subcomponent's`position` prop.
+
+## Inherited Box Properties
+
+### As
+
+A Card is rendered as an `article` by default but can be changed to another semantic element
+with the `as` prop. `article` is generally the preferred element for cards, as it represents 
+a self-contained unit of content that could stand alone. But `section` is more generic and may 
+be appropriate for certain use cases.
+
+### Color
+
+This prop is used to set the background and text colors of the card. The available color 
+options are described in the [Box](/components/box) documentation.
+
+### Variant
+
+This prop is used to set the color variant of the card, which affects its appearance and 
+emphasis. The available variant options are described in the 
+[Box](/components/box) documentation.
+
+
+## Subcomponents
+
+The Card component has several subcomponents that can be used together to 
+create a standardized card layout.
+
+### Card Media
+
+This subcomponent is used to display an image or other media in the card. 
+
+#### Properties
+
+##### Position
+
+The `position` prop is only used with Cards that have a horizontal layout, and it 
+controls on which side of the content the media is displayed.
+It can be set to either `left` or `right`. The default is `left`.
+
+### Card Body
+
+This subcomponent is used to wrap the main content of the card, including the title, 
+description, and footer. It ensures that the content is properly spaced and aligned within the card.
+
+### Card Title
+
+This subcomponent is used to wrap the title of the card. It ensures that the title is properly 
+formatted and spaced within the card. It should contain a heading element at the proper level 
+(e.g., `<h2>`, `<h3>`) to maintain proper semantic structure and accessibility.
+
+### Card Description
+
+This subcomponent is used to wrap the description or summary text of the card. It ensures that the
+description is properly formatted and spaced within the card. It should contain a paragraph
+element (e.g., `<p>`) to maintain proper semantic structure and accessibility.
+
+### Card Footer
+
+This subcomponent is used to wrap the footer content of the card, such as buttons or links. 
+It ensures that the footer content is properly spaced and aligned within the card.
+
+## Example
+
+This basic React example shows how to use the Card component with its subcomponents to create a standard card layout.
+
+<DemoCard client:load />
+
+## Usage notes
+
+- Choose the variant based on emphasis needed: start with `subtle` or `moderate`
+  for most use cases. Reserve `emphasis` and `strong` for cards requiring extra high-attention.
+- Make cards actionable. Since cards are used as a summary of more detailed information, any individual card should link to that information.
+- Don't use the card component only for decoration. Use the card component for cards, not just to put a border around content.
+- Avoid redundant content. Repeated information (like using the same image or text for each card in a collection) makes it more difficult to distinguish cards from one another.
+- Make sure images are properly sized. Cards often change size depending on the device. Make sure you use an image that works well on any device at any size.
+
+
+## Accessibility
+
+- Card is designed so content inside it stays readable and high contrast. Using the
+`color` and `variant` options helps you choose combinations that support
+accessibility.
+- Use the appropriate heading level for your page. Update the heading level of the Card Title based on the content of your page to maintain the correct, logical outline order.
