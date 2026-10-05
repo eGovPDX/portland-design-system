@@ -1,0 +1,28 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Button Group
+
+description: A group of related actions presented together.
+
+status: experimental
+
+props:
+  type: object
+
+  properties:
+    segmented:
+      type: boolean
+      title: Segmented
+      description: Whether the actions appear connected without gaps
+      default: false
+
+    label:
+      type: string
+      title: Accessible label
+      description: Accessible name describing the group of actions
+
+slots:
+  button_group_content:
+    title: Actions
+    description: Related buttons or links in the group.
