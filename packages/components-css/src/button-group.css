@@ -1,0 +1,48 @@
+@import "./base.css";
+
+@layer components {
+  /* .button-group {
+    container-type: inline-size;
+    width: 100%;
+  } */
+
+  .button-group__items {
+    @apply flex flex-wrap gap-2xs;
+  }
+
+  .button-group__items > * {
+    @apply shrink-0;
+  }
+
+  .button-group--segmented .button-group__items {
+    @apply flex-nowrap gap-3xs;
+  }
+
+  .button-group--segmented
+    .button-group__items
+    > *:not(:first-child, :last-child) {
+    border-radius: 0 !important;
+  }
+  .button-group--segmented .button-group__items > *:first-child {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  .button-group--segmented .button-group__items > *:last-child {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+
+  @media (max-width: 30rem) {
+    .button-group__items:not(.button-group--segmented .button-group__items) {
+      @apply flex-col gap-2xs;
+    }
+  }
+
+  /* @container (max-width: 30rem) {
+    .button-group__items {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-md, 1rem);
+    }
+  } */
+}
