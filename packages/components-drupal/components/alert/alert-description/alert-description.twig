@@ -1,0 +1,5 @@
+{% include 'portland:box' with {
+  as: as|default('div'),
+  attributes: attributes|default(create_attribute()).addClass('alert__text'),
+  box_content: alert_description_content,
+} %}
