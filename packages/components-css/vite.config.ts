@@ -94,7 +94,7 @@ export default defineConfig(({ mode }) => {
   return {
     build: {
       outDir: "dist",
-      emptyOutDir: true,
+      emptyOutDir: false,
       // Only set watch config when in watch mode to prevent always-watching
       watch: watch
         ? {

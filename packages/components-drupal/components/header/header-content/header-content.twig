@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Template for Portland Header Content component.
+ */
+#}
+{% apply spaceless %}
+    {% set attributes = attributes|default(create_attribute()) %}
+
+    <div {{ attributes.addClass('header__content') }}>
+        {% block header_content_content %}{{ header_content_content }}{% endblock %}
+    </div>
+{% endapply %}

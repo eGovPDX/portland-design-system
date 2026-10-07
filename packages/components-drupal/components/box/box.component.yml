@@ -22,6 +22,7 @@ props:
       description: The HTML element to render the box as (e.g., div, section, article)
       enum:
         - div
+        - a
         - section
         - article
         - aside
@@ -29,6 +30,7 @@ props:
         - header
         - footer
         - nav
+        - span
       examples:
         - div
 

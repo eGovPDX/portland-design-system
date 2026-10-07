@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Template for Portland Header component.
+ *
+ * Available variables:
+ * - as: HTML element type
+ * - color: Header color scheme
+ * - variant: Header color variation
+ * - attributes: Additional HTML attributes
+ * - header_branding: Branding content (slot)
+ * - header_content: Navigation and action content (slot)
+ */
+#}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass('header') %}
+
+{% embed 'portland:box' with {
+  as: as|default('header'),
+  color,
+  variant,
+  attributes,
+} %}
+    {% block box_content %}
+        {% block header_branding %}{{ header_branding }}{% endblock %}
+        {% block header_content %}{{ header_content }}{% endblock %}
+    {% endblock %}
+{% endembed %}

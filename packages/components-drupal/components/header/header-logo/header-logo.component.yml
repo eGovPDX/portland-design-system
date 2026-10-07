@@ -1,0 +1,11 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Header Logo
+
+status: experimental
+
+slots:
+  header_logo_content:
+    title: Content
+    description: Logo content. Defaults to the City Seal.

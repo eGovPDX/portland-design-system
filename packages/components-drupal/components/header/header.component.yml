@@ -1,0 +1,68 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Header
+
+# A longer description.
+description: A native Twig header component matching the Portland Design System header.
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+props:
+  type: object
+
+  properties:
+    as:
+      type: string
+      title: HTML element type
+      description: The HTML element to render the header as
+      default: header
+      enum:
+        - div
+        - section
+        - article
+        - aside
+        - main
+        - header
+        - footer
+        - nav
+
+    color:
+      type: string
+      title: Box color
+      description: Color scheme for background and content colors
+      default: default
+      enum:
+        - default
+        - inverse
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - disabled
+        - fixed
+
+    variant:
+      type: string
+      title: Box variant
+      description: Color variation within the chosen color scheme
+      default: subtle
+      enum:
+        - subtle
+        - moderate
+        - emphasis
+        - strong
+        - light
+        - dark
+
+slots:
+  header_branding:
+    title: Branding
+    description: The header brand, logo, and title.
+  header_content:
+    title: Content
+    description: Navigation links and actions in the header.

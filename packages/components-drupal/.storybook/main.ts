@@ -28,6 +28,9 @@ const config: StorybookConfig = {
       },
     },
   ],
+  features: {
+    sidebarOnboardingChecklist: false,
+  },
   framework: {
     name: "@storybook/html-vite",
     options: {},

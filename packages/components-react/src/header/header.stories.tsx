@@ -1,17 +1,13 @@
-import type { ArgTypes, Meta, StoryObj } from "@storybook/react-vite";
-import { useState, type MouseEvent } from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button } from "../button";
 import BoxStories from "../box/box.stories";
-import { Box, type ReactBoxProps } from "../box";
-import {
-  Header,
-  HeaderBranding,
-  HeaderContent,
-  HeaderLogo,
-  HeaderNavLink,
-  type ReactHeaderProps,
-} from "./header";
+import { Header, type ReactHeaderProps } from "./header";
+import { HeaderBranding } from "./header-branding";
+import { HeaderContent } from "./header-content";
+import { HeaderLogo } from "./header-logo";
+import { HeaderNavLink } from "./header-nav-link";
+import { HeaderNavList } from "./header-nav-list";
 
 type StoryProps = ReactHeaderProps & {
   title: string;
@@ -35,7 +31,7 @@ const DemoHeader = ({
     </HeaderBranding>
     <HeaderContent>
       {links && (
-        <ul className="header__nav-list">
+        <HeaderNavList>
           <li>
             <HeaderNavLink href="#">Home</HeaderNavLink>
           </li>
@@ -48,10 +44,10 @@ const DemoHeader = ({
           <li>
             <HeaderNavLink href="#">Contact</HeaderNavLink>
           </li>
-        </ul>
+        </HeaderNavList>
       )}
       {buttons && (
-        <>
+        <div className="flex gap-sm">
           <Button
             name="navigation"
             color="primary"
@@ -73,7 +69,7 @@ const DemoHeader = ({
           >
             Menu
           </Button>
-        </>
+        </div>
       )}
     </HeaderContent>
   </Header>

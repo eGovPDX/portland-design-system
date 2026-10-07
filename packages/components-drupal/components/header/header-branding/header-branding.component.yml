@@ -1,0 +1,30 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Header Branding
+
+status: experimental
+
+props:
+  type: object
+
+  properties:
+    as:
+      type: string
+      title: HTML element type
+      description: The HTML element to render the branding as
+      default: a
+      enum:
+        - a
+        - div
+        - span
+
+    href:
+      type: string
+      title: Link URL
+      description: URL to use when rendering branding as a link
+      default: "#"
+
+slots:
+  header_branding_content:
+    title: Content
