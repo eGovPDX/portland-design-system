@@ -67,7 +67,6 @@ export interface InputProps<T extends InputType = InputType>
 }
 
 export interface TextInputProps extends InputProps<TextInputType> {
-  placeholder?: string;
   minLength?: number;
   maxLength?: number;
   pattern?: string;
