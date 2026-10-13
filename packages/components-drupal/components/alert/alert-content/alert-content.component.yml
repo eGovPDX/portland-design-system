@@ -1,0 +1,19 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Alert Content
+status: experimental
+
+props:
+  type: object
+  properties:
+    as:
+      type: string
+      title: HTML element type
+      default: div
+    attributes:
+      type: object
+      title: Additional attributes
+
+slots:
+  alert_content:
+    title: Alert content
