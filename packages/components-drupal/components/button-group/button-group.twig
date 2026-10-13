@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Template for Portland Button Group component.
+ *
+ * Available variables:
+ * - segmented: Whether actions appear connected
+ * - label: Accessible name for the group
+ * - button_group_content: Related buttons or links
+ * - attributes: Additional HTML attributes
+ */
+#}
+
+{% set segmented = segmented|default(false) %}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set classes = ['button-group'] %}
+
+{% if segmented %}
+    {% set classes = classes|merge(['button-group--segmented']) %}
+{% endif %}
+
+<div {{ attributes.addClass(classes).setAttribute('role', 'group') }}{% if label %} aria-label="{{ label }}"{% endif %}>
+    <div class="button-group__items">
+        {{ button_group_content }}
+    </div>
+</div>
