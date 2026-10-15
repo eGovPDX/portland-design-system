@@ -25,11 +25,6 @@ export default {
       description: "The visual state of the input",
       if: { arg: "disabled", truthy: false },
     },
-    disabled: {
-      control: "boolean",
-      description: "Whether the input is disabled",
-      if: { arg: "state", neq: "disabled" },
-    },
     id: {
       control: "text",
       description: "The input id",
@@ -62,20 +57,13 @@ export default {
       control: "number",
       description: "The allowed stepping interval",
     },
-    customValidity: {
-      control: "boolean",
-      description: "Set a custom validity message with the HTML form API",
-      if: { arg: "disabled", truthy: false },
-    },
   },
   args: {
-    id: DEFAULT_ID,
-    name: DEFAULT_ID,
+    id: "input-number",
+    name: "input-number",
     value: 0,
     placeholder: "Enter a number",
     required: false,
-    disabled: false,
-    customValidity: false,
   },
 } satisfies Meta<NumberInputStoryArgs>;
 
@@ -97,7 +85,7 @@ export const Basic: StoryObj<NumberInputStoryArgs> = {
     return `
     <form class="grid grid-cols-1 gap-xl">
       <div>
-        <label class="block mb-xs" for="number-input">Number input</label>
+        <label class="block mb-xs" for="input-number">Number input</label>
       ${NumberInput.component({
         id,
         name,
@@ -114,7 +102,7 @@ export const NativeConstraints: StoryObj<NumberInputStoryArgs> = {
   render: () => `
     <form class="grid grid-cols-1 gap-xl">
       <div>
-        <label class="block mb-xs" for="number-min">Minimum Value</label>
+        <label class="block mb-xs" for="number-min">Minimum value is 1.</label>
         ${NumberInput.component({
           id: "number-min",
           name: "number-min",
@@ -124,7 +112,7 @@ export const NativeConstraints: StoryObj<NumberInputStoryArgs> = {
         })}
       </div>
       <div>
-        <label class="block mb-xs" for="number-max">Maximum Value</label>
+        <label class="block mb-xs" for="number-max">Maximum value is 10.</label>
         ${NumberInput.component({
           id: "number-max",
           name: "number-max",
