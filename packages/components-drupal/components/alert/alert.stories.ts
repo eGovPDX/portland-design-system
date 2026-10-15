@@ -82,6 +82,12 @@ export default {
       control: "text",
       description: "The heading text for the alert",
     },
+    title_as: {
+      name: "title as",
+      control: "select",
+      options: ["header", "h2", "h3", "h4", "h5", "h6"],
+      description: "The HTML element to render as",
+    },
     description: {
       control: "text",
       description: "The text description of the alert",
@@ -126,7 +132,7 @@ export const Basic: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
     },
   },
   args: {
-    icon: false,
+    icon: true,
   },
   render: ({ description, icon, link, title, ...args }) => {
     return `

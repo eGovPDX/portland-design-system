@@ -10,6 +10,13 @@ props:
       type: string
       title: HTML element type
       description: The title wrapper element. Use a heading element when the page context requires one.
+      enum:
+        - header
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
       default: header
     attributes:
       type: object
