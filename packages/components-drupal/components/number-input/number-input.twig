@@ -1,0 +1,12 @@
+{% set input_attributes = input_attributes|default(create_attribute()) %}
+
+{% set input_attributes = input_attributes
+  .setAttribute('min', min|default(null))
+  .setAttribute('max', max|default(null))
+  .setAttribute('step', step|default(null))
+%}
+
+{% include '@portland/input/input.twig' with {
+  type: 'number',
+  input_attributes: input_attributes,
+} %}
