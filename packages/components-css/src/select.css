@@ -1,0 +1,36 @@
+@import "./base.css";
+@reference "./box.css";
+
+@layer components {
+  .select {
+    @apply scheme-light;
+
+    @variant dark {
+      @apply scheme-dark;
+    }
+
+    @apply w-full;
+    @apply ring-sm;
+    @apply p-xs;
+
+    &:focus,
+    &:focus-visible {
+      @apply outline-lg;
+      @apply outline-offset-2xs;
+    }
+
+    &:disabled,
+    &.select--disabled {
+      @apply box;
+      @apply box-disabled-subtle;
+      @apply ring-disabled-moderate;
+    }
+
+    &:invalid,
+    &.select--error {
+      @apply inset-ring-md;
+      @apply ring-danger-emphasis;
+      @apply inset-ring-danger-emphasis;
+    }
+  }
+}

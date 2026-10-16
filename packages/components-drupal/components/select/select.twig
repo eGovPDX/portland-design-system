@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Template for Portland select component.
+ *
+ * Available variables:
+ * - id: Select HTML id
+ * - name: Select HTML name
+ * - state: Select visual state (error, disabled)
+ * - required: Whether the select is required
+ * - disabled: Whether the select is disabled
+ * - options: Select HTML options (slot)
+ * - attributes: Additional HTML attributes
+ */
+#}
+
+{% set attributes = attributes|default(create_attribute()) %}
+{% set required = required|default(false) %}
+{% set disabled = disabled|default(false) %}
+{% set classes = ['select'] %}
+
+{% if disabled or state == 'disabled' %}
+  {% set disabled = true %}
+  {% set state = 'disabled' %}
+  {% set attributes = attributes.setAttribute('disabled', true) %}
+{% endif %}
+
+{% if required %}
+  {% set attributes = attributes.setAttribute('required', true) %}
+{% endif %}
+
+{% if state is defined %}
+  {% set classes = classes|merge(['select--' ~ state]) %}
+{% endif %}
+
+{% if state == 'error' %}
+  {% set attributes = attributes.setAttribute('aria-invalid', 'true') %}
+{% endif %}
+
+{# Put attribute classes at the end of the class list #}
+{% if attributes.get('class') is defined and attributes.get('class') is not empty %}
+  {# Hack to clone the attribute classes object #}
+  {% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
+  {% set attributes = attributes.removeClass(attribute_classes) %}
+  {% set classes = classes|merge(attribute_classes) %}
+{% endif %}
+
+{% set attributes = attributes
+  .addClass(classes)
+  .setAttribute('id', id|default(null)|escape)
+  .setAttribute('name', name|default(null)|escape)
+%}
+
+<select {{ attributes }}>
+  {{ options }}
+</select>
