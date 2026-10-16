@@ -11,22 +11,30 @@
 
 {% apply spaceless %}
 
-{# Set default values #}
-{% set size = size|default('lg') %}
-{% set attributes = attributes|default(create_attribute()) %}
+  {# Set default values #}
+  {% set size = size|default('lg') %}
+  {% set attributes = attributes|default(create_attribute()) %}
 
-{# size classes #}
-{% set size_classes = [] %}
-{% set size_classes = {
+  {# size classes #}
+  {% set size_classes = [] %}
+  {% set size_classes = {
   'xl': ['city-seal--xl'],
   'lg': ['city-seal--lg'],
   'sm': ['city-seal--sm'],
 }[size] %}
 
-{# Combine all classes #}
-{% set classes = ['city-seal']|merge(size_classes) %}
+  {# Combine all classes #}
+  {% set classes = ['city-seal']|merge(size_classes) %}
 
-<span {{ attributes.addClass(classes) }}>
-  {{ source('node_modules/@cityofportland/design-tokens/dist/assets/city-seal.svg') }}
-</span>
+  {# Put attribute classes at the end of the class list #}
+  {% if attributes.get('class') is defined and attributes.get('class') is not empty %}
+    {# Hack to clone the attribute classes object #}
+    {% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
+    {% set attributes = attributes.removeClass(attribute_classes) %}
+    {% set classes = classes|merge(attribute_classes) %}
+  {% endif %}
+
+  <span {{ attributes.addClass(classes) }}>
+    {{ source('node_modules/@cityofportland/design-tokens/dist/assets/city-seal.svg') }}
+  </span>
 {% endapply %}
