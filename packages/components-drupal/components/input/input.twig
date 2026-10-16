@@ -1,5 +1,5 @@
 {% set wrapper_attributes = wrapper_attributes|default(create_attribute()) %}
-{% set input_attributes = input_attributes|default(create_attribute()) %}
+{% set input_attributes = input_attributes|default(attributes)|default(create_attribute()) %}
 {% set type = type|default('text') %}
 {% set required = required|default(false) %}
 {% set disabled = disabled|default(false) %}
