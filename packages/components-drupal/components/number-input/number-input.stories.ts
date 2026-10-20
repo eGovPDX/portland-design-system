@@ -85,7 +85,7 @@ export const Basic: StoryObj<NumberInputStoryArgs> = {
     return `
     <form class="grid grid-cols-1 gap-xl">
       <div>
-        <label class="block mb-xs" for="input-number">Number input</label>
+        <label class="block mb-xs" for="${id}">Number input</label>
       ${NumberInput.component({
         id,
         name,
