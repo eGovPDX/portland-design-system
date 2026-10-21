@@ -52,16 +52,18 @@ export type NumberInputType = "number" | "range";
 
 export interface InputProps<T extends InputType = InputType>
   extends Omit<BoxProps, "as"> {
-  type: T;
-  state?: InputState;
-  name?: string;
-  id?: string;
-  value?: string | number;
-  required?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
   autoComplete?: string;
   autoFocus?: boolean;
+  disabled?: boolean;
+  form?: string;
+  id?: string;
+  name?: string;
+  placeholder?: string;
+  readOnly?: boolean;
+  required?: boolean;
+  state?: InputState;
+  type: T;
+  value?: string | number;
 }
 
 export interface TextInputProps extends InputProps<TextInputType> {
