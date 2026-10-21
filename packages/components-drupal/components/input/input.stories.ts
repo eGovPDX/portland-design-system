@@ -169,22 +169,27 @@ export const Addons: StoryObj<
         ...args,
         id: "input-text",
         name: "input-text",
-        prefix: prefix
-          ? InputAddon.component({
-              id: "input-text",
-              orientation: "start",
-              content: "https://",
-              announce: true,
-            })
-          : null,
-        suffix: suffix
-          ? InputAddon.component({
-              id: "input-text",
-              orientation: "end",
-              content: ".com",
-              announce: true,
-            })
-          : null,
+        addons: `
+        ${
+          prefix
+            ? InputAddon.component({
+                id: "input-text",
+                orientation: "start",
+                content: "https://",
+                announce: true,
+              })
+            : null
+        }
+        ${
+          suffix
+            ? InputAddon.component({
+                id: "input-text",
+                orientation: "end",
+                content: ".com",
+                announce: true,
+              })
+            : null
+        }`,
       })}
     </div>
     <div>
@@ -193,25 +198,29 @@ export const Addons: StoryObj<
         ...args,
         id: "input-icon",
         name: "input-icon",
-        prefix: prefix
-          ? InputAddon.component({
-              id: "input-icon",
-              orientation: "start",
-              content: Icon.component({ icon: creditCard.name, size: "sm" }),
-              announce: false,
-            })
-          : null,
-        suffix: suffix
-          ? InputAddon.component({
-              id: "input-icon",
-              orientation: "end",
-              content: Icon.component({
-                icon: circleArrowRight.name,
-                size: "sm",
-              }),
-              announce: false,
-            })
-          : null,
+        addons: `${
+          prefix
+            ? InputAddon.component({
+                id: "input-icon",
+                orientation: "start",
+                content: Icon.component({ icon: creditCard.name, size: "sm" }),
+                announce: false,
+              })
+            : null
+        }
+        ${
+          suffix
+            ? InputAddon.component({
+                id: "input-icon",
+                orientation: "end",
+                content: Icon.component({
+                  icon: circleArrowRight.name,
+                  size: "sm",
+                }),
+                announce: false,
+              })
+            : null
+        }`,
       })}
     </div>
 	</form>
