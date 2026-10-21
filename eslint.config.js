@@ -26,6 +26,7 @@ export default defineConfig(
         ...globals.browser,
         Drupal: "readonly",
         drupalSettings: "readonly",
+        once: "readonly",
       },
     },
   },

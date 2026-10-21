@@ -1,5 +1,3 @@
-import once from "@drupal/once";
-
 /** @type {DrupalBehavior} */
 Drupal.behaviors["@cityofportland/components-drupal/textarea"] = {
   attach: (context) => {
