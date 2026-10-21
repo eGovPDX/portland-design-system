@@ -98,6 +98,7 @@ libraryOverrides:
   dependencies:
     - core/drupal
     - core/components.portland_components--input
+    - core/once
   js:
     textarea.js:
       attributes:

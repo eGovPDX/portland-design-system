@@ -1,4 +1,6 @@
-declare module "@drupal/once" {
+export {};
+
+declare global {
   type OnceContext = Document | Element;
   type OnceElements<T extends Element> = T | ArrayLike<T> | null;
 
@@ -25,6 +27,4 @@ declare module "@drupal/once" {
   }
 
   const once: Once;
-
-  export default once;
 }
