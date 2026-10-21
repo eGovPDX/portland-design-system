@@ -4,32 +4,33 @@ import type { Meta, StoryObj } from "@storybook/html-vite";
 import Button from "../button/button.component.yml";
 import ButtonGroup from "./button-group.component.yml";
 
-type Props = ButtonGroupProps;
+type StoryProps = ButtonGroupProps & {
+  rounded?: boolean;
+};
 
-const renderActions = (classNames: string = "") =>
-  ["Save draft", "Preview", "Publish"]
-    .map((content) =>
-      Button.component({
-        color: "primary",
-        variant: "moderate",
-        size: "md",
-        button_content: content,
-        defaultAttributes: [
-          ...Button.args.defaultAttributes,
-          ["class", [classNames]],
-        ],
-      })
-    )
-    .join("");
+const render = ({ segmented, label, rounded }: StoryProps) =>
+  ButtonGroup.component({
+    segmented,
+    label,
+    content: ["Save draft", "Preview", "Publish"]
+      .map((content) =>
+        Button.component({
+          color: "primary",
+          variant: "moderate",
+          size: "md",
+          button_content: content,
+          defaultAttributes: [
+            ...Button.args.defaultAttributes,
+            ["class", [rounded ? "rounded-lg" : ""]],
+          ],
+        })
+      )
+      .join(""),
+  });
 
 export default {
   title: "Components/Button Group",
-  render: ({ segmented, label }) =>
-    ButtonGroup.component({
-      segmented,
-      label,
-      button_group_content: renderActions(),
-    }),
+  render,
   argTypes: {
     segmented: {
       control: "boolean",
@@ -39,35 +40,25 @@ export default {
       control: "text",
       description: "Accessible name describing the group of actions",
     },
+    rounded: {
+      control: "boolean",
+      description: "Whether to round the buttons",
+    },
   },
   args: {
     segmented: false,
     label: "Publishing actions",
+    rounded: false,
   },
-} satisfies Meta<Props>;
+} satisfies Meta<StoryProps>;
 
-type Story = StoryObj<Props>;
+type Story = StoryObj<StoryProps>;
 
 export const Basic: Story = {};
 
 export const NarrowContainer: Story = {
-  render: ({ segmented, label }) => `
-    <div style="max-width: 15rem; outline: 1px solid gray; padding: 3px; height: 8rem;">
-      ${ButtonGroup.component({
-        segmented,
-        label,
-        button_group_content: renderActions(),
-      })}
-    </div>
-  `,
-};
-
-export const RoundedCorners: Story = {
-  render: ({ segmented, label }) => `
-    ${ButtonGroup.component({
-      segmented,
-      label,
-      button_group_content: renderActions("rounded-lg"),
-    })}
-  `,
+  decorators: [
+    (story) =>
+      `<div class="@container w-[15rem] border-md p-sm">${story()}</div>`,
+  ],
 };
