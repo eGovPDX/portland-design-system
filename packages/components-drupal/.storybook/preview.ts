@@ -3,6 +3,25 @@ import type { Preview } from "@storybook/html-vite";
 
 import "./preview.css";
 
+Drupal.formatPlural = (
+  count: number,
+  singular: string,
+  plural: string,
+  args = {}
+) => {
+  const message = count === 1 ? singular : plural;
+  const replacements = {
+    ...args,
+    "@count": count,
+  };
+
+  return Object.entries(replacements).reduce(
+    (output, [placeholder, value]) =>
+      output.replaceAll(placeholder, String(value)),
+    message
+  );
+};
+
 const preview: Preview = {
   parameters: {
     layout: "centered",
