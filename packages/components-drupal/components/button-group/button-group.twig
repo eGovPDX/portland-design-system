@@ -6,7 +6,7 @@
  * Available variables:
  * - segmented: Whether actions appear connected
  * - label: Accessible name for the group
- * - button_group_content: Related buttons or links
+ * - content: Related buttons or links
  * - attributes: Additional HTML attributes
  */
 #}
@@ -19,8 +19,14 @@
     {% set classes = classes|merge(['button-group--segmented']) %}
 {% endif %}
 
-<div {{ attributes.addClass(classes).setAttribute('role', 'group') }}{% if label %} aria-label="{{ label }}"{% endif %}>
-    <div class="button-group__items">
-        {{ button_group_content }}
+{% if label %}
+    {% set attributes = attributes.setAttribute('aria-label', label) %}
+{% endif %}
+
+{% apply spaceless %}
+    <div {{ attributes.addClass(classes).setAttribute('role', 'group') }}>
+        <div class="button-group__items">
+            {{- content -}}
+        </div>
     </div>
-</div>
+{% endapply %}

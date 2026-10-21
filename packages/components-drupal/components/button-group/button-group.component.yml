@@ -23,6 +23,6 @@ props:
       description: Accessible name describing the group of actions
 
 slots:
-  button_group_content:
+  content:
     title: Actions
     description: Related buttons or links in the group.
