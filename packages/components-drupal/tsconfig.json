@@ -1,8 +1,18 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
     "rootDir": "./components",
     "outDir": "./dist"
   },
-  "include": ["components/**/*.ts", "components/**/*.d.ts", "env.d.ts"]
+  "include": [
+    "components/**/*.mjs",
+    "components/**/*.js",
+    "components/**/*.ts",
+    "components/**/*.d.ts",
+    "drupal.d.ts",
+    "once.d.ts",
+    "env.d.ts"
+  ]
 }
