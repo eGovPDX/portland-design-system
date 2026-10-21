@@ -5,16 +5,15 @@
  *
  * Available variables:
  * - as: HTML element to use (div, section, article, aside)
- * - color: Alert color scheme (default, primary, secondary, success, danger, warning, info, disabled, fixed)
- * - variant: Alert color variation (subtle, moderate, emphasis, strong, light, dark)
- * - size: Alert visual style (default, slim)
+ * - color: Box color scheme
+ * - variant: Box color variation
+ * - size: Alert size (default, slim)
  * - role: ARIA role (status, alert)
+ * - aria-label: Accessible name for the alert
  * - dismissible: Whether the alert can be dismissed
- * - icon: Name of an icon to show alongside the alert content
- * - title: Alert heading text
- * - title_as: HTML element for the alert title wrapper
- * - alert_content: Alert text content (slot)
- * - attributes: Additional HTML attributes
+ * - content: Alert content (slot). Compose with portland:alert-icon, portland:alert-content,
+ *   portland:alert-title and portland:alert-description.
+ * - attributes: Additional HTML attributes.
  */
 #}
 
@@ -22,54 +21,31 @@
 
 	{% set element = as|default('div') %}
 	{% set size = size|default('default') %}
-	{% set role = role|default('status') %}
 	{% set dismissible = dismissible is defined ? dismissible : true %}
 	{% set attributes = attributes|default(create_attribute()) %}
 
-	{% set classes = ['alert', 'alert--' ~ size] %}
-
-	{% if attributes.get('class') is defined and attributes.get('class') is not empty %}
-		{% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
-		{% set attributes = attributes.removeClass(attribute_classes) %}
-		{% set classes = classes|merge(attribute_classes) %}
+	{% if attributes.get('role') is empty and role is defined %}
+		{% set attributes = attributes.setAttribute('role', role) %}
+	{% elseif attributes.get('role') is empty %}
+		{% set attributes = attributes.setAttribute('role', 'status') %}
 	{% endif %}
 
-	{% set attributes = attributes.setAttribute('role', role) %}
-
-	{% if attributes.get('aria-label') is empty %}
-		{% set attributes = attributes.setAttribute('aria-label', (color|default('')) ~ ' alert') %}
+	{% set aria_label = attribute(_context, 'aria-label')|default(null) %}
+	{% if aria_label is not empty %}
+		{% set attributes = attributes.setAttribute('aria-label', aria_label) %}
+	{% elseif attributes.get('aria-label') is empty %}
+		{% set label = color is defined ? color ~ ' alert' : 'alert' %}
+		{% set attributes = attributes.setAttribute('aria-label', label) %}
 	{% endif %}
 
 	{% embed 'portland:box' with {
   as: element,
-  color: color,
-  variant: variant,
-  attributes: attributes.addClass(classes),
+  color: color|default(null),
+  variant: variant|default(null),
+  attributes: attributes.addClass('alert', 'alert--' ~ size),
 } %}
 		{% block box_content %}
-			{% if icon %}
-				{% set alert_icon_content %}
-					{% include 'portland:icon' with {icon: icon, attributes: create_attribute().setAttribute('aria-hidden', 'true')} only %}
-				{% endset %}
-				{% include 'portland:alert-icon' with {alert_icon_content: alert_icon_content} only %}
-			{% endif %}
-			{% set alert_title_content %}
-				{{ title }}
-			{% endset %}
-			{% set alert_title_markup %}
-				{% if title %}
-					{% include 'portland:alert-title' with {
-						as: title_as|default('header'),
-						alert_title_content: alert_title_content
-					} only %}
-				{% endif %}
-			{% endset %}
-			{% set alert_description_markup %}
-				{% include 'portland:alert-description' with {alert_description_content: alert_content} only %}
-			{% endset %}
-			{% include 'portland:alert-content' with {
-				alert_content: alert_title_markup ~ alert_description_markup
-			} only %}
+			{{ content }}
 			{% if dismissible %}
 				<span class="alert__close">
 					<button type="button" class="button p-none" aria-label="Dismiss alert">

@@ -7,8 +7,12 @@ import {
 } from "@cityofportland/types/box";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 
-import "../icon/icon.component.yml";
+import Icon from "../icon/icon.component.yml";
 
+import AlertContent from "./alert-content/alert-content.component.yml";
+import AlertDescription from "./alert-description/alert-description.component.yml";
+import AlertIcon from "./alert-icon/alert-icon.component.yml";
+import AlertTitle from "./alert-title/alert-title.component.yml";
 import Alert from "./alert.component.yml";
 
 import "@cityofportland/components-css/utilities.css";
@@ -20,33 +24,89 @@ const ICON_MAP = new Map<BoxColorScheme, string>([
   ["warning", "triangle-exclamation"],
 ]);
 
-type Props = AlertProps & {
-  as: "div" | "section" | "article" | "aside";
-  color: BoxColorScheme;
-  variant: BoxColorVariation;
-  role: "status" | "alert";
+type ContentOptions = {
   icon: string;
   title: string;
-  title_as: "header" | "h2" | "h3" | "h4" | "h5" | "h6";
   description: string;
   link: boolean;
-  attributes: Record<string, string>;
 };
+
+const alertContent = ({
+  icon,
+  title,
+  description,
+  link,
+}: ContentOptions) => `
+  ${
+    icon
+      ? AlertIcon.component({
+          alert_icon_content: Icon.component({
+            icon,
+            defaultAttributes: [
+              ...Icon.args.defaultAttributes,
+              ["aria-hidden", "true"],
+            ],
+          }),
+        })
+      : ""
+  }
+  ${AlertContent.component({
+    alert_content: `
+      ${
+        title
+          ? AlertTitle.component({
+              alert_title_content: title,
+            })
+          : ""
+      }
+      ${AlertDescription.component({
+        alert_description_content: `<p>${description}${
+          link ? ' <a href="#" class="link">Read more</a>' : ""
+        }</p>`,
+      })}
+    `,
+  })}
+`;
+
+type Props = AlertProps &
+  ContentOptions & {
+  as:
+    | "div"
+    | "a"
+    | "section"
+    | "article"
+    | "aside"
+    | "main"
+    | "header"
+    | "footer"
+    | "nav"
+    | "span";
+    color: BoxColorScheme;
+    variant: BoxColorVariation;
+    role: "status" | "alert";
+    attributes: Record<string, string>;
+  };
 
 export default {
   title: "Components/Alert",
-  render: (args) => {
-    return `
-      ${Alert.component({ ...args })}
-    `;
-  },
   parameters: {
     layout: "padded",
   },
   argTypes: {
     as: {
       control: "select",
-      options: ["div", "section", "article", "aside"],
+      options: [
+        "div",
+        "a",
+        "section",
+        "article",
+        "aside",
+        "main",
+        "header",
+        "footer",
+        "nav",
+        "span",
+      ],
       description: "The HTML element to render the alert as",
     },
     color: {
@@ -82,12 +142,6 @@ export default {
       control: "text",
       description: "The heading text for the alert",
     },
-    title_as: {
-      name: "title as",
-      control: "select",
-      options: ["header", "h2", "h3", "h4", "h5", "h6"],
-      description: "The HTML element to render as",
-    },
     description: {
       control: "text",
       description: "The text description of the alert",
@@ -106,7 +160,6 @@ export default {
     dismissible: true,
     icon: "circle-info",
     title: "Alert heading",
-    title_as: "header",
     description: "This is the alert text content.",
     link: true,
   },
@@ -134,15 +187,32 @@ export const Basic: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
   args: {
     icon: true,
   },
-  render: ({ description, icon, link, title, ...args }) => {
+  render: ({
+    as,
+    color,
+    variant,
+    size,
+    role,
+    dismissible,
+    description,
+    icon,
+    link,
+    title,
+  }) => {
     return `
       ${Alert.component({
-        ...args,
-        icon: icon ? ICON_MAP.get(args.color) || "circle-question" : "",
-        title,
-        alert_content: `<p>${description}${
-          link ? ' <a href="#" class="link">Read more</a>' : ""
-        }</p>`,
+        as,
+        color,
+        variant,
+        size,
+        role,
+        dismissible,
+        content: alertContent({
+          icon: icon ? ICON_MAP.get(color) || "circle-question" : "",
+          title,
+          description,
+          link,
+        }),
       })}
     `;
   },
@@ -181,7 +251,7 @@ export const PortlandGov: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
     description: "This is the alert text content.",
     link: true,
   },
-  render: ({ description, dismissible, icon, link, size, title, title_as }) => {
+  render: ({ description, dismissible, icon, link, size, title }) => {
     const types = [
       ["info", "moderate", "status", "circle-info"],
       ["warning", "moderate", "status", "triangle-exclamation"],
@@ -200,12 +270,12 @@ export const PortlandGov: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
               size,
               role,
               dismissible,
-              icon: icon ? alertIcon : "",
-              title,
-              title_as,
-              alert_content: `<p>${description}${
-                link ? ' <a href="#" class="link">Read more</a>' : ""
-              }</p>`,
+              content: alertContent({
+                icon: icon ? alertIcon : "",
+                title,
+                description,
+                link,
+              }),
             })
           )
           .join("")}

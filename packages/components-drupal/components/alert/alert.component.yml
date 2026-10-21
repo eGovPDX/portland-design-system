@@ -22,31 +22,40 @@ props:
       description: The HTML element to render the alert as
       enum:
         - div
+        - a
         - section
         - article
         - aside
+        - main
+        - header
+        - footer
+        - nav
+        - span
       default: div
       examples:
         - div
 
     color:
       type: string
-      title: Alert color
-      description: Color scheme for background and content colors
+      title: Box color
+      description: Color scheme for the alert background and content colors
       enum:
         - default
+        - inverse
         - primary
         - secondary
         - success
         - danger
         - warning
         - info
+        - fixed
+        - disabled
       examples:
         - info
 
     variant:
       type: string
-      title: Alert variant
+      title: Box variant
       description: Color variation within the chosen color scheme
       enum:
         - subtle
@@ -62,23 +71,33 @@ props:
       type: string
       title: Alert size
       description: The visual style of the alert
-      default: default
       enum:
         - default
         - slim
+      default: default
       examples:
         - default
 
     role:
       type: string
       title: ARIA role
-      description: The ARIA role for the alert, used for accessible announcements
-      default: status
+      description: The ARIA role for the alert
       enum:
         - status
         - alert
+      default: status
       examples:
         - status
+
+    "aria-label":
+      type: string
+      title: Accessible label
+      description: Accessible name for the alert. Defaults to the color name followed by "alert".
+
+    attributes:
+      type: object
+      title: Additional attributes
+      description: Additional HTML attributes for the alert.
 
     dismissible:
       type: boolean
@@ -86,39 +105,10 @@ props:
       description: Whether the alert can be dismissed by the user
       default: true
 
-    icon:
-      type: string
-      title: Icon name
-      description: The name of the icon to render from the icon library. If omitted, no icon is shown.
-      examples:
-        - circle-info
-
-    title:
-      type: string
-      title: Alert heading
-      description: The heading text for the alert. If omitted, no heading is shown.
-      examples:
-        - Alert heading
-
-    title_as:
-      type: string
-      title: Alert title element
-      description: The HTML element for the alert title wrapper. Use a heading element when the page context requires one.
-      default: header
-      enum:
-        - header
-        - h2
-        - h3
-        - h4
-        - h5
-        - h6
-      examples:
-        - h3
-
 slots:
-  alert_content:
+  content:
     title: Content
-    description: The main text content of the alert.
+    description: The alert's sub-components, such as alert-icon and alert-content (containing alert-title and alert-description). The dismiss button is added automatically.
 
 libraryOverrides:
   dependencies:
