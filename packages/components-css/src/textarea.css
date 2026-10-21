@@ -1,0 +1,30 @@
+@import "./_control.css";
+
+@layer components {
+  .control,
+  .input {
+    > :is(textarea) {
+      @apply resize-none;
+    }
+
+    &:has(> :is(textarea)) {
+      @apply p-xs;
+      @apply flex;
+      @apply flex-col;
+      @apply items-start;
+
+      .control__addon,
+      .input__addon {
+        &.control__addon--start,
+        &.input__addon--start {
+          @apply order-first;
+        }
+
+        &.control__addon--end,
+        &.input__addon--end {
+          @apply order-last;
+        }
+      }
+    }
+  }
+}
