@@ -41,9 +41,9 @@
     &:has(> :invalid),
     &.control--error,
     &.input--error {
-      @apply inset-ring-md;
-      @apply ring-danger-emphasis;
-      @apply inset-ring-danger-emphasis;
+      @apply ring-md;
+      @apply ring-danger-strong;
+      @apply border-danger-strong;
     }
 
     .control__addon,
