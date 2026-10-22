@@ -29,7 +29,7 @@ export const AlertDescription: React.FC<
   React.PropsWithChildren<ReactBoxProps>
 > = ({ children, className, ...props }) => {
   return (
-    <Box className={mergeClasses(className, "alert__text")} {...props}>
+    <Box className={mergeClasses(className, "alert__description")} {...props}>
       {children}
     </Box>
   );
@@ -55,11 +55,7 @@ export const AlertTitle: React.FC<React.PropsWithChildren<ReactBoxProps>> = ({
   ...props
 }) => {
   return (
-    <Box
-      as={as}
-      className={mergeClasses(className, "alert__heading")}
-      {...props}
-    >
+    <Box as={as} className={mergeClasses(className, "alert__title")} {...props}>
       {children}
     </Box>
   );
