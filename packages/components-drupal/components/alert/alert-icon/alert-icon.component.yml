@@ -10,9 +10,6 @@ props:
       type: string
       title: HTML element type
       default: span
-    attributes:
-      type: object
-      title: Additional attributes
 
 slots:
   alert_icon_content:

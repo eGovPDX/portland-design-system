@@ -94,11 +94,6 @@ props:
       title: Accessible label
       description: Accessible name for the alert. Defaults to the color name followed by "alert".
 
-    attributes:
-      type: object
-      title: Additional attributes
-      description: Additional HTML attributes for the alert.
-
     dismissible:
       type: boolean
       title: Dismissible
@@ -113,5 +108,3 @@ slots:
 libraryOverrides:
   dependencies:
     - core/drupal
-  js:
-    alert.js: { attributes: { type: "module" } }
