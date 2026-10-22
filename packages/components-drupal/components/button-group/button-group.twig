@@ -23,6 +23,14 @@
     {% set attributes = attributes.setAttribute('aria-label', label) %}
 {% endif %}
 
+{# Put attribute classes at the end of the class list #}
+{% if attributes.get('class') is defined and attributes.get('class') is not empty %}
+    {# Hack to clone the attribute classes object #}
+    {% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
+    {% set attributes = attributes.removeClass(attribute_classes) %}
+    {% set classes = classes|merge(attribute_classes) %}
+{% endif %}
+
 {% apply spaceless %}
     <div {{ attributes.addClass(classes).setAttribute('role', 'group') }}>
         <div class="button-group__items">
