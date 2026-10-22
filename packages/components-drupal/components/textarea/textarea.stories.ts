@@ -8,7 +8,6 @@ import {
 } from "@cityofportland/types/textarea";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 
-import Box from "../box/box.component.yml";
 import Button from "../button/button.component.yml";
 import Icon from "../icon/icon.component.yml";
 
@@ -121,9 +120,6 @@ export default {
     characterCount: false,
     customValidity: false,
   },
-} satisfies Meta<StoryArgs>;
-
-export const Basic: StoryObj<StoryArgs> = {
   afterEach: ({ args }) => {
     const { id, customValidity } = args;
 
@@ -131,12 +127,16 @@ export const Basic: StoryObj<StoryArgs> = {
       const element = document.getElementById(id) as HTMLTextAreaElement;
 
       if (element) {
+        console.debug(`Setting custom validity for element`, element);
         element.setCustomValidity(
           customValidity ? "Custom validity message" : ""
         );
       }
     }
   },
+} satisfies Meta<StoryArgs>;
+
+export const Basic: StoryObj<StoryArgs> = {
   render: ({ id, name, customValidity, ...args }) => {
     return `
     <div class="grid grid-cols-1 gap-xs">
@@ -172,21 +172,6 @@ export const Addons: StoryObj<
   args: {
     prefix: true,
     suffix: true,
-  },
-  afterEach: ({ args }) => {
-    const { customValidity } = args;
-
-    if (customValidity) {
-      const elements = document.getElementsByTagName(
-        "textarea"
-      ) as HTMLCollectionOf<HTMLTextAreaElement>;
-
-      for (const element of elements) {
-        element.setCustomValidity(
-          customValidity ? "Custom validity message" : ""
-        );
-      }
-    }
   },
   render: ({ prefix, suffix, ...args }) => `
 	<form class="grid grid-cols-1 gap-xl">
@@ -256,7 +241,7 @@ export const Addons: StoryObj<
                     size: "3xs",
                     button_content: Icon.component({
                       icon: arrowsRotate.name,
-                      size: "md",
+                      size: "sm",
                     }),
                   })}`,
                   announce: false,
