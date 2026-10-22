@@ -53,10 +53,6 @@ export default {
       options: BOX_VARIANTS,
       description: "Color variation within the chosen color scheme",
     },
-    content: {
-      control: "object",
-      description: "The text content of the box",
-    },
   },
   args: {
     as: "div",
@@ -78,9 +74,6 @@ export const Basic: StoryObj<Props & { border: boolean }> = {
   },
   args: {
     border: false,
-  },
-  parameters: {
-    controls: { exclude: ["content"] },
   },
   render: ({ as, border, color, variant }) => {
     return `
@@ -104,7 +97,7 @@ export const Basic: StoryObj<Props & { border: boolean }> = {
 export const Gallery: Story = {
   parameters: {
     layout: "fullscreen",
-    controls: { exclude: ["color", "variant", "content"] },
+    controls: { exclude: ["color", "variant"] },
   },
   render: ({ as }) => {
     return `
@@ -158,7 +151,7 @@ export const Gallery: Story = {
 export const Variants: Story = {
   parameters: {
     layout: "fullscreen",
-    controls: { exclude: ["variant", "content"] },
+    controls: { exclude: ["variant"] },
   },
   render: ({ as, color }) => {
     return `
@@ -238,7 +231,7 @@ export const Nested: StoryObj<
   },
   parameters: {
     layout: "fullscreen",
-    controls: { exclude: ["as", "color", "variant", "content"] },
+    controls: { exclude: ["as", "color", "variant"] },
   },
   render: ({ as, outerColor, outerVariant, innerColor, innerVariant }) => {
     return `
@@ -273,7 +266,7 @@ export const Nested: StoryObj<
 export const Page: Story = {
   parameters: {
     layout: "fullscreen",
-    controls: { exclude: ["as", "variant", "content"] },
+    controls: { exclude: ["as", "variant"] },
   },
   render: ({ color }) => {
     return `
