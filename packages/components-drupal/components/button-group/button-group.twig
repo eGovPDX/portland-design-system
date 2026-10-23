@@ -33,8 +33,6 @@
 
 {% apply spaceless %}
     <div {{ attributes.addClass(classes).setAttribute('role', 'group') }}>
-        <div class="button-group__items">
-            {{- content -}}
-        </div>
+        {{- content -}}
     </div>
 {% endapply %}
