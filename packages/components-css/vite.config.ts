@@ -42,7 +42,11 @@ const virtualDarkMode = ({
     name: "virtual-dark-mode",
     enforce: "pre",
     transform(code: string, id: string) {
-      if (mode == "development" && Object.values(entry).includes(id)) {
+      if (
+        mode == "development" &&
+        Object.values(entry).includes(id) &&
+        code.includes("@variant dark")
+      ) {
         // Only include dark mode variants in development for faster builds
         return ["@custom-variant dark (&:where(.dark, .dark *));", code].join(
           EOL
