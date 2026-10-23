@@ -57,8 +57,16 @@ type Story = StoryObj<StoryProps>;
 export const Basic: Story = {};
 
 export const NarrowContainer: Story = {
+  parameters: {
+    layout: "fullscreen",
+  },
   decorators: [
     (story) =>
-      `<div class="@container w-[15rem] border-md p-sm">${story()}</div>`,
+      `
+    <div class="@container w-full sm:w-1/4 p-xs border">
+    ${story()}
+    </div>`,
+    (story) =>
+      `<div class="min-h-screen flex justify-center items-center p-lg">${story()}</div>`,
   ],
 };
