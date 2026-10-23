@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Template for Portland Alert component.
+ *
+ * Available variables:
+ * - as: HTML element to use (div, section, article, aside)
+ * - color: Box color scheme
+ * - variant: Box color variation
+ * - size: Alert size (default, slim)
+ * - role: ARIA role (status, alert)
+ * - dismissible: Whether the alert can be dismissed
+ * - content: Alert content (slot). Compose with portland:alert-icon, portland:alert-content, portland:alert-title and portland:alert-description.
+ * - attributes: Additional HTML attributes.
+ */
+#}
+
+
+{% set element = as|default('div') %}
+{% set size = size|default('default') %}
+{% set dismissible = dismissible is defined ? dismissible : true %}
+{% set role = role|default('status') %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+
+{% if attributes['role'] is empty %}
+  {% set attributes = attributes.setAttribute('role', role) %}
+{% endif %}
+
+{% embed 'portland:box' with {
+	as: element,
+	color: color|default(null),
+	variant: variant|default(null),
+	attributes: attributes.addClass('alert', 'alert--' ~ size),
+} %}
+  {% block box_content %}
+    {% apply spaceless %}
+      {{ content }}
+      {% if dismissible %}
+        <span class="alert__close">
+          <button type="button" class="button p-none" aria-label="Dismiss alert">
+            {% include 'portland:icon' with {
+							icon: 'xmark', 
+							size: 'sm', 
+							attributes: create_attribute().setAttribute('aria-hidden', 'true')
+						} only %}
+          </button>
+        </span>
+      {% endif %}
+    {% endapply %}
+  {% endblock %}
+{% endembed %}
+
