@@ -116,19 +116,6 @@ export default defineConfig(({ mode }) => {
       },
       outDir: "dist",
       minify: mode === "production" ? "esbuild" : false, // Only minify in production
-      terserOptions: {
-        compress: {
-          drop_console: mode === "production", // Remove console.log in production only
-          drop_debugger: true, // Always remove debugger statements
-        },
-        mangle: {
-          keep_classnames: true, // Keep class names for web components
-          keep_fnames: true, // Keep function names for Drupal behaviors
-        },
-        format: {
-          comments: false, // Remove comments
-        },
-      },
     },
     plugins: [
       {

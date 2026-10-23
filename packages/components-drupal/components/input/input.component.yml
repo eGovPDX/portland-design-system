@@ -55,7 +55,7 @@ props:
       type: boolean
       default: false
 
-    autocomplete:
+    autoComplete:
       type: string
 
     minlength:
@@ -71,9 +71,11 @@ props:
       type: string
 
 slots:
+  addons:
+    description: Slot for control-addon components to be displayed along with the input field.
+  after:
+    description: Slot after the control wrapper
+  before:
+    description: Slot prior to the control wrapper
   content:
-    description: Slot for additional content inside the input wrapper.
-  prefix:
-    description: Slot for content to be displayed before the input field.
-  suffix:
-    description: Slot for content to be displayed after the input field.
+    description: Slot for content inside the control wrapper.

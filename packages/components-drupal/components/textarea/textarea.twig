@@ -1,0 +1,48 @@
+{% extends 'portland:input' %}
+
+{% set wrapper_element = 'div' %}
+{% set wrapper_attributes = wrapper_attributes|default(create_attribute()) %}
+
+{% set input_attributes = input_attributes|default(create_attribute()) %}
+
+{% set required = required|default(false) %}
+{% set disabled = disabled|default(false) %}
+
+{% set wrapper_attributes = wrapper_attributes.addClass(['control']) %}
+
+{% if state is defined %}
+  {% set wrapper_attributes = wrapper_attributes.addClass('control--' ~ state) %}
+{% endif %}
+
+{% set input_attributes = input_attributes
+  .setAttribute('cols', cols|default(20))
+  .setAttribute('rows', rows|default(null))
+  .setAttribute('spellcheck', spellCheck|default(null)|escape)
+  .setAttribute('wrap', wrap|default(null)|escape)
+%}
+
+{% if autoCorrect is defined %}
+  {% set input_attributes = input_attributes.setAttribute('autocorrect', autoCorrect ? 'on' : 'off') %}
+{% endif %}
+
+{% if characterCount %}
+  {% set input_attributes = input_attributes.setAttribute('data-character-count', id ~ '__character-count') %}
+{% endif %}
+
+{% if characterCount and maxLength is defined %}
+  {% set input_attributes = input_attributes.setAttribute('aria-describedby', id ~ '__character-count') %}
+
+  {% apply spaceless %}
+    {% block after %}
+      <div id="{{ id ~ '__character-count' }}"></div>
+    {% endblock %}
+  {% endapply %}
+{% endif %}
+
+{% apply spaceless %}
+  {% block content %}  
+    <textarea {{ input_attributes }}>
+      {{- value -}}
+    </textarea>
+  {% endblock %}
+{% endapply %}

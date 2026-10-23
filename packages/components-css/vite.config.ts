@@ -20,7 +20,9 @@ const all = readdirSync(COMPONENTS_DIR, {
   .filter((file) => extname(file) === ".css");
 
 // Separate base/utility files from component files
-const components = all.filter((file) => !baseFiles.includes(file));
+const components = all.filter(
+  (file) => !baseFiles.includes(file) && !basename(file).startsWith("_")
+);
 
 // Build entry points for individual files
 const entries = components.reduce(
