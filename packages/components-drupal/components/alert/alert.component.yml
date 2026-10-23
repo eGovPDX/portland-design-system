@@ -89,11 +89,6 @@ props:
       examples:
         - status
 
-    "aria-label":
-      type: string
-      title: Accessible label
-      description: Accessible name for the alert. Defaults to the color name followed by "alert".
-
     dismissible:
       type: boolean
       title: Dismissible
