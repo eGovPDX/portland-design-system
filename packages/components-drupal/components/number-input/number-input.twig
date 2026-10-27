@@ -4,6 +4,7 @@
   .setAttribute('min', min|default(null))
   .setAttribute('max', max|default(null))
   .setAttribute('step', step|default(null))
+  .setAttribute('list', list|default(null)|escape)
 %}
 
 {% include 'portland:input' with {

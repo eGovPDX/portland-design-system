@@ -33,17 +33,21 @@ export default {
       control: "text",
       description: "The input name submitted with a form",
     },
-    value: {
-      control: "number",
-      description: "The input value",
-    },
-    placeholder: {
-      control: "text",
-      description: "Placeholder text shown when the input is empty",
+    readOnly: {
+      control: "boolean",
+      description: "Whether the input is read-only",
     },
     required: {
       control: "boolean",
       description: "Whether the input is required",
+    },
+    disabled: {
+      control: "boolean",
+      description: "Whether the input is disabled",
+    },
+    placeholder: {
+      control: "text",
+      description: "Placeholder text shown when the input is empty",
     },
     min: {
       control: "number",
@@ -57,13 +61,17 @@ export default {
       control: "number",
       description: "The allowed stepping interval",
     },
+    list: {
+      control: "text",
+      description: "The id of a datalist element to be used with the input",
+    },
   },
   args: {
     id: "input-number",
     name: "input-number",
-    value: 0,
-    placeholder: "Enter a number",
     required: false,
+    readOnly: false,
+    disabled: false,
   },
 } satisfies Meta<NumberInputStoryArgs>;
 
@@ -131,6 +139,36 @@ export const NativeConstraints: StoryObj<NumberInputStoryArgs> = {
           min: 0,
           step: 2,
         })}
+      </div>
+    </form>
+  `,
+};
+
+export const WithDatalist: StoryObj<NumberInputStoryArgs> = {
+  render: ({
+    id = "number-list",
+    name = "number-list",
+    list = "number-suggestions",
+    customValidity,
+    ...args
+  }) => `
+    <form class="grid grid-cols-1 gap-xl">
+      <div>
+        <label class="block mb-xs" for="number-list">Type the value 0, 25, 50, 75 or 100 to see the suggestions from the datalist.</label>
+        ${NumberInput.component({
+          id,
+          name,
+          list,
+          customValidity,
+          ...args,
+        })}
+        <datalist id="number-suggestions">
+          <option value="0"></option>
+          <option value="25"></option>
+          <option value="50"></option>
+          <option value="75"></option>
+          <option value="100"></option>
+        </datalist>
       </div>
     </form>
   `,
