@@ -75,6 +75,7 @@ export interface NumberInputProps extends InputProps<NumberInputType> {
   min?: number;
   max?: number;
   step?: number;
+  list?: string;
 }
 
 export type AnyInputProps = TextInputProps | NumberInputProps;
