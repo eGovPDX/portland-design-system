@@ -50,6 +50,11 @@ props:
         - string
         - number
 
+    list:
+      type: string
+      title: Datalist id
+      description: The id of a datalist element that provides suggested values.
+
 slots:
   content:
     description: Slot for additional content inside the input wrapper.
