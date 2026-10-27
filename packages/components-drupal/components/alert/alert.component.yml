@@ -1,0 +1,105 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Alert
+
+# A longer description.
+description: A native Twig Alert component used to provide important messages to users, such as information, success, warning, and error messages. Composed of the Box, Button, and Icon components. Server-side rendered implementation matching the Portland Design System alert styles.
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+# Schema for the props. We support www.json-schema.org. Learn more about the syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your component template.
+  type: object
+
+  properties:
+    as:
+      type: string
+      title: HTML element type
+      description: The HTML element to render the alert as
+      enum:
+        - div
+        - a
+        - section
+        - article
+        - aside
+        - main
+        - header
+        - footer
+        - nav
+        - span
+      default: div
+      examples:
+        - div
+
+    color:
+      type: string
+      title: Box color
+      description: Color scheme for the alert background and content colors
+      enum:
+        - default
+        - inverse
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - fixed
+        - disabled
+      examples:
+        - info
+
+    variant:
+      type: string
+      title: Box variant
+      description: Color variation within the chosen color scheme
+      enum:
+        - subtle
+        - moderate
+        - emphasis
+        - strong
+        - light
+        - dark
+      examples:
+        - moderate
+
+    size:
+      type: string
+      title: Alert size
+      description: The visual style of the alert
+      enum:
+        - default
+        - slim
+      default: default
+      examples:
+        - default
+
+    role:
+      type: string
+      title: ARIA role
+      description: The ARIA role for the alert
+      enum:
+        - status
+        - alert
+      default: status
+      examples:
+        - status
+
+    dismissible:
+      type: boolean
+      title: Dismissible
+      description: Whether the alert can be dismissed by the user
+      default: true
+
+slots:
+  content:
+    title: Content
+    description: The alert's sub-components, such as alert-icon and alert-content (containing alert-title and alert-description). The dismiss button is added automatically.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
