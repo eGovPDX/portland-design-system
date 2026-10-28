@@ -61,10 +61,6 @@ export default {
       control: "number",
       description: "The allowed stepping interval",
     },
-    list: {
-      control: "text",
-      description: "The id of a datalist element to be used with the input",
-    },
   },
   args: {
     id: "input-number",
@@ -144,32 +140,3 @@ export const NativeConstraints: StoryObj<NumberInputStoryArgs> = {
   `,
 };
 
-export const WithDatalist: StoryObj<NumberInputStoryArgs> = {
-  render: ({
-    id = "number-list",
-    name = "number-list",
-    list = "number-suggestions",
-    customValidity,
-    ...args
-  }) => `
-    <form class="grid grid-cols-1 gap-xl">
-      <div>
-        <label class="block mb-xs" for="number-list">Type the value 0, 25, 50, 75 or 100 to see the suggestions from the datalist.</label>
-        ${NumberInput.component({
-          id,
-          name,
-          list,
-          customValidity,
-          ...args,
-        })}
-        <datalist id="number-suggestions">
-          <option value="0"></option>
-          <option value="25"></option>
-          <option value="50"></option>
-          <option value="75"></option>
-          <option value="100"></option>
-        </datalist>
-      </div>
-    </form>
-  `,
-};
