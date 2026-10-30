@@ -54,7 +54,7 @@
 {% endif %}
 
 {% if state is defined %}
-  {% set wrapper_attributes = wrapper_attributes.addClass('input--' ~ state) %}
+  {% set wrapper_attributes = wrapper_attributes.addClass('control--' ~ state) %}
 {% endif %}
 
 {% set describedby = input_attributes.getAttribute('aria-describedby') ? input_attributes.getAttribute('aria-describedby')|split(' ') : [] %}
