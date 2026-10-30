@@ -49,10 +49,6 @@
   {% set input_attributes = input_attributes.setAttribute('readonly', true) %}
 {% endif %}
 
-{% if multiple %}
-  {% set input_attributes = input_attributes.setAttribute('multiple', true) %}
-{% endif %}
-
 {% if state is defined %}
   {% set wrapper_attributes = wrapper_attributes.addClass('input--' ~ state) %}
 {% endif %}

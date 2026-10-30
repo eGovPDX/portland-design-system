@@ -9,48 +9,37 @@
  * - state: Select visual state (error, disabled)
  * - required: Whether the select is required
  * - disabled: Whether the select is disabled
- * - options: Select HTML options (slot)
+ * - placeholder: An option with a null value to add
+ * - content: Select HTML options (slot)
  * - attributes: Additional HTML attributes
  */
 #}
 
-{% set attributes = attributes|default(create_attribute()) %}
-{% set required = required|default(false) %}
-{% set disabled = disabled|default(false) %}
-{% set classes = ['select'] %}
+{% extends 'portland:input' %}
 
-{% if disabled or state == 'disabled' %}
-  {% set disabled = true %}
-  {% set state = 'disabled' %}
-  {% set attributes = attributes.setAttribute('disabled', true) %}
+{% set input_attributes = input_attributes|default(create_attribute()) %}
+
+{% if multiple %}
+  {% set input_attributes = input_attributes.setAttribute('multiple', true) %}
+
+  {% if size is defined and size is not null %}
+    {% set input_attributes = input_attributes.setAttribute('size', size) %}
+  {% endif %}
 {% endif %}
 
-{% if required %}
-  {% set attributes = attributes.setAttribute('required', true) %}
-{% endif %}
+{% block content %}
+  <select {{ input_attributes }}>
+    {% if placeholder and not multiple %}
+      <option value>{{ placeholder }}</option>
+    {% endif %}
+    {{ content }}
+  </select>
+  {% if not multiple %}
+    {% include 'portland:icon' with {
+      icon: 'chevron-down',
+      size: 'xs',
+      attributes: create_attribute().addClass('select__icon')
+    } only %}
+  {% endif %}
+{% endblock %}
 
-{% if state is defined %}
-  {% set classes = classes|merge(['select--' ~ state]) %}
-{% endif %}
-
-{% if state == 'error' %}
-  {% set attributes = attributes.setAttribute('aria-invalid', 'true') %}
-{% endif %}
-
-{# Put attribute classes at the end of the class list #}
-{% if attributes.get('class') is defined and attributes.get('class') is not empty %}
-  {# Hack to clone the attribute classes object #}
-  {% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
-  {% set attributes = attributes.removeClass(attribute_classes) %}
-  {% set classes = classes|merge(attribute_classes) %}
-{% endif %}
-
-{% set attributes = attributes
-  .addClass(classes)
-  .setAttribute('id', id|default(null)|escape)
-  .setAttribute('name', name|default(null)|escape)
-%}
-
-<select {{ attributes }}>
-  {{ options }}
-</select>

@@ -6,7 +6,7 @@
 
 {% set attributes = attributes.setAttribute("id", id) %}
 
-{% set classes = ["input__addon", "input__addon--" ~ orientation] %}
+{% set classes = ["control__addon", "control__addon--" ~ orientation] %}
 
 {% if not announce %}
   {% set attributes = attributes.setAttribute("aria-hidden", "true") %}
