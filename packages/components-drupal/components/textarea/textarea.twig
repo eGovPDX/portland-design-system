@@ -17,6 +17,7 @@
 {% set input_attributes = input_attributes
   .setAttribute('cols', cols|default(20))
   .setAttribute('rows', rows|default(null))
+  .setAttribute('autocapitalize', autoCapitalize|default(null)|escape)
   .setAttribute('spellcheck', spellCheck|default(null)|escape)
   .setAttribute('wrap', wrap|default(null)|escape)
 %}
