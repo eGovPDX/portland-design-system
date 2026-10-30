@@ -38,7 +38,23 @@ props:
       description: Whether the select is disabled
       default: false
 
+    multiple:
+      type: boolean
+      title: Multiple
+      description: Whether this is a multi-select element
+      default: false
+
+    size:
+      type: number
+      title: Size
+      description: How many options to show at a time
+
+    placeholder:
+      type: string
+      title: Placeholder
+      description: A placeholder option
+
 slots:
-  options:
-    title: Options
-    description: Standard HTML option elements. Use the selected attribute on an option to set the selected value.
+  content:
+    title: Content
+    description: Internal content for the Select. Should contain option elements to provide options.
