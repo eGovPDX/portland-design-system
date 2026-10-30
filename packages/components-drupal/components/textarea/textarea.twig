@@ -41,7 +41,7 @@
 
 {% apply spaceless %}
   {% block content %}  
-    <textarea {{ input_attributes }}>
+    <textarea {{ input_attributes.removeAttribute('value') }}>
       {{- value -}}
     </textarea>
   {% endblock %}
