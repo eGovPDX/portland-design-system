@@ -1,0 +1,60 @@
+@import "./base.css";
+@reference "./box.css";
+
+@layer components {
+  /* Generic wrapper for any field control. */
+  .control,
+  .input {
+    /* Keep .input as a backwards-compatible wrapper alias. */
+    @apply scheme-light;
+
+    @variant dark {
+      @apply scheme-dark;
+    }
+
+    @apply w-full;
+    @apply border-sm;
+    @apply gap-xs;
+
+    * {
+      @apply focus:outline-none;
+      @apply focus-visible:outline-none;
+    }
+
+    > :not(.control__addon),
+    > :not(.input__addon) {
+      @apply appearance-none;
+      /* @apply w-full; */
+      @apply flex-1;
+      @apply bg-transparent;
+    }
+
+    /* Avoid :has(:focus), which Storybook's pseudo-states addon misrewrites. */
+    &:focus-within {
+      @apply outline-lg;
+      @apply outline-offset-3xs;
+    }
+
+    &:has(> :disabled),
+    &.control--disabled,
+    &.input--disabled {
+      @apply box;
+      @apply box-disabled-subtle;
+      @apply ring-disabled-moderate;
+    }
+
+    &:has(> :invalid),
+    &.control--error,
+    &.input--error {
+      @apply inset-ring-md;
+      @apply ring-danger-emphasis;
+      @apply inset-ring-danger-emphasis;
+    }
+
+    .control__addon,
+    .input__addon {
+      @apply flex-none;
+      @apply select-none;
+    }
+  }
+}

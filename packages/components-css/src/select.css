@@ -1,0 +1,51 @@
+@import "./_control.css";
+
+@layer components {
+  .control,
+  .input {
+    &:has(> select) {
+      @apply inline-grid;
+      grid-template-columns: max-content minmax(0, 1fr) max-content;
+      @apply items-center;
+      @apply gap-none;
+
+      .control__addon,
+      .input__addon {
+        @apply px-xs;
+
+        &.control__addon--start,
+        &.input__addon--start {
+          grid-column: 1;
+          grid-row: 1;
+        }
+
+        &.control__addon--end,
+        &.input__addon--end {
+          grid-column: 3;
+          grid-row: 1;
+        }
+      }
+    }
+
+    > select {
+      grid-column: 2;
+      grid-row: 1;
+      @apply p-xs;
+      @apply pe-2xl;
+
+      + .select__icon {
+        grid-column: 2;
+        grid-row: 1;
+        @apply justify-self-end;
+        @apply me-xs;
+
+        @apply pointer-events-none;
+        @apply flex-none;
+      }
+
+      &:has(~ .control__addon--start, ~ .input__addon--start) {
+        @apply pl-none;
+      }
+    }
+  }
+}

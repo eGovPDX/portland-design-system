@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Template for Portland select component.
+ *
+ * Available variables:
+ * - id: Select HTML id
+ * - name: Select HTML name
+ * - state: Select visual state (error, disabled)
+ * - required: Whether the select is required
+ * - disabled: Whether the select is disabled
+ * - placeholder: An option with a null value to add
+ * - content: Select HTML options (slot)
+ * - attributes: Additional HTML attributes
+ */
+#}
+
+{% extends 'portland:input' %}
+
+{% set input_attributes = input_attributes|default(create_attribute()) %}
+
+{% if multiple %}
+  {% set input_attributes = input_attributes.setAttribute('multiple', true) %}
+
+  {% if size is defined and size is not null %}
+    {% set input_attributes = input_attributes.setAttribute('size', size) %}
+  {% endif %}
+{% endif %}
+
+{% block content %}
+  <select {{ input_attributes }}>
+    {% if placeholder and not multiple %}
+      <option value>{{ placeholder }}</option>
+    {% endif %}
+    {{ content }}
+  </select>
+  {% if not multiple %}
+    {% include 'portland:icon' with {
+      icon: 'chevron-down',
+      size: 'xs',
+      attributes: create_attribute().addClass('select__icon')
+    } only %}
+  {% endif %}
+{% endblock %}
+
