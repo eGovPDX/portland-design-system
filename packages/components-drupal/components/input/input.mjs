@@ -31,10 +31,12 @@ Drupal.behaviors["@cityofportland/components-drupal/control"] = {
 
       addDescribedBy(".input__addon--suffix");
 
-      input.setAttribute(
-        "aria-describedby",
-        Array.from(describedBy).filter(Boolean).join(" ")
-      );
+      if (describedBy.size) {
+        input.setAttribute(
+          "aria-describedby",
+          Array.from(describedBy).filter(Boolean).join(" ")
+        );
+      }
     });
   },
 };
