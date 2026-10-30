@@ -14,7 +14,6 @@
 
     @apply w-full;
     @apply border-sm;
-    @apply gap-xs;
 
     > :not(.control__addon) {
       @apply appearance-none;
@@ -24,8 +23,7 @@
       @apply focus-visible:outline-none;
     }
 
-    /* Focus ring driven by the inner control. */
-    &:has(> :focus-visible) {
+    &:focus-within {
       @apply outline-lg;
       @apply outline-offset-3xs;
     }
@@ -41,9 +39,9 @@
     &:has(> :invalid),
     &.control--error,
     &.input--error {
-      @apply ring-md;
-      @apply ring-danger-strong;
-      @apply border-danger-strong;
+      @apply inset-ring-md;
+      @apply inset-ring-danger-emphasis;
+      @apply border-danger-emphasis;
     }
 
     .control__addon,

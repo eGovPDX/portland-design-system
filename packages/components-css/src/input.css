@@ -4,21 +4,24 @@
   .control,
   .input {
     &:has(> input) {
-      @apply inline-flex;
+      @apply inline-grid;
+      grid-template-columns: max-content minmax(0, 1fr) max-content;
       @apply items-center;
 
       .control__addon,
       .input__addon {
         &.control__addon--start,
         &.input__addon--start {
-          @apply order-first;
-          @apply ml-xs;
+          grid-row: 1;
+          grid-column: 1;
+          @apply px-xs;
         }
 
         &.control__addon--end,
         &.input__addon--end {
-          @apply order-last;
-          @apply mr-xs;
+          grid-row: 1;
+          grid-column: 3;
+          @apply px-xs;
         }
       }
     }
