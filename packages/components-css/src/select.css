@@ -1,36 +1,51 @@
-@import "./base.css";
-@reference "./box.css";
+@import "./_control.css";
 
 @layer components {
-  .select {
-    @apply scheme-light;
+  .control,
+  .input {
+    &:has(> select) {
+      @apply inline-grid;
+      grid-template-columns: max-content minmax(0, 1fr) max-content;
+      @apply items-center;
+      @apply gap-none;
 
-    @variant dark {
-      @apply scheme-dark;
+      .control__addon,
+      .input__addon {
+        @apply px-xs;
+
+        &.control__addon--start,
+        &.input__addon--start {
+          grid-column: 1;
+          grid-row: 1;
+        }
+
+        &.control__addon--end,
+        &.input__addon--end {
+          grid-column: 3;
+          grid-row: 1;
+        }
+      }
     }
 
-    @apply w-full;
-    @apply ring-sm;
-    @apply p-xs;
+    > select {
+      grid-column: 2;
+      grid-row: 1;
+      @apply p-xs;
+      @apply pe-2xl;
 
-    &:focus,
-    &:focus-visible {
-      @apply outline-lg;
-      @apply outline-offset-2xs;
-    }
+      + .select__icon {
+        grid-column: 2;
+        grid-row: 1;
+        @apply justify-self-end;
+        @apply me-xs;
 
-    &:disabled,
-    &.select--disabled {
-      @apply box;
-      @apply box-disabled-subtle;
-      @apply ring-disabled-moderate;
-    }
+        @apply pointer-events-none;
+        @apply flex-none;
+      }
 
-    &:invalid,
-    &.select--error {
-      @apply inset-ring-md;
-      @apply ring-danger-emphasis;
-      @apply inset-ring-danger-emphasis;
+      &:has(~ .control__addon--start, ~ .input__addon--start) {
+        @apply pl-none;
+      }
     }
   }
 }

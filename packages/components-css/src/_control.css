@@ -16,16 +16,21 @@
     @apply border-sm;
     @apply gap-xs;
 
-    > :not(.control__addon) {
-      @apply appearance-none;
-      @apply w-full;
-      @apply bg-transparent;
+    * {
       @apply focus:outline-none;
       @apply focus-visible:outline-none;
     }
 
-    /* Focus ring driven by the inner control. */
-    &:has(> :focus-visible) {
+    > :not(.control__addon),
+    > :not(.input__addon) {
+      @apply appearance-none;
+      /* @apply w-full; */
+      @apply flex-1;
+      @apply bg-transparent;
+    }
+
+    /* Avoid :has(:focus), which Storybook's pseudo-states addon misrewrites. */
+    &:focus-within {
       @apply outline-lg;
       @apply outline-offset-3xs;
     }
