@@ -1,0 +1,53 @@
+@import "./base.css";
+@reference "./box.css";
+
+@layer components {
+  /* Generic wrapper for any field control. */
+  .control,
+  .input {
+    /* Keep .input as a backwards-compatible wrapper alias. */
+    @apply scheme-light;
+
+    @variant dark {
+      @apply scheme-dark;
+    }
+
+    @apply w-full;
+    @apply border-sm;
+
+    > :not(.control__addon) {
+      @apply appearance-none;
+      @apply w-full;
+      @apply bg-transparent;
+      @apply focus:outline-none;
+      @apply focus-visible:outline-none;
+    }
+
+    &:focus-within {
+      @apply outline-lg;
+      @apply outline-offset-3xs;
+    }
+
+    &:has(> :disabled),
+    &.control--disabled,
+    &.input--disabled {
+      @apply box;
+      @apply box-disabled-subtle;
+      @apply ring-disabled-moderate;
+    }
+
+    &:has(> :invalid),
+    &.control--error,
+    &.input--error {
+      @apply inset-ring-md;
+      @apply inset-ring-danger-emphasis;
+      @apply border-danger-emphasis;
+    }
+
+    .control__addon,
+    .input__addon {
+      @apply flex-none;
+      @apply select-none;
+    }
+  }
+}

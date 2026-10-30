@@ -1,5 +1,8 @@
+{% set wrapper_element = wrapper_element|default('span') %}
 {% set wrapper_attributes = wrapper_attributes|default(create_attribute()) %}
+
 {% set input_attributes = input_attributes|default(create_attribute()) %}
+
 {% set type = type|default('text') %}
 {% set required = required|default(false) %}
 {% set disabled = disabled|default(false) %}
@@ -14,12 +17,22 @@
   .setAttribute('placeholder', placeholder|default(null)|escape)
   .setAttribute('autocomplete', autoComplete|default(null)|escape)
   .setAttribute('autofocus', autoFocus|default(null))
-  .setAttribute('minlength', minLength|default(null))
-  .setAttribute('maxlength', maxLength|default(null))
-  .setAttribute('pattern', pattern|default(null)|escape)
   .setAttribute('accept', accept|default(null)|escape)
 %}
 
+{% if type in ['text', 'email', 'password', 'search', 'tel', 'url'] %}
+  {% if minLength is defined and minLength is not null %}
+    {% set input_attributes = input_attributes.setAttribute('minlength', minLength) %}
+  {% endif %}
+
+  {% if maxLength is defined and maxLength is not null %}
+    {% set input_attributes = input_attributes.setAttribute('maxlength', maxLength) %}
+  {% endif %}
+
+  {% if pattern is defined and pattern is not null %}
+    {% set input_attributes = input_attributes.setAttribute('pattern', pattern|escape) %}
+  {% endif %}
+{% endif %}
 
 {% if required %}
   {% set input_attributes = input_attributes.setAttribute('required', true) %}
@@ -41,25 +54,28 @@
 {% endif %}
 
 {% if state is defined %}
-  {% set wrapper_attributes = wrapper_attributes.addClass('input--' ~ state) %}
+  {% set wrapper_attributes = wrapper_attributes.addClass('control--' ~ state) %}
 {% endif %}
 
 {% set describedby = input_attributes.getAttribute('aria-describedby') ? input_attributes.getAttribute('aria-describedby')|split(' ') : [] %}
 
-{% if prefix is defined and prefix is not empty %}
-  {% set describedby = describedby|merge([id ~ '__prefix']) %}
+{% if describedby is not empty %}
+  {% set input_attributes = input_attributes.setAttribute('aria-describedby', describedby|join(' ')) %}
 {% endif %}
 
-{% if suffix is defined and suffix is not empty %}
-  {% set describedby = describedby|merge([id ~ '__suffix']) %}
-{% endif %}
-
-<span {{ wrapper_attributes }}>
-  <input {{ input_attributes.setAttribute('aria-describedby', describedby|join(' ')) }}>
-  {% block prefix %}
-    {{ prefix }}
+{% apply spaceless %}
+  {% block before %}
+    {{ before }}
   {% endblock %}
-  {% block suffix %}
-    {{ suffix }}
+  <{{ wrapper_element }} {{ wrapper_attributes }}>
+  {% block content %}
+    <input {{ input_attributes }}>
   {% endblock %}
-</span>
+  {% block addons %}
+    {{ addons }}
+  {% endblock %}
+  </{{ wrapper_element }}>
+  {% block after %}
+    {{ after }}
+  {% endblock %}
+{% endapply %}

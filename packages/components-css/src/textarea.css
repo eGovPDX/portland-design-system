@@ -1,0 +1,35 @@
+@import "./_control.css";
+
+@layer components {
+  .control,
+  .input {
+    &:has(> textarea) {
+      @apply p-xs;
+      @apply grid;
+      grid-template-rows: max-content minmax(0, 1fr) max-content;
+      @apply items-start;
+
+      .control__addon,
+      .input__addon {
+        &.control__addon--start,
+        &.input__addon--start {
+          grid-row: 1;
+          grid-column: 1;
+          @apply pb-xs;
+        }
+
+        &.control__addon--end,
+        &.input__addon--end {
+          grid-row: 3;
+          grid-column: 1;
+          @apply pt-xs;
+        }
+      }
+    }
+
+    > textarea {
+      grid-row: 2;
+      grid-column: 1;
+    }
+  }
+}
