@@ -1,0 +1,42 @@
+@import "./base.css";
+
+@layer components {
+  .button-group {
+    @apply flex;
+    @apply flex-wrap;
+    @apply gap-xs;
+
+    * {
+      @apply shrink-0;
+    }
+
+    &:not(.button-group--segmented) {
+      @container (max-width: theme(--breakpoint-xs)) {
+        @apply flex-col;
+        @apply gap-2xs;
+      }
+
+      @media (max-width: theme(--breakpoint-xs)) {
+        @apply flex-col;
+        @apply gap-2xs;
+      }
+    }
+
+    &.button-group--segmented {
+      @apply flex-nowrap;
+      @apply gap-3xs;
+
+      *:not(:first-child, :last-child) {
+        @apply rounded-none!;
+      }
+
+      *:first-child {
+        @apply rounded-r-none!;
+      }
+
+      *:last-child {
+        @apply rounded-l-none!;
+      }
+    }
+  }
+}
