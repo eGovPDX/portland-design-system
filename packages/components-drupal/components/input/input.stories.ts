@@ -6,10 +6,12 @@ import {
 } from "@cityofportland/types/input";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 
+import "../control/control.component.yml";
+
 import Icon from "../icon/icon.component.yml";
 
 import Input from "./input.component.yml";
-import InputAddon from "./input-addon/input-addon.component.yml";
+import ControlAddon from "../control/control-addon/control-addon.component.yml";
 
 type InputStoryArgs = TextInputProps & {
   customValidity?: boolean;
@@ -169,22 +171,29 @@ export const Addons: StoryObj<
         ...args,
         id: "input-text",
         name: "input-text",
-        prefix: prefix
-          ? InputAddon.component({
-              id: "input-text",
-              orientation: "start",
-              content: "https://",
-              announce: true,
-            })
-          : null,
-        suffix: suffix
-          ? InputAddon.component({
-              id: "input-text",
-              orientation: "end",
-              content: ".com",
-              announce: true,
-            })
-          : null,
+        addons: `
+        ${
+          prefix
+            ? ControlAddon.component({
+                id: "input-text",
+                orientation: "start",
+                content: "https://",
+                decorative: false,
+                describeControl: true,
+              })
+            : null
+        }
+        ${
+          suffix
+            ? ControlAddon.component({
+                id: "input-text",
+                orientation: "end",
+                content: ".com",
+                decorative: false,
+                describeControl: true,
+              })
+            : null
+        }`,
       })}
     </div>
     <div>
@@ -193,25 +202,31 @@ export const Addons: StoryObj<
         ...args,
         id: "input-icon",
         name: "input-icon",
-        prefix: prefix
-          ? InputAddon.component({
-              id: "input-icon",
-              orientation: "start",
-              content: Icon.component({ icon: creditCard.name, size: "sm" }),
-              announce: false,
-            })
-          : null,
-        suffix: suffix
-          ? InputAddon.component({
-              id: "input-icon",
-              orientation: "end",
-              content: Icon.component({
-                icon: circleArrowRight.name,
-                size: "sm",
-              }),
-              announce: false,
-            })
-          : null,
+        addons: `${
+          prefix
+            ? ControlAddon.component({
+                id: "input-icon",
+                orientation: "start",
+                content: Icon.component({ icon: creditCard.name, size: "sm" }),
+                decorative: true,
+                describeControl: false,
+              })
+            : null
+        }
+        ${
+          suffix
+            ? ControlAddon.component({
+                id: "input-icon",
+                orientation: "end",
+                content: Icon.component({
+                  icon: circleArrowRight.name,
+                  size: "sm",
+                }),
+                decorative: true,
+                describeControl: false,
+              })
+            : null
+        }`,
       })}
     </div>
 	</form>
