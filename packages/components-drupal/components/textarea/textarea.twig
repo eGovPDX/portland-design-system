@@ -21,14 +21,10 @@
 {% endif %}
 
 {% if maxLength is defined and maxLength is not null %}
-  {% set input_attributes = input_attributes.setAttribute('maxlength', maxLength) %}
-{% endif %}
-
-{% if characterCount and maxLength is defined and maxLength is not null %}
   {% set input_attributes = input_attributes
+    .setAttribute('maxlength', maxLength)
     .setAttribute('data-character-count', id ~ '__character-count')
-    .setAttribute('aria-describedby', id ~ '__character-count')
-  %}
+    .setAttribute('aria-describedby', id ~ '__character-count') %}
 {% endif %}
 
 {% block content %}
@@ -39,7 +35,7 @@
 
 {% block after %}
   {{ parent() }}
-  {% if characterCount and maxLength is defined and maxLength is not null %}
+  {% if maxLength is defined and maxLength is not null %}
     <div id="{{ id ~ '__character-count' }}"></div>
   {% endif %}
 {% endblock %}
