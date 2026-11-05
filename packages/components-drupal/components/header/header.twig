@@ -16,7 +16,7 @@
 {% set attributes = attributes|default(create_attribute()) %}
 {% set attributes = attributes.addClass('header') %}
 
-{% embed 'portland:box' with {
+{% embed 'portland_components:box' with {
   as: as|default('header'),
   color,
   variant,

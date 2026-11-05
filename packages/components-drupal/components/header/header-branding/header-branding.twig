@@ -13,7 +13,7 @@
         {% set attributes = attributes.setAttribute('href', href|default('#')) %}
     {% endif %}
 
-    {% include 'portland:box' with {
+    {% include 'portland_components:box' with {
         as: element,
         attributes: attributes,
         box_content: header_branding_content,

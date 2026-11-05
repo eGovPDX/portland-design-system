@@ -37,7 +37,7 @@
   {% set attributes = attributes|default(create_attribute()) %}
 
 
-  {% set attributes = attributes.addClass("button") %}
+  {% set attributes = attributes.addClass('button') %}
 
   {% if size %}
     {% set attributes = attributes.addClass('button--' ~ size) %}
@@ -60,17 +60,15 @@
     {% set attributes = attributes.setAttribute('href', href) %}
   {% endif %}
 
-  {% embed 'portland:box' with {
-  as: element,
-  color,
-  variant,
-  
-} %}
+  {% embed 'portland_components:box' with {
+    as: element,
+    color,
+    variant,
+  } %}
     {% block box_content %}
       {% block button_content %}
         {{ button_content }}
       {% endblock %}
     {% endblock %}
   {% endembed %}
-
 {% endapply %}
