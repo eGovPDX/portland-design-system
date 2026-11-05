@@ -20,7 +20,6 @@ export type TextAreaWrap = (typeof TEXTAREA_WRAP)[number];
 export type TextAreaProps = Omit<TextInputProps, "pattern" | "type"> & {
   autoCapitalize?: TextAreaAutoCapitalize;
   autoCorrect?: boolean;
-  characterCount?: boolean;
   cols?: number;
   rows?: number;
   spellCheck?: TextAreaSpellCheck;

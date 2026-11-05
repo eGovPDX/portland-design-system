@@ -100,10 +100,6 @@ export default {
       options: TEXTAREA_WRAP,
       description: "The wrap setting for the textarea",
     },
-    characterCount: {
-      control: "boolean",
-      description: "Whether to show the character count",
-    },
     customValidity: {
       control: "boolean",
       description: "Add a custom validity message for the input",
@@ -119,7 +115,6 @@ export default {
     disabled: false,
     readOnly: false,
     cols: 20,
-    characterCount: false,
     customValidity: false,
   },
   afterEach: ({ args }) => {

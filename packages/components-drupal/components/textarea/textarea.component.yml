@@ -65,9 +65,6 @@ props:
     maxLength:
       type: integer
 
-    characterCount:
-      type: boolean
-
     cols:
       type: integer
 
