@@ -51,17 +51,20 @@ props:
       type: boolean
       default: false
 
-    readonly:
+    readOnly:
       type: boolean
       default: false
 
     autoComplete:
       type: string
 
-    minlength:
+    autoFocus:
+      type: boolean
+
+    minLength:
       type: integer
 
-    maxlength:
+    maxLength:
       type: integer
 
     pattern:
