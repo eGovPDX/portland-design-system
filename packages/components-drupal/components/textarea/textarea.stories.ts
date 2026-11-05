@@ -8,11 +8,13 @@ import {
 } from "@cityofportland/types/textarea";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 
+import "../control/control.component.yml";
+
 import Button from "../button/button.component.yml";
 import Icon from "../icon/icon.component.yml";
 
 import Textarea from "./textarea.component.yml";
-import InputAddon from "../input/input-addon/input-addon.component.yml";
+import ControlAddon from "../control/control-addon/control-addon.component.yml";
 
 type StoryArgs = TextAreaProps & {
   customValidity?: boolean;
@@ -183,15 +185,22 @@ export const Addons: StoryObj<
         name: "input-icon",
         addons: `${
           prefix
-            ? InputAddon.component({
+            ? ControlAddon.component({
                 id: "input-icon",
                 orientation: "start",
                 defaultAttributes: [
-                  ...InputAddon.args.defaultAttributes,
+                  ...ControlAddon.args.defaultAttributes,
                   ["class", ["flex gap-xs"]],
+                  ["role", "group"],
+                  ["aria-label", "Formatting options"],
                 ],
                 content: `
               ${Button.component({
+                type: "button",
+                defaultAttributes: [
+                  ...Button.args.defaultAttributes,
+                  ["aria-label", "Insert heading"],
+                ],
                 color: "inverse",
                 variant: "subtle",
                 outline: true,
@@ -199,9 +208,18 @@ export const Addons: StoryObj<
                 button_content: Icon.component({
                   icon: heading.name,
                   size: "sm",
+                  defaultAttributes: [
+                    ...Icon.args.defaultAttributes,
+                    ["aria-hidden", "true"],
+                  ],
                 }),
               })}
               ${Button.component({
+                type: "button",
+                defaultAttributes: [
+                  ...Button.args.defaultAttributes,
+                  ["aria-label", "Insert unordered list"],
+                ],
                 color: "inverse",
                 variant: "subtle",
                 outline: true,
@@ -209,9 +227,18 @@ export const Addons: StoryObj<
                 button_content: Icon.component({
                   icon: listUl.name,
                   size: "sm",
+                  defaultAttributes: [
+                    ...Icon.args.defaultAttributes,
+                    ["aria-hidden", "true"],
+                  ],
                 }),
               })}
               ${Button.component({
+                type: "button",
+                defaultAttributes: [
+                  ...Button.args.defaultAttributes,
+                  ["aria-label", "Insert ordered list"],
+                ],
                 color: "inverse",
                 variant: "subtle",
                 outline: true,
@@ -219,22 +246,32 @@ export const Addons: StoryObj<
                 button_content: Icon.component({
                   icon: listOl.name,
                   size: "sm",
+                  defaultAttributes: [
+                    ...Icon.args.defaultAttributes,
+                    ["aria-hidden", "true"],
+                  ],
                 }),
               })}`,
-                announce: false,
+                decorative: false,
+                describeControl: false,
               })
             : ""
         }
           ${
             suffix
-              ? InputAddon.component({
+              ? ControlAddon.component({
                   id: "input-icon",
                   orientation: "end",
                   defaultAttributes: [
-                    ...InputAddon.args.defaultAttributes,
+                    ...ControlAddon.args.defaultAttributes,
                     ["class", ["flex justify-end"]],
                   ],
                   content: `${Button.component({
+                    type: "button",
+                    defaultAttributes: [
+                      ...Button.args.defaultAttributes,
+                      ["aria-label", "Refresh"],
+                    ],
                     color: "inverse",
                     variant: "subtle",
                     outline: true,
@@ -242,9 +279,14 @@ export const Addons: StoryObj<
                     button_content: Icon.component({
                       icon: arrowsRotate.name,
                       size: "sm",
+                      defaultAttributes: [
+                        ...Icon.args.defaultAttributes,
+                        ["aria-hidden", "true"],
+                      ],
                     }),
                   })}`,
-                  announce: false,
+                  decorative: false,
+                  describeControl: false,
                 })
               : ""
           }`,

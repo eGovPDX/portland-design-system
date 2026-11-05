@@ -1,0 +1,45 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Control addon
+description: Addon areas for form controls
+status: experimental
+
+props:
+  type: object
+  required:
+    - id
+  properties:
+    id:
+      type: string
+      title: Input id
+      description: The unique identifier for the parent input.
+      required: true
+
+    orientation:
+      type: string
+      title: Input addon orientation
+      description: The orientation of the input addon relative to the input field
+      enum:
+        - start
+        - end
+      default: start
+
+    decorative:
+      type: boolean
+      title: Decorative
+      description: Hide noninteractive decorative content from assistive technology. Defaults to false unless legacy announce is supplied. Never use for buttons or links.
+
+    describeControl:
+      type: boolean
+      title: Describe control
+      description: Include this addon's text in the field's accessible description. Defaults to false unless legacy announce is supplied. Ignored for decorative addons; do not enable for interactive content.
+
+    announce:
+      type: boolean
+      title: Announce (deprecated)
+      description: Legacy alias. True means exposed and descriptive; false means decorative. Explicit decorative and describeControl props override their respective legacy values.
+
+slots:
+  content:
+    description: Slot for content inside the input addon.

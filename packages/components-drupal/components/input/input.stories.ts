@@ -6,10 +6,12 @@ import {
 } from "@cityofportland/types/input";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 
+import "../control/control.component.yml";
+
 import Icon from "../icon/icon.component.yml";
 
 import Input from "./input.component.yml";
-import InputAddon from "./input-addon/input-addon.component.yml";
+import ControlAddon from "../control/control-addon/control-addon.component.yml";
 
 type InputStoryArgs = TextInputProps & {
   customValidity?: boolean;
@@ -172,21 +174,23 @@ export const Addons: StoryObj<
         addons: `
         ${
           prefix
-            ? InputAddon.component({
+            ? ControlAddon.component({
                 id: "input-text",
                 orientation: "start",
                 content: "https://",
-                announce: true,
+                decorative: false,
+                describeControl: true,
               })
             : null
         }
         ${
           suffix
-            ? InputAddon.component({
+            ? ControlAddon.component({
                 id: "input-text",
                 orientation: "end",
                 content: ".com",
-                announce: true,
+                decorative: false,
+                describeControl: true,
               })
             : null
         }`,
@@ -200,24 +204,26 @@ export const Addons: StoryObj<
         name: "input-icon",
         addons: `${
           prefix
-            ? InputAddon.component({
+            ? ControlAddon.component({
                 id: "input-icon",
                 orientation: "start",
                 content: Icon.component({ icon: creditCard.name, size: "sm" }),
-                announce: false,
+                decorative: true,
+                describeControl: false,
               })
             : null
         }
         ${
           suffix
-            ? InputAddon.component({
+            ? ControlAddon.component({
                 id: "input-icon",
                 orientation: "end",
                 content: Icon.component({
                   icon: circleArrowRight.name,
                   size: "sm",
                 }),
-                announce: false,
+                decorative: true,
+                describeControl: false,
               })
             : null
         }`,

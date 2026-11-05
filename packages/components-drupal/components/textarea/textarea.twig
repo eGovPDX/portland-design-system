@@ -1,18 +1,8 @@
-{% extends 'portland:input' %}
+{% extends 'portland:control' %}
 
 {% set wrapper_element = 'div' %}
-{% set wrapper_attributes = wrapper_attributes|default(create_attribute()) %}
 
 {% set input_attributes = input_attributes|default(create_attribute()) %}
-
-{% set required = required|default(false) %}
-{% set disabled = disabled|default(false) %}
-
-{% set wrapper_attributes = wrapper_attributes.addClass(['control']) %}
-
-{% if state is defined %}
-  {% set wrapper_attributes = wrapper_attributes.addClass('control--' ~ state) %}
-{% endif %}
 
 {% set input_attributes = input_attributes
   .setAttribute('cols', cols|default(20))
@@ -26,24 +16,30 @@
   {% set input_attributes = input_attributes.setAttribute('autocorrect', autoCorrect ? 'on' : 'off') %}
 {% endif %}
 
-{% if characterCount %}
-  {% set input_attributes = input_attributes.setAttribute('data-character-count', id ~ '__character-count') %}
+{% if minLength is defined and minLength is not null %}
+  {% set input_attributes = input_attributes.setAttribute('minlength', minLength) %}
 {% endif %}
 
-{% if characterCount and maxLength is defined %}
-  {% set input_attributes = input_attributes.setAttribute('aria-describedby', id ~ '__character-count') %}
-
-  {% apply spaceless %}
-    {% block after %}
-      <div id="{{ id ~ '__character-count' }}"></div>
-    {% endblock %}
-  {% endapply %}
+{% if maxLength is defined and maxLength is not null %}
+  {% set input_attributes = input_attributes.setAttribute('maxlength', maxLength) %}
 {% endif %}
 
-{% apply spaceless %}
-  {% block content %}  
-    <textarea {{ input_attributes.removeAttribute('value') }}>
-      {{- value -}}
-    </textarea>
-  {% endblock %}
-{% endapply %}
+{% if characterCount and maxLength is defined and maxLength is not null %}
+  {% set input_attributes = input_attributes
+    .setAttribute('data-character-count', id ~ '__character-count')
+    .setAttribute('aria-describedby', id ~ '__character-count')
+  %}
+{% endif %}
+
+{% block content %}
+  <textarea {{ input_attributes.removeAttribute('value') }}>
+    {{- value -}}
+  </textarea>
+{% endblock %}
+
+{% block after %}
+  {{ parent() }}
+  {% if characterCount and maxLength is defined and maxLength is not null %}
+    <div id="{{ id ~ '__character-count' }}"></div>
+  {% endif %}
+{% endblock %}
