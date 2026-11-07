@@ -21,11 +21,11 @@
   {% set classes = ['box'] %}
 
   {% if color is defined and variant is defined %}
-    {% set attributes = attributes.setAttribute("data-color", color) %}
-    {% set classes = classes|merge(["box--" ~ color]) %}
+    {% set attributes = attributes.setAttribute('data-color', color) %}
+    {% set classes = classes|merge(['box--' ~ color]) %}
 
-    {% set attributes = attributes.setAttribute("data-variant", variant) %}
-    {% set classes = classes|merge(["box--" ~ variant]) %}
+    {% set attributes = attributes.setAttribute('data-variant', variant) %}
+    {% set classes = classes|merge(['box--' ~ variant]) %}
   {% endif %}
 
   {# Put attribute classes at the end of the class list #}

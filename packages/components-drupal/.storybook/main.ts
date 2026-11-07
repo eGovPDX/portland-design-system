@@ -16,12 +16,12 @@ const config: StorybookConfig = {
       name: "storybook-addon-sdc", // 3. Configure addon.
       options: {
         sdcStorybookOptions: {
-          namespace: "portland",
+          namespace: "portland_components",
         },
         vitePluginTwigDrupalOptions: {
           // vite-plugin-twig-drupal options.
           namespaces: {
-            portland: join(cwd(), "./components"), // Your namespace and path to components.
+            portland_components: join(cwd(), "./components"), // Your namespace and path to components.
           },
         },
         jsonSchemaFakerOptions: {}, // json-schema-faker options.

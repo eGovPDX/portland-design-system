@@ -28,7 +28,7 @@
 {% endif %}
 
 {# Combine all classes #}
-{% set classes = ['card']|merge(layout_classes)|merge(attributes.classes|default([])|join(' ')|split(' '))%}
+{% set classes = ['card']|merge(layout_classes)|merge(attributes.classes|default([])|join(' ')|split(' ')) %}
 
 {# Put attribute classes at the end of the class list #}
 {% if attributes.get('class') is defined and attributes.get('class') is not empty %}
@@ -38,11 +38,11 @@
   {% set classes = classes|merge(attribute_classes) %}
 {% endif %}
 
-{% embed 'portland:box' with { 
+{% embed 'portland_components:box' with { 
   as: element,
   attributes: attributes.addClass(classes),
 } %}
-{% block box_content %}
-  {{ card_content }}
-{% endblock %}
+  {% block box_content %}
+    {{ card_content }}
+  {% endblock %}
 {% endembed %}

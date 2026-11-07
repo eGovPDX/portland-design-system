@@ -1,21 +1,21 @@
 {% set element = as|default('figure') %}
 {% set position = position|default('left') %}
 
-{% set classes = ["card__media"] %}
+{% set classes = ['card__media'] %}
 {% if inset %}
-  {% set classes = classes|merge(["card__media--inset"]) %}
+  {% set classes = classes|merge(['card__media--inset']) %}
 {% endif %}
 {% if position == 'left' %}
-  {% set classes = classes|merge(["card__media--left"]) %}
+  {% set classes = classes|merge(['card__media--left']) %}
 {% endif %}
 {% if position == 'right' %}
-  {% set classes = classes|merge(["card__media--right"]) %}
+  {% set classes = classes|merge(['card__media--right']) %}
 {% endif %}
 
-{% embed "portland:box" with {
+{% embed 'portland_components:box' with {
 	as: element,
 	attributes: attributes.addClass(classes)
-}%}
+} %}
   {% block box_content %}
     {{ card_media_content }}
   {% endblock %}

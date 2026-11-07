@@ -27,7 +27,7 @@
   {% set attributes = attributes.setAttribute('role', role) %}
 {% endif %}
 
-{% embed 'portland:box' with {
+{% embed 'portland_components:box' with {
 	as: element,
 	color: color|default(null),
 	variant: variant|default(null),
@@ -39,7 +39,7 @@
       {% if dismissible %}
         <span class="alert__close">
           <button type="button" class="button p-none" aria-label="Dismiss alert">
-            {% include 'portland:icon' with {
+            {% include 'portland_components:icon' with {
 							icon: 'xmark', 
 							size: 'sm', 
 							attributes: create_attribute().setAttribute('aria-hidden', 'true')
