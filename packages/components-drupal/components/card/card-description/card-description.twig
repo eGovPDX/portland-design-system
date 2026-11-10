@@ -1,8 +1,8 @@
 {% set element = as|default('div') %}
 
-{% set classes = ["card__description"] %}
+{% set classes = ['card__description'] %}
 
-{% embed "portland:box" with {
+{% embed 'portland_components:box' with {
 	as: element,
 	attributes: attributes.addClass(classes)
 }%}
