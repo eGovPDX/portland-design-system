@@ -26,8 +26,8 @@
     "build:dev": "node dist/cli/build.js --mode development",
     "clean": "rm -rf dist/",
     "dev": "node dist/cli/watch.js --mode development",
-    "storybook": "storybook dev -p 6007 --no-open",
-    "storybook:build": "storybook build"
+    "storybook": "storybook dev -p 6007 --no-open --disable-telemetry",
+    "storybook:build": "storybook build --disable-telemetry"
   },
   "devDependencies": {
     "@storybook/addon-themes": "^10.6.6",

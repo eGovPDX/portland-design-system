@@ -14,8 +14,8 @@
     "build": "vite build",
     "build:upstream": "pnpm --filter '{.}^...' build",
     "dev": "vite build --watch --mode development",
-    "storybook": "storybook dev -p 6006 --no-open",
-    "storybook:build": "storybook build"
+    "storybook": "storybook dev -p 6006 --no-open --disable-telemetry",
+    "storybook:build": "storybook build --disable-telemetry"
   },
   "dependencies": {
     "@cityofportland/design-tokens": "workspace:*",
