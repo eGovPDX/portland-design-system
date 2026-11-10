@@ -6,6 +6,7 @@ import prettier from "eslint-plugin-prettier/recommended";
 import react from "eslint-plugin-react";
 import reacthook from "eslint-plugin-react-hooks";
 import wc from "eslint-plugin-wc";
+import globals from "globals";
 import ts from "typescript-eslint";
 
 export default defineConfig(
@@ -15,6 +16,20 @@ export default defineConfig(
   eslint.configs.recommended,
   ts.configs.recommended,
   prettier,
+  {
+    files: [
+      "packages/components-drupal/components/**/*.{js,mjs,ts}",
+      "packages/components-drupal/.storybook/**/*.{js,mjs,ts}",
+    ],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        Drupal: "readonly",
+        drupalSettings: "readonly",
+        once: "readonly",
+      },
+    },
+  },
   {
     files: ["packages/components-lit/**"],
     ...lit.configs["flat/recommended"],

@@ -1,0 +1,51 @@
+{% set wrapper_element = wrapper_element|default('span') %}
+{% set wrapper_attributes = wrapper_attributes|default(create_attribute()) %}
+
+{% set wrapper_attributes = wrapper_attributes.addClass(['control']) %}
+
+{% set input_attributes = input_attributes|default(create_attribute()) %}
+
+{% set required = required|default(false) %}
+{% set disabled = disabled|default(false) %}
+
+{% set input_attributes = input_attributes
+  .setAttribute('name', name|default(null)|escape)
+  .setAttribute('id', id|default(null)|escape)
+  .setAttribute('placeholder', placeholder|default(null)|escape)
+  .setAttribute('autocomplete', autoComplete|default(null)|escape)
+  .setAttribute('autofocus', autoFocus|default(null))
+%}
+
+{% if required %}
+  {% set input_attributes = input_attributes.setAttribute('required', true) %}
+{% endif %}
+
+{% if disabled or state == 'disabled' %}
+  {% if state is not defined %}
+    {% set state = 'disabled' %}
+  {% endif %}
+  {% set input_attributes = input_attributes.setAttribute('disabled', true) %}
+{% endif %}
+
+{% if readOnly %}
+  {% set input_attributes = input_attributes.setAttribute('readonly', true) %}
+{% endif %}
+
+{% if state is defined %}
+  {% set wrapper_attributes = wrapper_attributes.addClass('control--' ~ state) %}
+{% endif %}
+
+{% apply spaceless %}
+  {% block before %}
+    {{ before }}
+  {% endblock %}
+  <{{ wrapper_element }} {{ wrapper_attributes }}>
+  {% block content %}{% endblock %}
+  {% block addons %}
+    {{ addons }}
+  {% endblock %}
+  </{{ wrapper_element }}>
+  {% block after %}
+    {{ after }}
+  {% endblock %}
+{% endapply %}

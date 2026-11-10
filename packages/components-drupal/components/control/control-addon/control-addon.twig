@@ -1,4 +1,3 @@
-{% set announce = announce|default(false) %}
 {% set attributes = attributes|default(create_attribute()) %}
 {% set orientation = orientation|default("start") %}
 
@@ -6,10 +5,14 @@
 
 {% set attributes = attributes.setAttribute("id", id) %}
 
-{% set classes = ["input__addon", "input__addon--" ~ orientation] %}
+{% set classes = ["control__addon", "control__addon--" ~ orientation] %}
 
-{% if not announce %}
+{% if decorative %}
   {% set attributes = attributes.setAttribute("aria-hidden", "true") %}
+{% endif %}
+
+{% if describeControl and not decorative %}
+  {% set attributes = attributes.setAttribute("data-describe-control", true) %}
 {% endif %}
 
 {% set announcement = orientation == "start" ? "prefix" : "suffix" %}
@@ -17,12 +20,12 @@
 {% set attributes = attributes.setAttribute("id", id ~ '__' ~ announcement) %}
 
 {% apply spaceless %}
-  <{{ element }} {{ attributes.addClass(classes) }}>
-  {% if announce %}
-    <span class="sr-only">{{ announcement }}</span>
-  {% endif %}
-  {% block content %}
-    {{ content }}
-  {% endblock %}
-  </{{ element }}>
+  <span {{ attributes.addClass(classes) }}>
+    {% if not decorative %}
+      <span class="sr-only">{{ announcement }}</span>
+    {% endif %}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </span>
 {% endapply %}

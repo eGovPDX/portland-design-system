@@ -1,0 +1,105 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Textarea
+description: A native HTML textarea with Portland Design System styling.
+status: experimental
+
+props:
+  type: object
+  properties:
+    state:
+      type: string
+      title: Input state
+      description: Visual state of the input
+      enum:
+        - error
+        - disabled
+
+    name:
+      type: string
+      required: true
+
+    id:
+      type: string
+      required: true
+
+    value:
+      type: string
+
+    placeholder:
+      type: string
+
+    required:
+      type: boolean
+      default: false
+
+    disabled:
+      type: boolean
+      default: false
+
+    readOnly:
+      type: boolean
+      default: false
+
+    autoCorrect:
+      type: boolean
+
+    autoCapitalize:
+      type: string
+      enum:
+        - none
+        - sentences
+        - words
+        - characters
+
+    autoComplete:
+      type: string
+
+    autoFocus:
+      type: boolean
+
+    minLength:
+      type: integer
+
+    maxLength:
+      type: integer
+
+    cols:
+      type: integer
+
+    rows:
+      type: integer
+
+    spellCheck:
+      type: string
+      enum:
+        - "true"
+        - "false"
+        - default
+
+    wrap:
+      type: string
+      enum:
+        - hard
+        - soft
+
+slots:
+  before:
+    description: Slot prior to the control wrapper.
+  content:
+    description: Slot for the textarea field inside the control wrapper.
+  addons:
+    description: Slot for addons inside the control wrapper, after the field.
+  after:
+    description: Slot after the control wrapper, before the character count.
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/components.portland_components--input
+    - core/once
+  js:
+    textarea.js:
+      attributes:
+        type: module
