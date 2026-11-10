@@ -15,7 +15,7 @@
  */
 #}
 
-{% extends 'portland:input' %}
+{% extends 'portland_components:input' %}
 
 {% set input_attributes = input_attributes|default(create_attribute()) %}
 
@@ -35,7 +35,7 @@
     {{ content }}
   </select>
   {% if not multiple %}
-    {% include 'portland:icon' with {
+    {% include 'portland_components:icon' with {
       icon: 'chevron-down',
       size: 'xs',
       attributes: create_attribute().addClass('select__icon')

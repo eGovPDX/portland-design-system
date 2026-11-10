@@ -4,7 +4,7 @@ import { type SelectProps } from "@cityofportland/types/select";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 
 import Icon from "../icon/icon.component.yml";
-import InputAddon from "../input/input-addon/input-addon.component.yml";
+import ControlAddon from "../control/control-addon/control-addon.component.yml";
 
 import Select from "./select.component.yml";
 
@@ -140,7 +140,7 @@ export const Addons: StoryObj<
         addons: `
         ${
           prefix
-            ? InputAddon.component({
+            ? ControlAddon.component({
                 id: "input-text",
                 orientation: "start",
                 content: "https://",
@@ -150,7 +150,7 @@ export const Addons: StoryObj<
         }
         ${
           suffix
-            ? InputAddon.component({
+            ? ControlAddon.component({
                 id: "input-text",
                 orientation: "end",
                 content: ".com",
@@ -174,7 +174,7 @@ export const Addons: StoryObj<
           .join(""),
         addons: `${
           prefix
-            ? InputAddon.component({
+            ? ControlAddon.component({
                 id: "input-icon",
                 orientation: "start",
                 content: Icon.component({ icon: creditCard.name, size: "sm" }),
@@ -184,7 +184,7 @@ export const Addons: StoryObj<
         }
         ${
           suffix
-            ? InputAddon.component({
+            ? ControlAddon.component({
                 id: "input-icon",
                 orientation: "end",
                 content: Icon.component({
