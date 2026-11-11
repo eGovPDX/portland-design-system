@@ -56,11 +56,10 @@ const preview: Preview = {
       },
       defaultTheme: "light",
     }),
-    (Story) => {
-      const story = Story();
+    (story) => {
       // Re-attach after render so behaviors run on each story load/refresh
       setTimeout(() => Drupal.attachBehaviors(document.body), 0);
-      return story;
+      return story();
     },
     (story) => {
       const selector = "body";
