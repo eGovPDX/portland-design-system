@@ -36,11 +36,7 @@
   {% set attributes = attributes|default(create_attribute()) %}
 
 
-  <<<<<<< HEAD
-  {% set attributes = attributes.addClass('button') %}
-  =======
   {% set classes = ['button'] %}
-  >>>>>>> eba1a9e (PGOV-2119 Put attribute classes at the end of the compoent's class list)
 
   {% if size %}
     {% set classes = classes|merge(['button--' ~ size]) %}
