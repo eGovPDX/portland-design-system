@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@cityofportland/design-tokens": "workspace:*",
+    "@cityofportland/icons": "workspace:*",
     "@storybook/addon-themes": "^10.6.6",
     "@storybook/react-vite": "^10.6.6",
     "@tailwindcss/vite": "^4.3.4",

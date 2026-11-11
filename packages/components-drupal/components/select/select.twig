@@ -34,12 +34,5 @@
     {% endif %}
     {{ content }}
   </select>
-  {% if not multiple %}
-    {% include 'portland_components:icon' with {
-      icon: 'chevron-down',
-      size: 'xs',
-      attributes: create_attribute().addClass('select__icon')
-    } only %}
-  {% endif %}
 {% endblock %}
 
