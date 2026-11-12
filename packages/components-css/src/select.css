@@ -27,16 +27,24 @@
       }
     }
 
+    &:has(> select:open) {
+      @apply outline-lg;
+      @apply outline-offset-2xs;
+    }
+
     > select {
       grid-column: 2;
       grid-row: 1;
-      field-sizing: content;
       @apply p-xs;
 
       &,
       &::picker(select) {
         appearance: base-select;
-        @apply box;
+      }
+
+      &::picker(select) {
+        @apply border-sm;
+        @apply border-current;
       }
 
       &::picker-icon {
