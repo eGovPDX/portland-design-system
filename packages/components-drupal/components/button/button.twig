@@ -36,18 +36,18 @@
   {% set attributes = attributes|default(create_attribute()) %}
 
 
-  {% set attributes = attributes.addClass('button') %}
+  {% set classes = ['button'] %}
 
   {% if size %}
-    {% set attributes = attributes.addClass('button--' ~ size) %}
+    {% set classes = classes|merge(['button--' ~ size]) %}
   {% endif %}
 
   {% if outline %}
-    {% set attributes = attributes.addClass('button--outline') %}
+    {% set classes = classes|merge(['button--outline']) %}
   {% endif %}
 
   {% if disabled %}
-    {% set attributes = attributes.addClass('button--disabled') %}
+    {% set classes = classes|merge(['button--disabled']) %}
   {% endif %}
 
   {% if element == 'button' %}
@@ -59,11 +59,22 @@
     {% set attributes = attributes.setAttribute('href', href) %}
   {% endif %}
 
+  {# Put attribute classes at the end of the class list #}
+  {% if attributes.get('class') is defined and attributes.get('class') is not empty %}
+    {# Hack to clone the attribute classes object #}
+    {% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
+    {% set attributes = attributes.removeClass(attribute_classes) %}
+    {% set classes = classes|merge(attribute_classes) %}
+  {% endif %}
+
+  {% set attributes = attributes.addClass(classes) %}
+
   {% embed 'portland_components:box' with {
-    as: element,
-    color,
-    variant,
-  } %}
+  as: element,
+  color,
+  variant,
+  
+} %}
     {% block box_content %}
       {% block button_content %}
         {{ button_content }}

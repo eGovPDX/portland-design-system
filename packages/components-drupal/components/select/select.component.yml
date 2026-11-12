@@ -1,0 +1,60 @@
+# This is so your IDE knows about the syntax for fixes and autocomplete.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: Select
+description: A native single-select with Portland Design System styling. Provide options as standard HTML option elements; set selected on an option to select its value.
+status: experimental
+
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      title: ID
+      description: The select element id
+
+    name:
+      type: string
+      title: Name
+      description: The form field name
+
+    state:
+      type: string
+      title: Select state
+      description: Visual state of the select
+      enum:
+        - error
+        - disabled
+
+    required:
+      type: boolean
+      title: Required
+      description: Whether a value must be selected before form submission
+      default: false
+
+    disabled:
+      type: boolean
+      title: Disabled
+      description: Whether the select is disabled
+      default: false
+
+    multiple:
+      type: boolean
+      title: Multiple
+      description: Whether this is a multi-select element
+      default: false
+
+    size:
+      type: number
+      title: Size
+      description: How many options to show at a time
+
+    placeholder:
+      type: string
+      title: Placeholder
+      description: A placeholder option
+
+slots:
+  content:
+    title: Content
+    description: Internal content for the Select. Should contain option elements to provide options.

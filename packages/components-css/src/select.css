@@ -1,0 +1,80 @@
+@import "./_control.css";
+
+@layer components {
+  .control,
+  .input {
+    &:has(> select) {
+      @apply inline-grid;
+      grid-template-columns: max-content minmax(0, 1fr) max-content;
+      @apply items-center;
+      @apply gap-none;
+
+      .control__addon,
+      .input__addon {
+        @apply px-xs;
+
+        &.control__addon--start,
+        &.input__addon--start {
+          grid-column: 1;
+          grid-row: 1;
+        }
+
+        &.control__addon--end,
+        &.input__addon--end {
+          grid-column: 3;
+          grid-row: 1;
+        }
+      }
+    }
+
+    &:has(> select:open) {
+      @apply outline-lg;
+      @apply outline-offset-2xs;
+    }
+
+    > select {
+      grid-column: 2;
+      grid-row: 1;
+      @apply p-xs;
+
+      &,
+      &::picker(select) {
+        appearance: base-select;
+      }
+
+      &::picker(select) {
+        @apply border-sm;
+        @apply border-current;
+      }
+
+      &::picker-icon {
+        @apply bg-current;
+        @apply w-md;
+
+        content: "";
+        mask: url("@cityofportland/icons/chevron-down.svg") center / contain
+          no-repeat;
+      }
+
+      option {
+        @apply p-2xs;
+
+        &:checked {
+          @apply box box-primary-subtle;
+        }
+
+        &:focus {
+          @apply box box-primary-emphasis;
+        }
+
+        &::checkmark {
+          content: "";
+        }
+      }
+
+      &:has(~ .control__addon--start, ~ .input__addon--start) {
+        @apply pl-none;
+      }
+    }
+  }
+}

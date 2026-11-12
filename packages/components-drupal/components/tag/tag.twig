@@ -12,23 +12,31 @@
 
 {% apply spaceless %}
 
-{# Set default values #}
-{% set variant = variant|default('info') %}
+  {# Set default values #}
+  {% set variant = variant|default('info') %}
 
-{# Variant classes #}
-{% set variant_classes = {
-  'info': ['tag--info'],
-  'success': ['tag--success'],
-  'warning': ['tag--warning'],
-  'danger': ['tag--danger'],
-}[variant] %}
+  {# Variant classes #}
+  {% set variant_classes = {
+    'info': ['tag--info'],
+    'success': ['tag--success'],
+    'warning': ['tag--warning'],
+    'danger': ['tag--danger'],
+  }[variant] %}
 
-{# Combine all classes #}
-{% set classes = ['tag']|merge(variant_classes) %}
+  {# Combine all classes #}
+  {% set classes = ['tag']|merge(variant_classes) %}
+
+  {# Put attribute classes at the end of the class list #}
+  {% if attributes.get('class') is defined and attributes.get('class') is not empty %}
+    {# Hack to clone the attribute classes object #}
+    {% set attribute_classes = attributes.get('class')|join(' ')|trim|split(' ') %}
+    {% set attributes = attributes.removeClass(attribute_classes) %}
+    {% set classes = classes|merge(attribute_classes) %}
+  {% endif %}
 
 {% endapply %}
-<span {{attributes.addClass(classes)}}>
-	{% block content %}
-		{{ content }}
-	{% endblock %}
+<span {{ attributes.addClass(classes) }}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
 </span>

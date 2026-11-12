@@ -98,6 +98,10 @@ importers:
         version: 5.9.3
 
   packages/components-css:
+    dependencies:
+      '@cityofportland/icons':
+        specifier: workspace:*
+        version: link:../icons
     devDependencies:
       '@cityofportland/design-tokens':
         specifier: workspace:*
