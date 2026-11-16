@@ -36,6 +36,16 @@
       &:has(~ .control__addon--end, ~ .input__addon--end) {
         @apply pr-none;
       }
+
+      &[type="number"]:has(~ .input__addon--end) {
+        appearance: textfield;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
     }
   }
 }

@@ -1,7 +1,10 @@
+import { anglesRight, anglesLeft } from "@cityofportland/icons";
 import type { NumberInputProps } from "@cityofportland/types/input";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 
 import NumberInput from "./number-input.component.yml";
+import InputAddon from "../input/input-addon/input-addon.component.yml";
+import Icon from "../icon/icon.component.yml";
 
 type NumberInputStoryArgs = Omit<NumberInputProps, "type"> & {
   customValidity?: boolean;
@@ -33,6 +36,10 @@ export default {
       control: "text",
       description: "The input name submitted with a form",
     },
+    value: {
+      control: "number",
+      description: "The input value",
+    },
     readOnly: {
       control: "boolean",
       description: "Whether the input is read-only",
@@ -44,10 +51,6 @@ export default {
     disabled: {
       control: "boolean",
       description: "Whether the input is disabled",
-    },
-    placeholder: {
-      control: "text",
-      description: "Placeholder text shown when the input is empty",
     },
     min: {
       control: "number",
@@ -103,7 +106,10 @@ export const Basic: StoryObj<NumberInputStoryArgs> = {
 };
 
 export const NativeConstraints: StoryObj<NumberInputStoryArgs> = {
-  render: () => `
+  parameters: {
+    controls: { exclude: ["value"] },
+  },
+  render: ({ value }) => `
     <form class="grid grid-cols-1 gap-xl">
       <div>
         <label class="block mb-xs" for="number-min">Minimum value is 1.</label>
@@ -111,7 +117,7 @@ export const NativeConstraints: StoryObj<NumberInputStoryArgs> = {
           id: "number-min",
           name: "number-min",
           type: "number",
-          value: -1,
+          value: value ?? -1,
           min: 1,
         })}
       </div>
@@ -121,7 +127,7 @@ export const NativeConstraints: StoryObj<NumberInputStoryArgs> = {
           id: "number-max",
           name: "number-max",
           type: "number",
-          value: 11,
+          value: value ?? 11,
           max: 10,
         })}
       </div>
@@ -131,7 +137,7 @@ export const NativeConstraints: StoryObj<NumberInputStoryArgs> = {
           id: "number-step",
           name: "number-step",
           type: "number",
-          value: 3,
+          value: value ?? 3,
           min: 0,
           step: 2,
         })}
@@ -140,3 +146,82 @@ export const NativeConstraints: StoryObj<NumberInputStoryArgs> = {
   `,
 };
 
+export const Addons: StoryObj<
+  NumberInputStoryArgs & { prefix: boolean; suffix: boolean }
+> = {
+  parameters: {
+    controls: { exclude: ["id", "name"] },
+  },
+  argTypes: {
+    prefix: { 
+      control: "boolean",
+      description: "Whether to show the prefix addon",
+    },
+    suffix: { 
+      control: "boolean",
+      description: "Whether to show the suffix addon",
+    },
+  },
+  args: {
+    prefix: true,
+    suffix: true,
+  },
+  render: ({ prefix, suffix, customValidity, ...args }) => `
+    <form class="grid grid-cols-1 gap-xl">
+      <div>
+        <label class="block mb-xs" for="number-input">
+          Number input with announced addons
+        </label>
+        ${NumberInput.component({
+          ...args,
+          id: "number-input",
+          name: "number-input",
+          type: "number",
+          prefix: prefix
+            ? InputAddon.component({
+                id: "number-input",
+                content: "$",
+                orientation: "start",
+                announce: true,
+              })
+            : null,
+          suffix: suffix
+            ? InputAddon.component({
+                id: "number-input",
+                content: ".00",
+                orientation: "end",
+                announce: true,
+              })
+            : null,
+        })}
+      </div>
+      <div>
+        <label class="block mb-xs" for="number-input">
+          Number input with unannounced addons
+        </label>
+        ${NumberInput.component({
+          ...args,
+          id: "number-input",
+          name: "number-input",
+          type: "number",
+          prefix: prefix
+            ? InputAddon.component({
+                id: "number-input",
+                content: Icon.component({ icon: anglesLeft.name, size: "sm" }),
+                orientation: "start",
+                announce: false,
+              })
+            : null,
+          suffix: suffix
+            ? InputAddon.component({
+                id: "number-input",
+                content: Icon.component({ icon: anglesRight.name, size: "sm" }),
+                orientation: "end",
+                announce: false,
+              })
+            : null,
+        })}
+      </div>
+    </form>
+  `,
+};
