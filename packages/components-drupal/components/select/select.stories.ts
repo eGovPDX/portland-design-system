@@ -128,7 +128,7 @@ export const Addons: StoryObj<
   render: ({ prefix, suffix, options, ...args }) => `
 	<form class="grid grid-cols-1 gap-xl">
     <div>
-      <label for="input-text" class="font-semibold text-heading-lg">With text addons that are announced</label>
+      <label for="select-text" class="font-semibold text-heading-lg">With text addons that are announced</label>
       ${Select.component({
         ...args,
         id: "select-text",
@@ -165,7 +165,7 @@ export const Addons: StoryObj<
       })}
     </div>
     <div>
-      <label for="input-icon" class="font-semibold text-heading-lg">With icon addons that are not announced</label>
+      <label for="select-icon" class="font-semibold text-heading-lg">With icon addons that are not announced</label>
       ${Select.component({
         ...args,
         id: "select-icon",
