@@ -1,5 +1,3 @@
-import once from "@drupal/once";
-
 (({ behaviors }) => {
   behaviors["@cityofportland/components-drupal/footer/menu"] = {
     attach: (context) => {

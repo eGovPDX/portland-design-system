@@ -153,9 +153,6 @@ importers:
       '@cityofportland/icons':
         specifier: workspace:*
         version: link:../icons
-      '@drupal/once':
-        specifier: ^1.0.1
-        version: 1.0.1
       zod:
         specifier: ^4.6.7
         version: 4.6.7
@@ -981,9 +978,6 @@ packages:
   '@csstools/css-tokenizer@4.0.2':
     resolution: {integrity: sha512-OoKoR0f76dCY666JlcbhmVTs2drYj1GUXZTYTcbUgJjh9Nv41aFfZ21bPQTERm5+L5cBDo466NltB2lplS5GBw==}
     engines: {node: '>=20.19.0'}
-
-  '@drupal/once@1.0.1':
-    resolution: {integrity: sha512-O8tQmNDBgSm3ADuFZ5OZlGxsrdsc+pEqd1NBoMpSzWwiOnWwC91tqDwnlX+mDh7sBJoJ+4vVwFh0NLUV4LPFvg==}
 
   '@dual-bundle/import-meta-resolve@4.2.1':
     resolution: {integrity: sha512-id+7YRUgoUX6CgV0DtuhirQWodeeA7Lf4i2x71JS/vtA5pRb/hIGWlw+G6MeXvsM+MXrz0VAydTGElX1rAfgPg==}
@@ -8779,8 +8773,6 @@ snapshots:
     optional: true
 
   '@csstools/css-tokenizer@4.0.2': {}
-
-  '@drupal/once@1.0.1': {}
 
   '@dual-bundle/import-meta-resolve@4.2.1': {}
 
