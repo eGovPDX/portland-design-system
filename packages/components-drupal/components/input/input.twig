@@ -5,9 +5,12 @@
 {% set type = type|default('text') %}
 
 {% set input_attributes = input_attributes
+  .setAttribute('accept', accept|default(null)|escape)
+  .setAttribute('autocomplete', autoComplete|default(null)|escape)
+  .setAttribute('autofocus', autoFocus|default(null))
+  .setAttribute('placeholder', placeholder|default(null)|escape)
   .setAttribute('type', type)
   .setAttribute('value', value|default(null)|escape)
-  .setAttribute('accept', accept|default(null)|escape)
 %}
 
 {% if type in ['text', 'email', 'password', 'search', 'tel', 'url'] %}

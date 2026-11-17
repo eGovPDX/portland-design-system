@@ -11,9 +11,6 @@
 {% set input_attributes = input_attributes
   .setAttribute('name', name|default(null)|escape)
   .setAttribute('id', id|default(null)|escape)
-  .setAttribute('placeholder', placeholder|default(null)|escape)
-  .setAttribute('autocomplete', autoComplete|default(null)|escape)
-  .setAttribute('autofocus', autoFocus|default(null))
 %}
 
 {% if required %}
