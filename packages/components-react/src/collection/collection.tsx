@@ -1,23 +1,23 @@
 import type { CollectionProps } from "@cityofportland/types/collection";
 import React from "react";
 
-import { Box } from "../box";
+import { Box, type ReactBoxProps } from "../box";
 import { mergeClasses } from "../utils";
 
 import "@cityofportland/components-css/collection.css";
 
-export type ReactCollectionProps = CollectionProps & {
-  children: React.ReactNode;
-  className?: string;
-};
+export type ReactCollectionProps<E extends React.ElementType = "ul"> =
+  ReactBoxProps<E, CollectionProps> & {
+    children: React.ReactNode;
+  };
 
-export const Collection = ({
+export function Collection({
   as = "ul",
   divider = false,
   children = null,
   className,
   ...props
-}: ReactCollectionProps) => {
+}: ReactCollectionProps<React.ElementType>) {
   const classes = mergeClasses(
     "collection",
     divider && "collection--divided",
@@ -29,4 +29,4 @@ export const Collection = ({
       {children}
     </Box>
   );
-};
+}

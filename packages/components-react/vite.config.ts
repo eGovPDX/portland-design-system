@@ -1,5 +1,6 @@
 import tailwind from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import ts from "@typescript/typescript6";
 import { dirname, resolve } from "path";
 import fs from "fs";
 import { defineConfig } from "vite";
@@ -37,7 +38,7 @@ export default defineConfig(({ mode }) => {
       cssCodeSplit: true,
       lib: {
         entry: fs
-          .readdirSync(resolve(__dirname, "src"), {
+          .readdirSync(resolve(import.meta.dirname, "src"), {
             recursive: true,
             encoding: "utf-8",
           })
@@ -45,7 +46,11 @@ export default defineConfig(({ mode }) => {
           .reduce(
             (acc, file) => {
               const name = dirname(file);
-              acc[`${name}/${name}.lib`] = resolve(__dirname, "src", file);
+              acc[`${name}/${name}.lib`] = resolve(
+                import.meta.dirname,
+                "src",
+                file
+              );
               return acc;
             },
             {} as Record<string, string>
@@ -71,6 +76,13 @@ export default defineConfig(({ mode }) => {
               entryRoot: "src",
               bundleTypes: {
                 bundledPackages: ["@cityofportland/types"],
+                invokeOptions: {
+                  // TypeScript 7 has no JS compiler API or lib/*.d.ts files.
+                  // Use the same TS 6 fallback as unplugin-dts for API Extractor.
+                  typescriptCompilerFolder: dirname(
+                    dirname(ts.getDefaultLibFilePath({}))
+                  ),
+                },
               },
             }),
           ]

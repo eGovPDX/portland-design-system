@@ -10,7 +10,9 @@ import { Tag } from "../tag";
 import { Collection, type ReactCollectionProps } from "./collection";
 import { CollectionItem } from "./collection-item";
 
-export default {
+type CollectionStoryProps = ReactCollectionProps<"div" | "ol" | "ul">;
+
+const meta: Meta<CollectionStoryProps> = {
   title: "Components/Collection",
   component: Collection,
   parameters: {
@@ -39,9 +41,11 @@ export default {
     as: "ul",
     divider: true,
   },
-} satisfies Meta<ReactCollectionProps>;
+};
 
-type Story = StoryObj<ReactCollectionProps>;
+export default meta;
+
+type Story = StoryObj<CollectionStoryProps>;
 
 export const Basic: Story = {
   parameters: {
