@@ -20,16 +20,16 @@
   },
   "homepage": "https://github.com/eGovPDX/portland-design-system#readme",
   "dependencies": {
-    "@actions/core": "^1.11.1",
+    "@actions/core": "^3.0.1",
     "@actions/github": "^9.1.1",
-    "js-yaml": "^4.3.2",
+    "js-yaml": "^5.5.0",
     "lodash": "^4.18.1"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.27",
     "@types/node": "^24.19.2",
-    "tsdown": "^0.22.14",
-    "typescript": "^5.9.3"
+    "tsdown": "^0.23.7",
+    "typescript": "^7.0.2"
   }
 }
