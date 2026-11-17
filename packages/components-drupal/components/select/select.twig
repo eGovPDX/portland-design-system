@@ -15,7 +15,7 @@
  */
 #}
 
-{% extends 'portland_components:input' %}
+{% extends 'portland_components:control' %}
 
 {% set input_attributes = input_attributes|default(create_attribute()) %}
 
@@ -32,7 +32,9 @@
     {% if placeholder and not multiple %}
       <option value>{{ placeholder }}</option>
     {% endif %}
-    {{ content }}
+    {% block options %}
+      {{ options }}
+    {% endblock %}
   </select>
 {% endblock %}
 

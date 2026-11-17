@@ -55,6 +55,6 @@ props:
       description: A placeholder option
 
 slots:
-  content:
-    title: Content
-    description: Internal content for the Select. Should contain option elements to provide options.
+  options:
+    title: Options
+    description: Internal content for the Select options.

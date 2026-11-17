@@ -3,6 +3,8 @@ import { CONTROL_STATES } from "@cityofportland/types/control";
 import { type SelectProps } from "@cityofportland/types/select";
 import type { Meta, StoryObj } from "@storybook/html-vite";
 
+import "../control/control.component.yml";
+
 import Icon from "../icon/icon.component.yml";
 import ControlAddon from "../control/control-addon/control-addon.component.yml";
 
@@ -76,7 +78,7 @@ export const Basic: StoryObj<SelectStoryArgs> = {
     <label for="${args.id}" class="block mb-xs">Select an option</label>
     ${Select.component({
       ...args,
-      content: [...Array(options)]
+      options: [...Array(options)]
         .map(
           (_value, index) =>
             `<option value="${index + 1}">Option ${index + 1}</option>`
@@ -129,9 +131,9 @@ export const Addons: StoryObj<
       <label for="input-text" class="font-semibold text-heading-lg">With text addons that are announced</label>
       ${Select.component({
         ...args,
-        id: "input-text",
-        name: "input-text",
-        content: [...Array(options)]
+        id: "select-text",
+        name: "select-text",
+        options: [...Array(options)]
           .map(
             (_value, index) =>
               `<option value="${index + 1}">Option ${index + 1}</option>`
@@ -141,20 +143,22 @@ export const Addons: StoryObj<
         ${
           prefix
             ? ControlAddon.component({
-                id: "input-text",
+                id: "select-text",
                 orientation: "start",
                 content: "https://",
-                announce: true,
+                decorative: false,
+                describeControl: true,
               })
             : ""
         }
         ${
           suffix
             ? ControlAddon.component({
-                id: "input-text",
+                id: "select-text",
                 orientation: "end",
                 content: ".com",
-                announce: true,
+                decorative: false,
+                describeControl: true,
               })
             : ""
         }`,
@@ -164,9 +168,9 @@ export const Addons: StoryObj<
       <label for="input-icon" class="font-semibold text-heading-lg">With icon addons that are not announced</label>
       ${Select.component({
         ...args,
-        id: "input-icon",
-        name: "input-icon",
-        content: [...Array(options)]
+        id: "select-icon",
+        name: "select-icon",
+        options: [...Array(options)]
           .map(
             (_value, index) =>
               `<option value="${index + 1}">Option ${index + 1}</option>`
@@ -175,23 +179,25 @@ export const Addons: StoryObj<
         addons: `${
           prefix
             ? ControlAddon.component({
-                id: "input-icon",
+                id: "select-icon",
                 orientation: "start",
                 content: Icon.component({ icon: creditCard.name, size: "sm" }),
-                announce: false,
+                decorative: false,
+                describeControl: false,
               })
             : ""
         }
         ${
           suffix
             ? ControlAddon.component({
-                id: "input-icon",
+                id: "select-icon",
                 orientation: "end",
                 content: Icon.component({
                   icon: circleArrowRight.name,
                   size: "sm",
                 }),
-                announce: false,
+                decorative: false,
+                describeControl: false,
               })
             : ""
         }`,
