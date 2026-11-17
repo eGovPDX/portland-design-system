@@ -59,10 +59,10 @@
       option {
         @apply p-2xs;
 
-        &:checked {
-          @apply box box-primary-subtle;
-        }
-
+        /**
+        * This affects the option that was selected when using the mouse,
+        * and the option being selected when using keyboard navigation
+        **/
         &:focus {
           @apply box box-primary-emphasis;
         }
