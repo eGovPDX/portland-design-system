@@ -48,8 +48,6 @@ export type TextInputType =
   | "tel"
   | "url";
 
-export type NumberInputType = "number" | "range";
-
 export interface InputProps<T extends InputType = InputType>
   extends Omit<BoxProps, "as"> {
   autoComplete?: string;
@@ -72,7 +70,7 @@ export interface TextInputProps extends InputProps<TextInputType> {
   pattern?: string;
 }
 
-export interface NumberInputProps extends InputProps<NumberInputType> {
+export interface NumberInputProps extends InputProps<"number"> {
   min?: number;
   max?: number;
   step?: number;
