@@ -1,3 +1,5 @@
+{% extends 'portland_components:input' %}
+
 {% set input_attributes = input_attributes|default(create_attribute()) %}
 
 {% set input_attributes = input_attributes
@@ -7,7 +9,4 @@
   .setAttribute('list', list|default(null)|escape)
 %}
 
-{% include 'portland:input' with {
-  type: 'number',
-  input_attributes: input_attributes,
-} %}
+{% set type = 'number' %}
