@@ -56,11 +56,14 @@ const preview: Preview = {
       },
       defaultTheme: "light",
     }),
-    (Story) => {
-      const story = Story();
-      // Re-attach after render so behaviors run on each story load/refresh
+    (story) => {
+      const rendered = story();
+
+      // Storybook mounts the returned markup after decorators finish. Defer
+      // attaching behaviors so `once()` can find and mark the new elements.
       setTimeout(() => Drupal.attachBehaviors(document.body), 0);
-      return story;
+
+      return rendered;
     },
     (story) => {
       const selector = "body";

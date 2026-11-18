@@ -12,6 +12,7 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/js/index.d.ts",
       "import": "./dist/js/index.js"
     },
     "./*.svg": {
@@ -24,8 +25,8 @@
     }
   },
   "scripts": {
-    "build": "vite build",
-    "dev": "vite build --watch",
+    "build": "tsdown",
+    "dev": "tsdown --watch ./src",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
   },
@@ -33,10 +34,9 @@
     "@cityofportland/types": "workspace:*",
     "cheerio": "^1.2.0",
     "picocolors": "^1.1.1",
-    "svgo": "^3.3.5",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.7",
-    "vite-plugin-dts": "^4.5.4"
+    "svgo": "^4.1.0",
+    "tsdown": "^0.23.7",
+    "typescript": "^7.0.2"
   },
   "optionalDependencies": {
     "@fortawesome/fontawesome-free": "^7.3.1"

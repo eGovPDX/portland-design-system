@@ -15,17 +15,22 @@
     @apply w-full;
     @apply border-sm;
 
-    > :not(.control__addon) {
-      @apply appearance-none;
-      @apply w-full;
-      @apply bg-transparent;
+    * {
       @apply focus:outline-none;
       @apply focus-visible:outline-none;
     }
 
+    /* > :not(.control__addon),
+    > :not(.input__addon) {
+      @apply appearance-none;
+      @apply flex-1;
+      @apply bg-transparent;
+    } */
+
+    /* Avoid :has(:focus), which Storybook's pseudo-states addon misrewrites. */
     &:focus-within {
       @apply outline-lg;
-      @apply outline-offset-3xs;
+      @apply outline-offset-2xs;
     }
 
     &:has(> :disabled),
@@ -39,8 +44,8 @@
     &:has(> :invalid),
     &.control--error,
     &.input--error {
-      @apply inset-ring-md;
-      @apply inset-ring-danger-emphasis;
+      @apply ring-md;
+      @apply ring-danger-emphasis;
       @apply border-danger-emphasis;
     }
 

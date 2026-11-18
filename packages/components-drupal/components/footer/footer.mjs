@@ -1,4 +1,3 @@
-import once from "@drupal/once";
 import z from "zod";
 
 (({ behaviors }) => {

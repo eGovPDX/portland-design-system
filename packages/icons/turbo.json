@@ -4,7 +4,13 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["src/**", "vite.config.ts"],
+      "inputs": [
+        "src/**",
+        "tsdown.config.ts",
+        "tsconfig.json",
+        "package.json",
+        "$TURBO_ROOT$/tsconfig.json"
+      ],
       "outputs": ["dist/**"]
     }
   }

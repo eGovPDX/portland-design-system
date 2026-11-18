@@ -12,7 +12,7 @@
 {% endif %}
 
 {% if describeControl and not decorative %}
-  {% set attributes = attributes.setAttribute("data-describe-control", true) %}
+  {% set attributes = attributes.setAttribute("data-describe-control", "true") %}
 {% endif %}
 
 {% set announcement = orientation == "start" ? "prefix" : "suffix" %}

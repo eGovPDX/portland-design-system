@@ -5,9 +5,10 @@
 {% set input_attributes = input_attributes|default(create_attribute()) %}
 
 {% set input_attributes = input_attributes
-  .setAttribute('cols', cols|default(20))
-  .setAttribute('rows', rows|default(null))
   .setAttribute('autocapitalize', autoCapitalize|default(null)|escape)
+  .setAttribute('cols', cols|default(20))
+  .setAttribute('placeholder', placeholder|default(null)|escape)
+  .setAttribute('rows', rows|default(null))
   .setAttribute('spellcheck', spellCheck|default(null)|escape)
   .setAttribute('wrap', wrap|default(null)|escape)
 %}

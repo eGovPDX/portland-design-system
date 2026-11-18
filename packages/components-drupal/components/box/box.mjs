@@ -1,4 +1,3 @@
-import once from "@drupal/once";
 import { validateBoxConfiguration } from "@cityofportland/types/box";
 
 /** @type {DrupalBehavior} */

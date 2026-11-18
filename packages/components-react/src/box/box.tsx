@@ -13,32 +13,39 @@ import "@cityofportland/components-css/box.css";
 type DefaultElementType = "div";
 
 /**
- * Props that are specific to the React implementation
+ * Props handled by Box regardless of the rendered element or component
  */
-type ReactBoxOwnProps<E extends React.ElementType = DefaultElementType> = Omit<
-  BoxProps,
-  "as"
-> & {
-  /**
-   * The HTML element or React component to render as
-   * @default "div"
-   */
-  as?: E;
-};
+type ReactBoxOwnProps<
+  E extends React.ElementType,
+  SharedProps,
+> = React.PropsWithChildren<
+  Omit<SharedProps, keyof BoxProps> & BoxProps<E> & { className?: string }
+>;
 
 /**
  * Polymorphic Box props that merge own props with the element's native props
- * Omits props that are defined in our own props to avoid conflicts
+ * Replaces shared Box fields with React's element-aware fields, then adds native
+ * props and refs. Component-specific shared props take priority over native props.
+ * NoInfer ensures that only `as` selects the element type.
+ *
+ * @example
+ * type ReactCardProps<E extends React.ElementType = "article"> =
+ *   ReactBoxProps<E, CardProps>;
  */
-export type ReactBoxProps<E extends React.ElementType = DefaultElementType> =
-  ReactBoxOwnProps<E> &
-    Omit<React.ComponentPropsWithoutRef<E>, keyof ReactBoxOwnProps<E>>;
+export type ReactBoxProps<
+  E extends React.ElementType = DefaultElementType,
+  SharedProps = BoxProps,
+> = ReactBoxOwnProps<E, SharedProps> &
+  Omit<
+    React.ComponentPropsWithRef<NoInfer<E>>,
+    keyof ReactBoxOwnProps<E, SharedProps>
+  >;
 
 /**
- * Generic Box component type for use with forwardRef
+ * Generic Box component type with element-specific props and refs
  */
 export type BoxComponent = <E extends React.ElementType = DefaultElementType>(
-  props: ReactBoxProps<E> & { ref?: React.Ref<HTMLElement> | undefined }
+  props: ReactBoxProps<E>
 ) => React.ReactNode;
 
 /**
@@ -83,29 +90,34 @@ function buildClassList({
  *   Custom component content
  * </Box>
  */
-export const Box = React.forwardRef(
-  <E extends React.ElementType = DefaultElementType>(
-    { as, children, color, variant, className, ...rest }: ReactBoxProps<E>,
-    ref: React.Ref<React.ElementType<E>>
-  ) => {
-    const Element: React.ElementType = as || "div";
+export const Box: BoxComponent = <
+  E extends React.ElementType = DefaultElementType,
+>({
+  as,
+  ref,
+  children,
+  color,
+  variant,
+  className,
+  ...rest
+}: ReactBoxProps<E>) => {
+  const Element: React.ElementType = as ?? "div";
 
-    [color, variant] = validateBoxConfiguration(color, variant);
+  [color, variant] = validateBoxConfiguration(color, variant);
 
-    const classList = buildClassList({
-      className,
-      color,
-      variant,
-    });
+  const classList = buildClassList({
+    className,
+    color,
+    variant,
+  });
 
-    return (
-      <Element
-        ref={ref}
-        className={classList.length ? classList : undefined}
-        {...rest}
-      >
-        {children}
-      </Element>
-    );
-  }
-) as BoxComponent;
+  return (
+    <Element
+      ref={ref}
+      className={classList.length ? classList : undefined}
+      {...rest}
+    >
+      {children}
+    </Element>
+  );
+};

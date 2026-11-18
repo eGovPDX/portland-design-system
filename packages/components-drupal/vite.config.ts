@@ -107,9 +107,8 @@ export default defineConfig(({ mode }) => {
         },
         formats: ["es"],
       },
-      rollupOptions: {
+      rolldownOptions: {
         output: {
-          inlineDynamicImports: false, // Allow code splitting for multiple entries
           // Control chunk naming
           chunkFileNames: "js/[name]-[hash].js",
         },

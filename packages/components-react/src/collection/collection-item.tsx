@@ -1,26 +1,27 @@
-import type { BoxProps } from "@cityofportland/types/box";
 import React from "react";
 
-import { Box } from "../box";
+import { Box, type ReactBoxProps } from "../box";
 import { mergeClasses } from "../utils";
 
-export type ReactCollectionItemProps = React.PropsWithChildren<
-  BoxProps & {
-    className?: string;
-  }
->;
+export type ReactCollectionItemProps<E extends React.ElementType = "li"> =
+  ReactBoxProps<E>;
 
-export const CollectionItem: React.FC<ReactCollectionItemProps> = ({
+export function CollectionItem<E extends React.ElementType = "li">(
+  props: ReactCollectionItemProps<E>
+): React.ReactNode;
+export function CollectionItem({
   as = "li",
   children,
   className,
   ...props
-}) => (
-  <Box
-    as={as}
-    className={mergeClasses("collection__item", className)}
-    {...props}
-  >
-    {children}
-  </Box>
-);
+}: ReactCollectionItemProps<React.ElementType>) {
+  return (
+    <Box
+      as={as}
+      className={mergeClasses("collection__item", className)}
+      {...props}
+    >
+      {children}
+    </Box>
+  );
+}
