@@ -20,13 +20,6 @@
       @apply focus-visible:outline-none;
     }
 
-    /* > :not(.control__addon),
-    > :not(.input__addon) {
-      @apply appearance-none;
-      @apply flex-1;
-      @apply bg-transparent;
-    } */
-
     /* Avoid :has(:focus), which Storybook's pseudo-states addon misrewrites. */
     &:focus-within {
       @apply outline-lg;

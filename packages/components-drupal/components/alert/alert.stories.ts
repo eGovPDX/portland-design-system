@@ -106,6 +106,7 @@ export default {
     dismissible: true,
     icon: Icons.circleInfo.name,
     title: "Alert heading",
+    title_as: "header",
     description: "This is the alert text content.",
     link: true,
   },
@@ -164,7 +165,7 @@ export const PortlandGov: StoryObj<Omit<Props, "icon"> & { icon: boolean }> = {
     description: "This is the alert text content.",
     link: true,
   },
-  render: ({ description, dismissible, icon, link, size, title }) => {
+  render: ({ description, dismissible, icon, link, size, title, title_as }) => {
     const types = [
       ["info", "moderate", "status", "circle-info"],
       ["warning", "moderate", "status", "triangle-exclamation"],
