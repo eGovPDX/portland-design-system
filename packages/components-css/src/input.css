@@ -5,8 +5,9 @@
   .input {
     &:has(> input) {
       @apply inline-grid;
-      grid-template-columns: max-content minmax(0, 1fr) max-content;
       @apply items-center;
+
+      grid-template-columns: max-content minmax(0, 1fr) max-content;
 
       .control__addon,
       .input__addon {
@@ -14,6 +15,7 @@
         &.input__addon--start {
           grid-row: 1;
           grid-column: 1;
+
           @apply px-xs;
         }
 
@@ -21,12 +23,16 @@
         &.input__addon--end {
           grid-row: 1;
           grid-column: 3;
+
           @apply px-xs;
         }
       }
     }
 
     > input {
+      grid-row: 1;
+      grid-column: 2;
+
       @apply p-xs;
 
       &:has(~ .control__addon--start, ~ .input__addon--start) {
@@ -35,16 +41,6 @@
 
       &:has(~ .control__addon--end, ~ .input__addon--end) {
         @apply pr-none;
-      }
-
-      &[type="number"]:has(~ .input__addon--end) {
-        appearance: textfield;
-
-        &::-webkit-inner-spin-button,
-        &::-webkit-outer-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
       }
     }
   }
