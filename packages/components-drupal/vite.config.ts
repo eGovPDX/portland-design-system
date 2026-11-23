@@ -252,10 +252,8 @@ export default defineConfig(({ mode }) => {
 name: 'Portland Components'
 type: module
 description: 'A library of reusable components for Drupal.'
-core_version_requirement: ^10
+core_version_requirement: ^11
 package: Custom
-dependencies:
-  - drupal:sdc
       `;
 
           fs.writeFileSync(infoYmlPath, staticInfoYmlContent.trim() + "\n");
