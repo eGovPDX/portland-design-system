@@ -17,12 +17,15 @@ const config: StorybookConfig = {
       options: {
         sdcStorybookOptions: {
           namespace: "portland_components",
-        },
-        vitePluginTwigDrupalOptions: {
-          // vite-plugin-twig-drupal options.
           namespaces: {
-            portland_components: join(cwd(), "./components"), // Your namespace and path to components.
+            portland_assets: join(cwd(), "./dist/assets"),
           },
+          resolveIconSource: (source, { packId, namespace }) =>
+            namespace === "portland_components" &&
+            packId === "portland_icons" &&
+            source === "assets/*.svg"
+              ? join(cwd(), "dist", source)
+              : source,
         },
         jsonSchemaFakerOptions: {}, // json-schema-faker options.
       },

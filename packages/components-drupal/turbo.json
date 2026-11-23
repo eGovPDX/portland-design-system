@@ -7,7 +7,12 @@
       "outputs": ["dist/**"]
     },
     "storybook": {
-      "dependsOn": ["@cityofportland/icons#build"],
+      // Build these first because Storybook loads their generated SVG assets.
+      "dependsOn": [
+        "build",
+        "@cityofportland/design-tokens#build",
+        "@cityofportland/icons#build"
+      ],
       "with": [
         "@cityofportland/components-css#dev",
         "@cityofportland/design-tokens#dev",
@@ -18,6 +23,7 @@
     },
     "storybook:build": {
       "dependsOn": [
+        "build",
         "@cityofportland/components-css#build:dev",
         "@cityofportland/design-tokens#build",
         "@cityofportland/icons#build",

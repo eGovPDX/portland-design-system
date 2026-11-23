@@ -1,0 +1,8 @@
+portland_icons:
+  label: Portland icons
+  extractor: svg
+  config:
+    sources:
+      - assets/*.svg
+  template: >-
+    <svg {{ attributes }}>{{ content }}</svg>
