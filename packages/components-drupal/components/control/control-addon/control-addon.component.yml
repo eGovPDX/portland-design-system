@@ -14,7 +14,6 @@ props:
       type: string
       title: Input id
       description: The unique identifier for the parent input.
-      required: true
 
     orientation:
       type: string

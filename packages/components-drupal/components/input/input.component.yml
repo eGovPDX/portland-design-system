@@ -9,6 +9,8 @@ props:
   type: object
   required:
     - type
+    - name
+    - id
   properties:
     type:
       type: string
@@ -31,11 +33,9 @@ props:
 
     name:
       type: string
-      required: true
 
     id:
       type: string
-      required: true
 
     value:
       type: string

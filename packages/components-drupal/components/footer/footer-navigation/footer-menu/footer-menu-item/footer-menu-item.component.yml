@@ -5,6 +5,10 @@ name: Footer Menu Item
 
 status: experimental
 
+props:
+  type: object
+  properties: {}
+
 slots:
   content:
     title: Content

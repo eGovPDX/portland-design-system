@@ -5,6 +5,10 @@ name: Header Nav List
 
 status: experimental
 
+props:
+  type: object
+  properties: {}
+
 slots:
   header_nav_list_content:
     title: Content

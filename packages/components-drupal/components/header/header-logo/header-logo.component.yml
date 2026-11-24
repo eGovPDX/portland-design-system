@@ -5,6 +5,10 @@ name: Header Logo
 
 status: experimental
 
+props:
+  type: object
+  properties: {}
+
 slots:
   header_logo_content:
     title: Content
