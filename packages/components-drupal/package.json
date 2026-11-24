@@ -1,6 +1,6 @@
 {
   "name": "@cityofportland/components-drupal",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "description": "Drupal Single Directory Components as stories",
   "author": {
     "name": "City of Portland, Oregon"
@@ -23,8 +23,8 @@
     "zod": "^4.6.7"
   },
   "peerDependencies": {
-    "@cityofportland/design-tokens": "^1.0.0-alpha.7",
-    "@cityofportland/icons": "^1.0.0-alpha.7"
+    "@cityofportland/design-tokens": "^2.0.0-alpha.8",
+    "@cityofportland/icons": "^1.0.0-alpha.8"
   },
   "devDependencies": {
     "@cityofportland/components-css": "workspace:*",
