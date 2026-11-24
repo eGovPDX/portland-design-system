@@ -18,13 +18,13 @@ const config: StorybookConfig = {
         sdcStorybookOptions: {
           namespace: "portland_components",
           namespaces: {
-            portland_assets: join(cwd(), "./dist/assets"),
+            portland_assets: join(cwd(), "node_modules", "@cityofportland", "design-tokens", "dist", "assets"),
           },
           resolveIconSource: (source, { packId, namespace }) =>
             namespace === "portland_components" &&
             packId === "portland_icons" &&
-            source === "assets/*.svg"
-              ? join(cwd(), "dist", source)
+            source === "node_modules/@cityofportland/icons/dist/svgs/*.svg"
+              ? join(cwd(), "node_modules", "@cityofportland", "icons", "dist", "svgs")
               : source,
         },
         jsonSchemaFakerOptions: {}, // json-schema-faker options.

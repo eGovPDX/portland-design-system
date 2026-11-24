@@ -121,62 +121,6 @@ export default defineConfig(({ mode }) => {
         name: "sdc-copy",
         writeBundle() {
           const out = resolve(process.cwd(), "dist", "components");
-          // Bundle dependency SVGs so Drupal can resolve them without node_modules.
-          const assetsDir = resolve(process.cwd(), "dist", "assets");
-          const assetSources = [
-            resolve(
-              process.cwd(),
-              "node_modules/@cityofportland/icons/dist/svgs"
-            ),
-            resolve(
-              process.cwd(),
-              "node_modules/@cityofportland/design-tokens/dist/assets"
-            ),
-          ];
-
-          fs.mkdirSync(assetsDir, { recursive: true });
-          const assetNames = new Set<string>();
-          for (const source of assetSources) {
-            let sourceAssetCount = 0;
-            for (const entry of fs.readdirSync(source, {
-              withFileTypes: true,
-            })) {
-              if (!entry.isFile() || !entry.name.endsWith(".svg")) continue;
-              sourceAssetCount++;
-              if (assetNames.has(entry.name)) {
-                throw new Error(`Duplicate Portland asset: ${entry.name}`);
-              }
-              assetNames.add(entry.name);
-              fs.copyFileSync(
-                path.join(source, entry.name),
-                path.join(assetsDir, entry.name)
-              );
-            }
-            if (sourceAssetCount === 0) {
-              throw new Error(`No SVG assets found in ${source}`);
-            }
-          }
-          if (!assetNames.has("city-seal.svg")) {
-            throw new Error("Missing built Portland city seal asset");
-          }
-
-          // Drupal's service provider registers this module's asset directory as a Twig namespace.
-          fs.mkdirSync(resolve(process.cwd(), "dist", "src"), {
-            recursive: true,
-          });
-          fs.copyFileSync(
-            resolve(
-              process.cwd(),
-              "src",
-              "PortlandComponentsServiceProvider.php"
-            ),
-            resolve(
-              process.cwd(),
-              "dist",
-              "src",
-              "PortlandComponentsServiceProvider.php"
-            )
-          );
 
           // Ensure dist/components directory exists
           if (!fs.existsSync(out)) {
@@ -254,6 +198,9 @@ type: module
 description: 'A library of reusable components for Drupal.'
 core_version_requirement: ^11
 package: Custom
+components:
+  namespaces:
+    portland_assets: node_modules/@cityofportland/design-tokens/dist/assets
       `;
 
           fs.writeFileSync(infoYmlPath, staticInfoYmlContent.trim() + "\n");

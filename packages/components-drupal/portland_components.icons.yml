@@ -3,6 +3,6 @@ portland_icons:
   extractor: svg
   config:
     sources:
-      - assets/*.svg
+      - node_modules/@cityofportland/icons/dist/svgs/*.svg
   template: >-
     <svg {{ attributes }}>{{ content }}</svg>
