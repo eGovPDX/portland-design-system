@@ -5,6 +5,10 @@ name: Footer Navigation
 
 status: experimental
 
+props:
+  type: object
+  properties: {}
+
 slots:
   content:
     title: Content

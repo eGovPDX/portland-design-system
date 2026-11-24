@@ -35,6 +35,6 @@
   {% endif %}
 
   <span {{ attributes.addClass(classes) }}>
-    {{ source('node_modules/@cityofportland/design-tokens/dist/assets/city-seal.svg') }}
+    {% include '@portland_assets/city-seal.svg' %}
   </span>
 {% endapply %}

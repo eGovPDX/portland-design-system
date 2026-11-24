@@ -7,6 +7,9 @@ status: experimental
 
 props:
   type: object
+  required:
+    - name
+    - id
   properties:
     state:
       type: string
@@ -18,11 +21,9 @@ props:
 
     name:
       type: string
-      required: true
 
     id:
       type: string
-      required: true
 
     value:
       type: string

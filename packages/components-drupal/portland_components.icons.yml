@@ -1,0 +1,8 @@
+portland_icons:
+  label: Portland icons
+  extractor: svg
+  config:
+    sources:
+      - node_modules/@cityofportland/icons/dist/svgs/*.svg
+  template: >-
+    <svg {{ attributes }}>{{ content }}</svg>

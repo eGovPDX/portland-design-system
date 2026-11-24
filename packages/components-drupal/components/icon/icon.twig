@@ -45,6 +45,6 @@
   {% endif %}
 
   <span {{ attributes.addClass(classes) }}>
-    {{ source('node_modules/@cityofportland/icons/dist/svgs/' ~ icon ~ '.svg') }}
+    {{ icon('portland_icons', icon) }}
   </span>
 {% endapply %}

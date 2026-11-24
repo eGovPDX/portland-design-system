@@ -5,6 +5,10 @@ name: Header Content
 
 status: experimental
 
+props:
+  type: object
+  properties: {}
+
 slots:
   header_content_content:
     title: Content

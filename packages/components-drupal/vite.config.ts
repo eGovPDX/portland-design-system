@@ -153,6 +153,7 @@ export default defineConfig(({ mode }) => {
 
           // Copy library files and other root files
           const rootFiles = [
+            "portland_components.icons.yml",
             "portland_components.libraries.yml",
             "portland_components.info.yml",
           ];
@@ -197,6 +198,9 @@ type: module
 description: 'A library of reusable components for Drupal.'
 core_version_requirement: ^11
 package: Custom
+components:
+  namespaces:
+    portland_assets: node_modules/@cityofportland/design-tokens/dist/assets
       `;
 
           fs.writeFileSync(infoYmlPath, staticInfoYmlContent.trim() + "\n");
